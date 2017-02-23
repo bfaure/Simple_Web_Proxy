@@ -158,8 +158,8 @@ void init_proxy_log()
             fread(buffer,1,length,prior_log);
         }
         buffer[length] = '\0'; // zero-terminate string
+        fclose(prior_log); // close old proxy.log file
     }
-    fclose(prior_log); // close old proxy.log file
 
     // open new instance of proxy.log (overwriting prior, if one)
     proxy_log = fopen("proxy.log","w");
