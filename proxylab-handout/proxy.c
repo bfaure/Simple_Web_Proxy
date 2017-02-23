@@ -12,10 +12,10 @@
 
 #include "csapp.h"
 
-#include "stdio.h" // for printf
-#include "string.h" // for strlen, etc.
-#include "stdlib.h" 
-#include "ctype.h" // for tolower
+//#include "stdio.h" // for printf
+//#include "string.h" // for strlen, etc.
+//#include "stdlib.h" 
+//#include "ctype.h" // for tolower
 
 
 #include "time.h"
@@ -55,13 +55,13 @@ int main(int argc, char **argv)
     if (argc != 2) 
     {
 	    fprintf(stderr, "Usage: %s <port number>\n", argv[0]);
-        fclose(debug_log);
+        Fclose(debug_log);
 	    exit(0);
     }
     printl("Correct arguments","\n");
 
 
-    fclose(debug_log); // close debugging log
+    Fclose(debug_log); // close debugging log
     exit(0);
 }
 
@@ -140,7 +140,7 @@ void init_proxy_log()
     printl("Initializing proxy.log file...","\n");
     // try to read in prior data
     FILE *prior_log;
-    prior_log = fopen("proxy.log","r");
+    prior_log = Fopen("proxy.log","r");
 
     char *buffer = 0;
     long length = -1; 
@@ -155,14 +155,14 @@ void init_proxy_log()
         buffer = malloc(length + 1); // make room to zero-terminate string
         if (buffer)
         {
-            fread(buffer,1,length,prior_log);
+            Fread(buffer,1,length,prior_log);
         }
         buffer[length] = '\0'; // zero-terminate string
-        fclose(prior_log); // close old proxy.log file
+        Fclose(prior_log); // close old proxy.log file
     }
 
     // open new instance of proxy.log (overwriting prior, if one)
-    proxy_log = fopen("proxy.log","w");
+    proxy_log = Fopen("proxy.log","w");
 
     if (length != -1)
     {
@@ -177,7 +177,7 @@ void init_proxy_log()
 // initializes the debugging log
 void init_debug_log(int argc, char **argv)
 {
-    debug_log = fopen("[proxy_c]-debug_log.txt","w"); // initialize debugging log
+    debug_log = Fopen("[proxy_c]-debug_log.txt","w"); // initialize debugging log
     printl("Initializing proxy.c...","\n");
     if (argc==1){  printl("No arguments passed.","\n");  }
     else
