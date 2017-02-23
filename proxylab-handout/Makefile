@@ -3,7 +3,7 @@
 
 CC = gcc
 CFLAGS = -Wall -g 
-LDFLAGS = -lpthread
+LDFLAGS = -pthread
 
 OBJS = proxy.o csapp.o
 
