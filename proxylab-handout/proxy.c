@@ -17,7 +17,8 @@
 #include "stdlib.h" 
 #include "ctype.h" // for tolower
 
- #include "time.h"
+
+#include "time.h"
 
 /*
  * Function prototypes
@@ -25,67 +26,46 @@
 void format_log_entry(char *logstring, struct sockaddr_in *sockaddr, char *uri, int size);
 
 // file to save debugging info to, can be accessed from any function in this file 
+FILE *debug_log;
+
+// file to log each request (as per instructions)
 FILE *proxy_log;
 
-// function to write the current time out to the log file
-void log_time()
-{
-    time_t rawtime;
-    struct tm *timeinfo;
+// function to log the timestamp to the debug log file
+void log_time();
 
-    time(&rawtime);
-    timeinfo = localtime(&rawtime);
-    fprintf(proxy_log, "[%d %d %d %d:%d:%d]> ",timeinfo->tm_mday, timeinfo->tm_mon + 1, timeinfo->tm_year + 1900, timeinfo->tm_hour, timeinfo->tm_min, timeinfo->tm_sec);
-}
+// function to write to the debug log file
+void printl(const char *input_str, const char *line_ending);
 
-// function to write to the log file, writes out the timestamp before input string
-// input_str: string to write to log
-// line_ending: [0,1,2,3] = ['\n','\r','',' ']
-void printl(const char *input_str, const char *line_ending)
-{
-    log_time(); // write out timestamp
-    fprintf(proxy_log, "%s", input_str);
-    fprintf(proxy_log, "%s", line_ending);
+// function to initialize the proxy.log file, carries over data if already written to
+void init_proxy_log();
 
-    //if (line_ending==0){  fprintf(proxy_log, "%s\n",input_str);  }
-    //if (line_ending==1){  fprintf(proxy_log, "%s\r",input_str);  }
-    //if (line_ending==2){  fprintf(proxy_log, "%s",  input_str);  }
-    //if (line_ending==3){  fprintf(proxy_log, "%s ", input_str);  }
-}
-
+// function to initialize the debug_log.txt file
+void init_debug_log(int argc, char ** argv);
 
 /* 
  * main - Main routine for the proxy program 
  */
 int main(int argc, char **argv)
 {
-    proxy_log = fopen("[proxy_c]-debug_log.txt","w"); // initialize debugging log
-    printl("Initializing proxy.c...","\n");
+    init_debug_log(argc,argv); // initialize the debug.log file
+    init_proxy_log(); // initialize the debugging log file
     
-    if (argc==1){  printl("No arguments passed.","\n");  }
-    else
-    {
-        printl("Arguments: ",""); 
-        for (int i=1; i<argc; i++)
-        {
-            if(i!=argc-1){  printl(argv[i]," ");  }
-            else         {  printl(argv[i],"\n"); }
-        }
-    }
-
     /* Check arguments */
     if (argc != 2) 
     {
 	    fprintf(stderr, "Usage: %s <port number>\n", argv[0]);
-        fclose(proxy_log);
+        fclose(debug_log);
 	    exit(0);
     }
     printl("Correct arguments","\n");
 
 
-    fclose(proxy_log); // close debugging log
+    fclose(debug_log); // close debugging log
     exit(0);
 }
+
+
 
 /*
  * format_log_entry - Create a formatted log entry in logstring. 
@@ -123,4 +103,90 @@ void format_log_entry(char *logstring, struct sockaddr_in *sockaddr,
     sprintf(logstring, "%s: %d.%d.%d.%d %s", time_str, a, b, c, d, uri);
 }
 
+// function to write the current time out to the log file
+void log_time()
+{
+    time_t rawtime;
+    struct tm *timeinfo;
 
+    time(&rawtime);
+    timeinfo = localtime(&rawtime);
+    fprintf(debug_log, "[%d %d %d %d:%d:%d]> ",timeinfo->tm_mday, timeinfo->tm_mon + 1, timeinfo->tm_year + 1900, timeinfo->tm_hour, timeinfo->tm_min, timeinfo->tm_sec);
+}
+
+// function to write to the log file, writes out the timestamp before input string
+// input_str: string to write to log
+// line_ending: [0,1,2,3] = ['\n','\r','',' ']
+void printl(const char *input_str, const char *line_ending)
+{
+    // If just a line feed input for line ending and no input, write out line ending and return
+    // without posting a timestamp
+    if (strcmp(input_str,"")==0 && strcmp(line_ending,"\n")==0)
+    {
+        fprintf(debug_log, "\n");
+        return;
+    }
+    // log the timestamp if needed
+    if (strcmp(line_ending,"\r")==0 || strcmp(line_ending,"\n")==0 || strcmp(line_ending,"")==0){  log_time();  } // write out timestamp
+
+    // write out information
+    fprintf(debug_log, "%s", input_str); // write out message
+    fprintf(debug_log, "%s", line_ending); // write out line ending
+}
+
+// initializes the proxy.log file, if one already exists, it carries over that data to the new instance
+void init_proxy_log()
+{
+    printl("Initializing proxy.log file...","\n");
+    // try to read in prior data
+    FILE *prior_log;
+    prior_log = fopen("proxy.log","r");
+
+    char *buffer = 0;
+    long length = -1; 
+
+    if (prior_log)
+    {
+        printl("Found prior proxy.log file.","\n");
+        // proxy.log exits, read in prior data
+        fseek(prior_log,0, SEEK_END);
+        length = ftell(prior_log);
+        fseek(prior_log,0,SEEK_SET);
+        buffer = malloc(length + 1); // make room to zero-terminate string
+        if (buffer)
+        {
+            fread(buffer,1,length,prior_log);
+        }
+        buffer[length] = '\0'; // zero-terminate string
+    }
+    fclose(prior_log); // close old proxy.log file
+
+    // open new instance of proxy.log (overwriting prior, if one)
+    proxy_log = fopen("proxy.log","w");
+
+    if (length != -1)
+    {
+        printl("Copying data from prior proxy.log instance...","\n");
+        // if we read in data from a prior proxy.log file, write it back out
+        // to new copy of proxy.log...
+        fprintf(proxy_log, "%s", buffer);
+    }
+    printl("proxy.log initialized.","\n");
+}
+
+// initializes the debugging log
+void init_debug_log(int argc, char **argv)
+{
+    debug_log = fopen("[proxy_c]-debug_log.txt","w"); // initialize debugging log
+    printl("Initializing proxy.c...","\n");
+    if (argc==1){  printl("No arguments passed.","\n");  }
+    else
+    {
+        printl("Arguments: ",""); 
+        for (int i=1; i<argc; i++)
+        {  
+            printl(argv[i]," ");  
+        }
+        printl("","\n");
+    }
+}
