@@ -46,12 +46,21 @@ void init_debug_log(int argc, char ** argv);
 // parses the port number from the command line arguments
 int parse_port_num(char ** argv);
 
+// Global variables (hold processed request info)
+char req_command[10]; // GET, POST, etc.
+char req_host_short[100]; // www.yahoo.com, etc.
+char req_host_long[512]; // http://www.yahoo.com/, etc.
+char req_protocol[100]; // HTTP/1.1, etc.
+
+void parse_request(char *buffer);
+
+
 /* 
  * main - Main routine for the proxy program 
  */
 int main(int argc, char **argv)
 {
-    init_debug_log(argc,argv); // initialize the debug.log file
+    //init_debug_log(argc,argv); // initialize the debug.log file
     init_proxy_log(); // initialize the debugging log file
     
     /* Check arguments */
@@ -61,20 +70,107 @@ int main(int argc, char **argv)
         Fclose(debug_log);
 	    exit(0);
     }
-    printl("Correct arguments","\n");
-
+    //printl("Correct arguments","\n");
     int listening_port = parse_port_num(argv);
 
-    if ((server_sock = create_socket(listening_port)) < 0) 
-    { 
-        plog(LOG_CRIT, "Cannot run server: %m");
-        return server_sock;
+
+    printf("> Opening connection to listening port... \n");
+    int listening_socket = Open_listenfd(listening_port);
+    printf("> Connection established on rc = %d\n",listening_socket);
+    
+    printf("> Listening for requests...\n");
+
+    struct sockaddr_in client_addr;
+    socklen_t addrlen = sizeof(client_addr);
+
+    while (1)
+    {
+        int client_socket = Accept(listening_socket, (struct sockaddr*)&client_addr, &addrlen);
+        printf("> Found client at socket %d\n",client_socket);
+
+        char buffer[1024]; // to read the socket data into
+        int n = read(client_socket,buffer,1023);
+
+        if (n<0)
+        {
+            printf("> Error reading from socket \n");
+        }
+
+        printf("> Socket data...\n");
+        printf("%s\n",buffer);
+
+        parse_request(buffer);
+        fulfill_request();
     }
-
-
-    Fclose(debug_log); // close debugging log
     exit(0);
 }
+
+void fulfill_request()
+{
+    return;
+}
+
+void parse_request(char *buffer)
+{
+    int request_length = strlen(buffer);
+    printf("> Request length: %d\n",request_length);
+
+    char buffer_copy[request_length+1];
+    strcpy(buffer_copy,buffer);
+
+    printf("> Iterating over lines of request...\n");
+
+    // splitting the buffer on '\n' endline characters
+    //char *line = strtok(buffer_copy,"\n");
+
+    char *end_str;
+    char *line = strtok_r(buffer_copy,"\n",&end_str);
+
+
+    int line_index = 0;
+    while (line != NULL)
+    {
+        //printf("> Line: %s\n",line);
+
+        char *end_token;
+        char *word = strtok_r(line," ",&end_token);
+
+        int word_index = 0;
+        while (word != NULL)
+        {
+            // Iterate over each word in line
+            if (line_index==0 && word_index==0)
+            {
+                printf("> Request: %s\n",word);
+                strcpy(req_command,word);
+            }
+            if (line_index==0 && word_index==1)
+            {
+                printf("> Host (long): %s\n",word);
+                strcpy(req_host_long,word);
+            }
+            if (line_index==0 && word_index==2)
+            {
+                printf("> Protocol: %s\n",word);
+                strcpy(req_protocol,word);
+            }
+
+            if (line_index==1 && word_index==1)
+            {
+                printf("> Host (short): %s\n",word);
+                strcpy(req_host_short,word);
+            }
+
+            word = strtok_r(NULL," ",&end_token);
+            word_index++;
+        }
+        line = strtok_r(NULL,"\n",&end_str);
+        line_index++;
+
+    }
+
+}
+
 
 /*
  * format_log_entry - Create a formatted log entry in logstring. 
@@ -155,7 +251,7 @@ void printl(const char *input_str, const char *line_ending)
 // initializes the proxy.log file, if one already exists, it carries over that data to the new instance
 void init_proxy_log()
 {
-    printl("Initializing proxy.log file...","\n");
+    //printl("Initializing proxy.log file...","\n");
     // try to read in prior data
     FILE *prior_log;
     prior_log = Fopen("proxy.log","r");
@@ -165,7 +261,7 @@ void init_proxy_log()
 
     if (prior_log)
     {
-        printl("Found prior proxy.log file.","\n");
+       // printl("Found prior proxy.log file.","\n");
         // proxy.log exits, read in prior data
         fseek(prior_log,0, SEEK_END);
         length = ftell(prior_log);
@@ -184,19 +280,20 @@ void init_proxy_log()
 
     if (length != -1)
     {
-        printl("Copying data from prior proxy.log instance...","\n");
+        //printl("Copying data from prior proxy.log instance...","\n");
         // if we read in data from a prior proxy.log file, write it back out
         // to new copy of proxy.log...
         fprintf(proxy_log, "%s", buffer);
     }
-    printl("proxy.log initialized.","\n");
+    //printl("proxy.log initialized.","\n");
 }
 
 // initializes the debugging log
 void init_debug_log(int argc, char **argv)
 {
     debug_log = Fopen("[proxy_c]-debug_log.txt","w"); // initialize debugging log
-    printl("Initializing proxy.c...","\n");
+    return;
+    //printl("Initializing proxy.c...","\n");
     if (argc==1){  printl("No arguments passed.","\n");  }
     else
     {
@@ -214,8 +311,9 @@ int parse_port_num(char ** argv)
 {
     char * port_str = argv[1];
     int port_num = atoi(port_str);
-    printl("Listening port: ","");
-    printl(port_str," ");
-    printl("","\n");
+    printf("> Listening port: %d\n",port_num);
+    //printl("Listening port: ","");
+    //printl(port_str," ");
+    //printl("","\n");
     return port_num;
 }
