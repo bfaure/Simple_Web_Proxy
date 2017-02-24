@@ -43,6 +43,9 @@ void init_proxy_log();
 // function to initialize the debug_log.txt file
 void init_debug_log(int argc, char ** argv);
 
+// parses the port number from the command line arguments
+int parse_port_num(char ** argv);
+
 /* 
  * main - Main routine for the proxy program 
  */
@@ -60,12 +63,18 @@ int main(int argc, char **argv)
     }
     printl("Correct arguments","\n");
 
+    int listening_port = parse_port_num(argv);
+
+    if ((server_sock = create_socket(listening_port)) < 0) 
+    { 
+        plog(LOG_CRIT, "Cannot run server: %m");
+        return server_sock;
+    }
+
 
     Fclose(debug_log); // close debugging log
     exit(0);
 }
-
-
 
 /*
  * format_log_entry - Create a formatted log entry in logstring. 
@@ -112,6 +121,7 @@ void log_time()
     time(&rawtime);
     timeinfo = localtime(&rawtime);
     fprintf(debug_log, "[%d %d %d %d:%d:%d]> ",timeinfo->tm_mday, timeinfo->tm_mon + 1, timeinfo->tm_year + 1900, timeinfo->tm_hour, timeinfo->tm_min, timeinfo->tm_sec);
+    printf("[%d %d %d %d:%d:%d]> ",timeinfo->tm_mday, timeinfo->tm_mon + 1, timeinfo->tm_year + 1900, timeinfo->tm_hour, timeinfo->tm_min, timeinfo->tm_sec);
 }
 
 // function to write to the log file, writes out the timestamp before input string
@@ -124,14 +134,22 @@ void printl(const char *input_str, const char *line_ending)
     if (strcmp(input_str,"")==0 && strcmp(line_ending,"\n")==0)
     {
         fprintf(debug_log, "\n");
+        printf("\n");
         return;
     }
     // log the timestamp if needed
-    if (strcmp(line_ending,"\r")==0 || strcmp(line_ending,"\n")==0 || strcmp(line_ending,"")==0){  log_time();  } // write out timestamp
+    if (strcmp(line_ending,"\r")==0 || strcmp(line_ending,"\n")==0 || strcmp(line_ending,"")==0)
+    {  
+        log_time(); // add timestamp
+    } 
 
     // write out information
     fprintf(debug_log, "%s", input_str); // write out message
     fprintf(debug_log, "%s", line_ending); // write out line ending
+    
+    // print out to command window (if one exists)
+    printf("%s", input_str);
+    printf("%s", line_ending);
 }
 
 // initializes the proxy.log file, if one already exists, it carries over that data to the new instance
@@ -189,4 +207,15 @@ void init_debug_log(int argc, char **argv)
         }
         printl("","\n");
     }
+}
+
+// parses out the port number and returns it as an integer
+int parse_port_num(char ** argv)
+{
+    char * port_str = argv[1];
+    int port_num = atoi(port_str);
+    printl("Listening port: ","");
+    printl(port_str," ");
+    printl("","\n");
+    return port_num;
 }
