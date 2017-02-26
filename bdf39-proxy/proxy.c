@@ -55,6 +55,11 @@ int ALREADY_LOGGING = 0;
 typedef struct request_data
 {
     char req_all[1024]; // unparsed, entire contents of request
+
+    // all data in request past the POST or GET 
+    char req_after_host[24][1024]; // broken by line (max 24)
+    int num_lines_after_host; // track number of lines used
+
     char req_command[10]; // GET, POST, etc.
     char req_host_domain[100]; // www.yahoo.com, etc.
     char req_host_long[512]; // http://www.yahoo.com/, etc.
@@ -66,27 +71,23 @@ typedef struct request_data
     char req_user_agent[512]; // Mozilla/5.0, etc.
     char req_accept[512]; // accepted return file types
     char req_accept_language[256]; // en, en-US, etc.
+    char req_accept_encoding[256];
+    char req_content_length[256];
     char req_host_path[512]; // /text/index.html from http://www.cnn.com:80/test/index.html
 
-    // to hold the string we will use as the overall request to the server,
-    // this string will be filled after we have parsed out everything else
-    // from the browser request. Emulates the 'Typical Request Message' format
-    // on page 15 of the lec7_8_client_http.pdf slides on Sakai
-    char constructed_request[1024];
 } request_data;
 
-request_data req_data;
 
 // check if the req_host_long contains a port specification, if so 
 // parse it out and set req_host_port appropriately, otherwise, set
 // req_host_port to the default of 80
-void check_for_host_port();
+void check_for_host_port(struct request_data *req_data);
 
 // parses through received request and fills in the above variables
-char* parse_request(char *buffer);
+char* parse_request(struct request_data *req_data, char *buffer);
 
 // called after parse_request
-int fulfill_request(int client_socket, struct sockaddr_in client_addr);
+int fulfill_request(struct request_data *req_data, int client_socket, struct sockaddr_in client_addr);
 
 // count the number of occurrences of target in input
 int get_match_count(const char *input, const char *target);
@@ -95,10 +96,10 @@ int get_match_count(const char *input, const char *target);
 void strip_trailing_char(char *source, const char to_remove);
 
 // apply any changes we need to data before signaling to DNS
-void fix_data();
+void fix_data(struct request_data *req_data);
 
 // get the path (after the domain name in the URL)
-void get_host_path();
+void get_host_path(struct request_data *req_data);
 
 // logs a request to the proxy.log file
 void log_request( struct sockaddr_in *sockaddr,  char *uri,  int size);
@@ -126,8 +127,6 @@ int main(int argc, char **argv)
     
     printf("> Listening for requests...\n");
 
-
-
     while (1)
     {
         struct sockaddr_in client_addr;
@@ -139,7 +138,7 @@ int main(int argc, char **argv)
 
         if (Fork()==0)
         {
-            //printf("> FORKED a new process\n");
+            request_data req_data;
 
             char buffer[1024]; // to read the socket data into
             int n = read(client_socket,buffer,1023); // read socket into buffer string
@@ -148,13 +147,17 @@ int main(int argc, char **argv)
             {
                 printf("> Error reading from socket \n");
             }
-
-            //printf("> Socket data...\n");
-            //printf("%s\n",buffer);
-            //fflush(stdout);
             
-            char *uri = parse_request(buffer);
-            int resp_size = fulfill_request(client_socket,client_addr);
+            char *uri = parse_request(&req_data,buffer);
+
+            if (strcmp(req_data.req_command,"GET")==0)
+            {
+                printf("                                                    \r");
+                printf("> %s\r",req_data.req_host_long);
+                fflush(stdout);
+            }
+
+            int resp_size = fulfill_request(&req_data, client_socket,client_addr);
 
             log_request((struct sockaddr_in*)&client_addr,uri,resp_size);
             close(client_socket);
@@ -174,18 +177,10 @@ void log_request( struct sockaddr_in *sockaddr,  char *uri,  int size)
     ALREADY_LOGGING = 1;
     char logstring[1024];
     format_log_entry((char *)&logstring,sockaddr,uri,size);
-
-    //char fixed_logstring[1024];
-    //sprintf(fixed_logstring,"%s",logstring);
-
-    //sprintf(logstring,"[%s]",logstring);
-    printf("> %s\n",logstring);
     fprintf(proxy_log,"%s",logstring);
     fprintf(proxy_log,"\n");
     ALREADY_LOGGING = 0;
-    //fprintf(proxy_log,"TEST\n");
 }
-
 
 /*
  * format_log_entry - Create a formatted log entry in logstring. 
@@ -334,183 +329,164 @@ int parse_listening_port_num(char ** argv)
 }
 
 
-int fulfill_request(int client_socket, struct sockaddr_in client_addr)
+int fulfill_request(struct request_data *req_data, int client_socket, struct sockaddr_in client_addr)
 {
-    int remotefd = Open_clientfd(req_data.req_host_domain,req_data.req_host_port_num);
-    //printf("> remotefd = %d\n",remotefd);
-
+    int remotefd = Open_clientfd(req_data->req_host_domain,req_data->req_host_port_num);
     
     // If a GET request...
-    if (strcmp(req_data.req_command,"GET")==0)
+    if (strcmp(req_data->req_command,"GET")==0)
     {
-        //printf("> Processing GET request...\n");
-        
+
         char buffer[1024];
-        sprintf(buffer, "GET %s %s\r\n", req_data.req_host_path, req_data.req_protocol);
-        //printf("> Writing first line to buffer...\n");
-        //Rio_writen(remotefd,buffer,strlen(buffer));
+        sprintf(buffer, "GET %s %s\r\n", req_data->req_host_path, req_data->req_protocol);
         send(remotefd,buffer,strlen(buffer),0); // send first line to remote socket
-        //printf("> Wrote first line to buffer.\n");
 
-        sprintf(buffer, "Host: %s\r\n", req_data.req_host_domain);
-        //printf("> Writing second line to buffer...\n");
-        //Rio_writen(remotefd,buffer,strlen(buffer));
+        sprintf(buffer, "Host: %s\r\n", req_data->req_host_domain);
         send(remotefd,buffer,strlen(buffer),0);
-        //printf("> Wrote second line to buffer.\n");
 
-        sprintf(buffer, "\r\n"); 
-        //printf("> Writing final empty line to buffer...\n");
-        send(remotefd,buffer,strlen(buffer),0);
-        //printf("> Wrote final empty line to buffer.\n");
-
-        //printf("> Checking remote socket for response...\n");
+        for (int i=0; i<req_data->num_lines_after_host; i++)
+        {
+            sprintf(buffer,"%s",req_data->req_after_host[i]);
+            send(remotefd,buffer,strlen(buffer),0);
+        }
 
         ssize_t n;
         int total_size = 0;
         while ((n = recv(remotefd,buffer,1024,0)) > 0)
         {
             total_size += n;
-            //printf("> Received %s from remote socket, sending to client socket\n",buffer);
             send(client_socket,buffer,n,0);
         }
-        //printf("> Finished reading from remote socket\n");
         close(remotefd);
-        //printf("> Closed remotefd\n");
         return total_size;
     }
 
     // If a POST request...
-    if (strcmp(req_data.req_command,"POST")==0)
+    if (strcmp(req_data->req_command,"POST")==0)
     {
-        //printf("> Processing POST request...\n");
         
         char buffer[1024];
-        sprintf(buffer, "POST %s %s\r\n", req_data.req_host_path, req_data.req_protocol);
-        //printf("> Writing first line to buffer...\n");
-        //Rio_writen(remotefd,buffer,strlen(buffer));
+        sprintf(buffer, "POST %s %s\r\n", req_data->req_host_path, req_data->req_protocol);
         send(remotefd,buffer,strlen(buffer),0); // send first line to remote socket
-        //printf("> Wrote first line to buffer.\n");
-
-        sprintf(buffer, "Host: %s\r\n", req_data.req_host_domain);
-        //printf("> Writing second line to buffer...\n");
-        //Rio_writen(remotefd,buffer,strlen(buffer));
+        sprintf(buffer, "Host: %s\r\n", req_data->req_host_domain);
         send(remotefd,buffer,strlen(buffer),0);
-        //printf("> Wrote second line to buffer.\n");
 
-        sprintf(buffer, "\r\n"); 
-        //printf("> Writing final empty line to buffer...\n");
-        send(remotefd,buffer,strlen(buffer),0);
-        //printf("> Wrote final empty line to buffer.\n");
-
-        //printf("> Checking remote socket for response...\n");
+        for (int i=0; i<req_data->num_lines_after_host; i++)
+        {
+            sprintf(buffer,"%s",req_data->req_after_host[i]);
+            send(remotefd,buffer,strlen(buffer),0);
+        }
 
         ssize_t n;
         int total_size = 0;
         while ((n = recv(remotefd,buffer,1024,0)) > 0)
         {
             total_size += n;
-            //printf("> Received %s from remote socket, sending to client socket\n",buffer);
             send(client_socket,buffer,n,0);
         }
-        //printf("> Finished reading from remote socket\n");
 
         close(remotefd);
-        //printf("> Closed remotefd\n");
         return total_size;
     }
     return -1;
 }
 
-char* parse_request(char *buffer)
+char* parse_request(struct request_data *req_data, char *buffer)
 {
+
+    //printf("Request: \n...\n%s\n...\n",buffer);
+
     int request_length = strlen(buffer);
-    //printf("> Request length: %d\n",request_length);
 
     char buffer_copy[request_length+1];
     strcpy(buffer_copy,buffer);
 
-    //printf("> Iterating over lines of request...\n");
+    int line_index_after_host = 0;
 
     // splitting the buffer on '\n' endline characters
-
     char *end_str;
     char *line = strtok_r(buffer_copy,"\n",&end_str);
 
     int line_index = 0;
     while (line != NULL)
     {
-
         char *end_token;
         char *word = strtok_r(line," ",&end_token);
 
-        int word_index = 0;
-        while (word != NULL)
+        if (line_index<=1)
         {
-            // Iterate over each word in line
-            if (line_index==0 && word_index==0)
+            int word_index = 0;
+            while (word != NULL)
             {
-                //printf("> Request: %s\n",word);
-                strcpy(req_data.req_command,word);
-            }
-            if (line_index==0 && word_index==1)
-            {
-                //printf("> Host (long): %s\n",word);
-                strcpy(req_data.req_host_long,word);
-            }
-            if (line_index==0 && word_index==2)
-            {
-                //printf("> Protocol: %s\n",word);
-                strcpy(req_data.req_protocol,word);
-            }
-            if (line_index==1 && word_index==1)
-            {
-                //printf("> Host (short): %s\n",word);
-                strcpy(req_data.req_host_domain,word);
-            }
+                //int found_identifier = 0;
 
-            word = strtok_r(NULL," ",&end_token);
-            word_index++;
+                // Iterate over each word in line
+                if (line_index==0 && word_index==0)
+                {
+                    strcpy(req_data->req_command,word);
+                }
+                if (line_index==0 && word_index==1)
+                {
+                    strcpy(req_data->req_host_long,word);
+                }
+                if (line_index==0 && word_index==2)
+                {
+                    strcpy(req_data->req_protocol,word);
+                }
+                if (line_index==1 && word_index==1)
+                {
+                    strcpy(req_data->req_host_domain,word);
+                }
+
+                word = strtok_r(NULL," ",&end_token);
+                word_index++;
+            }
         }
+
+        if (line_index>1)
+        {
+            strcpy(req_data->req_after_host[line_index_after_host],line);
+            line_index_after_host++;
+        }
+
         line = strtok_r(NULL,"\n",&end_str);
         line_index++;
     }
-    check_for_host_port(); // check the req_host_long string for a port specification
-    fix_data(); // apply any changes to the data we need before calling to DNS
+    req_data->num_lines_after_host = line_index_after_host;
+    check_for_host_port(req_data); // check the req_host_long string for a port specification
+    fix_data(req_data); // apply any changes to the data we need before calling to DNS
 
-    //char uri[1024];
-    //strcpy(uri,req_data.req_host_long);
-    //strip_trailing_char((char*)&uri,'\r');
-    return req_data.req_host_long;
+    return req_data->req_host_long;
 }
 
 // apply any changes to the data we need before continuing
-void fix_data()
+void fix_data(struct request_data *req_data)
 {
-    strip_trailing_char(req_data.req_host_domain,'\r'); // remove '\r' from domain name
-    strip_trailing_char(req_data.req_protocol,'\r'); // remove '\r' from the protocol type
-    get_host_path(); // get the path specified in the URL (after the domain name)
+    strip_trailing_char(req_data->req_host_domain,'\r'); // remove '\r' from domain name
+    strip_trailing_char(req_data->req_protocol,'\r'); // remove '\r' from the protocol type
+    get_host_path(req_data); // get the path specified in the URL (after the domain name)
 }
 
 // get the host path from the URL
-void get_host_path()
+void get_host_path(struct request_data *req_data)
 {
     //printf("> Getting the host path...\n");
 
-    strcpy(req_data.req_host_path,""); // empty the container
+    strcpy(req_data->req_host_path,""); // empty the container
 
     int past_http = 0; // if we are past the 'http://' portion of URL
     int inside_port = 0; // if we are iterating over port in URL
     char buffer[1024]; // fills up until we have found 'http://' portion of URL
     int buffer_index = 0; // index to write into 'buffer'
-    int path_index = 0; // index to write into 'req_data.req_host_path'
+    int path_index = 0; // index to write into 'req_data->req_host_path'
     int recording_path = 0; // if we are past the domain and port portion of URL
 
-    for(int i=0; i<strlen(req_data.req_host_long); i++)
+    for(int i=0; i<strlen(req_data->req_host_long); i++)
     {
         // initial condition, if we haven't gotten past the http:// portion of the string yet
         if (past_http==0)
         {
-            buffer[buffer_index] = req_data.req_host_long[i];
+            buffer[buffer_index] = req_data->req_host_long[i];
             buffer_index++;    
         }
 
@@ -518,9 +494,9 @@ void get_host_path()
         if (recording_path==1)
         {
             // don't want to record endline or carriage return in the path name
-            if ( req_data.req_host_long[i]=='\r' || req_data.req_host_long[i]=='\n'){  continue;  }
+            if ( req_data->req_host_long[i]=='\r' || req_data->req_host_long[i]=='\n'){  continue;  }
 
-            req_data.req_host_path[path_index] = req_data.req_host_long[i];
+            req_data->req_host_path[path_index] = req_data->req_host_long[i];
             path_index++;
             continue;
         }
@@ -532,10 +508,10 @@ void get_host_path()
             // if we have encountered a '/' after the http:// portion 
             // of the URL then we should start recording this as the 
             // path (at the end of the URL) 
-            if ( req_data.req_host_long[i] == '/' )
+            if ( req_data->req_host_long[i] == '/' )
             {
                 recording_path = 1;
-                req_data.req_host_path[0] = req_data.req_host_long[i];
+                req_data->req_host_path[0] = req_data->req_host_long[i];
                 path_index++;
                 continue;
             }
@@ -543,7 +519,7 @@ void get_host_path()
             // if we have encountered a ':' after the http:// portion 
             // of the URL then we shouldn't include this in the path
             // because it's referring to the host port specification
-            if ( req_data.req_host_long[i] == ':' )
+            if ( req_data->req_host_long[i] == ':' )
             {
                 inside_port = 1; // denote that we are inside of a port number
                 continue;
@@ -554,11 +530,11 @@ void get_host_path()
         if (inside_port==1)
         {
             // check if the port number is done
-            if (req_data.req_host_long[i] == '/')
+            if (req_data->req_host_long[i] == '/')
             {
                 recording_path = 1;
                 inside_port = 0;
-                req_data.req_host_path[0] = req_data.req_host_long[i];
+                req_data->req_host_path[0] = req_data->req_host_long[i];
                 path_index++;
                 continue;
             }
@@ -570,7 +546,7 @@ void get_host_path()
             continue;
         }
     }
-    //printf("> Parsed %s as the path name\n",req_data.req_host_path);
+    //printf("> Parsed %s as the path name\n",req_data->req_host_path);
 }
 
 // remove trailing '\r' from data items parsed
@@ -601,23 +577,23 @@ void strip_trailing_char(char *source, const char to_remove)
 
 // check if req_host_long contains a port specification, if so remove it from
 // that string and place it in req_host_port, if not, set req_host_port equal to 80
-void check_for_host_port()
+void check_for_host_port(struct request_data *req_data)
 {
-    int num_colons = get_match_count(req_data.req_host_long,":");
+    int num_colons = get_match_count(req_data->req_host_long,":");
     //printf("> Found %d colons in req_host_long\n",num_colons);
 
     if ( num_colons==1 )
     {
         //printf("> Using default port number of 80\n");
-        req_data.req_host_port_num = 80;
-        strcpy(req_data.req_host_port,"80");
+        req_data->req_host_port_num = 80;
+        strcpy(req_data->req_host_port,"80");
         return;
     }
     if ( num_colons==2 )
     {
         // need to parse specified port
-        char *p = strrchr(req_data.req_host_long,':');
-        strcpy(req_data.req_host_port,"");
+        char *p = strrchr(req_data->req_host_long,':');
+        strcpy(req_data->req_host_port,"");
         char *char_ptr;
         int i=0;
         for (char_ptr = p; *char_ptr != '\0'; char_ptr++)
@@ -626,15 +602,15 @@ void check_for_host_port()
             if (*char_ptr == '/'){  break;  }
             if (*char_ptr == ' '){  break;  }
 
-            req_data.req_host_port[i] = *char_ptr;
+            req_data->req_host_port[i] = *char_ptr;
             i++;
         }
-        //printf("> Using %s for host port number\n", req_data.req_host_port);
+        //printf("> Using %s for host port number\n", req_data->req_host_port);
         return;
     }
     //printf("> Undefined number of colons in req_host_long\n");
-    req_data.req_host_port_num = 80;
-    strcpy(req_data.req_host_port,"80");
+    req_data->req_host_port_num = 80;
+    strcpy(req_data->req_host_port,"80");
 }
 
 // count the number of occurrences of target in input
