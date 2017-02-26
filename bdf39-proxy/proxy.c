@@ -86,7 +86,7 @@ void strip_trailing_char(char *source, const char to_remove);
 void fix_data(struct request_data *req_data);
 
 // get the path (after the domain name in the URL)
-void get_host_path(struct request_data *req_data);
+void get_host_path_and_port(struct request_data *req_data);
 
 // logs a request to the proxy.log file
 void log_request( struct sockaddr_in *sockaddr,  char *uri,  int size);
@@ -171,7 +171,7 @@ void log_information(const char *buffer,const struct request_data *req_data)
     fprintf(debug_log,"\n=============SENT REQUEST==============\n");
     if (strcmp(req_data->req_command,"GET")==0) {  fprintf(debug_log,"GET %s %s\r\n",req_data->req_host_path,req_data->req_protocol);  }
     if (strcmp(req_data->req_command,"POST")==0){  fprintf(debug_log,"POST %s %s\r\n",req_data->req_host_path,req_data->req_protocol);  }
-    fprintf(debug_log,"Host: %s\r\n",req_data->req_host_domain);
+    fprintf(debug_log,"Host: %s:%s\r\n",req_data->req_host_domain,req_data->req_host_port);
     for(int i=0; i<req_data->num_lines_after_host; i++)
     {
         // if this is the last line and its a POST request then we dont want to append a line feed to the end of the message...
@@ -296,7 +296,7 @@ int fulfill_request(struct request_data *req_data, int client_socket, struct soc
     }
     send(remotefd,buffer,strlen(buffer),0); // send first line to remote socket
 
-    sprintf(buffer, "Host: %s\r\n", req_data->req_host_domain); // fill buffer with remote host info
+    sprintf(buffer, "Host: %s:%s\r\n", req_data->req_host_domain,req_data->req_host_port); // fill buffer with remote host info
     send(remotefd,buffer,strlen(buffer),0); // send remote host info
 
     int send_all = 1;
@@ -321,6 +321,12 @@ int fulfill_request(struct request_data *req_data, int client_socket, struct soc
             }
 
             send(remotefd,buffer,strlen(buffer),0); // send (i+2)th line to remote socket
+        }
+
+        if ( strcmp(req_data->req_command,"POST")==0 )
+        {
+            sprintf(buffer,"\r\n");
+            send(remotefd,buffer,strlen(buffer),0);
         }
     }
     else
@@ -397,7 +403,7 @@ char* parse_request(struct request_data *req_data, char *buffer)
     }
 
     req_data->num_lines_after_host = line_index_after_host; // record the number of lines in request
-    check_for_host_port(req_data); // check the req_host_long string for a port specification
+    //check_for_host_port(req_data); // check the req_host_long string for a port specification
     fix_data(req_data); // apply any changes to the data we need before calling to DNS
     return req_data->req_host_long; // return the URI (long URL)
 }
@@ -407,28 +413,36 @@ void fix_data(struct request_data *req_data)
 {
     strip_trailing_char(req_data->req_host_domain,'\r'); // remove '\r' from domain name
     strip_trailing_char(req_data->req_protocol,'\r'); // remove '\r' from the protocol type
-    get_host_path(req_data); // get the path specified in the URL (after the domain name)
+    get_host_path_and_port(req_data); // get the path specified in the URL (after the domain name) & the port (if one)
 }
 
 // get the host path from the URL
-void get_host_path(struct request_data *req_data)
+void get_host_path_and_port(struct request_data *req_data)
 {
-    strcpy(req_data->req_host_path,""); // empty the container
+    //strcpy(req_data->req_host_path,""); // empty the path container
+    //strcpy(req_data->req_host_port,""); // empty the port container
+
+    char buffer[1024]; // fills up until we have found 'http://' portion of URL
 
     int past_http = 0; // if we are past the 'http://' portion of URL
     int inside_port = 0; // if we are iterating over port in URL
-    char buffer[1024]; // fills up until we have found 'http://' portion of URL
-    int buffer_index = 0; // index to write into 'buffer'
-    int path_index = 0; // index to write into 'req_data->req_host_path'
     int recording_path = 0; // if we are past the domain and port portion of URL
+    
+    int buffer_index = 0; // index to write into 'buffer'
+    int path_index = 0; // index to write into 'req_data->req_host_path' string
+    int port_index = 0; // index to write into 'req_data->req_host_port' string 
+
+    int found_port = 0; // set to 1 if we parse out a port number
 
     for(int i=0; i<strlen(req_data->req_host_long); i++)
     {
+        char current_char = req_data->req_host_long[i];
+
         // initial condition, if we haven't gotten past the http:// portion of the string yet
         if (past_http==0)
         {
             // write the current character into the buffer
-            buffer[buffer_index] = req_data->req_host_long[i];
+            buffer[buffer_index] = current_char;
             buffer_index++;    
 
             // check if the buffer now contains the full 'http://' string
@@ -439,25 +453,28 @@ void get_host_path(struct request_data *req_data)
         // if we have already started recording the path continue recording it
         if (recording_path==1)
         {
+            //printf("\n recording path\n");
             // don't want to record endline or carriage return in the path name
-            if ( req_data->req_host_long[i]=='\r' || req_data->req_host_long[i]=='\n'){  continue;  }
+            if ( current_char=='\r' || current_char=='\n' ){  continue;  }
 
-            req_data->req_host_path[path_index] = req_data->req_host_long[i];
+            req_data->req_host_path[path_index] = current_char;
             path_index++;
             continue;
         }
 
-        // if we are already past the http:// portion of the URL and we are
-        // not inside a port number specification
+        // if we are already past the http:// portion of the URL and we have not
+        // gotten to a '/' or ':' character yet. If we reach a '/' it means that
+        // there is not a port specified and we have started the path, if we reach
+        // a ':' it means we have started the port portion of the URL
         if (past_http==1 && inside_port==0)
         {
             // if we have encountered a '/' after the http:// portion 
             // of the URL then we should start recording this as the 
             // path (at the end of the URL) 
-            if ( req_data->req_host_long[i] == '/' )
+            if ( current_char=='/' )
             {
                 recording_path = 1;
-                req_data->req_host_path[0] = req_data->req_host_long[i];
+                req_data->req_host_path[0] = current_char;
                 path_index++;
                 continue;
             }
@@ -465,7 +482,7 @@ void get_host_path(struct request_data *req_data)
             // if we have encountered a ':' after the http:// portion 
             // of the URL then we shouldn't include this in the path
             // because it's referring to the host port specification
-            if ( req_data->req_host_long[i] == ':' )
+            if ( current_char==':' )
             {
                 inside_port = 1; // denote that we are inside of a port number
                 continue;
@@ -476,16 +493,37 @@ void get_host_path(struct request_data *req_data)
         if (inside_port==1)
         {
             // check if the port number is done
-            if (req_data->req_host_long[i] == '/')
+            if ( current_char=='/' )
             {
                 recording_path = 1;
                 inside_port = 0;
-                req_data->req_host_path[0] = req_data->req_host_long[i];
+                req_data->req_host_path[0] = current_char;
                 path_index++;
                 continue;
             }
+
+            // if inside the port number, record the data into the req_data->req_host_long string
+            found_port = 1;
+            req_data->req_host_port[port_index] = current_char;
+            port_index++;
         }
     }
+
+    // if we were not able to parse out a port number, set equal to the default of '80'
+    if ( found_port==0 )
+    {  
+        strcpy(req_data->req_host_port,"80");  
+        req_data->req_host_port_num = 80;
+    }
+    // convert parsed port to integer and set appropriate member in req_data
+    else
+    {
+        int port_num = atoi(req_data->req_host_port);
+        req_data->req_host_port_num = port_num;
+    }
+
+    //printf("\n>> Found path: %s\n",req_data->req_host_path);
+    //printf(">> Found port: %s\n",req_data->req_host_port);
 }
 
 // remove trailing '\r' from data items parsed
@@ -565,7 +603,7 @@ void check_for_host_port(struct request_data *req_data)
     }
     else
     {
-        printf("\n> Undefined number of colons in req_host_long: %s",req_data->req_host_long);
+        printf("\n> Undefined number of colons in req_host_long: %s\n",req_data->req_host_long);
     }
     //printf("> Undefined number of colons in req_host_long\n");
     req_data->req_host_port_num = 80;
