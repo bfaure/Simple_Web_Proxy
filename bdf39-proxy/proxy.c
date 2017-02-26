@@ -111,10 +111,10 @@ int main(int argc, char **argv)
     }
     int listening_port = parse_listening_port_num(argv);
 
-    printf("> Opening connection to listening port... \n");
+    //printf("> Opening connection to listening port... \n");
     int listening_socket = Open_listenfd(listening_port);
     
-    printf("> Listening for requests...\n");
+    //printf("> Listening for requests...\n");
 
     while (1)
     {
@@ -136,12 +136,15 @@ int main(int argc, char **argv)
             // parse the data from the listening socket into the req_data struct
             char *uri = parse_request(&req_data,buffer);
 
-            printf("                                                                                       \r");
-            printf("> %s\r",req_data.req_host_domain);
+            //printf("                                                                                       \r");
+            printf("%s %s...\r",req_data.req_command,req_data.req_host_domain);
             fflush(stdout);
 
             // forward the request to the remote server, recieve response, formward to client
             int resp_size = fulfill_request(&req_data, client_socket,client_addr);
+
+            printf("%s %s... Done\n",req_data.req_command,req_data.req_host_domain);
+            fflush(stdout);
 
             // log the request as per Sakai pdf
             log_request((struct sockaddr_in*)&client_addr,uri,resp_size);
@@ -263,7 +266,7 @@ int parse_listening_port_num(char ** argv)
 {
     char * port_str = argv[1];
     int port_num = atoi(port_str);
-    printf("> Listening port: %d\n",port_num);
+    printf("> Listening port: %d...\n",port_num);
     return port_num;
 }
 
@@ -441,13 +444,28 @@ void get_host_path_and_port(struct request_data *req_data)
         // initial condition, if we haven't gotten past the http:// portion of the string yet
         if (past_http==0)
         {
+            //printf("\n%s\n",buffer);
             // write the current character into the buffer
             buffer[buffer_index] = current_char;
             buffer_index++;    
 
             // check if the buffer now contains the full 'http://' string
-            if (strcmp(buffer,"http://")==0){  past_http = 1;  } // denote that we are past, if so
-            continue; // skip the rest of the conditions
+            if (strcmp(buffer,"http://")==0)
+            {  
+                past_http = 1;  // denote that we are past, if so
+                continue; // skip the rest of the conditions
+            }
+
+            // check if the buffer is long enough (if the above check fails)
+            if (buffer_index>=8)
+            {
+                if (buffer[5]=='/' && buffer[6]=='/')
+                {
+                    past_http = 1;    
+                    continue;
+                }
+            } 
+            continue;
         }
 
         // if we have already started recording the path continue recording it
@@ -492,6 +510,7 @@ void get_host_path_and_port(struct request_data *req_data)
         // if we have been inside of a port number specification, check if over
         if (inside_port==1)
         {
+            //printf("\n recording port number\n");
             // check if the port number is done
             if ( current_char=='/' )
             {
