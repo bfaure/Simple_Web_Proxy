@@ -45,3 +45,9 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+
+# files to skip
+bdf39-proxy/proxy.exe
+bdf39-proxy/proxy.o
+bdf39-proxy/csapp.o
+bdf39-proxy/proxy.pac
