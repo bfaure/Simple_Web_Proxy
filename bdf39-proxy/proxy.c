@@ -13,6 +13,9 @@
 #include "csapp.h"
 #include "time.h"
 
+#define BUFFER_PAGE_WIDTH 1024
+#define BUFFER_PAGE_COUNT 1024
+
 FILE *response_log;
 FILE *request_log;
 
@@ -66,12 +69,14 @@ typedef struct request_data
     char req_protocol[100]; // HTTP/1.1, etc.
     char req_host_path[512]; // /text/index.html from http://www.cnn.com:80/test/index.html
 
-    char full_response[1024][1024]; // line-by-line response from server
+    char full_response[BUFFER_PAGE_COUNT][BUFFER_PAGE_WIDTH]; // line-by-line response from server
     int num_lines_response; // to hold the number of response lines
 
     char response_code[100]; // to hold the return code
     char sent_time[100]; // time when the request was sent to remote server
     char server_responded_time[100]; // time when the server responded
+
+    int request_blocked;
 
 } request_data;
 
@@ -130,8 +135,11 @@ int main(int argc, char **argv)
 	    exit(0);
     }
 
-    printf("\n===================================================\n"); 
+    printf("\n===================================================================================\n");
     int listening_port = parse_listening_port_num(argv);
+
+    printf("idx                       req. snippet                    req.size       response\n");
+    printf("___________________________________________________________________________________\n");
 
     //printf("> Opening connection to listening port... \n");
     int listening_socket = Open_listenfd(listening_port);
@@ -152,6 +160,7 @@ int main(int argc, char **argv)
     int *spin_index = mmap(NULL, sizeof(int),PROT_READ|PROT_WRITE, MAP_SHARED|MAP_ANONYMOUS, -1, 0);
     *spin_index = 0;
 
+
     while (1)
     {
         // wait for a connection from a client at listening socket
@@ -164,6 +173,7 @@ int main(int argc, char **argv)
             close(listening_socket); // prevent this thread from reacting to browser requests
 
             request_data req_data; // create new request_data struct to hold parsed data
+            req_data.request_blocked = 0;
 
             char buffer[4096]; // to read the socket data into
             int n = Read(client_socket,buffer,4095); // read socket into buffer string
@@ -192,8 +202,21 @@ int main(int argc, char **argv)
             //printf("THREAD %d (client_socket=%d,threads_open=%d): %s %s...\n",thread_index,client_socket,*threads_open,req_data.req_command,req_data.req_host_long);
             fflush(stdout);
 
-            // forward the request to the remote server, recieve response, formward to client
-            int resp_size = fulfill_request(&req_data, client_socket,client_addr);
+            int resp_size = 0;
+
+            // check if the domain is in the list of blocked domains
+            if ( strstr(req_data.req_host_domain,"ocsp.digicert.com")!=NULL || strstr(req_data.req_host_domain,"clients1.google.com")!=NULL || strstr(req_data.req_host_domain,"ocsp.godaddy.com")!=NULL )
+            {
+                resp_size = -2; // denote that we have skipped this request
+                strcpy(req_data.response_code,"BLOCKED");
+                close(client_socket);
+                req_data.request_blocked = 1;
+            }
+            else
+            {
+                // forward the request to the remote server, recieve response, formward to client
+                resp_size = fulfill_request(&req_data, client_socket,client_addr);
+            }
 
             printf("                    \r"); // clear the spinner from the command line
 
@@ -213,7 +236,7 @@ int main(int argc, char **argv)
             
 
             //printf("%d\t(%d workers) > %s %s > [%s]\n",thread_index,*threads_open,req_data.req_command,req_host_long_shortened,req_data.response_code);
-            printf("%d\t(%d workers) > %s %s %s > [%s]\n",thread_index,*threads_open,req_data.req_command,req_host_long_shortened,spacer,req_data.response_code);
+            printf("%d\t(%d workers) > %s %s %s %dB (total) > [%s,%dB]\n",thread_index,*threads_open,req_data.req_command,req_host_long_shortened,spacer,n,req_data.response_code,resp_size);
             //printf("%d\t(%d workers,client_socket=%d) > %s %s\t > [%s]\n",thread_index,*threads_open,client_socket,req_data.req_command,req_host_long_shortened,req_data.response_code);
             
             if ( *threads_open!=0 ){  print_spinner(spin_index);  }
@@ -221,21 +244,26 @@ int main(int argc, char **argv)
 
             fflush(stdout);
 
-            // log the request as per Sakai pdf
-            log_request((struct sockaddr_in*)&client_addr,uri,resp_size);
-
-            if (debugging==1)
+            // log the information so long as the request wasn't blocked
+            if ( req_data.request_blocked==0 )
             {
-                // print out additional information (debugging)
-                log_information(buffer,&req_data,thread_index);
+                // log the request as per Sakai pdf
+                log_request((struct sockaddr_in*)&client_addr,uri,resp_size);
+
+                if (debugging==1)
+                {
+                    // print out additional information (debugging)
+                    log_information(buffer,&req_data,thread_index);
+                }
             }
             
             *threads_open = *threads_open - 1;
             close(client_socket); // close the client socket
+            if ( *threads_open==-1){  printf("*                 \n");  } // clear the command line if not loading a request
             exit(0); // close this thread (opened on Fork())
         }
         close(client_socket);
-        if ( *threads_open==-1){  printf("                \r");  } // clear the command line if not loading a request
+        if ( *threads_open==-1){  printf("                 \r");  } // clear the command line if not loading a request
     }
     Fclose(proxy_log);
     exit(0);
@@ -262,6 +290,8 @@ void print_spinner(int *spin_index)
 // log debugging information
 void log_information(const char *buffer,const struct request_data *req_data, const int thread_id)
 {
+    if ( req_data->request_blocked==1 ){  return;  } // skip logging if this request was blocked
+
     while (*ALREADY_LOGGING_DEBUG_INFO==1){  Sleep(1);  }
 
     *ALREADY_LOGGING_DEBUG_INFO = 1;
@@ -300,6 +330,7 @@ void log_information(const char *buffer,const struct request_data *req_data, con
 // format_log_entry function to format data & writing to proxy.log)
 void log_request( struct sockaddr_in *sockaddr,  char *uri,  int size)
 {
+
     // busy wait until we can get a handle on the proxy.log file
     while (ALREADY_LOGGING==1){  Sleep(1);  }
 
@@ -364,7 +395,7 @@ int parse_listening_port_num(char ** argv)
 {
     char * port_str = argv[1];
     int port_num = atoi(port_str);
-    printf("> Listening to port %d\n\n",port_num);
+    printf("> PORT: %d\n\n",port_num);
     return port_num;
 }
 
@@ -391,7 +422,7 @@ int fulfill_request(struct request_data *req_data, int client_socket, struct soc
         return -1;
     }
 
-    char buffer[1024]; // to hold the information we will be sending to remote socket
+    char buffer[BUFFER_PAGE_WIDTH]; // to hold the information we will be sending to remote socket
     if (strcmp(req_data->req_command,"GET")==0) {  sprintf(buffer,"GET %s %s\r\n",req_data->req_host_path,req_data->req_protocol);  }
     else
     {
@@ -455,7 +486,9 @@ int fulfill_request(struct request_data *req_data, int client_socket, struct soc
 
     fprintf(response_log,"\n\n--------------------------------------------------\n\n");
 
-    while ((n = recv(remotefd,buffer,1024,0)) > 0)
+    int past_header = 0; // set to 1 once we are on a chunk that is past the header section of response
+
+    while ((n = recv(remotefd,buffer,BUFFER_PAGE_WIDTH,0)) > 0)
     {
         fprintf(response_log,"%s",buffer);
 
@@ -463,13 +496,14 @@ int fulfill_request(struct request_data *req_data, int client_socket, struct soc
         // the response code from the remote server
         if ( total_size==0 && sizeof(buffer)!=0 )
         {
+            /*
             // record the time the server responded
             time_t rawtime;
             struct tm *timeinfo;
             time(&rawtime);
             timeinfo = localtime(&rawtime);
             sprintf(req_data->server_responded_time,"%d:%d:%d",timeinfo->tm_hour,timeinfo->tm_min,timeinfo->tm_sec);
-
+            */
             char status_code[100];
             int status_code_index = 0;
 
@@ -511,7 +545,21 @@ int fulfill_request(struct request_data *req_data, int client_socket, struct soc
             }
         }
 
-        total_size += n;
+        if ( past_header==1 )
+        {
+            total_size += n;
+        }
+        else
+        {
+            // if we have hit an empty line
+            if ( strstr(buffer,"\r\n\r\n")!=NULL )
+            {
+                past_header = 1;
+                char *temp_char = strstr(buffer,"\r\n\r\n");
+                total_size = strlen(temp_char);
+            }
+        }
+        //total_size += n;
 
         int m=0;
         if ( (m = send(client_socket,buffer,n,0))<0 )
@@ -526,15 +574,15 @@ int fulfill_request(struct request_data *req_data, int client_socket, struct soc
     }
 
     // if we never recieved any data fill in the response time
-    if (total_size==0)
-    {
+    //if (total_size==0)
+    //{
         // record the time the server responded
-        time_t rawtime;
-        struct tm *timeinfo;
-        time(&rawtime);
-        timeinfo = localtime(&rawtime);
-        sprintf(req_data->server_responded_time,"%d:%d:%d",timeinfo->tm_hour,timeinfo->tm_min,timeinfo->tm_sec);
-    }
+    time_t rawtime2;
+    struct tm *timeinfo2;
+    time(&rawtime2);
+    timeinfo2 = localtime(&rawtime2);
+    sprintf(req_data->server_responded_time,"%d:%d:%d",timeinfo2->tm_hour,timeinfo2->tm_min,timeinfo2->tm_sec);
+    //}
 
     fprintf(response_log,"\n\n--------------------------------------------------\n\n");
 

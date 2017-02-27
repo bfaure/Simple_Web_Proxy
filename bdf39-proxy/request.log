@@ -1,158 +1,1411 @@
 
-REQUEST (thread_index=0):
-GET http://www.gnu.org/ HTTP/1.1
-Host: www.gnu.org
+REQUEST (thread_index=2):
+GET http://native.sharethrough.com/assets/sfp-creative-hub-listener.js HTTP/1.1
+Host: native.sharethrough.com
 User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept: */*
 Accept-Language: en-US,en;q=0.5
 Accept-Encoding: gzip, deflate
+Referer: http://www.cnn.com/
 Connection: keep-alive
-Upgrade-Insecure-Requests: 1
-Cache-Control: max-age=0
+If-Modified-Since: Fri, 24 Feb 2017 01:10:51 GMT
 
 
 --------------------
 
 REQUEST (thread_index=1):
-GET http://www.gnu.org/mini.css HTTP/1.1
-Host: www.gnu.org
+GET http://z.cdn.turner.com/analytics/cnnexpan/jsmd.min.js HTTP/1.1
+Host: z.cdn.turner.com
 User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: text/css,*/*;q=0.1
+Accept: */*
 Accept-Language: en-US,en;q=0.5
 Accept-Encoding: gzip, deflate
-Referer: http://www.gnu.org/
+Referer: http://www.cnn.com/
 Connection: keep-alive
-If-Modified-Since: Tue, 26 Jan 2010 20:20:01 GMT
-If-None-Match: "71d-47e1702abbe40-gzip"
-Cache-Control: max-age=0
+If-Modified-Since: Fri, 24 Feb 2017 14:27:12 GMT
 
 
 --------------------
 
 REQUEST (thread_index=3):
-GET http://www.gnu.org/print.min.css HTTP/1.1
-Host: www.gnu.org
+GET http://beacon.krxd.net/cookie2json?callback=Krux.ns._default.kxjsonp_3pevents HTTP/1.1
+Host: beacon.krxd.net
 User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: text/css,*/*;q=0.1
+Accept: */*
 Accept-Language: en-US,en;q=0.5
 Accept-Encoding: gzip, deflate
-Referer: http://www.gnu.org/
+Referer: http://www.cnn.com/
+Cookie: ServedBy=beacon-a160; _kuid_=LGX4-bU9
 Connection: keep-alive
-If-Modified-Since: Thu, 03 Nov 2016 21:32:02 GMT
-If-None-Match: "678-5406c49cf2493-gzip"
-Cache-Control: max-age=0
 
 
 --------------------
 
-REQUEST (thread_index=2):
-GET http://www.gnu.org/layout.min.css HTTP/1.1
-Host: www.gnu.org
+REQUEST (thread_index=0):
+GET http://www.cnn.com/ HTTP/1.1
+Host: www.cnn.com
 User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: text/css,*/*;q=0.1
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
 Accept-Language: en-US,en;q=0.5
 Accept-Encoding: gzip, deflate
-Referer: http://www.gnu.org/
+Cookie: countryCode=US; geoData=Highland Park|NJ|08904|US|NA; optimizelyEndUserId=oeu1488161386699r0.5758581687391968; ug=58b38a660e68510a3c8ef75604026fe6; ugs=1; _cb_ls=1; __gads=ID=051f95e9b16caa3b:T=1488164627:S=ALNI_MZTD1Jy6fWYiP-SkGdRPEYc_ShIlQ; s_cc=true; s_fid=1FFAD2111CDDCAE6-1B806FF64065B95F; s_sq=%5B%5BB%5D%5D; s_vi=[CS]v1|2C59CBF5051D0798-600001390001154A[CE]; s_ppv=60; bknx_fa=1488186764343; bknx_ss=1488186764343
 Connection: keep-alive
-If-Modified-Since: Sun, 06 Nov 2016 21:38:02 GMT
-If-None-Match: "33bb-540a8b8ceabb6-gzip"
-Cache-Control: max-age=0
-
-
---------------------
-
-REQUEST (thread_index=4):
-GET http://www.gnu.org/combo.css HTTP/1.1
-Host: www.gnu.org
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: text/css,*/*;q=0.1
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://www.gnu.org/
-Connection: keep-alive
-If-Modified-Since: Tue, 24 Apr 2012 21:45:10 GMT
-If-None-Match: "1a5a-4be73ab3eff98-gzip"
-Cache-Control: max-age=0
+Upgrade-Insecure-Requests: 1
 
 
 --------------------
 
 REQUEST (thread_index=7):
-GET http://www.gnu.org/graphics/fsf-logo-notext-small.png HTTP/1.1
-Host: www.gnu.org
+POST http://ocsp.digicert.com/ HTTP/1.1
+Host: ocsp.digicert.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Length: 83
+Content-Type: application/ocsp-request
+Connection: keep-alive
+
+0Q0O0M0K0I0	+
+--------------------
+
+REQUEST (thread_index=9):
+POST http://ocsp.digicert.com/ HTTP/1.1
+Host: ocsp.digicert.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Length: 83
+Content-Type: application/ocsp-request
+Connection: keep-alive
+
+0Q0O0M0K0I0	+
+--------------------
+
+REQUEST (thread_index=10):
+POST http://ocsp.digicert.com/ HTTP/1.1
+Host: ocsp.digicert.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Length: 83
+Content-Type: application/ocsp-request
+Connection: keep-alive
+
+0Q0O0M0K0I0	+
+--------------------
+
+REQUEST (thread_index=15):
+POST http://ocsp.digicert.com/ HTTP/1.1
+Host: ocsp.digicert.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Length: 83
+Content-Type: application/ocsp-request
+Connection: keep-alive
+
+0Q0O0M0K0I0	+
+--------------------
+
+REQUEST (thread_index=39):
+POST http://ocsp.digicert.com/ HTTP/1.1
+Host: ocsp.digicert.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Length: 83
+Content-Type: application/ocsp-request
+Connection: keep-alive
+
+0Q0O0M0K0I0	+
+--------------------
+
+REQUEST (thread_index=40):
+POST http://ocsp.digicert.com/ HTTP/1.1
+Host: ocsp.digicert.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Length: 83
+Content-Type: application/ocsp-request
+Connection: keep-alive
+
+0Q0O0M0K0I0	+
+--------------------
+
+REQUEST (thread_index=41):
+POST http://ocsp.digicert.com/ HTTP/1.1
+Host: ocsp.digicert.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Length: 83
+Content-Type: application/ocsp-request
+Connection: keep-alive
+
+0Q0O0M0K0I0	+
+--------------------
+
+REQUEST (thread_index=42):
+POST http://ocsp.digicert.com/ HTTP/1.1
+Host: ocsp.digicert.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Length: 83
+Content-Type: application/ocsp-request
+Connection: keep-alive
+
+0Q0O0M0K0I0	+
+--------------------
+
+REQUEST (thread_index=45):
+POST http://clients1.google.com/ocsp HTTP/1.1
+Host: clients1.google.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Length: 75
+Content-Type: application/ocsp-request
+Connection: keep-alive
+
+0I0G0E0C0A0	+
+--------------------
+
+REQUEST (thread_index=46):
+POST http://clients1.google.com/ocsp HTTP/1.1
+Host: clients1.google.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Length: 75
+Content-Type: application/ocsp-request
+Connection: keep-alive
+
+0I0G0E0C0A0	+
+--------------------
+
+REQUEST (thread_index=50):
+GET http://beacon.krxd.net/ad_impression.gif?confid=KSLACHhF&advertiserid=2590334&campaignid=10754225&adid=317860589&creativeid=79256296&siteid=2350259&placementid=144873407&url=%2F%2Fbeacon.krxd.net%2Fad_impression.gif&_kpid=553cca40-fb9e-408b-9f9c-023fa9d83162 HTTP/1.1
+Host: beacon.krxd.net
 User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
 Accept: */*
 Accept-Language: en-US,en;q=0.5
 Accept-Encoding: gzip, deflate
-Referer: http://www.gnu.org/
+Referer: http://www.cnn.com/
+Cookie: ServedBy=beacon-a196; _kuid_=LGX4-bU9
 Connection: keep-alive
-If-Modified-Since: Wed, 04 Nov 2015 06:59:09 GMT
-If-None-Match: "9be-523b18c06e940"
-Cache-Control: max-age=0
 
 
 --------------------
 
-REQUEST (thread_index=5):
-GET http://www.gnu.org/distros/screenshots/gnewsense2-medium.jpg HTTP/1.1
-Host: www.gnu.org
+REQUEST (thread_index=49):
+GET http://beacon.krxd.net/cookie2json?callback=Krux.ns.liberty.kxjsonp_3pevents HTTP/1.1
+Host: beacon.krxd.net
 User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
 Accept: */*
 Accept-Language: en-US,en;q=0.5
 Accept-Encoding: gzip, deflate
-Referer: http://www.gnu.org/
+Referer: http://www.cnn.com/
+Cookie: ServedBy=beacon-a196; _kuid_=LGX4-bU9
 Connection: keep-alive
-If-Modified-Since: Mon, 05 Sep 2016 08:13:26 GMT
-If-None-Match: "121af-53bbe41201580"
-Cache-Control: max-age=0
+
+
+--------------------
+
+REQUEST (thread_index=53):
+GET http://beacon.krxd.net/optout_check?callback=Krux.ns.liberty.kxjsonp_optOutCheck HTTP/1.1
+Host: beacon.krxd.net
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cnn.com/
+Cookie: ServedBy=beacon-a253; _kuid_=LGX4-bU9
+Connection: keep-alive
+
+
+--------------------
+
+REQUEST (thread_index=54):
+GET http://gscounters.us1.gigya.com/gscounters.sendReport?reports=%5B%7B%22name%22%3A%22loadc%22%2C%22time%22%3A%221488188103641%22%2C%22reportData%22%3A%7B%22sref%22%3A%22%22%7D%7D%5D&APIKey=3_gtUbleJNtrRITgx-1mM_ci7GcIrH8xL9W_VfAbzSa4zpFrRwnpq_eYd8QTRkr7VC&sdk=js_7.1.2&format=jsonp&callback=gigya._.apiAdapters.web.callback&context=R1743165265 HTTP/1.1
+Host: gscounters.us1.gigya.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cnn.com/
+Connection: keep-alive
+
+
+--------------------
+
+REQUEST (thread_index=65):
+POST http://ocsp.godaddy.com/ HTTP/1.1
+Host: ocsp.godaddy.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Length: 75
+Content-Type: application/ocsp-request
+Connection: keep-alive
+
+0I0G0E0C0A0	+
+--------------------
+
+REQUEST (thread_index=66):
+POST http://ocsp.godaddy.com/ HTTP/1.1
+Host: ocsp.godaddy.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Length: 75
+Content-Type: application/ocsp-request
+Connection: keep-alive
+
+0I0G0E0C0A0	+
+--------------------
+
+REQUEST (thread_index=61):
+GET http://idpix.media6degrees.com/orbserv/hbpix?pixId=30036&pcv=27 HTTP/1.1
+Host: idpix.media6degrees.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cnn.com/
+Connection: keep-alive
+
+
+--------------------
+
+REQUEST (thread_index=67):
+GET http://idpix.media6degrees.com/orbserv/hbpix?pixId=30036&pcv=27&cckz=true HTTP/1.1
+Host: idpix.media6degrees.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cnn.com/
+Cookie: cckz=1om11ak
+Connection: keep-alive
+
+
+--------------------
+
+REQUEST (thread_index=71):
+POST http://ocsp.godaddy.com/ HTTP/1.1
+Host: ocsp.godaddy.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Length: 75
+Content-Type: application/ocsp-request
+Connection: keep-alive
+
+0I0G0E0C0A0	+
+--------------------
+
+REQUEST (thread_index=72):
+POST http://ocsp.godaddy.com/ HTTP/1.1
+Host: ocsp.godaddy.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Length: 75
+Content-Type: application/ocsp-request
+Connection: keep-alive
+
+0I0G0E0C0A0	+
+--------------------
+
+REQUEST (thread_index=73):
+POST http://ocsp.godaddy.com/ HTTP/1.1
+Host: ocsp.godaddy.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Length: 76
+Content-Type: application/ocsp-request
+Connection: keep-alive
+
+0J0H0F0D0B0	+
+--------------------
+
+REQUEST (thread_index=74):
+POST http://ocsp.godaddy.com/ HTTP/1.1
+Host: ocsp.godaddy.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Length: 76
+Content-Type: application/ocsp-request
+Connection: keep-alive
+
+0J0H0F0D0B0	+
+--------------------
+
+REQUEST (thread_index=60):
+GET http://aa.agkn.com/adscores/g.js?sid=9212244187&_kdpid=2111c0af-fc3a-446f-ab07-63aa74fbde8e HTTP/1.1
+Host: aa.agkn.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Cookie: uuid=307008530997567491; u=C|0EAogRkh-IEZIfgAAAAAAAAACACwBB-h6AgAALQEH6BgCAAEABwAAAAAAo-_H__8-AAAAAAAlu5YAAAAACI-5BwAAAAAEHttMAAAAABLOwhkCAAP0DAAD9D0A; ab=0001%3A85uTHP2On5h2uw%2FtAbxBXcaGqsVQ5R%2Bj1ywfLew%2FCjlVwX0L1RRbSg%3D%3D
+Connection: keep-alive
+
+
+--------------------
+
+REQUEST (thread_index=75):
+POST http://ocsp.godaddy.com/ HTTP/1.1
+Host: ocsp.godaddy.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Length: 76
+Content-Type: application/ocsp-request
+Connection: keep-alive
+
+0J0H0F0D0B0	+
+--------------------
+
+REQUEST (thread_index=76):
+POST http://ocsp.godaddy.com/ HTTP/1.1
+Host: ocsp.godaddy.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Length: 76
+Content-Type: application/ocsp-request
+Connection: keep-alive
+
+0J0H0F0D0B0	+
+--------------------
+
+REQUEST (thread_index=77):
+POST http://ocsp.godaddy.com/ HTTP/1.1
+Host: ocsp.godaddy.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Length: 76
+Content-Type: application/ocsp-request
+Connection: keep-alive
+
+0J0H0F0D0B0	+
+--------------------
+
+REQUEST (thread_index=78):
+POST http://ocsp.godaddy.com/ HTTP/1.1
+Host: ocsp.godaddy.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Length: 76
+Content-Type: application/ocsp-request
+Connection: keep-alive
+
+0J0H0F0D0B0	+
+--------------------
+
+REQUEST (thread_index=59):
+GET http://loadm.exelator.com/load?_kdpid=e4942ff0-4070-4896-a7ef-e6a5a30ce9f9&buid=LGX4-bU9&p=204&g=270&j=0 HTTP/1.1
+Host: loadm.exelator.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cnn.com/
+Connection: keep-alive
+
+
+--------------------
+
+REQUEST (thread_index=57):
+GET http://beacon.krxd.net/optout_check?callback=Krux.ns.liberty.kxjsonp_optOutCheck HTTP/1.1
+Host: beacon.krxd.net
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cnn.com/
+Cookie: ServedBy=beacon-a190; _kuid_=LGX4-bU9
+Connection: keep-alive
+
+
+--------------------
+
+REQUEST (thread_index=68):
+GET http://beacon.krxd.net/usermatch.gif?partner=dstillery&partner_uid=18gk5iajouwe8 HTTP/1.1
+Host: beacon.krxd.net
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cnn.com/
+Cookie: ServedBy=beacon-a177; _kuid_=LGX4-bU9
+Connection: keep-alive
+
+
+--------------------
+
+REQUEST (thread_index=80):
+GET http://loadm.exelator.com/load?_kdpid=e4942ff0-4070-4896-a7ef-e6a5a30ce9f9&buid=LGX4-bU9&p=204&g=270&j=0&xl8blockcheck=1 HTTP/1.1
+Host: loadm.exelator.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cnn.com/
+Cookie: EE="d7280498d743c2d8e9c9dc68d903523d"; ud="eJxrXxzq6XKLQSHF3MjCwMTSIsXcxDjZKMUi1TLZMiXZzCLF0sDY1Mg4ZXFZatGCpaXFqSlJh5ZU5JTkNK0uiw91jHdz9PX0iVywAswJcw1asCS%252FKDN9UWjw4qKUNMZFJcWngtfalwEAMo8m0g%253D%253D"
+Connection: keep-alive
+
+
+--------------------
+
+REQUEST (thread_index=64):
+GET http://pix.btrll.com/partner/868092.png HTTP/1.1
+Host: pix.btrll.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cnn.com/
+Cookie: BR_APS=3WLODbR0OJlAB8725_w
+Connection: keep-alive
+
+
+--------------------
+
+REQUEST (thread_index=43):
+GET http://rtax.criteo.com/delivery/rta/rta.js?netId=4157&cookieName=crtg_trnr&rnd=4109815391&varName=crtg_content HTTP/1.1
+Host: rtax.criteo.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cnn.com/
+Connection: keep-alive
+
+
+--------------------
+
+REQUEST (thread_index=55):
+GET http://ib.adnxs.com/getuid?http://beacon.krxd.net/usermatch.gif?adnxs_uid=$UID HTTP/1.1
+Host: ib.adnxs.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cnn.com/
+Cookie: sess=1; uuid2=5282816645030969520; anj=dTM7k!M4/8DunaTF']wIg2ImRKB>-.ct.uFm>w]3060YD#y*2w#u)K^#tz]G%57I#
+Connection: keep-alive
+
+
+--------------------
+
+REQUEST (thread_index=81):
+GET http://load.s3.amazonaws.com/pixel.gif HTTP/1.1
+Host: load.s3.amazonaws.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cnn.com/
+Connection: keep-alive
+
+
+--------------------
+
+REQUEST (thread_index=83):
+GET http://geo-um.btrll.com/v1/map_pixel/partner/48.png HTTP/1.1
+Host: geo-um.btrll.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cnn.com/
+Cookie: BR_APS=3WLODbR0OJlAB8725_w; jncV5Z3A=CPWhz8UFEgQIRhAPEgQIJRBvEgUIIhCfARIECC0QDxIECAwQDxIECDoQDxIFCKsBEA8SBQgEEJ8BEgUIDxCfARIECCkQAA
+Connection: keep-alive
+
+
+--------------------
+
+REQUEST (thread_index=84):
+GET http://beacon.krxd.net/usermatch.gif?partner=brightroll&partner_uid=3WLODbR0OJlAB8725_w&n=1488188135 HTTP/1.1
+Host: beacon.krxd.net
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cnn.com/
+Cookie: ServedBy=beacon-a135; _kuid_=LGX4-bU9
+Connection: keep-alive
+
+
+--------------------
+
+REQUEST (thread_index=17):
+GET http://w.usabilla.com/c3244e3d16ba.js?lv=1 HTTP/1.1
+Host: w.usabilla.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cnn.com/
+Connection: keep-alive
+
+
+--------------------
+
+REQUEST (thread_index=63):
+GET http://match.adsrvr.org/track/cmf/generic?ttd_pid=krux&ttd_tpi=1 HTTP/1.1
+Host: match.adsrvr.org
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cnn.com/
+Cookie: TDID=8a8ffba9-de03-41ae-9793-8bcd46d54464; TDCPM=CAESGQoKYnJpZ2h0cm9sbBILCJL9tKnyru80EAUSFgoHcnViaWNvbhILCIanrYWSsO80EAUYBTgBQgQiAggB
+Connection: keep-alive
+
+
+--------------------
+
+REQUEST (thread_index=58):
+GET http://r.nexac.com/e/getdata.xgi?dt=br&pkey=gpwn29rvapq62&ru=http://beacon.krxd.net/data.gif?_kuid%3DLGX4-bU9%26_kdpid%3D2dd640a6-6ebd-4d4f-af30-af8baa441a0d%26dlxid%3D%3Cna_id%3E%26dlxdata%3D%3Cna_da%3E HTTP/1.1
+Host: r.nexac.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cnn.com/
+Connection: keep-alive
+
+
+--------------------
+
+REQUEST (thread_index=79):
+GET http://r.nexac.com/e/getdata.xgi?dt=br&pkey=qkgx66qkgxw46&ru=http://beacon.krxd.net/data.gif?_kuid%3DLGX4-bU9%26_kdpid%3Da8138b01-9fff-43bb-b649-99241ab62170%26dlxid%3D%3Cna_id%3E%26dlxdata%3D%3Cna_da%3E HTTP/1.1
+Host: r.nexac.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cnn.com/
+Connection: keep-alive
+
+
+--------------------
+
+REQUEST (thread_index=86):
+GET http://beacon.krxd.net/data.gif?_kuid=LGX4-bU9&_kdpid=2dd640a6-6ebd-4d4f-af30-af8baa441a0d&dlxid=&dlxdata= HTTP/1.1
+Host: beacon.krxd.net
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cnn.com/
+Cookie: ServedBy=beacon-a213; _kuid_=LGX4-bU9
+Connection: keep-alive
+
+
+--------------------
+
+REQUEST (thread_index=85):
+GET http://beacon.krxd.net/data.gif?_kdpid=2111c0af-fc3a-446f-ab07-63aa74fbde8e&_kua_seg=172&_kua_zip=08854&_kua_age=&_kua_gender=&_k_adadvisor_key=164670502249000427722 HTTP/1.1
+Host: beacon.krxd.net
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Cookie: ServedBy=beacon-a213; _kuid_=LGX4-bU9
+Connection: keep-alive
+
+
+--------------------
+
+REQUEST (thread_index=87):
+GET http://beacon.krxd.net/data.gif?_kuid=LGX4-bU9&_kdpid=a8138b01-9fff-43bb-b649-99241ab62170&dlxid=&dlxdata= HTTP/1.1
+Host: beacon.krxd.net
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cnn.com/
+Cookie: ServedBy=beacon-a255; _kuid_=LGX4-bU9
+Connection: keep-alive
+
+
+--------------------
+
+REQUEST (thread_index=14):
+GET http://cdn.livefyre.com/Livefyre.js HTTP/1.1
+Host: cdn.livefyre.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cnn.com/
+Connection: keep-alive
+
+
+--------------------
+
+REQUEST (thread_index=18):
+GET http://d2lv4zbk7v5f93.cloudfront.net/esf.js HTTP/1.1
+Host: d2lv4zbk7v5f93.cloudfront.net
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cnn.com/
+Connection: keep-alive
+
+
+--------------------
+
+REQUEST (thread_index=70):
+POST http://ss.symcd.com/ HTTP/1.1
+Host: ss.symcd.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Length: 83
+Content-Type: application/ocsp-request
+Connection: keep-alive
+
+0Q0O0M0K0I0	+
+--------------------
+
+REQUEST (thread_index=89):
+POST http://clients1.google.com/ocsp HTTP/1.1
+Host: clients1.google.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Length: 75
+Content-Type: application/ocsp-request
+Connection: keep-alive
+
+0I0G0E0C0A0	+
+--------------------
+
+REQUEST (thread_index=90):
+POST http://clients1.google.com/ocsp HTTP/1.1
+Host: clients1.google.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Length: 75
+Content-Type: application/ocsp-request
+Connection: keep-alive
+
+0I0G0E0C0A0	+
+--------------------
+
+REQUEST (thread_index=91):
+POST http://clients1.google.com/ocsp HTTP/1.1
+Host: clients1.google.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Length: 75
+Content-Type: application/ocsp-request
+Connection: keep-alive
+
+0I0G0E0C0A0	+
+--------------------
+
+REQUEST (thread_index=92):
+POST http://clients1.google.com/ocsp HTTP/1.1
+Host: clients1.google.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Length: 75
+Content-Type: application/ocsp-request
+Connection: keep-alive
+
+0I0G0E0C0A0	+
+--------------------
+
+REQUEST (thread_index=47):
+POST http://gp.symcd.com/ HTTP/1.1
+Host: gp.symcd.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Length: 83
+Content-Type: application/ocsp-request
+Connection: keep-alive
+
+0Q0O0M0K0I0	+
+--------------------
+
+REQUEST (thread_index=69):
+POST http://ss.symcd.com/ HTTP/1.1
+Host: ss.symcd.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Length: 83
+Content-Type: application/ocsp-request
+Connection: keep-alive
+
+0Q0O0M0K0I0	+
+--------------------
+
+REQUEST (thread_index=37):
+GET http://i2.cdn.cnn.com/cnnnext/dam/assets/170226194051-39-oscars-rc-2017-large-tease.jpg HTTP/1.1
+Host: i2.cdn.cnn.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cnn.com/
+Cookie: countryCode=US; geoData=Highland Park|NJ|08904|US|NA; optimizelyEndUserId=oeu1488161386699r0.5758581687391968; __gads=ID=051f95e9b16caa3b:T=1488164627:S=ALNI_MZTD1Jy6fWYiP-SkGdRPEYc_ShIlQ; s_cc=true; s_fid=1FFAD2111CDDCAE6-1B806FF64065B95F; s_sq=%5B%5BB%5D%5D; s_vi=[CS]v1|2C59CBF5051D0798-600001390001154A[CE]; s_ppv=60; bknx_fa=1488186764343; bknx_ss=1488186764343
+Connection: keep-alive
+
+
+--------------------
+
+REQUEST (thread_index=44):
+GET http://pagead2.googlesyndication.com/pagead/osd.js HTTP/1.1
+Host: pagead2.googlesyndication.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cnn.com/
+Connection: keep-alive
+
+
+--------------------
+
+REQUEST (thread_index=51):
+GET http://csi.gstatic.com/csi?v=3&s=gpt&action=ad_events&it=ad_fetch_period.2.124,exr.2.0&srt=82&is_backfill_at_render=2_false&qqid=2_CNCH-Nj8r9ICFa64swodw2YOzw&vrg=110&pl_id=1488187502846_0.07007518539991964&e=v110,n8663477,publisher_ads,sra,fif,108809080,108809144,21060063&rt=start_ad_render_period.2.602851 HTTP/1.1
+Host: csi.gstatic.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cnn.com/
+Cookie: NID=97=aXMOBcfAcw34UAgSxDHPxW46DVg49XbDd1LM_ygzViRIUN3xwI1rjcoeOfZyUyVO2LUD0654UpvHeKYCASf_gkMv7bHgBdkGgGiHEucjZAVYN6eQUEIxN3sLy0tXkd1x
+Connection: keep-alive
+
+
+--------------------
+
+REQUEST (thread_index=52):
+GET http://pagead2.googlesyndication.com/activeview?avi=B3F-yxPKzWNCVO67xzgXDzbn4DAAAAAAQATgByAEJwAIC4AIA4AQBoAYW&cid=CAASFeRorOgr3Ssp1CKxlaGsmjDUEH-q0w&id=osdim&ti=1&adk=1113343234&mtos=0,0,0,0,0&tos=0,0,0,0,0&p=0,0,0,0&rs=3&ht=0&mc=0&lte=-1&bas=0&bac=0&r=u&bs=1130,570&bos=1159,661&ps=1130,4507&ss=2715,1527&tt=2662&pt=-1&deb=1-0-1-1-2--1&tvt=252&avms=geo&uc=1&tgt=IMG&cl=1 HTTP/1.1
+Host: pagead2.googlesyndication.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cnn.com/
+Connection: keep-alive
+
+
+--------------------
+
+REQUEST (thread_index=82):
+GET http://csi.gstatic.com/csi?v=3&s=gpt&action=ad_events&srt=82&request_refresh_type=2_2&req_len=2_1033&req_s=2_2&vrg=110&pl_id=1488187502846_0.07007518539991964&e=v110,n8663477,publisher_ads,sra,fif,108809080,108809144,21060063&rt=start_ad_fetch_period.2.602726 HTTP/1.1
+Host: csi.gstatic.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cnn.com/
+Cookie: NID=97=aXMOBcfAcw34UAgSxDHPxW46DVg49XbDd1LM_ygzViRIUN3xwI1rjcoeOfZyUyVO2LUD0654UpvHeKYCASf_gkMv7bHgBdkGgGiHEucjZAVYN6eQUEIxN3sLy0tXkd1x
+Connection: keep-alive
+
+
+--------------------
+
+REQUEST (thread_index=96):
+POST http://ocsp.digicert.com/ HTTP/1.1
+Host: ocsp.digicert.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Length: 83
+Content-Type: application/ocsp-request
+Connection: keep-alive
+
+0Q0O0M0K0I0	+
+--------------------
+
+REQUEST (thread_index=97):
+POST http://ocsp.digicert.com/ HTTP/1.1
+Host: ocsp.digicert.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Length: 83
+Content-Type: application/ocsp-request
+Connection: keep-alive
+
+0Q0O0M0K0I0	+
+--------------------
+
+REQUEST (thread_index=95):
+GET http://kr.ixiaa.com/C726AB29-0470-440B-B8D2-D552CED3A3DC/a.gif HTTP/1.1
+Host: kr.ixiaa.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cnn.com/
+Connection: keep-alive
+
+
+--------------------
+
+REQUEST (thread_index=32):
+GET http://i2.cdn.cnn.com/cnnnext/dam/assets/170214123245-09-history-of-comedy-movies-0214-large-tease.jpg HTTP/1.1
+Host: i2.cdn.cnn.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cnn.com/
+Cookie: countryCode=US; geoData=Highland Park|NJ|08904|US|NA; optimizelyEndUserId=oeu1488161386699r0.5758581687391968; __gads=ID=051f95e9b16caa3b:T=1488164627:S=ALNI_MZTD1Jy6fWYiP-SkGdRPEYc_ShIlQ; s_cc=true; s_fid=1FFAD2111CDDCAE6-1B806FF64065B95F; s_sq=%5B%5BB%5D%5D; s_vi=[CS]v1|2C59CBF5051D0798-600001390001154A[CE]; s_ppv=60; bknx_fa=1488186764343; bknx_ss=1488186764343
+Connection: keep-alive
+
+
+--------------------
+
+REQUEST (thread_index=94):
+GET http://csi.gstatic.com/csi?v=3&s=gpt&action=ad_events&it=ad_render_period.2.2577,nres.2.11,tts.2.1046&srt=82&vrg=110&pl_id=1488187502846_0.07007518539991964&e=v110,n8663477,publisher_ads,sra,fif,108809080,108809144,21060063&rt= HTTP/1.1
+Host: csi.gstatic.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cnn.com/
+Cookie: NID=97=aXMOBcfAcw34UAgSxDHPxW46DVg49XbDd1LM_ygzViRIUN3xwI1rjcoeOfZyUyVO2LUD0654UpvHeKYCASf_gkMv7bHgBdkGgGiHEucjZAVYN6eQUEIxN3sLy0tXkd1x
+Connection: keep-alive
+
+
+--------------------
+
+REQUEST (thread_index=4):
+GET http://cdn.optimizely.com/js/131788053.js HTTP/1.1
+Host: cdn.optimizely.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cnn.com/
+Cookie: cdn=http%3a%2f%2fakamai%3adsd%40cdn.optimizely.com%2fjs%2f131788053.js
+Connection: keep-alive
 
 
 --------------------
 
 REQUEST (thread_index=6):
-GET http://www.gnu.org/feed-icon-10x10.png HTTP/1.1
-Host: www.gnu.org
+GET http://data.cnn.com/1m/sp/imm.dat HTTP/1.1
+Host: data.cnn.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html, */*; q=0.01
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cnn.com/
+origin: http://www.cnn.com
+Connection: keep-alive
+
+
+--------------------
+
+REQUEST (thread_index=30):
+GET http://i2.cdn.cnn.com/cnnnext/dam/assets/170223082505-reza-aslan-believer-reza-closeup-paint-small-tease.jpg HTTP/1.1
+Host: i2.cdn.cnn.com
 User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
 Accept: */*
 Accept-Language: en-US,en;q=0.5
 Accept-Encoding: gzip, deflate
-Referer: http://www.gnu.org/
+Referer: http://www.cnn.com/
+Cookie: countryCode=US; geoData=Highland Park|NJ|08904|US|NA; optimizelyEndUserId=oeu1488161386699r0.5758581687391968; __gads=ID=051f95e9b16caa3b:T=1488164627:S=ALNI_MZTD1Jy6fWYiP-SkGdRPEYc_ShIlQ; s_cc=true; s_fid=1FFAD2111CDDCAE6-1B806FF64065B95F; s_sq=%5B%5BB%5D%5D; s_vi=[CS]v1|2C59CBF5051D0798-600001390001154A[CE]; s_ppv=60; bknx_fa=1488186764343; bknx_ss=1488186764343
 Connection: keep-alive
-If-Modified-Since: Mon, 28 Nov 2011 19:34:23 GMT
-If-None-Match: "1d5-4b2d096fdcdc0"
-Cache-Control: max-age=0
+
+
+--------------------
+
+REQUEST (thread_index=31):
+GET http://i2.cdn.cnn.com/cnnnext/dam/assets/170223112151-underground-immigrant-houses-hoover-large-tease.jpg HTTP/1.1
+Host: i2.cdn.cnn.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cnn.com/
+Cookie: countryCode=US; geoData=Highland Park|NJ|08904|US|NA; optimizelyEndUserId=oeu1488161386699r0.5758581687391968; __gads=ID=051f95e9b16caa3b:T=1488164627:S=ALNI_MZTD1Jy6fWYiP-SkGdRPEYc_ShIlQ; s_cc=true; s_fid=1FFAD2111CDDCAE6-1B806FF64065B95F; s_sq=%5B%5BB%5D%5D; s_vi=[CS]v1|2C59CBF5051D0798-600001390001154A[CE]; s_ppv=60; bknx_fa=1488186764343; bknx_ss=1488186764343
+Connection: keep-alive
+
+
+--------------------
+
+REQUEST (thread_index=33):
+GET http://i2.cdn.cnn.com/cnnnext/dam/assets/170224075230-face-transplant-pkg-gorani-00014619-large-tease.jpg HTTP/1.1
+Host: i2.cdn.cnn.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cnn.com/
+Cookie: countryCode=US; geoData=Highland Park|NJ|08904|US|NA; optimizelyEndUserId=oeu1488161386699r0.5758581687391968; __gads=ID=051f95e9b16caa3b:T=1488164627:S=ALNI_MZTD1Jy6fWYiP-SkGdRPEYc_ShIlQ; s_cc=true; s_fid=1FFAD2111CDDCAE6-1B806FF64065B95F; s_sq=%5B%5BB%5D%5D; s_vi=[CS]v1|2C59CBF5051D0798-600001390001154A[CE]; s_ppv=60; bknx_fa=1488186764343; bknx_ss=1488186764343
+Connection: keep-alive
+
+
+--------------------
+
+REQUEST (thread_index=25):
+GET http://widgets.outbrain.com/outbrain.js HTTP/1.1
+Host: widgets.outbrain.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cnn.com/
+Connection: keep-alive
+
+
+--------------------
+
+REQUEST (thread_index=29):
+GET http://cdn.gigya.com/js/gigya.js?apiKey=3_gtUbleJNtrRITgx-1mM_ci7GcIrH8xL9W_VfAbzSa4zpFrRwnpq_eYd8QTRkr7VC HTTP/1.1
+Host: cdn.gigya.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cnn.com/
+Connection: keep-alive
+If-Modified-Since: Mon, 13 Feb 2017 11:39:04 GMT
+
+
+--------------------
+
+REQUEST (thread_index=36):
+GET http://i2.cdn.cnn.com/cnnnext/dam/assets/170222113404-love-stories-autism-orig-00000000-large-tease.jpg HTTP/1.1
+Host: i2.cdn.cnn.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cnn.com/
+Cookie: countryCode=US; geoData=Highland Park|NJ|08904|US|NA; optimizelyEndUserId=oeu1488161386699r0.5758581687391968; __gads=ID=051f95e9b16caa3b:T=1488164627:S=ALNI_MZTD1Jy6fWYiP-SkGdRPEYc_ShIlQ; s_cc=true; s_fid=1FFAD2111CDDCAE6-1B806FF64065B95F; s_sq=%5B%5BB%5D%5D; s_vi=[CS]v1|2C59CBF5051D0798-600001390001154A[CE]; s_ppv=60; bknx_fa=1488186764343; bknx_ss=1488186764343
+Connection: keep-alive
+
+
+--------------------
+
+REQUEST (thread_index=38):
+GET http://i2.cdn.cnn.com/cnnnext/dam/assets/170131112141-ren-hang-artwork-11-large-tease.jpg HTTP/1.1
+Host: i2.cdn.cnn.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cnn.com/
+Cookie: countryCode=US; geoData=Highland Park|NJ|08904|US|NA; optimizelyEndUserId=oeu1488161386699r0.5758581687391968; __gads=ID=051f95e9b16caa3b:T=1488164627:S=ALNI_MZTD1Jy6fWYiP-SkGdRPEYc_ShIlQ; s_cc=true; s_fid=1FFAD2111CDDCAE6-1B806FF64065B95F; s_sq=%5B%5BB%5D%5D; s_vi=[CS]v1|2C59CBF5051D0798-600001390001154A[CE]; s_ppv=60; bknx_fa=1488186764343; bknx_ss=1488186764343
+Connection: keep-alive
+
+
+--------------------
+
+REQUEST (thread_index=34):
+GET http://i2.cdn.cnn.com/cnnnext/dam/assets/170224123401-cnnmoney-obamacare-governors-large-tease.jpg HTTP/1.1
+Host: i2.cdn.cnn.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cnn.com/
+Cookie: countryCode=US; geoData=Highland Park|NJ|08904|US|NA; optimizelyEndUserId=oeu1488161386699r0.5758581687391968; __gads=ID=051f95e9b16caa3b:T=1488164627:S=ALNI_MZTD1Jy6fWYiP-SkGdRPEYc_ShIlQ; s_cc=true; s_fid=1FFAD2111CDDCAE6-1B806FF64065B95F; s_sq=%5B%5BB%5D%5D; s_vi=[CS]v1|2C59CBF5051D0798-600001390001154A[CE]; s_ppv=60; bknx_fa=1488186764343; bknx_ss=1488186764343
+Connection: keep-alive
+
+
+--------------------
+
+REQUEST (thread_index=62):
+GET http://b.scorecardresearch.com/p?c1=9&c2=8188709&cs_xi=LGX4-bU9&rn=1488188112 HTTP/1.1
+Host: b.scorecardresearch.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cnn.com/
+Cookie: UID=17466a61a16937a86f8d21g1488159601; UIDR=1488159601
+Connection: keep-alive
+
+
+--------------------
+
+REQUEST (thread_index=106):
+GET http://connect.facebook.net/en_US/sdk.js HTTP/1.1
+Host: connect.facebook.net
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cnn.com/
+Connection: keep-alive
+If-None-Match: "fa7945b0ef2a9668fdf0dab4cfcbb2a9"
+
+
+--------------------
+
+REQUEST (thread_index=102):
+GET http://i2.cdn.cnn.com/cnnnext/dam/assets/170221154517-new-orleans-rooftop-bars-ace-pool-large-tease.jpg HTTP/1.1
+Host: i2.cdn.cnn.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cnn.com/
+Cookie: countryCode=US; geoData=Highland Park|NJ|08904|US|NA; optimizelyEndUserId=oeu1488161386699r0.5758581687391968; __gads=ID=051f95e9b16caa3b:T=1488164627:S=ALNI_MZTD1Jy6fWYiP-SkGdRPEYc_ShIlQ; s_cc=true; s_fid=1FFAD2111CDDCAE6-1B806FF64065B95F; s_sq=%5B%5BB%5D%5D; s_vi=[CS]v1|2C59CBF5051D0798-600001390001154A[CE]; s_ppv=60; bknx_fa=1488186764343; bknx_ss=1488186764343
+Connection: keep-alive
+
+
+--------------------
+
+REQUEST (thread_index=5):
+GET http://amplifypixel.outbrain.com/pixel?mid=006eb1f8dded486e0974a6b4a7b9805f5f HTTP/1.1
+Host: amplifypixel.outbrain.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cnn.com/
+Connection: keep-alive
+
+
+--------------------
+
+REQUEST (thread_index=13):
+GET http://www.cnn.com/data/ocs/section/index.html:homepage3-zone-1/views/zones/common/zone-manager.izl HTTP/1.1
+Host: www.cnn.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: application/json, text/javascript, */*; q=0.01
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cnn.com/
+X-Requested-With: XMLHttpRequest
+Cookie: countryCode=US; geoData=Highland Park|NJ|08904|US|NA; optimizelyEndUserId=oeu1488161386699r0.5758581687391968; ug=58b38a660e68510a3c8ef75604026fe6; ugs=1; _cb_ls=1; __gads=ID=051f95e9b16caa3b:T=1488164627:S=ALNI_MZTD1Jy6fWYiP-SkGdRPEYc_ShIlQ; s_cc=true; s_fid=1FFAD2111CDDCAE6-1B806FF64065B95F; s_sq=%5B%5BB%5D%5D; s_vi=[CS]v1|2C59CBF5051D0798-600001390001154A[CE]; s_ppv=60; bknx_fa=1488186764343; bknx_ss=1488186764343
+Connection: keep-alive
 
 
 --------------------
 
 REQUEST (thread_index=8):
-GET http://www.gnu.org/graphics/fs-gang.png HTTP/1.1
-Host: www.gnu.org
+GET http://www.cnn.com/data/ocs/section/index.html:homepage1-zone-1/views/zones/common/zone-manager.izl HTTP/1.1
+Host: www.cnn.com
 User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: */*
+Accept: application/json, text/javascript, */*; q=0.01
 Accept-Language: en-US,en;q=0.5
 Accept-Encoding: gzip, deflate
-Referer: http://www.gnu.org/
+Referer: http://www.cnn.com/
+X-Requested-With: XMLHttpRequest
+Cookie: countryCode=US; geoData=Highland Park|NJ|08904|US|NA; optimizelyEndUserId=oeu1488161386699r0.5758581687391968; ug=58b38a660e68510a3c8ef75604026fe6; ugs=1; _cb_ls=1; __gads=ID=051f95e9b16caa3b:T=1488164627:S=ALNI_MZTD1Jy6fWYiP-SkGdRPEYc_ShIlQ; s_cc=true; s_fid=1FFAD2111CDDCAE6-1B806FF64065B95F; s_sq=%5B%5BB%5D%5D; s_vi=[CS]v1|2C59CBF5051D0798-600001390001154A[CE]; s_ppv=60; bknx_fa=1488186764343; bknx_ss=1488186764343
 Connection: keep-alive
-If-Modified-Since: Sat, 29 Mar 2014 05:11:02 GMT
-If-None-Match: "af04-4f5b7d834c580"
-Cache-Control: max-age=0
 
 
 --------------------
 
-REQUEST (thread_index=9):
-GET http://www.gnu.org/graphics/heckert_gnu.small.png HTTP/1.1
-Host: www.gnu.org
+REQUEST (thread_index=12):
+GET http://www.cnn.com/data/ocs/section/index.html:homepage2-zone-1/views/zones/common/zone-manager.izl HTTP/1.1
+Host: www.cnn.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: application/json, text/javascript, */*; q=0.01
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cnn.com/
+X-Requested-With: XMLHttpRequest
+Cookie: countryCode=US; geoData=Highland Park|NJ|08904|US|NA; optimizelyEndUserId=oeu1488161386699r0.5758581687391968; ug=58b38a660e68510a3c8ef75604026fe6; ugs=1; _cb_ls=1; __gads=ID=051f95e9b16caa3b:T=1488164627:S=ALNI_MZTD1Jy6fWYiP-SkGdRPEYc_ShIlQ; s_cc=true; s_fid=1FFAD2111CDDCAE6-1B806FF64065B95F; s_sq=%5B%5BB%5D%5D; s_vi=[CS]v1|2C59CBF5051D0798-600001390001154A[CE]; s_ppv=60; bknx_fa=1488186764343; bknx_ss=1488186764343
+Connection: keep-alive
+
+
+--------------------
+
+REQUEST (thread_index=16):
+GET http://mab.chartbeat.com/mab_strategy/headline_testing/get_strategy/?host=cnn.com&domain=cnn.com&path=%2F HTTP/1.1
+Host: mab.chartbeat.com
 User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
 Accept: */*
 Accept-Language: en-US,en;q=0.5
 Accept-Encoding: gzip, deflate
-Referer: http://www.gnu.org/
+Referer: http://www.cnn.com/
+origin: http://www.cnn.com
 Connection: keep-alive
-If-Modified-Since: Sun, 05 Dec 2010 20:58:51 GMT
-If-None-Match: "135f-496b009e118c0"
-Cache-Control: max-age=0
+
+
+--------------------
+
+REQUEST (thread_index=11):
+GET http://www.cnn.com/data/ocs/section/_homepage-zone-injection/index.html:homepage-injection-zone-2/views/zones/common/zone-manager.izl HTTP/1.1
+Host: www.cnn.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: application/json, text/javascript, */*; q=0.01
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cnn.com/
+X-Requested-With: XMLHttpRequest
+Cookie: countryCode=US; geoData=Highland Park|NJ|08904|US|NA; optimizelyEndUserId=oeu1488161386699r0.5758581687391968; ug=58b38a660e68510a3c8ef75604026fe6; ugs=1; _cb_ls=1; __gads=ID=051f95e9b16caa3b:T=1488164627:S=ALNI_MZTD1Jy6fWYiP-SkGdRPEYc_ShIlQ; s_cc=true; s_fid=1FFAD2111CDDCAE6-1B806FF64065B95F; s_sq=%5B%5BB%5D%5D; s_vi=[CS]v1|2C59CBF5051D0798-600001390001154A[CE]; s_ppv=60; bknx_fa=1488186764343; bknx_ss=1488186764343
+Connection: keep-alive
+
+
+--------------------
+
+REQUEST (thread_index=22):
+GET http://www.i.cdn.cnn.com/.a/bundles/listexpandable.0aa0d323983adeb0b617.bundle.js HTTP/1.1
+Host: www.i.cdn.cnn.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cnn.com/
+Cookie: countryCode=US; geoData=Highland Park|NJ|08904|US|NA; optimizelyEndUserId=oeu1488161386699r0.5758581687391968; __gads=ID=051f95e9b16caa3b:T=1488164627:S=ALNI_MZTD1Jy6fWYiP-SkGdRPEYc_ShIlQ; s_cc=true; s_fid=1FFAD2111CDDCAE6-1B806FF64065B95F; s_sq=%5B%5BB%5D%5D; s_vi=[CS]v1|2C59CBF5051D0798-600001390001154A[CE]; s_ppv=60; bknx_fa=1488186764343; bknx_ss=1488186764343
+Connection: keep-alive
+
+
+--------------------
+
+REQUEST (thread_index=26):
+GET http://www.i.cdn.cnn.com/.a/bundles/grid_resize.6b510e1ca0cb2469c314.bundle.js HTTP/1.1
+Host: www.i.cdn.cnn.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cnn.com/
+Cookie: countryCode=US; geoData=Highland Park|NJ|08904|US|NA; optimizelyEndUserId=oeu1488161386699r0.5758581687391968; __gads=ID=051f95e9b16caa3b:T=1488164627:S=ALNI_MZTD1Jy6fWYiP-SkGdRPEYc_ShIlQ; s_cc=true; s_fid=1FFAD2111CDDCAE6-1B806FF64065B95F; s_sq=%5B%5BB%5D%5D; s_vi=[CS]v1|2C59CBF5051D0798-600001390001154A[CE]; s_ppv=60; bknx_fa=1488186764343; bknx_ss=1488186764343
+Connection: keep-alive
+
+
+--------------------
+
+REQUEST (thread_index=35):
+GET http://0914.global.ssl.fastly.net/ad/script/x.js?cb=1488188103528 HTTP/1.1
+Host: 0914.global.ssl.fastly.net
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cnn.com/
+Connection: keep-alive
+
+
+--------------------
+
+REQUEST (thread_index=108):
+GET http://beacon.krxd.net/pixel.gif?source=smarttag&fired=dom%3Abeforeunload&confid=ITb_4eqO&_kpid=e9eaedd3-c1da-4334-82f0-d7e3ff883c87&_kcp_s=CNN&_kcp_d=www.cnn.com&_knifr=9&_kua_kx_tz=300&_kua_kx_lang=en-us&_kua_kx_tech_browser_language=en-us&t_navigation_type=0&t_dns=0&t_tcp=0&t_http_request=-1&t_http_response=17&t_content_ready=-1&t_window_load=0&t_redirect=0&interchange_ran=true&userdata_was_requested=false&userdata_did_respond=false&_kurl_=http%3A%2F%2Fwww.cnn.com&sview=1&jsonp_requests=%2F%2Fbeacon.krxd.net%2Fcookie2json%2C500074 HTTP/1.1
+Host: beacon.krxd.net
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cnn.com/
+Cookie: ServedBy=beacon-a241; _kuid_=LGX4-bU9
+Connection: keep-alive
+
+
+--------------------
+
+REQUEST (thread_index=56):
+GET http://cdn.krxd.net/userdata/get?pub=553cca40-fb9e-408b-9f9c-023fa9d83162&technographics=1&callback=Krux.ns.liberty.kxjsonp_userdata HTTP/1.1
+Host: cdn.krxd.net
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cnn.com/
+Cookie: ServedBy=beacon-a190; _kuid_=LGX4-bU9
+Connection: keep-alive
+
+
+--------------------
+
+REQUEST (thread_index=88):
+GET http://i2.cdn.cnn.com/cnnnext/dam/assets/170226201405-trump-nga-dinner-large-tease.jpg HTTP/1.1
+Host: i2.cdn.cnn.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cnn.com/
+Cookie: countryCode=US; geoData=Highland Park|NJ|08904|US|NA; optimizelyEndUserId=oeu1488161386699r0.5758581687391968; __gads=ID=051f95e9b16caa3b:T=1488164627:S=ALNI_MZTD1Jy6fWYiP-SkGdRPEYc_ShIlQ; s_cc=true; s_fid=1FFAD2111CDDCAE6-1B806FF64065B95F; s_sq=%5B%5BB%5D%5D; s_vi=[CS]v1|2C59CBF5051D0798-600001390001154A[CE]; s_ppv=60; bknx_fa=1488186764343; bknx_ss=1488186764343
+Connection: keep-alive
+
+
+--------------------
+
+REQUEST (thread_index=104):
+GET http://cdn.livefyre.com/libs/fyre.conv/v3.0.0/livefyre.min.js HTTP/1.1
+Host: cdn.livefyre.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cnn.com/
+Connection: keep-alive
+
+
+--------------------
+
+REQUEST (thread_index=48):
+POST http://gp.symcd.com/ HTTP/1.1
+Host: gp.symcd.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Length: 83
+Content-Type: application/ocsp-request
+Connection: keep-alive
+
+0Q0O0M0K0I0	+
+--------------------
+
+REQUEST (thread_index=110):
+GET http://i2.cdn.cnn.com/cnnnext/dam/assets/170226121909-04-bill-paxton-small-tease.jpg HTTP/1.1
+Host: i2.cdn.cnn.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cnn.com/
+Cookie: countryCode=US; geoData=Highland Park|NJ|08904|US|NA; optimizelyEndUserId=oeu1488161386699r0.5758581687391968; __gads=ID=051f95e9b16caa3b:T=1488164627:S=ALNI_MZTD1Jy6fWYiP-SkGdRPEYc_ShIlQ; s_cc=true; s_fid=1FFAD2111CDDCAE6-1B806FF64065B95F; s_sq=%5B%5BB%5D%5D; s_vi=[CS]v1|2C59CBF5051D0798-600001390001154A[CE]; s_ppv=60; bknx_fa=1488186764343; bknx_ss=1488186764343
+Connection: keep-alive
+
+
+--------------------
+
+REQUEST (thread_index=112):
+GET http://i2.cdn.cnn.com/cnnnext/dam/assets/170224075230-face-transplant-pkg-gorani-00014619-small-tease.jpg HTTP/1.1
+Host: i2.cdn.cnn.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cnn.com/
+Cookie: countryCode=US; geoData=Highland Park|NJ|08904|US|NA; optimizelyEndUserId=oeu1488161386699r0.5758581687391968; __gads=ID=051f95e9b16caa3b:T=1488164627:S=ALNI_MZTD1Jy6fWYiP-SkGdRPEYc_ShIlQ; s_cc=true; s_fid=1FFAD2111CDDCAE6-1B806FF64065B95F; s_sq=%5B%5BB%5D%5D; s_vi=[CS]v1|2C59CBF5051D0798-600001390001154A[CE]; s_ppv=60; bknx_fa=1488186764343; bknx_ss=1488186764343
+Connection: keep-alive
+
+
+--------------------
+
+REQUEST (thread_index=117):
+GET http://www.decenthat.com/bcn?fe=1488188703176&vv=1488186764343&xlg=&id=1488186764343&y=1.7.591&elg=533955885&flg=PflrxvqvbvAxzwG&x=zzz.fqq.frp%2F HTTP/1.1
+Host: www.decenthat.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cnn.com/
+Connection: keep-alive
+
+
+--------------------
+
+REQUEST (thread_index=105):
+GET http://aax.amazon-adsystem.com/e/dtb/bid?src=3159&u=http%3A%2F%2Fwww.cnn.com%2F&cb=984052&t=1000 HTTP/1.1
+Host: aax.amazon-adsystem.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cnn.com/
+Cookie: ad-id=A5EWbBbHdELclxEQTLlfnUQ; ad-privacy=0
+Connection: keep-alive
+
+
+--------------------
+
+REQUEST (thread_index=114):
+GET http://i2.cdn.cnn.com/cnnnext/dam/assets/170213121303-trump-cong-leaders-large-tease.jpg HTTP/1.1
+Host: i2.cdn.cnn.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cnn.com/
+Cookie: countryCode=US; geoData=Highland Park|NJ|08904|US|NA; optimizelyEndUserId=oeu1488161386699r0.5758581687391968; __gads=ID=051f95e9b16caa3b:T=1488164627:S=ALNI_MZTD1Jy6fWYiP-SkGdRPEYc_ShIlQ; s_cc=true; s_fid=1FFAD2111CDDCAE6-1B806FF64065B95F; s_sq=%5B%5BB%5D%5D; s_vi=[CS]v1|2C59CBF5051D0798-600001390001154A[CE]; s_ppv=60; bknx_fa=1488186764343; bknx_ss=1488186764343
+Connection: keep-alive
+
+
+--------------------
+
+REQUEST (thread_index=107):
+GET http://ad.doubleclick.net/ddm/ad/is11fc/443i9u6/zo08pctx5z4/fe5db1/;ord=1488188103530? HTTP/1.1
+Host: ad.doubleclick.net
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cnn.com/
+Cookie: id=22602d6f421b0004||t=1488159600|et=730|cs=002213fd48d150294d8621e5a4; IDE=AHWqTUkP4ckn5Vaog-hEYJTfqlTYJVkXuMukdpFkIJtBUJIUOoE2Jj0WVg
+Connection: keep-alive
+
+
+--------------------
+
+REQUEST (thread_index=120):
+GET http://www.googletagservices.com/tag/js/gpt.js HTTP/1.1
+Host: www.googletagservices.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cnn.com/?refresh=1
+Connection: keep-alive
+If-Modified-Since: Wed, 22 Feb 2017 19:24:52 GMT
+
+
+--------------------
+
+REQUEST (thread_index=93):
+GET http://0914.global.ssl.fastly.net/ad/img/x.gif?cb=1488188103526 HTTP/1.1
+Host: 0914.global.ssl.fastly.net
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cnn.com/
+Connection: keep-alive
 
 
 --------------------
