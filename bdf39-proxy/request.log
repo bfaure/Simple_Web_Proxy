@@ -1,0 +1,158 @@
+
+REQUEST (thread_index=0):
+GET http://www.gnu.org/ HTTP/1.1
+Host: www.gnu.org
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+Cache-Control: max-age=0
+
+
+--------------------
+
+REQUEST (thread_index=1):
+GET http://www.gnu.org/mini.css HTTP/1.1
+Host: www.gnu.org
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/css,*/*;q=0.1
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.gnu.org/
+Connection: keep-alive
+If-Modified-Since: Tue, 26 Jan 2010 20:20:01 GMT
+If-None-Match: "71d-47e1702abbe40-gzip"
+Cache-Control: max-age=0
+
+
+--------------------
+
+REQUEST (thread_index=3):
+GET http://www.gnu.org/print.min.css HTTP/1.1
+Host: www.gnu.org
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/css,*/*;q=0.1
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.gnu.org/
+Connection: keep-alive
+If-Modified-Since: Thu, 03 Nov 2016 21:32:02 GMT
+If-None-Match: "678-5406c49cf2493-gzip"
+Cache-Control: max-age=0
+
+
+--------------------
+
+REQUEST (thread_index=2):
+GET http://www.gnu.org/layout.min.css HTTP/1.1
+Host: www.gnu.org
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/css,*/*;q=0.1
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.gnu.org/
+Connection: keep-alive
+If-Modified-Since: Sun, 06 Nov 2016 21:38:02 GMT
+If-None-Match: "33bb-540a8b8ceabb6-gzip"
+Cache-Control: max-age=0
+
+
+--------------------
+
+REQUEST (thread_index=4):
+GET http://www.gnu.org/combo.css HTTP/1.1
+Host: www.gnu.org
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/css,*/*;q=0.1
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.gnu.org/
+Connection: keep-alive
+If-Modified-Since: Tue, 24 Apr 2012 21:45:10 GMT
+If-None-Match: "1a5a-4be73ab3eff98-gzip"
+Cache-Control: max-age=0
+
+
+--------------------
+
+REQUEST (thread_index=7):
+GET http://www.gnu.org/graphics/fsf-logo-notext-small.png HTTP/1.1
+Host: www.gnu.org
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.gnu.org/
+Connection: keep-alive
+If-Modified-Since: Wed, 04 Nov 2015 06:59:09 GMT
+If-None-Match: "9be-523b18c06e940"
+Cache-Control: max-age=0
+
+
+--------------------
+
+REQUEST (thread_index=5):
+GET http://www.gnu.org/distros/screenshots/gnewsense2-medium.jpg HTTP/1.1
+Host: www.gnu.org
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.gnu.org/
+Connection: keep-alive
+If-Modified-Since: Mon, 05 Sep 2016 08:13:26 GMT
+If-None-Match: "121af-53bbe41201580"
+Cache-Control: max-age=0
+
+
+--------------------
+
+REQUEST (thread_index=6):
+GET http://www.gnu.org/feed-icon-10x10.png HTTP/1.1
+Host: www.gnu.org
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.gnu.org/
+Connection: keep-alive
+If-Modified-Since: Mon, 28 Nov 2011 19:34:23 GMT
+If-None-Match: "1d5-4b2d096fdcdc0"
+Cache-Control: max-age=0
+
+
+--------------------
+
+REQUEST (thread_index=8):
+GET http://www.gnu.org/graphics/fs-gang.png HTTP/1.1
+Host: www.gnu.org
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.gnu.org/
+Connection: keep-alive
+If-Modified-Since: Sat, 29 Mar 2014 05:11:02 GMT
+If-None-Match: "af04-4f5b7d834c580"
+Cache-Control: max-age=0
+
+
+--------------------
+
+REQUEST (thread_index=9):
+GET http://www.gnu.org/graphics/heckert_gnu.small.png HTTP/1.1
+Host: www.gnu.org
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.gnu.org/
+Connection: keep-alive
+If-Modified-Since: Sun, 05 Dec 2010 20:58:51 GMT
+If-None-Match: "135f-496b009e118c0"
+Cache-Control: max-age=0
+
+
+--------------------

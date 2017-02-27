@@ -13,6 +13,9 @@
 #include "csapp.h"
 #include "time.h"
 
+FILE *response_log;
+FILE *request_log;
+
 /*
  * Function prototypes
  */
@@ -42,6 +45,9 @@ int PROCESSING_REQUEST = 0;
 // set to 1 while a request is being written to the proxy.log file
 int ALREADY_LOGGING = 0;
 
+// set to 1 while debuggin data is being written
+int *ALREADY_LOGGING_DEBUG_INFO;
+
 // data structure to hold all essential information pertaining to a request
 typedef struct request_data
 {
@@ -54,7 +60,7 @@ typedef struct request_data
     // certain portions of the request, parsed out to help with forwarding
     char req_command[10]; // GET, POST, etc.
     char req_host_domain[100]; // www.yahoo.com, etc.
-    char req_host_long[512]; // http://www.yahoo.com/, etc.
+    char req_host_long[1024]; // http://www.yahoo.com/, etc.
     char req_host_port[10]; // Host port, if specified
     int  req_host_port_num; // Host port, if specified
     char req_protocol[100]; // HTTP/1.1, etc.
@@ -62,6 +68,10 @@ typedef struct request_data
 
     char full_response[1024][1024]; // line-by-line response from server
     int num_lines_response; // to hold the number of response lines
+
+    char response_code[100]; // to hold the return code
+    char sent_time[100]; // time when the request was sent to remote server
+    char server_responded_time[100]; // time when the server responded
 
 } request_data;
 
@@ -92,13 +102,23 @@ void get_host_path_and_port(struct request_data *req_data);
 void log_request( struct sockaddr_in *sockaddr,  char *uri,  int size);
 
 // log debugging information
-void log_information(const char *buffer, const struct request_data *req_data);
+void log_information(const char *buffer, const struct request_data *req_data, const int thread_id);
+
+
+void print_spinner(int *spin_index);
 
 /* 
  * main - Main routine for the proxy program 
  */
 int main(int argc, char **argv)
 {
+
+    ALREADY_LOGGING_DEBUG_INFO = mmap(NULL,sizeof(int), PROT_READ|PROT_WRITE, MAP_SHARED|MAP_ANONYMOUS, -1, 0);
+    *ALREADY_LOGGING_DEBUG_INFO = 0;
+
+    response_log = Fopen("response.log","w"); // initialize debugging log
+    request_log = Fopen("request.log","w"); // initialize debugging log
+
     init_debug_log(argc,argv); // initialize the debug.log file
     init_proxy_log(); // initialize the proxy.log file
     
@@ -109,41 +129,96 @@ int main(int argc, char **argv)
         Fclose(debug_log);
 	    exit(0);
     }
+
+    printf("\n===================================================\n"); 
     int listening_port = parse_listening_port_num(argv);
 
     //printf("> Opening connection to listening port... \n");
     int listening_socket = Open_listenfd(listening_port);
     
     //printf("> Listening for requests...\n");
+    int *wait_a_sec = mmap(NULL, sizeof(int), PROT_READ|PROT_WRITE, MAP_SHARED|MAP_ANONYMOUS, -1, 0);
+    *wait_a_sec = 0;
+
+    int *thread_ct = mmap(NULL, sizeof(int), PROT_READ|PROT_WRITE, MAP_SHARED|MAP_ANONYMOUS, -1, 0);
+    *thread_ct = 0;
+
+    int *threads_open = mmap(NULL, sizeof(int),PROT_READ|PROT_WRITE, MAP_SHARED|MAP_ANONYMOUS, -1, 0);
+    *threads_open = -1;
+
+    struct sockaddr_in client_addr;
+    socklen_t addrlen = sizeof(client_addr);
+
+    int *spin_index = mmap(NULL, sizeof(int),PROT_READ|PROT_WRITE, MAP_SHARED|MAP_ANONYMOUS, -1, 0);
+    *spin_index = 0;
 
     while (1)
     {
-        struct sockaddr_in client_addr;
-        socklen_t addrlen = sizeof(client_addr);
-
         // wait for a connection from a client at listening socket
         int client_socket = Accept(listening_socket, (struct sockaddr*)&client_addr, &addrlen);
 
-        if (Fork()==0)
+        if (Fork()==0) // spawn child thread to handle request
         {
+            print_spinner(spin_index); // print out the loading spinner
+
+            close(listening_socket); // prevent this thread from reacting to browser requests
+
             request_data req_data; // create new request_data struct to hold parsed data
 
             char buffer[4096]; // to read the socket data into
             int n = Read(client_socket,buffer,4095); // read socket into buffer string
+            buffer[n] = 0; // zero-terminate string
+
+            //while (*wait_a_sec==1){  Sleep(1);  }
+            //*wait_a_sec = 1;
+            int thread_index = *thread_ct; // get the index of this thread
+            *thread_ct = *thread_ct + 1; // increment the thread_ct integer
+            *threads_open = *threads_open + 1; // increment the threads_open integer
+            //*wait_a_sec = 0;
 
             if (n<0){  printf("> Error reading from socket \n");  }
             
+            fprintf(request_log,"\nREQUEST (thread_index=%d):\n%s\n--------------------\n",thread_index,buffer);
+
             // parse the data from the listening socket into the req_data struct
             char *uri = parse_request(&req_data,buffer);
 
+            //printf("\n---------------------------------------\n");
+            //printf("Request length = %d\n",strlen(buffer));
+            //printf("Request: ...\n%s\n...\n",buffer);
+            //continue;
+
             //printf("                                                                                       \r");
-            printf("%s %s...\r",req_data.req_command,req_data.req_host_domain);
+            //printf("THREAD %d (client_socket=%d,threads_open=%d): %s %s...\n",thread_index,client_socket,*threads_open,req_data.req_command,req_data.req_host_long);
             fflush(stdout);
 
             // forward the request to the remote server, recieve response, formward to client
             int resp_size = fulfill_request(&req_data, client_socket,client_addr);
 
-            printf("%s %s... Done\n",req_data.req_command,req_data.req_host_domain);
+            printf("                    \r"); // clear the spinner from the command line
+
+            char req_host_long_shortened[1024];
+            int max_host_length = 30;
+            strcpy(req_host_long_shortened,req_data.req_host_long);
+            req_host_long_shortened[max_host_length] = 0; // zero-terminate the string
+            
+            
+            char spacer[30] = " ";
+            spacer[1] = 0;
+            for(int i=0; i<((max_host_length-strlen(req_host_long_shortened))); i++)
+            {
+                spacer[i] = ' ';
+            }
+            spacer[max_host_length-strlen(req_host_long_shortened)] = 0;
+            
+
+            //printf("%d\t(%d workers) > %s %s > [%s]\n",thread_index,*threads_open,req_data.req_command,req_host_long_shortened,req_data.response_code);
+            printf("%d\t(%d workers) > %s %s %s > [%s]\n",thread_index,*threads_open,req_data.req_command,req_host_long_shortened,spacer,req_data.response_code);
+            //printf("%d\t(%d workers,client_socket=%d) > %s %s\t > [%s]\n",thread_index,*threads_open,client_socket,req_data.req_command,req_host_long_shortened,req_data.response_code);
+            
+            if ( *threads_open!=0 ){  print_spinner(spin_index);  }
+
+
             fflush(stdout);
 
             // log the request as per Sakai pdf
@@ -152,26 +227,48 @@ int main(int argc, char **argv)
             if (debugging==1)
             {
                 // print out additional information (debugging)
-                log_information(buffer,&req_data);
+                log_information(buffer,&req_data,thread_index);
             }
-
+            
+            *threads_open = *threads_open - 1;
             close(client_socket); // close the client socket
-
             exit(0); // close this thread (opened on Fork())
         }
         close(client_socket);
+        if ( *threads_open==-1){  printf("                \r");  } // clear the command line if not loading a request
     }
-    exit(0);
     Fclose(proxy_log);
+    exit(0);
+}
+
+// print out the loading spinner with the angle associated with *spin_index
+void print_spinner(int *spin_index)
+{
+    if (*spin_index==0){  printf("... |\r");  }
+    if (*spin_index==1){  printf("... /\r");  }
+    if (*spin_index==2){  printf("... -\r");  }
+    if (*spin_index==3)
+    {  
+        printf("... \\\r");  
+        *spin_index = 0;
+    }
+    else
+    {
+        *spin_index = *spin_index + 1;
+    }
+    fflush(stdout);
 }
 
 // log debugging information
-void log_information(const char *buffer,const struct request_data *req_data)
+void log_information(const char *buffer,const struct request_data *req_data, const int thread_id)
 {
-    fprintf(debug_log,"\n\n=======================================\n");
-    fprintf(debug_log,"================REQUEST================\n");
+    while (*ALREADY_LOGGING_DEBUG_INFO==1){  Sleep(1);  }
+
+    *ALREADY_LOGGING_DEBUG_INFO = 1;
+    fprintf(debug_log,"\n=======================================\n");
+    fprintf(debug_log,"\t================REQUEST (thread %d)================\n",thread_id);
     fprintf(debug_log,"%s",buffer);
-    fprintf(debug_log,"\n=============SENT REQUEST==============\n");
+    fprintf(debug_log,"\n\t==========SENT REQUEST [%s]===========\n",req_data->sent_time);
     if (strcmp(req_data->req_command,"GET")==0) {  fprintf(debug_log,"GET %s %s\r\n",req_data->req_host_path,req_data->req_protocol);  }
     if (strcmp(req_data->req_command,"POST")==0){  fprintf(debug_log,"POST %s %s\r\n",req_data->req_host_path,req_data->req_protocol);  }
     fprintf(debug_log,"Host: %s:%s\r\n",req_data->req_host_domain,req_data->req_host_port);
@@ -187,7 +284,7 @@ void log_information(const char *buffer,const struct request_data *req_data)
             fprintf(debug_log,"%s\n",req_data->req_after_host[i]);
         }
     }
-    fprintf(debug_log,"\n==============RESPONSE=================\n");
+    fprintf(debug_log,"\n\t==============RESPONSE [%s]=================\n",req_data->server_responded_time);
     int calculated_size = 0;
     for(int i=0; i<req_data->num_lines_response; i++)
     {   
@@ -196,6 +293,7 @@ void log_information(const char *buffer,const struct request_data *req_data)
     }
     //fprintf(debug_log,"Calculated size = %d",calculated_size/4);
     fprintf(debug_log,"\n=======================================\n");
+    *ALREADY_LOGGING_DEBUG_INFO = 0;
 }
 
 // log a single request in the format specified in Sakai pdf (using the 
@@ -266,7 +364,7 @@ int parse_listening_port_num(char ** argv)
 {
     char * port_str = argv[1];
     int port_num = atoi(port_str);
-    printf("> Listening port: %d...\n",port_num);
+    printf("> Listening to port %d\n\n",port_num);
     return port_num;
 }
 
@@ -276,6 +374,13 @@ int parse_listening_port_num(char ** argv)
 // all of the lines of the response, it sends it to the client socket
 int fulfill_request(struct request_data *req_data, int client_socket, struct sockaddr_in client_addr)
 {
+    // record the time we connect to the server
+    time_t rawtime;
+    struct tm *timeinfo;
+    time(&rawtime);
+    timeinfo = localtime(&rawtime);
+    sprintf(req_data->sent_time,"%d:%d:%d",timeinfo->tm_hour,timeinfo->tm_min,timeinfo->tm_sec);
+
     // get file handle to remote socket (supplying remote domain and remote port #)
     int remotefd = Open_clientfd(req_data->req_host_domain,req_data->req_host_port_num);
 
@@ -323,7 +428,12 @@ int fulfill_request(struct request_data *req_data, int client_socket, struct soc
                 sprintf(buffer,"%s\n",req_data->req_after_host[i]);
             }
 
-            send(remotefd,buffer,strlen(buffer),0); // send (i+2)th line to remote socket
+            int m = 1;
+            if ( (m = send(remotefd,buffer,strlen(buffer),0))<0 ) // send (i+2)th line to remote socket
+            {
+                printf("\nNot allowed to write to remotefd, m=%d\n",m);
+
+            }
         }
 
         if ( strcmp(req_data->req_command,"POST")==0 )
@@ -341,19 +451,96 @@ int fulfill_request(struct request_data *req_data, int client_socket, struct soc
     ssize_t n;
     int total_size = 0; // total size of the message received 
     req_data->num_lines_response = 0; // initialize number of lines in response
+    strcpy(req_data->response_code,"NONE");
+
+    fprintf(response_log,"\n\n--------------------------------------------------\n\n");
 
     while ((n = recv(remotefd,buffer,1024,0)) > 0)
     {
-        // iterate over each line recieved from remote host
+        fprintf(response_log,"%s",buffer);
+
+        // if this is the first read (containing first line) parse out
+        // the response code from the remote server
+        if ( total_size==0 && sizeof(buffer)!=0 )
+        {
+            // record the time the server responded
+            time_t rawtime;
+            struct tm *timeinfo;
+            time(&rawtime);
+            timeinfo = localtime(&rawtime);
+            sprintf(req_data->server_responded_time,"%d:%d:%d",timeinfo->tm_hour,timeinfo->tm_min,timeinfo->tm_sec);
+
+            char status_code[100];
+            int status_code_index = 0;
+
+            char protocol_buffer[100];
+            int past_protocol = 0;
+
+            for (int k=0; k<100; k++)
+            {
+                char current_char = buffer[k];
+
+                if ( past_protocol==1 )
+                {
+                    if ( current_char=='\r' )
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        status_code[status_code_index] = buffer[k];
+                        status_code[status_code_index+1] = 0;
+                        status_code_index++;
+                    }
+                }
+                else
+                {
+                    protocol_buffer[k] = buffer[k];
+                    //protocol_buffer[k+1] = 0;
+                    if ( strstr(protocol_buffer,"HTTP/1.1 ")!=NULL )
+                    {
+                        past_protocol = 1;
+                    }
+
+                }
+            }
+
+            if (status_code_index!=0)
+            {
+                strcpy(req_data->response_code,status_code);
+            }
+        }
+
         total_size += n;
-        send(client_socket,buffer,n,0); // forward data from remote host to client
+
+        int m=0;
+        if ( (m = send(client_socket,buffer,n,0))<0 )
+        {
+            printf("\nNot allowed to write to client_socket, m=%d\n",m);
+        }
+        //send(client_socket,buffer,n,0); // forward data from remote host to client
 
         // save the line into the req_data struct
         strcpy(req_data->full_response[req_data->num_lines_response],buffer); 
         req_data->num_lines_response++; // increment number of response lines
     }
 
+    // if we never recieved any data fill in the response time
+    if (total_size==0)
+    {
+        // record the time the server responded
+        time_t rawtime;
+        struct tm *timeinfo;
+        time(&rawtime);
+        timeinfo = localtime(&rawtime);
+        sprintf(req_data->server_responded_time,"%d:%d:%d",timeinfo->tm_hour,timeinfo->tm_min,timeinfo->tm_sec);
+    }
+
+    fprintf(response_log,"\n\n--------------------------------------------------\n\n");
+
     close(remotefd); // close remote socket
+    close(client_socket); // close client socket after done writing
+
     return total_size;
 }
 
@@ -457,7 +644,7 @@ void get_host_path_and_port(struct request_data *req_data)
             }
 
             // check if the buffer is long enough (if the above check fails)
-            if (buffer_index>=8)
+            if (buffer_index>=7)
             {
                 if (buffer[5]=='/' && buffer[6]=='/')
                 {
@@ -571,70 +758,12 @@ void strip_trailing_char(char *source, const char to_remove)
     }
 }
 
-// check if req_host_long contains a port specification, if so, append
-// it to the end of the req_host_domain string such that the line of the
-// request like "Host: www.example.com" includes said port ("Host: www.example.com:80")
-void check_for_host_port(struct request_data *req_data)
-{
-    int num_colons = get_match_count(req_data->req_host_long,":");
-
-    if ( num_colons==1 )
-    {
-        //printf("> Using default port number of 80\n");
-        req_data->req_host_port_num = 80;
-        strcpy(req_data->req_host_port,"80");
-        return;
-    }
-    if ( num_colons==2 )
-    {
-        printf("\n> found second colon in req_host_long: %s",req_data->req_host_long);
-        req_data->req_host_port_num = 80;
-        strcpy(req_data->req_host_port,"80");
-        return;
-        /*
-        // need to parse specified port
-        char *p = strrchr(req_data->req_host_long,':');
-        strcpy(req_data->req_host_port,"");
-        char *char_ptr;
-        int i=0;
-        int at_port = 0;
-        for (char_ptr = p; *char_ptr != '\0'; char_ptr++)
-        {
-            if (*char_ptr == ':')
-            {
-                at_port = 1;
-            }
-
-            if (*char_ptr == '/'){  break;  }
-            if (*char_ptr == ' '){  break;  }
-
-            req_data->req_host_port[i] = *char_ptr;
-            i++;
-        }
-
-        char temp[1024];
-        sprintf(temp,"%s:%s",req_data->req_host_domain,req_data->req_host_port);
-        strcpy(req_data->req_host_domain,temp);
-        printf("\n> Using %s for host port number\n", req_data->req_host_port);
-        printf("\n> Domain with port number: %s\n",req_data->req_host_domain);
-        return;
-        */
-    }
-    else
-    {
-        printf("\n> Undefined number of colons in req_host_long: %s\n",req_data->req_host_long);
-    }
-    //printf("> Undefined number of colons in req_host_long\n");
-    req_data->req_host_port_num = 80;
-    strcpy(req_data->req_host_port,"80");
-}
-
 // count the number of occurrences of target in input
 int get_match_count(const char *input, const char *target)
 {
     int count = 0;
     const char *tmp = input;
-    while ( tmp = strstr(tmp, target) )
+    while ( (tmp = strstr(tmp, target)) > 0)
     {
         count++;
         tmp++;
