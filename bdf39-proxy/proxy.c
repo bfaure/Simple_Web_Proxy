@@ -16,6 +16,16 @@
 #define BUFFER_PAGE_WIDTH 1024
 #define BUFFER_PAGE_COUNT 1024
 
+// handle separate naming for Windows, Apple, and Unix machines
+#ifdef _WIN32
+    MAP_A = MAP_ANONYMOUS;
+#elif defined __APPLE__
+    MAP_A  = MAP_ANON;
+#else
+    MAP_A = MAP_ANONYMOUS;
+#endif
+
+
 FILE *response_log;
 FILE *request_log;
 
@@ -119,7 +129,7 @@ int main(int argc, char **argv)
 {
 
     //ALREADY_LOGGING_DEBUG_INFO = mmap(NULL,sizeof(int), PROT_READ|PROT_WRITE, MAP_SHARED|MAP_ANONYMOUS, -1, 0);
-    ALREADY_LOGGING_DEBUG_INFO = mmap(NULL,sizeof(int), PROT_READ|PROT_WRITE, MAP_SHARED|MAP_ANON, -1, 0);
+    ALREADY_LOGGING_DEBUG_INFO = mmap(NULL,sizeof(int), PROT_READ|PROT_WRITE, MAP_SHARED|MAP_A, -1, 0);
     *ALREADY_LOGGING_DEBUG_INFO = 0;
 
     response_log = Fopen("response.log","w"); // initialize debugging log
@@ -147,22 +157,22 @@ int main(int argc, char **argv)
     
     //printf("> Listening for requests...\n");
     //int *wait_a_sec = mmap(NULL, sizeof(int), PROT_READ|PROT_WRITE, MAP_SHARED|MAP_ANONYMOUS, -1, 0);
-    int *wait_a_sec = mmap(NULL,sizeof(int), PROT_READ|PROT_WRITE, MAP_SHARED|MAP_ANON, -1, 0);
+    int *wait_a_sec = mmap(NULL,sizeof(int), PROT_READ|PROT_WRITE, MAP_SHARED|MAP_A, -1, 0);
     *wait_a_sec = 0;
 
     //int *thread_ct = mmap(NULL, sizeof(int), PROT_READ|PROT_WRITE, MAP_SHARED|MAP_ANONYMOUS, -1, 0);
-    int *thread_ct = mmap(NULL,sizeof(int), PROT_READ|PROT_WRITE, MAP_SHARED|MAP_ANON, -1, 0);
+    int *thread_ct = mmap(NULL,sizeof(int), PROT_READ|PROT_WRITE, MAP_SHARED|MAP_A, -1, 0);
     *thread_ct = 0;
 
     //int *threads_open = mmap(NULL, sizeof(int),PROT_READ|PROT_WRITE, MAP_SHARED|MAP_ANONYMOUS, -1, 0);
-    int *threads_open = mmap(NULL,sizeof(int), PROT_READ|PROT_WRITE, MAP_SHARED|MAP_ANON, -1, 0);
+    int *threads_open = mmap(NULL,sizeof(int), PROT_READ|PROT_WRITE, MAP_SHARED|MAP_A, -1, 0);
     *threads_open = -1;
 
     struct sockaddr_in client_addr;
     socklen_t addrlen = sizeof(client_addr);
 
     //int *spin_index = mmap(NULL, sizeof(int),PROT_READ|PROT_WRITE, MAP_SHARED|MAP_ANONYMOUS, -1, 0);
-    int *spin_index = mmap(NULL,sizeof(int), PROT_READ|PROT_WRITE, MAP_SHARED|MAP_ANON, -1, 0);
+    int *spin_index = mmap(NULL,sizeof(int), PROT_READ|PROT_WRITE, MAP_SHARED|MAP_A, -1, 0);
     *spin_index = 0;
 
 
