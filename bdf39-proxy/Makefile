@@ -2,6 +2,7 @@
 # The executable must be named proxy
 
 CC = gcc
+CFLAGS = -std=gnu11 -Wall -g 
 CFLAGS = -Wall -g 
 LDFLAGS = -pthread
 

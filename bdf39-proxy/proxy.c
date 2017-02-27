@@ -118,7 +118,8 @@ void print_spinner(int *spin_index);
 int main(int argc, char **argv)
 {
 
-    ALREADY_LOGGING_DEBUG_INFO = mmap(NULL,sizeof(int), PROT_READ|PROT_WRITE, MAP_SHARED|MAP_ANONYMOUS, -1, 0);
+    //ALREADY_LOGGING_DEBUG_INFO = mmap(NULL,sizeof(int), PROT_READ|PROT_WRITE, MAP_SHARED|MAP_ANONYMOUS, -1, 0);
+    ALREADY_LOGGING_DEBUG_INFO = mmap(NULL,sizeof(int), PROT_READ|PROT_WRITE, MAP_SHARED|MAP_ANON, -1, 0);
     *ALREADY_LOGGING_DEBUG_INFO = 0;
 
     response_log = Fopen("response.log","w"); // initialize debugging log
@@ -145,19 +146,23 @@ int main(int argc, char **argv)
     int listening_socket = Open_listenfd(listening_port);
     
     //printf("> Listening for requests...\n");
-    int *wait_a_sec = mmap(NULL, sizeof(int), PROT_READ|PROT_WRITE, MAP_SHARED|MAP_ANONYMOUS, -1, 0);
+    //int *wait_a_sec = mmap(NULL, sizeof(int), PROT_READ|PROT_WRITE, MAP_SHARED|MAP_ANONYMOUS, -1, 0);
+    int *wait_a_sec = mmap(NULL,sizeof(int), PROT_READ|PROT_WRITE, MAP_SHARED|MAP_ANON, -1, 0);
     *wait_a_sec = 0;
 
-    int *thread_ct = mmap(NULL, sizeof(int), PROT_READ|PROT_WRITE, MAP_SHARED|MAP_ANONYMOUS, -1, 0);
+    //int *thread_ct = mmap(NULL, sizeof(int), PROT_READ|PROT_WRITE, MAP_SHARED|MAP_ANONYMOUS, -1, 0);
+    int *thread_ct = mmap(NULL,sizeof(int), PROT_READ|PROT_WRITE, MAP_SHARED|MAP_ANON, -1, 0);
     *thread_ct = 0;
 
-    int *threads_open = mmap(NULL, sizeof(int),PROT_READ|PROT_WRITE, MAP_SHARED|MAP_ANONYMOUS, -1, 0);
+    //int *threads_open = mmap(NULL, sizeof(int),PROT_READ|PROT_WRITE, MAP_SHARED|MAP_ANONYMOUS, -1, 0);
+    int *threads_open = mmap(NULL,sizeof(int), PROT_READ|PROT_WRITE, MAP_SHARED|MAP_ANON, -1, 0);
     *threads_open = -1;
 
     struct sockaddr_in client_addr;
     socklen_t addrlen = sizeof(client_addr);
 
-    int *spin_index = mmap(NULL, sizeof(int),PROT_READ|PROT_WRITE, MAP_SHARED|MAP_ANONYMOUS, -1, 0);
+    //int *spin_index = mmap(NULL, sizeof(int),PROT_READ|PROT_WRITE, MAP_SHARED|MAP_ANONYMOUS, -1, 0);
+    int *spin_index = mmap(NULL,sizeof(int), PROT_READ|PROT_WRITE, MAP_SHARED|MAP_ANON, -1, 0);
     *spin_index = 0;
 
 
@@ -236,9 +241,16 @@ int main(int argc, char **argv)
             
 
             //printf("%d\t(%d workers) > %s %s > [%s]\n",thread_index,*threads_open,req_data.req_command,req_host_long_shortened,req_data.response_code);
-            printf("%d\t(%d workers) > %s %s %s %dB (total) > [%s,%dB]\n",thread_index,*threads_open,req_data.req_command,req_host_long_shortened,spacer,n,req_data.response_code,resp_size);
+            if ( strstr(req_data.req_command,"POST")!=NULL )
+            {
+                printf("%d\t(%d workers) > %s %s %s %dB (total) > [%s,%dB]\n",thread_index,*threads_open,req_data.req_command,req_host_long_shortened,spacer,n,req_data.response_code,resp_size);
             //printf("%d\t(%d workers,client_socket=%d) > %s %s\t > [%s]\n",thread_index,*threads_open,client_socket,req_data.req_command,req_host_long_shortened,req_data.response_code);
-            
+            }
+            else
+            {
+                printf("%d\t(%d workers) > %s  %s %s %dB (total) > [%s,%dB]\n",thread_index,*threads_open,req_data.req_command,req_host_long_shortened,spacer,n,req_data.response_code,resp_size);
+            }
+
             if ( *threads_open!=0 ){  print_spinner(spin_index);  }
 
 
