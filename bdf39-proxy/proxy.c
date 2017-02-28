@@ -48,6 +48,9 @@ const char *blocked_domains[5] =    {
                                     "gp.symcd.com"
                                     };
 
+// character sequence used to wipe the current line of the terminal
+const char *UI_WIPE[1] = {"                                                                                          "};
+
 FILE *debug_log; // file to save debugging info to, can be accessed from any function in this file 
 FILE *proxy_log; // file to log each request (as per instructions)
 
@@ -167,7 +170,7 @@ char* get_time_string();
 // initialize global, cross-thread variables
 void init_global_variables();
 
-// controls the time spinner (during loading)
+// controls the UI time spinner (during loading and waiting)
 void handle_time_spinner();
 
 /* 
@@ -213,6 +216,7 @@ int main(int argc, char **argv)
         switch (new_pid)
         {
             case 0: // new child
+                set_current_status(""); // denote that we have started a new request in status.log file
                 close(listening_socket);
                 request_data req_data; // create new request_data struct to hold parsed data
 
@@ -241,6 +245,7 @@ int main(int argc, char **argv)
                 if (request_size<0){  printf("> Error reading from socket \n");  }
                 
                 fprintf(request_log,"\nREQUEST (thread_index=%d):\n%s\n--------------------\n",req_data.thread_id,buffer);
+                fflush(request_log);
 
                 // record the start time of the request
                 time_t t1;
@@ -291,7 +296,8 @@ int main(int argc, char **argv)
                 if ( *threads_open==-1)
                 {  
                     *ENABLE_TIME_SPINNER = 0;
-                    printf("*                                                                                          \n");  
+                    printf("*%s\n",UI_WIPE[0]);
+                    fflush(stdout);
                 }
                 exit(0); // close this thread (opened on Fork())
 
@@ -306,8 +312,9 @@ int main(int argc, char **argv)
         // clear the command line if not loading a request
         if ( *threads_open==-1)
         {  
-            *ENABLE_TIME_SPINNER = 0;
-            printf("                                                                                              \r");  
+            *ENABLE_TIME_SPINNER = 0; 
+            printf("%s\r",UI_WIPE[0]);
+            fflush(stdout);
         } 
     }
     Fclose(proxy_log);
@@ -318,11 +325,11 @@ int main(int argc, char **argv)
 // this function is called by the main process and is run in its own thread
 void handle_time_spinner()
 {
-    int time_spin_index = 0;
-    int waiting_spin_index = 0;
-    time_t refresh_seconds = 0;
-
-    typedef struct timespec
+    int time_spin_index = 0; // the state of the time spinner (range [0,3])
+    int waiting_spin_index = 0; // the state of the waiting spinner (range [-bar_distance,max_distance])
+    
+    time_t refresh_seconds = 0; // refresh the waiter/timer after this many seconds
+    typedef struct timespec // struct used to specify how much time to use in nanosleep
     {
         time_t tv_sec;
         long tv_nsec;   
@@ -330,77 +337,68 @@ void handle_time_spinner()
 
     timespec t;
     t.tv_sec = refresh_seconds;
-    t.tv_nsec = (long)100000000.0;
+    t.tv_nsec = (long)100000000.0; // once per second
 
-    int max_distance = 100;
-    int bar_distance = 5;
-    char left_wall[1] = "";
-    char right_wall[1] = "";
-    char bar_reg_char[1] = "-";
-    char empty_reg_char[1] = " ";
-
-    //char wipe[1] = {"                                                                                      \r"};
+    int max_distance = 101; // the width to run across for the waiting line 
+    int bar_distance = 5; // the length of the waiting line
+    char left_wall[1] = ""; // character to represent left bound of waiting line
+    char right_wall[1] = ""; // character to represent right bound of waiting line
+    char bar_reg_char[1] = "-"; // character used in line ('-----')
+    char empty_reg_char[1] = " "; // character used if line not present
 
     while(1)
     {
+        printf("%s\r",UI_WIPE[0]); // wipe the display
+        fflush(stdout);
+
+        // if a request is being processed (at any stage) the *ENABLE_TIME_SPINNER will be set to 1
+        // by the main event loop of the worker thread, if this is 1 then we enter the first case below
+        // and output a spinning widget to show that loading is taking place, the current_status will also
+        // be appended after the spinner which will include some information such as the ID of the
+        // worker thread and the event taking place
         if (*ENABLE_TIME_SPINNER==1)
         {
             char temp_buffer5[300];
-            printf("                                                                                          \r");
+            temp_buffer5[1] = 0;
+
+            // depending in the current state of time_spin_index we will output a different character
             if (time_spin_index==0){  sprintf(temp_buffer5," ( | )  %s ",current_status);  }
             if (time_spin_index==1){  sprintf(temp_buffer5," ( / )  %s ",current_status);  }
-            if (time_spin_index==2){  sprintf(temp_buffer5," (---)  %s ",current_status);  }
+            if (time_spin_index==2){  sprintf(temp_buffer5," ( - )  %s ",current_status);  }
             if (time_spin_index==3){  sprintf(temp_buffer5," ( \\ )  %s ",current_status); }
             printf("%s\r",temp_buffer5);
             fflush(stdout);
 
-            time_spin_index++;
+            time_spin_index++; // increment time_spin_index
             if ( time_spin_index>=4 ){  time_spin_index=0;  }
         }
+
+        // otherwise output a line ('-----') denoting that there are no pending requests
         else
         {
             char *temp_buffer5 = malloc(sizeof(char)*300);
             temp_buffer5[1] = 0;
             int temp_buffer_index = 0;
 
-            printf("                                                                                           \r");
-            //fflush(stdout);
-
-            //strcpy(temp_buffer5[temp_buffer_index],left_wall);
-            //temp_buffer_index++;
-
-            //printf("%s",left_wall);
-            //fflush(stdout);
             for (int i=0; i<max_distance; i++)
             {
                 if (i>=waiting_spin_index && i<=(waiting_spin_index+bar_distance))
                 {
-                    //printf("%s",bar_reg_char);
-                    temp_buffer5[temp_buffer_index] = bar_reg_char[0];
+                    temp_buffer5[temp_buffer_index] = bar_reg_char[0]; // no line at this index
                     temp_buffer_index++;
                     temp_buffer5[temp_buffer_index] = 0;
-                    //memcpy(temp_buffer5[temp_buffer_index],bar_reg_char,strlen(bar_reg_char));
-                    //temp_buffer_index++;
                 }
                 else
                 {
-                    //printf("%s",empty_reg_char);
-                    //memcpy(temp_buffer5[temp_buffer_index],empty_reg_char,strlen(empty_reg_char));
-                    //temp_buffer_index++;
-                    temp_buffer5[temp_buffer_index] = empty_reg_char[0];
+                    temp_buffer5[temp_buffer_index] = empty_reg_char[0]; // line at this index
                     temp_buffer_index++;
                     temp_buffer5[temp_buffer_index] = 0;
                 }
             }
-
-            //printf("%s\r",right_wall);
-            //strcpy(temp_buffer5[temp_buffer_index],right_wall);
-            //temp_buffer_index++;
-
             printf("%s%s%s\r",left_wall,temp_buffer5,right_wall);
             fflush(stdout);
 
-            waiting_spin_index++;
+            waiting_spin_index++; // increment waiting spin index
             if ( waiting_spin_index==max_distance ){  waiting_spin_index=-1*bar_distance;  }
         }
         nanosleep(&t,NULL);
@@ -440,7 +438,6 @@ char* get_time_string()
     return time_str;
 }
 
-
 // sets the global variable current_status and appends the threadid
 void set_current_status_id(const char *input_str, const int thread_id)
 {
@@ -448,6 +445,7 @@ void set_current_status_id(const char *input_str, const int thread_id)
     sprintf(temp,"(idx=%d) - %s",thread_id,input_str);
     strcpy(current_status,temp);
     fprintf(status_log,"%s\t>%s\n",get_time_string(),temp);
+    fflush(status_log);
 }
 
 // sets the global variable current_status
@@ -455,8 +453,8 @@ void set_current_status(const char *input_str)
 {
     strcpy(current_status,input_str);
     fprintf(status_log,"%s\t>%s\n",get_time_string(),input_str);
+    fflush(status_log);
 }
-
 
 // get the elapsed time between two intervals (time() inputs, threadsafe)
 int elapsed_time2(time_t t1, time_t t2)
@@ -473,24 +471,35 @@ long elapsed_time(clock_t t1, clock_t t2)
     return elapsed;
 }
 
-
 // prints out the current state of the process to the CLI
 void update_cli(struct request_data *req_data, int thread_index, int threads_open, int resp_size, int request_size, int total_time)
 {
     // initialize some variables to help with printing 
-    printf("                    \r"); // clear the spinner from the command line
+    //printf("                    \r"); // clear the spinner from the command line
+    printf("%s\r",UI_WIPE[0]);
     int max_host_length = 30;
     char *req_host_long_shortened = shorten_string(req_data->req_host_long, max_host_length);
     char *spacer = get_spacer_string(max_host_length-strlen(req_host_long_shortened));
 
-    if ( strstr(req_data->req_command,"POST")!=NULL )
+    char spacer_after_response_info[10];
+    if (strlen(req_data->response_code)<=6)
     {
-        printf("%d\t(%d workers) > %s %s %s %dB > [%s,%dB] \t %d s\n",thread_index,threads_open,req_data->req_command,req_host_long_shortened,spacer,request_size,req_data->response_code,resp_size,total_time);
+        sprintf(spacer_after_response_info,"\t\t");
     }
     else
     {
-        printf("%d\t(%d workers) > %s  %s %s %dB > [%s,%dB] \t %d s\n",thread_index,threads_open,req_data->req_command,req_host_long_shortened,spacer,request_size,req_data->response_code,resp_size,total_time);
+        sprintf(spacer_after_response_info,"\t");
     }
+
+    if ( strstr(req_data->req_command,"POST")!=NULL )
+    {
+        printf("%d\t(%d workers) > %s %s %s %dB > [%s,%dB] %s %d s\n",thread_index,threads_open,req_data->req_command,req_host_long_shortened,spacer,request_size,req_data->response_code,resp_size,spacer_after_response_info,total_time);
+    }
+    else
+    {
+        printf("%d\t(%d workers) > %s  %s %s %dB > [%s,%dB] %s %d s\n",thread_index,threads_open,req_data->req_command,req_host_long_shortened,spacer,request_size,req_data->response_code,resp_size,spacer_after_response_info,total_time);
+    }
+    fflush(stdout);
 }
 
 // returns a char array of spaces (" ") of length 'size' (must be < 30)
@@ -511,7 +520,6 @@ char* get_spacer_string(const int size)
 char* shorten_string(const char *input_str, const int new_size)
 {
     char *shortened = malloc(sizeof(char)*1024);
-    //char shortened[1024];
     strcpy(shortened,input_str);
     shortened[new_size] = 0; // zero-terminate the string
     return shortened;
@@ -523,10 +531,8 @@ int is_blocked_domain(struct request_data *req_data)
     // iterate over each blocked domain and check if it matches the input domain name
     for ( int i=0; i<num_blocked_domains; i++)
     {
-        if ( strstr(req_data->req_host_domain,blocked_domains[i])!=NULL )
-        {
-            return 1; // we have a match
-        }
+        // we have a match
+        if ( strstr(req_data->req_host_domain,blocked_domains[i])!=NULL ){  return 1; }
     }
     return 0; // the domain is not blocked
 }
@@ -538,8 +544,9 @@ void init_ui_header(const int listening_port, const int listening_socket)
     printf("=====================================================================================================\n");
     printf("> Listening: {PORT: %d SOCKET: %d}\n",listening_port,listening_socket);
     printf("=====================================================================================================\n");
-    printf("Thread                      req. snippet                  req.size  response              total time\n");
+    printf("[   Thread Info    ][           Client Request Info            ][    Response Info    ][ Total Time ]\n");
     printf("_____________________________________________________________________________________________________\n");
+    fflush(stdout);
 }
 
 // log debugging information
@@ -570,6 +577,7 @@ void log_information(const char *buffer,const struct request_data *req_data, con
     }
     //fprintf(debug_log,"Calculated size = %d",calculated_size/4);
     fprintf(debug_log,"\n=============================================================\n");
+    fflush(debug_log);
     *ALREADY_LOGGING_DEBUG_INFO = 0;
 }
 
@@ -577,15 +585,14 @@ void log_information(const char *buffer,const struct request_data *req_data, con
 // format_log_entry function to format data & writing to proxy.log)
 void log_request( struct sockaddr_in *sockaddr,  char *uri,  int size)
 {
-
     // busy wait until we can get a handle on the proxy.log file
     while (ALREADY_LOGGING==1){  Sleep(1);  }
-
     ALREADY_LOGGING = 1; // tell all other threads to wait
     char logstring[1024]; // to hold output of format_log_entry
     format_log_entry((char *)&logstring,sockaddr,uri,size); 
     fprintf(proxy_log,"%s",logstring); // print out formatted string
     fprintf(proxy_log,"\n"); // new line
+    fflush(proxy_log);
     ALREADY_LOGGING = 0; // tell all other threads it's okay to write to proxy.log
 }
 
@@ -820,6 +827,7 @@ int fulfill_request(struct request_data *req_data, int client_socket, struct soc
     strcpy(req_data->response_code,"NONE");
 
     fprintf(response_log,"\n\n--------------------------------------------------\n\n");
+    fflush(response_log);
 
     int past_header = 0; // set to 1 once we are on a chunk that is past the header section of response
     int resp_length[BUFFER_PAGE_COUNT] = {0}; // initialize array to hold buffered response lengths
@@ -835,6 +843,7 @@ int fulfill_request(struct request_data *req_data, int client_socket, struct soc
         buffer[n] = 0; // zero-terminate buffer
 
         fprintf(response_log,"%s",buffer); // write the response to response.log file
+        fflush(response_log);
 
         // if this is the first read (containing first line) parse out
         // the response code from the remote server
@@ -941,6 +950,7 @@ int fulfill_request(struct request_data *req_data, int client_socket, struct soc
     strcpy(req_data->server_responded_time, get_time_string());
 
     fprintf(response_log,"\n\n--------------------------------------------------\n\n");
+    fflush(response_log);
 
     close(remotefd); // close remote socket
     close(client_socket); // close client socket after done writing
