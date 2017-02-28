@@ -66,6 +66,7 @@ int PROCESSING_REQUEST = 0; // set to 1 while a request is being processed to pr
 int ALREADY_LOGGING = 0; // set to 1 while a request is being written to the proxy.log file
 int *spin_index; // can be in range [0,3], denotes the current orientation of the loading spinner
 int *ALREADY_LOGGING_DEBUG_INFO; // set to 1 while debuggin data is being written
+int *ENABLE_TIME_SPINNER;
 
 // data structure to hold all essential information pertaining to a request
 typedef struct request_data
@@ -130,13 +131,6 @@ void log_request( struct sockaddr_in *sockaddr,  char *uri,  int size);
 // log debugging information
 void log_information(const char *buffer, const struct request_data *req_data, const int thread_id);
 
-// prints the spinner to CLI according to spin index (in range [0,3]),
-// also updates the spin_index
-void print_spinner();
-
-// prints the spinner to CLI according to spin index, NO UPDATING of index
-void reprint_spinner();
-
 // initialize the header lines of the table for the CLI
 void init_ui_header(const int listening_port, const int listening_socket);
 
@@ -173,6 +167,9 @@ char* get_time_string();
 // initialize global, cross-thread variables
 void init_global_variables();
 
+// controls the time spinner (during loading)
+void handle_time_spinner();
+
 /* 
  * main - Main routine for the proxy program 
  */
@@ -181,6 +178,8 @@ int main(int argc, char **argv)
     init_global_variables();    // initialize cross-thread global variables
     init_debug_log(argc,argv);  // initialize the debug.log file
     init_proxy_log();           // initialize the proxy.log file
+
+    if (Fork() == 0){  handle_time_spinner();  } // start the time spinner thread
     
     /* Check arguments */
     if (argc != 2) 
@@ -214,21 +213,21 @@ int main(int argc, char **argv)
         switch (new_pid)
         {
             case 0: // new child
-                reprint_spinner(); // print out the spinner
+                close(listening_socket);
                 request_data req_data; // create new request_data struct to hold parsed data
 
                 req_data.request_blocked    = 0; // initialize int to denote that request has not yet been blocked
                 req_data.thread_id          = *thread_ct; // save the index of this thread to req_data
                 *thread_ct                  = *thread_ct + 1; // increment the thread_ct integer
                 *threads_open               = *threads_open + 1; // increment the threads_open integer
+                *ENABLE_TIME_SPINNER        = 1;
 
-                print_spinner(); // print out the loading spinner
                 close(listening_socket); // prevent this thread from reacting to browser requests
                 close(listening_port); // prevent this thread from reacting to browser requests
 
                 set_current_status_id("Reading socket",req_data.thread_id);
                 char buffer[4096]; // to read the socket data into
-
+                
                 int request_size        = Read(client_socket,buffer,4095); // read socket into buffer string
                 buffer[request_size]    = 0; // zero-terminate string
 
@@ -270,7 +269,6 @@ int main(int argc, char **argv)
 
                 // update the command line interface UI
                 update_cli(&req_data,req_data.thread_id,*threads_open,resp_size,request_size,request_time);
-                if ( *threads_open!=0 ){  print_spinner();  }
                 fflush(stdout);
 
                 // log the information so long as the request wasn't blocked
@@ -290,7 +288,11 @@ int main(int argc, char **argv)
                 close(client_socket); // close the client socket
 
                  // clear the command line if not loading a request
-                if ( *threads_open==-1){  printf("*                                                                                          \n");  }
+                if ( *threads_open==-1)
+                {  
+                    *ENABLE_TIME_SPINNER = 0;
+                    printf("*                                                                                          \n");  
+                }
                 exit(0); // close this thread (opened on Fork())
 
             case -1: // error when creating new thread
@@ -302,10 +304,107 @@ int main(int argc, char **argv)
                 close(client_socket); // close the socket we left to the child
         }
         // clear the command line if not loading a request
-        if ( *threads_open==-1){  printf("                                                                                              \r");  } 
+        if ( *threads_open==-1)
+        {  
+            *ENABLE_TIME_SPINNER = 0;
+            printf("                                                                                              \r");  
+        } 
     }
     Fclose(proxy_log);
     exit(0);
+}
+
+// responsible for spinning the loading spinner and pushing updates to CLI,
+// this function is called by the main process and is run in its own thread
+void handle_time_spinner()
+{
+    int time_spin_index = 0;
+    int waiting_spin_index = 0;
+    time_t refresh_seconds = 0;
+
+    typedef struct timespec
+    {
+        time_t tv_sec;
+        long tv_nsec;   
+    } timespec;
+
+    timespec t;
+    t.tv_sec = refresh_seconds;
+    t.tv_nsec = (long)100000000.0;
+
+    int max_distance = 100;
+    int bar_distance = 5;
+    char left_wall[1] = "";
+    char right_wall[1] = "";
+    char bar_reg_char[1] = "-";
+    char empty_reg_char[1] = " ";
+
+    //char wipe[1] = {"                                                                                      \r"};
+
+    while(1)
+    {
+        if (*ENABLE_TIME_SPINNER==1)
+        {
+            char temp_buffer5[300];
+            printf("                                                                                          \r");
+            if (time_spin_index==0){  sprintf(temp_buffer5," ( | )  %s ",current_status);  }
+            if (time_spin_index==1){  sprintf(temp_buffer5," ( / )  %s ",current_status);  }
+            if (time_spin_index==2){  sprintf(temp_buffer5," (---)  %s ",current_status);  }
+            if (time_spin_index==3){  sprintf(temp_buffer5," ( \\ )  %s ",current_status); }
+            printf("%s\r",temp_buffer5);
+            fflush(stdout);
+
+            time_spin_index++;
+            if ( time_spin_index>=4 ){  time_spin_index=0;  }
+        }
+        else
+        {
+            char *temp_buffer5 = malloc(sizeof(char)*300);
+            temp_buffer5[1] = 0;
+            int temp_buffer_index = 0;
+
+            printf("                                                                                           \r");
+            //fflush(stdout);
+
+            //strcpy(temp_buffer5[temp_buffer_index],left_wall);
+            //temp_buffer_index++;
+
+            //printf("%s",left_wall);
+            //fflush(stdout);
+            for (int i=0; i<max_distance; i++)
+            {
+                if (i>=waiting_spin_index && i<=(waiting_spin_index+bar_distance))
+                {
+                    //printf("%s",bar_reg_char);
+                    temp_buffer5[temp_buffer_index] = bar_reg_char[0];
+                    temp_buffer_index++;
+                    temp_buffer5[temp_buffer_index] = 0;
+                    //memcpy(temp_buffer5[temp_buffer_index],bar_reg_char,strlen(bar_reg_char));
+                    //temp_buffer_index++;
+                }
+                else
+                {
+                    //printf("%s",empty_reg_char);
+                    //memcpy(temp_buffer5[temp_buffer_index],empty_reg_char,strlen(empty_reg_char));
+                    //temp_buffer_index++;
+                    temp_buffer5[temp_buffer_index] = empty_reg_char[0];
+                    temp_buffer_index++;
+                    temp_buffer5[temp_buffer_index] = 0;
+                }
+            }
+
+            //printf("%s\r",right_wall);
+            //strcpy(temp_buffer5[temp_buffer_index],right_wall);
+            //temp_buffer_index++;
+
+            printf("%s%s%s\r",left_wall,temp_buffer5,right_wall);
+            fflush(stdout);
+
+            waiting_spin_index++;
+            if ( waiting_spin_index==max_distance ){  waiting_spin_index=-1*bar_distance;  }
+        }
+        nanosleep(&t,NULL);
+    }
 }
 
 // initialize global, cross-thread variables
@@ -324,6 +423,9 @@ void init_global_variables()
     // variable to hold current status
     current_status = mmap(NULL,sizeof(char), PROT_READ|PROT_WRITE, MAP_SHARED|MAP_A,-1,0);
     set_current_status(" ");
+
+    ENABLE_TIME_SPINNER = mmap(NULL,sizeof(int),PROT_READ|PROT_WRITE, MAP_SHARED|MAP_A, -1, 0);
+    *ENABLE_TIME_SPINNER = 0;
 }
 
 // get a formatted string representing the current time (H:M:S)
@@ -346,7 +448,6 @@ void set_current_status_id(const char *input_str, const int thread_id)
     sprintf(temp,"(idx=%d) - %s",thread_id,input_str);
     strcpy(current_status,temp);
     fprintf(status_log,"%s\t>%s\n",get_time_string(),temp);
-    reprint_spinner(); // reprint the spinner with new status
 }
 
 // sets the global variable current_status
@@ -354,7 +455,6 @@ void set_current_status(const char *input_str)
 {
     strcpy(current_status,input_str);
     fprintf(status_log,"%s\t>%s\n",get_time_string(),input_str);
-    reprint_spinner(); // reprint the spinner with new status
 }
 
 
@@ -434,41 +534,12 @@ int is_blocked_domain(struct request_data *req_data)
 // print out the header lines for the CLI UI table
 void init_ui_header(const int listening_port, const int listening_socket)
 {
-    printf("\n=====================================================================================================\n");
+    printf("\n\n=====================================================================================================\n");
     printf("=====================================================================================================\n");
-    printf("> PORT: %d SOCKET: %d\n\n",listening_port,listening_socket);
-    printf("idx                         req. snippet                  req.size  response              total time\n");
+    printf("> Listening: {PORT: %d SOCKET: %d}\n",listening_port,listening_socket);
+    printf("=====================================================================================================\n");
+    printf("Thread                      req. snippet                  req.size  response              total time\n");
     printf("_____________________________________________________________________________________________________\n");
-}
-
-// print out the loading spinner with the angle associated with *spin_index
-void print_spinner()
-{
-    if (*spin_index==0){  printf("... | %s\r",current_status);  }
-    if (*spin_index==1){  printf("... / %s\r",current_status);  }
-    if (*spin_index==2){  printf("... - %s\r",current_status);  }
-    if (*spin_index==3)
-    {  
-        printf("... \\ %s\r",current_status);  
-        *spin_index = 0;
-    }
-    else
-    {
-        *spin_index = *spin_index + 1;
-    }
-    fflush(stdout);
-}
-
-// same as print_spinner but does not update spin_index (called by status updating
-// functions so that the CLI status can be updated w/o changing the spinner)
-void reprint_spinner()
-{
-    printf("                                                                                          \r");
-    if (*spin_index==0){  printf("... | %s\r",current_status);  }
-    if (*spin_index==1){  printf("... / %s\r",current_status);  }
-    if (*spin_index==2){  printf("... - %s\r",current_status);  }
-    if (*spin_index==3){  printf("... \\ %s\r",current_status); }
-    fflush(stdout);
 }
 
 // log debugging information
