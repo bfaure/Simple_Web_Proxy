@@ -1,6 +1,7 @@
 
-=======================================
-	================REQUEST (thread 0)================
+
+=============================================================
+====================REQUEST (thread 0)====================
 GET http://www.gnu.org/ HTTP/1.1
 Host: www.gnu.org
 User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
@@ -11,7 +12,7 @@ Connection: keep-alive
 Upgrade-Insecure-Requests: 1
 
 
-	==========SENT REQUEST [13:59:6]===========
+==================SENT REQUEST [3:59:45]===================
 GET / HTTP/1.1
 Host: www.gnu.org:80
 User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
@@ -22,9 +23,9 @@ Connection: keep-alive
 Upgrade-Insecure-Requests: 1
 
 
-	==============RESPONSE [13:59:10]=================
+===================RESPONSE [3:59:45]======================
 HTTP/1.1 200 OK
-Date: Mon, 27 Feb 2017 18:59:03 GMT
+Date: Tue, 28 Feb 2017 08:59:41 GMT
 Server: Apache/2.4.7
 Content-Location: home.html
 Vary: negotiate,accept-language,Accept-Encoding
@@ -33,7 +34,7 @@ Access-Control-Allow-Origin: (null)
 Accept-Ranges: bytes
 Content-Encoding: gzip
 Cache-Control: max-age=0
-Expires: Mon, 27 Feb 2017 18:59:03 GMT
+Expires: Tue, 28 Feb 2017 08:59:41 GMT
 Content-Length: 8728
 Keep-Alive: timeout=3, max=100
 Connection: Keep-Alive
@@ -41,209 +42,110 @@ Content-Type: text/html
 Content-Language: en
 
 ‹
-åL.`è²“³“nÜ‰,ÓÐÊ´ËžDiyÕeÇ	T—}óð°Ë^¦ÑU«¶çî}›ò.çÛ"OE¬¯•yèˆ Kë‘€ù‹2¤À!÷x.Øðþ½í.Å¥ˆe†ð‘$éb4ÅLVØ•æUIhÌ€˜d%h!+a–xÊfüRTB™°B25Cf Ç£$Ë¥i ,—àfzm)ã1ÀNyzDÓñ°óŒ“(+wÆ²eô¢g´¬Ÿ+µ5è]¡qÓ&€gY4øòëôªó«Ç©[‘EZß®Ñ-ÃÞÃGöçhœžO#¼Á¾÷¯7‰rUøŒË¦¼§´Í½n?Âb¶Çv"Ù‡ÎW¾y0¾¶ïäe!¦7ÛÒ=ŠÌ÷ØíííFÃaoæeÀz÷$t˜mi2\úüBfÐR7¸F/Fql´½–$d‹Ïãh
-Ø¹ÈˆÖÐ£dÚÀ ›ÆeQHÃ	pÓWÑ÷ŽäÂhŒmÇævâÀW{¹w©¨¡†”ñ0IÝc½èÔ»k`Y¾ñ-±5¦Gc\LsTNx.„ÐA©4 en
-
-‹
 ìÁ@@8ã(d7‚ hàÞ›ôæÍùØÝÝ]š{–õGc
 Æ`$FR¼–lôD’Í ÉUk(3½ô{¿=¡°i¦¯ƒÖ›Ï€?¦;hz|]G¶L¿+B³íåW8Uæ]5ñ3Mg¼kN¬‹	>½cDf—ù˜Ívt'WÜ°áþ’˜ÜYÁœô&°ŠŠI,yáÀ2ÝrC›¥â$æ°¤)–uÙ2Ot<ŽàFCÌê+¦ÇKòk5peï¦Ðìð¿FcðÞdj(#m±ÇÆ±.–0lÊö8æØ
 Å*ˆ·Š—ðR³}w2¶ŒÌ9OUÌ™+?•Œ¼a¡vˆ£×Ú¨Ae¥n$‘Â%|P°×IË<6eÿ†ŠÈu[Ã¿üí¯Yr½oMf·ÀÅ°Ý‘»­Á4ÕÕc¹;Ôt¯…¦	‡»´–Û±”Ûmp$J×Á[Ãë¶m¤ö?ðÈîÓÊÔv¾'ÊŸ‚ƒî‡bÎ®gÊuŠÞf5ë¿Ëe’€]bë¯‚¹ÈW8Eß|`=Òü/önß»ah`=Ð0WC_kW*¯1gFQ­öZy¬†þÖkã:JøŠ¥eÛ`¥‡sƒz,ãp]ªÕK[K=´#'?b¥2×‘±zýk¬TÛ´tŒ¬4œ‰J
-ïßQÜà\Üâ\Üâ\‰¢¼Œþù×o(mhSÚÒ¦´¥M§qh~aÈ˜²¦¬…)“±ºˆÞK^ºXìÅ’—M,Ÿýð³ö£Ï~ôéï>ýÇOûöØÔk›½³ØÔë&¶³Ùë({{$å…‹ÄÞY$åEkH?þôwŸýðÓ_~öÓOCû	í—Í4ïÊupÕ>‚‰,êýƒF£FŽx«½Ë Óí—‘˜g2/œ'yÜCqB‡]Fë6}pÂp)+½xfd,Ãü	£K™”k‚´wÖì`ó•ùmü!(Q3!3œ'PØn¸n“ŒÑÙE”a“‚<èsl	+@j©˜¦%:ý1Ø¾¸/ðÆ…Õ7ä(‹
-qJZ3š¦¬Ìì¨H]—M-ÀZãŠµœPÜê×á[#xéÓî~¨<p«­f"¸ fèÑÓª®¸‚àôa‡}ï€ªYP(?bHç½#:‚§˜“¥ë¥r
-9¬Þ#F•ÁLfàË\„l¼ 4o\-mV¶µ±.Ü©ÕÑáG=î%Vijñ)å—Ñ”ÀgÊ˜b@˜xˆÐµ7ÏÇcYXØR[ÄƒÿŒU>xÿÙËsm}ˆ%HX’èù,Š¥’Ùlá‚Êª§Î¥üüÑã'ÏÎž=ôáZ O ŽN8¤ÈØ<«.¸'OÏŽÏÖ;ËÀp£†&ìÃúÊ†!G/Î?;]ÐÎ›Ï–Uvõ|vrþÁÁ‹ãµÀŽdàÂ	e€ÿl(ñìðåÓãÓóëéy$âÌ…1ƒ{úe <:~ò|ÕD‚b¢l8òÄúµìÔÙ‘k×­–èUy„•=[©Ô#³6¤Ò7ET@)Ò!™Æ‹å¢0SD&BÏî<‚n/0k1.‹
-e*ÄÌúÚcì¬ TO†¥as|`Þ{ð‚cE¿ï‘ö9€Ô+½“„q·þuÕêVãUgä`x³-ª¸JK#Âò6¤b¥!•¾šWŒ¨‹ÙÈKJB®fû…ÆÙõ¢‚AÆX6Ütø€Š†}T5“ƒdaÍ+ðÁ¬¢q,<à%ôe¼®¹›G°¤ÃàÔÑÂ¹,cJ¾%Y,ØB–y…Ì02} € €“ 48’¡‘UzxæÆ†O)ÌEs¤äR[*C*Ž˜ÝJÀÐ² FJÄ‹n#a(—”©¸{éÁÌCra´QYƒÀ’ÚN?¨>ÙD¼bM$‚öÆÀ¯9bîµ¤£*>ÓÎ ‘]¾…Iuoîyîdy¾R/×¼‘«|9ñƒž8|2Ä.q\oÛ«™, ¯˜+´¦†\F‡^I—;`	³é±åcE@™ô^eSr.h]=«šBÀpòt¤-•~¬¯ˆuÔæÜÖ‰V’—˜F,
+-0ûÜ§lþ{&Ó‰J  ˜Eª§Ý¼I¢UQ ñ¨rœàÚd
 r¿á•ºták+bàÛ»
-¬ÌCúeà##Qòæ KµƒúÞ°[c1A[¥Çæ´Àµë;z§… 3`à‰Cáµ–!t°Ùš[»‡‰„Òñ
-¹yÁr°9Hð{uñ¥›²úˆíÄÍ>Lh°pò¿o>2Áê8sMÊ+â‰?“.íëY
-Ž+†M¢?‚-«:
-éÝ­ã±_D‰` ¨ÎÞëXÕŠ}O¤àž¢^×lA¶c¤ =`Ê»ä"ÃR›ÔD†(èUr³K²Žæ~•„Z¦ã$3úˆ<¨TXÙi™<W’M7‰›&ƒß¸Bzle4<Ÿð+˜Bs¥…~e[Ž%‘¹ÚÄÕèÒ†g+õ†ÇR^ x€Ióª±çÊ¤b%»&qksX”'sºÁÔøNÏ½ÏÉ®2Ç0`}qoÆ‘’h§éï5í
-6Öåå(¸…,¤[Û{Ã¢xÿàðÛìüüÿÜÉÍòµtðØ=¾RŸÿÕÓÚ˜„	%˜{üÄð{E‡¬xPÈ¼:0½^›ã+¶
-Zß=~q|xþìÅ‡×ÂÄê‰™ŸÊP"¼8j–R·å§þÎª¹0„;Û„ùàÅùúÞ:ò4êž7Ïtß={o}g{èÜ^Ÿ=>7C~zðÜé»TwÝ¯¦¥UO½âè
-“„6­iT–4ÝØ±Ú5Å¯YéšÆ¸¤SÉ·°ú3Ãâ~ô¼LÕ?DíÊ	Û9éUa*€Ñé¸t[g‡ê‰3æt…†26;?ìð½ÿ¡zÄvzƒ^%Ì N§ÏÎí‘àJ.]A™™±ÇÔ°ä‡Tiom;°Ÿ>Cªë
+<&Ï=“`áÀ[z—„!ˆÀã³gþÖ`kËÿÖsÿéY[¼ÌÀ÷ü“Æà–`Ü»¿`LaÍ°íÞðKŠ.®g•=Áz®wºlk0Üí{ŠY&J|(+µ==¬â4”hypzöØ?Dbö{ìñD‡åh0¼ÖÛTÖù¦5æ«¢QãÀp[b°…jÁÀ‰øRƒò>6lÂ%„íxlƒ5ÒžÓ§JÒF€U93àãG
 
-=======================================
+=============================================================
 
-=======================================
-	================REQUEST (thread 1)================
-GET http://www.ucla.edu/ HTTP/1.1
-Host: www.ucla.edu
+
+=============================================================
+====================REQUEST (thread 2)====================
+GET http://www.gnu.org/layout.min.css HTTP/1.1
+Host: www.gnu.org
 User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept: text/css,*/*;q=0.1
 Accept-Language: en-US,en;q=0.5
 Accept-Encoding: gzip, deflate
-Cookie: PHPSESSID=gmukkg541fitd361un3qb6bqu3; _ga=GA1.2.1479649636.1488166591
+Referer: http://www.gnu.org/
 Connection: keep-alive
-Upgrade-Insecure-Requests: 1
 
 
-	==========SENT REQUEST [14:0:40]===========
-GET / HTTP/1.1
-Host: www.ucla.edu:80
+==================SENT REQUEST [3:59:45]===================
+GET /layout.min.css HTTP/1.1
+Host: www.gnu.org:80
 User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept: text/css,*/*;q=0.1
 Accept-Language: en-US,en;q=0.5
 Accept-Encoding: gzip, deflate
-Cookie: PHPSESSID=gmukkg541fitd361un3qb6bqu3; _ga=GA1.2.1479649636.1488166591
+Referer: http://www.gnu.org/
 Connection: keep-alive
-Upgrade-Insecure-Requests: 1
 
 
-	==============RESPONSE [14:0:46]=================
+===================RESPONSE [3:59:45]======================
 HTTP/1.1 200 OK
-Content-Type: text/html; charset=UTF-8
-Vary: Accept-Encoding
-Expires: Thu, 19 Nov 1981 08:52:00 GMT
-Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0, max-age=86400, public, must-revalidate, proxy-revalidate
-Pragma: no-cache
-Content-Encoding: gzip
-Content-Length: 6699
+Date: Tue, 28 Feb 2017 08:59:41 GMT
+Server: Apache/2.4.7
+Access-Control-Allow-Origin: (null)
+Last-Modified: Sun, 06 Nov 2016 21:38:02 GMT
+ETag: "33bb-540a8b8ceabb6-gzip"
 Accept-Ranges: bytes
-Date: Mon, 27 Feb 2017 19:00:37 GMT
-Age: 0
-Connection: keep-alive
-X-Cache: MISS
+Vary: Accept-Encoding
+Content-Encoding: gzip
+Cache-Control: max-age=2592000
+Expires: Thu, 30 Mar 2017 08:59:41 GMT
+Content-Length: 3711
+Keep-Alive: timeout=3, max=100
+Connection: Keep-Alive
+Content-Type: text/css
+Content-Language: non-html
 
 ‹
-ëÄ»|þrôr3ýÇ(=Ül±ŽcD
-Y>Ùoåc™ç"{Å}_IþQ5ì[/^n½Ø}±cº2ø‡ÒÉäše"ÚoétÃ/r&}¤*ÌÄp¿Õ‘ñ¨3ä7ØÖ†ÿû«><MaN¹*üÐ›é6ý²&#ì¿¾†ÿW9Ÿ€0„Bä®¿¯u'.µáú µË;€>¤*Ñ B+uKAPrêÁbH¾ß¢£½ßyÞéQŸõ.Øáëw9bç¿]²ÞÕ•ç™1î7Ž/	’œ_R`éDQ1F€éÌðO0{’˜ÈÏYû€ìuÌ{;§:0GýªÓáŸømÛHO¥nƒ¤R['’ÝùôG!²Ig«ý·ö–ýÑ¶9RÂMréë)`ZœÊ!‹rÁNŽØóÌô•â9þÏ+ÒQÆ1;äÞwÿ`k†ÿ*×ÒÐ
-çŽqøoo ‚IéhBÐî”¹è¿~•ƒÅ@ãóF`Ê{‘ô¯Ù[0A$GaÎú|ôŠ]ÀjKTì‹-ë]´‡h¹PuCJÍr„GãÖA±þþòÔ¼l,8°5ŸØ zˆ[4­`psÅ`k#î‹à¹3`Øx<n@<¢ë¬÷í,.t^AÃS>"!´4ß2ð{ó=Ð4‚•ŽÌR^æ‹ƒb'0	z	€l¯÷Ð/€ÕaoÀ=¼b›Ï:[;íÍ­Ýu\ã’}èËÁšˆÛ¼ó‰ßpÓ
-ëzÃ3ÆoEÄöÙÏÃv”¨ø‡ÙSÖj½6¯áüÛÚ¬ÿ{½ABƒ´ÇÁžìÉa†ëë¤ÖdwçåÎóçÏÚÃH·b›lk'"ïpËù{XÈ×DëE&c¾ù,ê>2Hl¾Ÿ´ÿèâð¿'?µ˜ñô­-ÐHÜ§G
- ;ÍÕíŒyªYu”zØÜÆµvüÙ²;¿z‹a•iÁíF*è3ÂF*ÁIB™¤…uŸOB€Iybð=Á-ävÊ?pÝŸt–ô€ÐÄ·ÑçcÏldÍ&t)0·“j_óTªÈá•ÃpGõ1ÈÛ3âa¹jkìºVêó€{)8>Ã¢2.Û…ýk44˜5…¨Ü”Ô€û×£öÐŸ¦Æ)™ûG«â@\#?Ãó6„b˜ŠD2Â mûÙ³–oËp×¨Ðmƒ<)±ébK08ÆP.œ¶yƒÌ.
-Ze›OBMñDi±çêî¼Q(\J+:Ïÿ–°­iß4Pµ…2•jœx¸Kµ?<ß'sXD3 SƒfbDižIÝo )Uè@éíK‡_¡2}â\ªÀŸÃæó‹+ù!fß¢HÓè¹ç;»DdEt(!Ê<uÏUò¦÷'4–3`äºI~ b?3mÖoÿJ­wÒGéýå¨ÈÇ[l*=¿i¼ó,08B•¨Pt©Éâ8¦ÆO¶¾¹Ê&­ƒcóp'-<ŽŸ-˜çŠÓHê0¦ ìà„ÞY¢ºÍ·w#"}B*“!,iB	_`œÐk‹÷¤`Ó×Š‡ô5ì`€òKût·@b)Ó–L“ÿDvöL»£¯|s72ˆÿr²g¦&QB;¦@Sžá‡ß~DxVi ‹ÑyŠõú«¿L‘àƒnÄ¸]d!zÝ7Gg'½«ob%Jêîa)h©cÌrèxà"l~÷à}ý;*_,Eèp!»Á)>ˆeùÏ%^Ãû‹Ø¼¡î/ŸŽŒ´dR€pÖÇí¹ÖfT>y*ÅƒÌ£ã^ä kÛÙy½})ºr+5»“zÀ4ˆv³<v;%Xp`@Ô½©ÞT«Lï–RÉA‰s<-¿®žÖ…,Ô³7g'WW'çï¾‰ž•ÔžuËg¶Lã\§¦ÆUSÒ8‡y)Ây¸~¾ÍýÅÌQ¢HÈ§‹V4Ši_yT¶ÂN¹l]J­D£Ÿæ¡«ªH>©¿Xaú9¸#Û¶:®¾mûBÓçCO›?‰ŠÛ­ÿtñH¡9W|UeÁ­0øU/…çÎù)íýOÞáÉëŸ½wÒÿý[(Ñ\ª—;®ùÝÜ“³Æ‚LL,‹C	äaik`+{ímmWÞ¥96Ä¦”©€°ÊÝL~Y>@Bç“åüUåœ«Zâæ#òÐÃÐ‚]úÁ0üZ		ž†ÓÊ Ó+S7s®©gÚ¾ªÞ yHÔ"UAé^ö¿I(WÒÖ±«´D+¸öC¥"O½²Éì8j…°	' òðãÙ\·tÿqâBK¥"À¶OôY…ÿ_>@®çÏÜY›Á(¦9å"7Ò˜ûjÄ¾Û
-ðãÙ\·tÿqâBK¥"À¶OôY…ÿ_>@®çÏÜY›Á(¦9å"7Ò˜ûjÄ¾Û
-NaD}±øvM’O-—!Á‡þ#üôððÐVOÐ¡ðîÖîíËç3E.‡'c>º¢ÕÃúoPŒÚŸÒ‘­}ù
-ÀÀÓ|¢ªX/»gîÆw^iy{Ý2ÿ÷?ÿ«Y“˜W^¼\R{lb‹—ØC~Å"¦ÂÇ%ZÝÆ¨“þJZD¶·>]{I
-¨´^¤Ô5ð4÷0šñRA Ûjá•$¼ßßm 1»]‹‡i|Ej
-œtEÓ_rpE$Óßq˜ ³XPì#b—O¢‚*Ï~*JD˜’DÏéZ%å«!æðÎÁÏ+²ë=÷>n=ÇhKçöÇ/µáÒ¹ë»æk(sgÒ4Ï§m9É5cÈŒ’4“9ñò}§ð¦ÄñàI˜½ú=ÖšÊMü|õU6ýþtk+‹• X°—U+Ûãlx¦;eßÊq˜J\_Up:1Oµgd†
-ßSžá½÷Õe¶­zƒ½q˜¾ºü£k¢OTÒµIŒŒÉjTÌ²µöv†+OðÂô³%¥ýÆ žìJrX:_‹l$ÿ1*~Tâøb|jV–ms>z2Ï;ŒDìÉŠnÄ¬»¼Ë?ôˆ©î³K<D}˜Gùˆ’æ8á1|°Ú}ãê°Ê’eûµÝoåGt¡q£òˆ©]ö6ñ·šGž‚v"˜Ip˜O#ãÑo.Ìuð¯?ÜB\‘=baŠ¬b¸ØÛ[ÏÍ'4è_ÿüM÷÷Wì*V
-”¼Ï£köÃÖËÏ~¬–Ô®çãIßÞÙÝ]BúÖ
-¤onw¶_0ˆÕ)¹»œ@DôDELi]©¿Ô¶v7w^Þ=‡¿½\e;Í-˜ƒH à?äúZäü~ÍìÝ>pÊž—·²§eû/÷¥t×…ônù6	Qr*Ü!/_“x„Ì.eZ•¬¾	ëÇMµ<Øk1
-.¿–8è¬ãßA÷AJ&ø•¬0XMù0‰É~É}t¿1Ì£•¸aÎ €ŠëÇLfß±feÎØSƒžCho1|OJ~†ŽcÜˆ?OÌeÁ¯«!½–tÜžbiey—‘
-¨þm²úlèâíE¦‚Â”ÏŸm]¨<w6M5Lë[]Ó"1Â¬êj[ÙúžÑWé$ÃjÃÖÁ÷øüšN/Åˆ
-\í…ë¹©E÷Ùy5ôÝGçI?}’Þ¤BgW·ÚƒVÄÚí†éž@x7¦¿á{-¦øpçŠ­ÏÀ”i³©ìY-Ma¯¨`\³ú'›Ý·ÍGƒ©ouÏ€¥Q1’Éô'½gÀÌö2¨Ú‡×—@ÚBÊ&Ôºý˜5ü5ÿ$þOÀNQb
+MóR’žžJ6#’Û•ûr	7Aä>ð©å4;L‹kÎMÃÚ¬guÍ{—yI€Ó¬¦íQð ò]¦Á:µôUòF‡®ef»ÝÂÁ&Å3°ìÔ¶Ùl®ô·¢eçßG£çw¥Sëá+ï@OçSïÌÀËÊôR°é_Y2}x¦.hÔ¦(Bƒht°ZtªÝŸ(ö«!·Ð/6LÆÛ¬dW‹Ôve'8`û­NÂ-Æ!¬²¿2ØRtãøø€OùÃ*q-Z í•f­¨ß«„žNíÝS
+ž(¾$ÍFË®ªÆkZõ6z6÷š‚Zc-j‰
+”‚´áY?º’jÇ'J‹ ÅŒ–8«Ææ¦%cÕC^ÚJ^B”ÓF~„@7™R"ÒÛÿÿí÷3"I´B“b.¢ÿFdxòfÁT•´éØaz™e§žŸŸÝô»>[•ô……¾œ
+r¦¯Ä·ý$>eRÍ¦A2‰™?÷³2s_Š±u´š'çð³dšan3yzîVQÐe_Y¬l4ie§_~.XöCœˆfwéP9ãT³¤?’x
+‹A?
+8@=h¡Rªxž—Ì€Xrvt“`N)Å‰ììÕ½lÕa ÷:f‘ËŠ‹y¸3ì¢2£Gßu~7þŸÔ“K8¬SÊo-mŽ·ó$¡ojœp}˜»þÅsynYg¯'t4§œ—[rZß‹¦2—©Eê^^ÑÒÊ;yØýâ¼6XÉXtp˜uÃžÙArGb€;,o}nêgïïL¢‘œ6ú!Áf³‰×‰ÂÁ©€	yMíZ×:r÷†FWeõúËÓ%1wŒÉ0ÞÅòšÎ‚ÓxG'ç,¯[k‘åøsK+×òÜæ7Pñ‘…%à+x¸9Õl§y¢Òë_^™BïÏh7¬DÒYpjòáó|¼yç£`±aÎ•IYÜX˜ew´~á ;ÎZiYÈ¸‰äª#~ñÇ:†£\êay¢ò‰uÀ«\E/'DŠ"w"hå®H“nÍ)í‘Aagœ”:6¢“÷œ-CøÊŽ*A&‡¥÷iÏàäaÒõ­
 
-=======================================
+=============================================================
 
-=======================================
-	================REQUEST (thread 2)================
-GET http://a.adtpix.com/px/?id=104885 HTTP/1.1
-Host: a.adtpix.com
+
+=============================================================
+====================REQUEST (thread 1)====================
+GET http://www.gnu.org/combo.css HTTP/1.1
+Host: www.gnu.org
 User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: */*
+Accept: text/css,*/*;q=0.1
 Accept-Language: en-US,en;q=0.5
 Accept-Encoding: gzip, deflate
-Referer: http://www.ucla.edu/
+Referer: http://www.gnu.org/
 Connection: keep-alive
 
 
-	==========SENT REQUEST [14:0:41]===========
-GET /px/?id=104885 HTTP/1.1
-Host: a.adtpix.com:80
+==================SENT REQUEST [3:59:45]===================
+GET /combo.css HTTP/1.1
+Host: www.gnu.org:80
 User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: */*
+Accept: text/css,*/*;q=0.1
 Accept-Language: en-US,en;q=0.5
 Accept-Encoding: gzip, deflate
-Referer: http://www.ucla.edu/
+Referer: http://www.gnu.org/
 Connection: keep-alive
 
 
-	==============RESPONSE [14:1:41]=================
+===================RESPONSE [3:59:48]======================
 HTTP/1.1 200 OK
-Content-Type: text/javascript;charset=utf-8
-Date: Mon, 27 Feb 2017 19:00:38 GMT
-Server: Apache/2.2.29 (Amazon)
-Status: 200 OK
-X-Content-Type-Options: nosniff
-X-Powered-By: Phusion Passenger 4.0.50
-Content-Length: 834
-Connection: keep-alive
+Date: Tue, 28 Feb 2017 08:59:41 GMT
+Server: Apache/2.4.7
+Access-Control-Allow-Origin: (null)
+Last-Modified: Tue, 24 Apr 2012 21:45:10 GMT
+ETag: "1a5a-4be73ab3eff98-gzip"
+Accept-Ranges: bytes
+Vary: Accept-Encoding
+Content-Encoding: gzip
+Cache-Control: max-age=2592000
+Expires: Thu, 30 Mar 2017 08:59:41 GMT
+Content-Length: 1831
+Keep-Alive: timeout=3, max=100
+Connection: Keep-Alive
+Content-Type: text/css
+Content-Language: non-html
 
-var adtpix = {}; adtpix.google = document.createElement("img"); adtpix.google.height = 1; adtpix.google.width = 1; adtpix.google.style = "border-style: none"; adtpix.google.src = "http://googleads.g.doubleclick.net/pagead/viewthroughconversion/1011963747/?value=1.00&label=icsgCNydulYQ467F4gM&guid=ON&script=0"; document.body.appendChild(adtpix.google);
-var appnexus = document.createElement("script"); appnexus.src = "//ib.adnxs.com/seg?add=2066776&t=1"; document.body.appendChild(appnexus);
-var dbmAxel = Math.random() + ""; var dbmA = dbmAxel * 10000000000000; var dbm = document.createElement("iframe"); dbm.src = "https://4782524.fls.doubleclick.net/activityi;src=4782524;type=invmedia;cat=naoxni7u;ord=" + dbmA + "?"; dbm.width="1"; dbm.height="1"; dbm.frameborder="0"; dbm.style="display:none"; document.body.appendChild(dbm); eb 2017 19:00:38 GMT
-Server: Apache/2.2.29 (Amazon)
-Status: 200 OK
-X-Content-Type-Options: nosniff
-X-Powered-By: Phusion Passenger 4.0.50
-Content-Length: 834
-Connection: keep-alive
+‹
+@ðdÀî=Ï£ü”ï™5¸¿á½$ìß0Ï‚æÛixœ«!¬.y|Õ‹N4¼Ý AE!wáÔèÁ«wóÔêÏˆDÖ2åjò0!“	Nh2¡é„Î4ÚÖRÛÑ«f#´ÖqgcŸxb“©M›¤6yY44ÙDÉA&[$OV>Âë²“±ª–cô¦œtÆ!3q²]S‡®é0¶^îþ‰ÒOº-ôïÃß°²{ôÿ`=c=§{››xÓ¬&[†(PD{½$,cûý¸×(I{½n,EðÂcî¶üÍfšýíƒ]åü?¸õps'Ú—³½œ•å._îã©Ÿw¬Æ17Û§®0Wß€´1ÞÔl¥±'îX¤—±P§º¯ÖËa^/c¯…¿ØÏU'˜IÏ-ŽÍuÃ›vêøb~Ó+Íòt¦8Å¨_lAwl§Õ%>:¾{ÏèˆE§†<Œ"þ³³›§ä¶oF^ÞÒ‡€½,ÖÜBŒ<¯Œ|
 
-var adtpix = {}; adtpix.google = document.createElement("img"); adtpix.google.height = 1; adtpix.google.width = 1; adtpix.google.style = "border-style: none"; adtpix.google.src = "http://googleads.g.doubleclick.net/pagead/viewthroughconversion/1011963747/?value=1.00&label=icsgCNydulYQ467F4gM&guid=ON&script=0"; document.body.appendChild(adtpix.google);
-var appnexus = document.createElement("script"); appnexus.src = "//ib.adnxs.com/seg?add=2066776&t=1"; document.body.appendChild(appnexus);
-var dbmAxel = Math.random() + ""; var dbmA = dbmAxel * 10000000000000; var dbm = document.createElement("iframe"); dbm.src = "https://4782524.fls.doubleclick.net/activityi;src=4782524;type=invmedia;cat=naoxni7u;ord=" + dbmA + "?"; dbm.width="1"; dbm.height="1"; dbYw´X
-m.frameborder="0"; dbm.style="display:none"; document.body.appendChild(dbm); eb 2017 19:00:38 GMT
-Server: Apache/2.2.29 (Amazon)
-Status: 200 OK
-X-Content-Type-Options: nosniff
-X-Powered-By: Phusion Passenger 4.0.50
-Content-Length: 834
-Connection: keep-alive
-
-var adtpix = {}; adtpix.google = document.createElement("img"); adtpix.google.height = 1; adtpix.google.width = 1; adtpix.google.style = "border-style: none"; adtpix.google.src = "http://googleads.g.doubleclick.net/pagead/viewthroughconversion/1011963747/?value=1.00&label=icsgCNydulYQ467F4gM&guid=ON&script=0"; document.body.appendChild(adtpix.google);
-var appnexus = document.createElement("script"); appnexus.src = "//ib.adnxs.com/seg?add=2066776&t=1"; document.body.appendChild(appnexus);
-var dbmAxel = Math.random() + ""; var dbmA = dbmAxel * 10000000000000; var dbm = document.createElement("iframe"); dbm.src = "https://4782524.fls.doubleclick.net/activityi;src=4782524;type=invmedia;cat=naoxni7u;ord=" + dbmA + "?"; dbm.width="1"; dbm.height="1"; dbYw´X
-
-=======================================
-
-=======================================
-	================REQUEST (thread 16)================
-GET http://ib.adnxs.com/seg?add=2066776&t=1 HTTP/1.1
-Host: ib.adnxs.com
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: */*
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://www.ucla.edu/
-Cookie: sess=1; uuid2=5282816645030969520; anj=dTM7k!M4/8DunaTF']wIg2ImRKB>-.ct.uFm>w]3060YD#y*2w#u)K^#tz]G%57I#
-Connection: keep-alive
-
-
-	==========SENT REQUEST [14:1:41]===========
-GET /seg?add=2066776&t=1 HTTP/1.1
-Host: ib.adnxs.com:80
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: */*
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://www.ucla.edu/
-Cookie: sess=1; uuid2=5282816645030969520; anj=dTM7k!M4/8DunaTF']wIg2ImRKB>-.ct.uFm>w]3060YD#y*2w#u)K^#tz]G%57I#
-Connection: keep-alive
-
-
-	==============RESPONSE [14:1:51]=================
-HTTP/1.1 200 OK
-Server: nginx/1.9.13
-Date: Mon, 27 Feb 2017 19:01:40 GMT
-Content-Type: application/javascript; charset=utf-8
-Content-Length: 334
-Connection: keep-alive
-Cache-Control: no-store, no-cache, private
-Pragma: no-cache
-Expires: Sat, 15 Nov 2008 16:00:00 GMT
-P3P: policyref="http://cdn.adnxs.com/w3c/policy/p3p.xml", CP="NOI DSP COR ADM PSAo PSDo OURo SAMo UNRo OTRo BUS COM NAV DEM STA PRE"
-X-XSS-Protection: 0
-Set-Cookie: anj=dTM7k!M4/8DunaTF']wIg2ImRKB>-.csmE2bAF7llkwV^]meq8dWME4(EW<KeNT!); Path=/; Max-Age=7776000; Expires=Sun, 28-May-2017 19:01:40 GMT; Domain=.adnxs.com; HttpOnly
-Set-Cookie: sess=1; Path=/; Max-Age=86400; Expires=Tue, 28-Feb-2017 19:01:40 GMT; Domain=.adnxs.com; HttpOnly
-Set-Cookie: uuid2=5282816645030969520; Path=/; Max-Age=7776000; Expires=Sun, 28-May-2017 19:01:40 GMT; Domain=.adnxs.com; HttpOnly
-X-Proxy-Origin: 47.17.236.37; 47.17.236.37; 245.bm-nginx-loadbalancer.mgmt.nym2; *.adnxs.com; 204.13.193.39:80
-
-document.write('<iframe src="http://acdn.adnxs.com/ib/static/usersync/v3/async_usersync.html" width="1" height="1" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" style="position:absolute;overflow:hidden;clip:rect(0 0 0 0);height:1px;width:1px;margin:-1px;padding:0;border:0;"></iframe>');
-P3P: policyref="http://cdn.adnxs.com/w3c/policy/p3p.xml", CP="NOI DSP COR ADM PSAo PSDo OURo SAMo UNRo OTRo BUS COM NAV DEM STA PRE"
-X-XSS-Protection: 0
-Set-Cookie: anj=dTM7k!M4/8DunaTF']wIg2ImRKB>-.csmE2bAF7llkwV^]meq8dWME4(EW<KeNT!); Path=/; Max-Age=7776000; Expires=Sun, 28-May-2017 19:01:40 GMT; Domain=.adnxs.com; HttpOnly
-Set-Cookie: sess=1; Path=/; Max-Age=86400; Expires=Tue, 28-Feb-2017 19:01:40 GMT; Domain=.adnxs.com; HttpOnly
-Set-Cookie: uuid2=5282816645030969520; Path=/; Max-Age=7776000; Expires=Sun, 28-May-2017 19:01:40 GMT; Domain=.adnxs.com; HttpOnly
-X-Proxy-Origin: 47.17.236.37; 47.17.236.37; 245.bm-nginx-loadbalancer.mgmt.nym2; *.adnxs.com; 204.13.193.39:80
-
-document.write('<iframe src="http://acdn.adnxs.com/ib/static•w´X
-/usersync/v3/async_usersync.html" width="1" height="1" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" style="position:absolute;overflow:hidden;clip:rect(0 0 0 0);height:1px;width:1px;margin:-1px;padding:0;border:0;"></iframe>');
-P3P: policyref="http://cdn.adnxs.com/w3c/policy/p3p.xml", CP="NOI DSP COR ADM PSAo PSDo OURo SAMo UNRo OTRo BUS COM NAV DEM STA PRE"
-X-XSS-Protection: 0
-Set-Cookie: anj=dTM7k!M4/8DunaTF']wIg2ImRKB>-.csmE2bAF7llkwV^]meq8dWME4(EW<KeNT!); Path=/; Max-Age=7776000; Expires=Sun, 28-May-2017 19:01:40 GMT; Domain=.adnxs.com; HttpOnly
-Set-Cookie: sess=1; Path=/; Max-Age=86400; Expires=Tue, 28-Feb-2017 19:01:40 GMT; Domain=.adnxs.com; HttpOnly
-Set-Cookie: uuid2=5282816645030969520; Path=/; Max-Age=7776000; Expires=Sun, 28-May-2017 19:01:40 GMT; Domain=.adnxs.com; HttpOnly
-X-Proxy-Origin: 47.17.236.37; 47.17.236.37; 245.bm-nginx-loadbalancer.mgmt.nym2; *.adnxs.com; 204.13.193.39:80
-
-document.write('<iframe src="http://acdn.adnxs.com/ib/static•w´X
-
-=======================================
+=============================================================

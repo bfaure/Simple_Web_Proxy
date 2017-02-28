@@ -12,182 +12,27 @@ Upgrade-Insecure-Requests: 1
 
 --------------------
 
-REQUEST (thread_index=4):
-POST http://clients1.google.com/ocsp HTTP/1.1
-Host: clients1.google.com
+REQUEST (thread_index=2):
+GET http://www.gnu.org/layout.min.css HTTP/1.1
+Host: www.gnu.org
 User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept: text/css,*/*;q=0.1
 Accept-Language: en-US,en;q=0.5
 Accept-Encoding: gzip, deflate
-Content-Length: 75
-Content-Type: application/ocsp-request
+Referer: http://www.gnu.org/
 Connection: keep-alive
 
-0I0G0E0C0A0	+
---------------------
 
-REQUEST (thread_index=6):
-POST http://clients1.google.com/ocsp HTTP/1.1
-Host: clients1.google.com
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Content-Length: 75
-Content-Type: application/ocsp-request
-Connection: keep-alive
-
-0I0G0E0C0A0	+
---------------------
-
-REQUEST (thread_index=7):
-POST http://clients1.google.com/ocsp HTTP/1.1
-Host: clients1.google.com
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Content-Length: 75
-Content-Type: application/ocsp-request
-Connection: keep-alive
-
-0I0G0E0C0A0	+
---------------------
-
-REQUEST (thread_index=8):
-POST http://ocsp.godaddy.com/ HTTP/1.1
-Host: ocsp.godaddy.com
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Content-Length: 76
-Content-Type: application/ocsp-request
-Connection: keep-alive
-
-0J0H0F0D0B0	+
---------------------
-
-REQUEST (thread_index=9):
-POST http://ocsp.godaddy.com/ HTTP/1.1
-Host: ocsp.godaddy.com
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Content-Length: 76
-Content-Type: application/ocsp-request
-Connection: keep-alive
-
-0J0H0F0D0B0	+
---------------------
-
-REQUEST (thread_index=10):
-POST http://clients1.google.com/ocsp HTTP/1.1
-Host: clients1.google.com
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Content-Length: 75
-Content-Type: application/ocsp-request
-Connection: keep-alive
-
-0I0G0E0C0A0	+
---------------------
-
-REQUEST (thread_index=11):
-POST http://clients1.google.com/ocsp HTTP/1.1
-Host: clients1.google.com
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Content-Length: 75
-Content-Type: application/ocsp-request
-Connection: keep-alive
-
-0I0G0E0C0A0	+
---------------------
-
-REQUEST (thread_index=12):
-POST http://ocsp.godaddy.com/ HTTP/1.1
-Host: ocsp.godaddy.com
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Content-Length: 76
-Content-Type: application/ocsp-request
-Connection: keep-alive
-
-0J0H0F0D0B0	+
---------------------
-
-REQUEST (thread_index=13):
-POST http://ocsp.godaddy.com/ HTTP/1.1
-Host: ocsp.godaddy.com
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Content-Length: 76
-Content-Type: application/ocsp-request
-Connection: keep-alive
-
-0J0H0F0D0B0	+
---------------------
-
-REQUEST (thread_index=14):
-POST http://clients1.google.com/ocsp HTTP/1.1
-Host: clients1.google.com
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Content-Length: 75
-Content-Type: application/ocsp-request
-Connection: keep-alive
-
-0I0G0E0C0A0	+
 --------------------
 
 REQUEST (thread_index=1):
-GET http://www.ucla.edu/ HTTP/1.1
-Host: www.ucla.edu
+GET http://www.gnu.org/combo.css HTTP/1.1
+Host: www.gnu.org
 User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept: text/css,*/*;q=0.1
 Accept-Language: en-US,en;q=0.5
 Accept-Encoding: gzip, deflate
-Cookie: PHPSESSID=gmukkg541fitd361un3qb6bqu3; _ga=GA1.2.1479649636.1488166591
-Connection: keep-alive
-Upgrade-Insecure-Requests: 1
-
-
---------------------
-
-REQUEST (thread_index=2):
-GET http://a.adtpix.com/px/?id=104885 HTTP/1.1
-Host: a.adtpix.com
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: */*
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://www.ucla.edu/
-Connection: keep-alive
-
-
---------------------
-
-REQUEST (thread_index=16):
-GET http://ib.adnxs.com/seg?add=2066776&t=1 HTTP/1.1
-Host: ib.adnxs.com
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: */*
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://www.ucla.edu/
-Cookie: sess=1; uuid2=5282816645030969520; anj=dTM7k!M4/8DunaTF']wIg2ImRKB>-.ct.uFm>w]3060YD#y*2w#u)K^#tz]G%57I#
+Referer: http://www.gnu.org/
 Connection: keep-alive
 
 

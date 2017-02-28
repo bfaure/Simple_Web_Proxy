@@ -1,0 +1,45 @@
+3:59:41  	> 
+3:59:45  	>(idx=0) - Reading socket
+3:59:45  	>(idx=0) - request_size=334, strlen(buffer)=334
+3:59:45  	>(idx=0) - Parsing request
+3:59:45  	>(idx=0) - No request size
+3:59:45  	>(idx=0) - Content-Length (request) = 0, snip length = 281
+3:59:45  	>(idx=0) - Finished parsing request
+3:59:45  	>(idx=0) - Connecting to remote socket
+3:59:45  	>(idx=0) - Forwarding request
+3:59:45  	>(idx=0) - Waiting for response
+3:59:45  	>(idx=0) - Got first response
+3:59:45  	>(idx=0) - Found response size (8728)
+3:59:45  	>(idx=0) - Reached end of message (size)
+3:59:45  	>(idx=0) - Forwarding response to client
+3:59:45  	>(idx=0) - Finished forwarding response
+3:59:41  	> 
+3:59:45  	>(idx=2) - Reading socket
+3:59:45  	>(idx=2) - request_size=303, strlen(buffer)=303
+3:59:45  	>(idx=2) - Parsing request
+3:59:45  	>(idx=2) - No request size
+3:59:45  	>(idx=2) - Content-Length (request) = 0, snip length = 236
+3:59:45  	>(idx=2) - Finished parsing request
+3:59:45  	>(idx=2) - Connecting to remote socket
+3:59:45  	>(idx=2) - Forwarding request
+3:59:45  	>(idx=2) - Waiting for response
+3:59:45  	>(idx=2) - Got first response
+3:59:45  	>(idx=2) - Found response size (3711)
+3:59:45  	>(idx=2) - Reached end of message (size)
+3:59:45  	>(idx=2) - Forwarding response to client
+3:59:45  	>(idx=2) - Finished forwarding response
+3:59:41  	> 
+3:59:45  	>(idx=1) - Reading socket
+3:59:45  	>(idx=1) - request_size=298, strlen(buffer)=298
+3:59:45  	>(idx=1) - Parsing request
+3:59:45  	>(idx=1) - No request size
+3:59:45  	>(idx=1) - Content-Length (request) = 0, snip length = 236
+3:59:45  	>(idx=1) - Finished parsing request
+3:59:45  	>(idx=1) - Connecting to remote socket
+3:59:45  	>(idx=1) - Forwarding request
+3:59:45  	>(idx=1) - Waiting for response
+3:59:48  	>(idx=1) - Got first response
+3:59:48  	>(idx=1) - Found response size (1831)
+3:59:48  	>(idx=1) - Reached end of message (size)
+3:59:48  	>(idx=1) - Forwarding response to client
+3:59:48  	>(idx=1) - Finished forwarding response
