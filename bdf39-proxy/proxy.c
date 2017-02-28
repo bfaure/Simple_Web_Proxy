@@ -39,7 +39,7 @@ void format_log_entry(char *logstring, struct sockaddr_in *sockaddr, char *uri, 
 int debugging = 1;
 
 // list of domains I have added to the list to block
-const int num_blocked_domains = 5;
+const int num_blocked_domains = 0;
 const char *blocked_domains[5] =    {  
                                     "ocsp.digicert.com",
                                     "clients1.google.com",
@@ -290,7 +290,7 @@ int main(int argc, char **argv)
                 close(client_socket); // close the client socket
 
                  // clear the command line if not loading a request
-                if ( *threads_open==-1){  printf("*                                                                            \n");  }
+                if ( *threads_open==-1){  printf("*                                                                                          \n");  }
                 exit(0); // close this thread (opened on Fork())
 
             case -1: // error when creating new thread
@@ -302,7 +302,7 @@ int main(int argc, char **argv)
                 close(client_socket); // close the socket we left to the child
         }
         // clear the command line if not loading a request
-        if ( *threads_open==-1){  printf("                                                                           \r");  } 
+        if ( *threads_open==-1){  printf("                                                                                              \r");  } 
     }
     Fclose(proxy_log);
     exit(0);
@@ -338,13 +338,14 @@ char* get_time_string()
     return time_str;
 }
 
+
 // sets the global variable current_status and appends the threadid
 void set_current_status_id(const char *input_str, const int thread_id)
 {
     char temp[100];
     sprintf(temp,"(idx=%d) - %s",thread_id,input_str);
     strcpy(current_status,temp);
-    fprintf(status_log,"%s  \t>%s\n",get_time_string(),temp);
+    fprintf(status_log,"%s\t>%s\n",get_time_string(),temp);
     reprint_spinner(); // reprint the spinner with new status
 }
 
@@ -352,9 +353,10 @@ void set_current_status_id(const char *input_str, const int thread_id)
 void set_current_status(const char *input_str)
 {
     strcpy(current_status,input_str);
-    fprintf(status_log,"%s  \t>%s\n",get_time_string(),input_str);
+    fprintf(status_log,"%s\t>%s\n",get_time_string(),input_str);
     reprint_spinner(); // reprint the spinner with new status
 }
+
 
 // get the elapsed time between two intervals (time() inputs, threadsafe)
 int elapsed_time2(time_t t1, time_t t2)
@@ -370,6 +372,7 @@ long elapsed_time(clock_t t1, clock_t t2)
     elapsed = ((double)t2 - (double)t1) / CLOCKS_PER_SEC * 1000;
     return elapsed;
 }
+
 
 // prints out the current state of the process to the CLI
 void update_cli(struct request_data *req_data, int thread_index, int threads_open, int resp_size, int request_size, int total_time)
@@ -460,7 +463,7 @@ void print_spinner()
 // functions so that the CLI status can be updated w/o changing the spinner)
 void reprint_spinner()
 {
-    printf("                                                       \r");
+    printf("                                                                                          \r");
     if (*spin_index==0){  printf("... | %s\r",current_status);  }
     if (*spin_index==1){  printf("... / %s\r",current_status);  }
     if (*spin_index==2){  printf("... - %s\r",current_status);  }
@@ -792,8 +795,10 @@ int fulfill_request(struct request_data *req_data, int client_socket, struct soc
             if ( strstr(buffer,"\r\n\r\n")!=NULL )
             {
                 past_header = 1; // denote that we have past the header portion
-                char *temp = strstr(buffer,"\r\n\r\n");
-                total_size = n - strlen(temp);
+                char *delim = strstr(buffer,"\r\n\r\n");
+                int delim_index = (int)(delim - buffer);
+                //total_size = n - strlen(temp);
+                total_size = n - delim_index - 4;
             }
         }
 
@@ -829,7 +834,9 @@ int fulfill_request(struct request_data *req_data, int client_socket, struct soc
         {
             if (total_size>=(req_data->specified_resp_size))
             {
-                set_current_status_id("Reached end of message (size)",req_data->thread_id);
+                char *temp_buffer4 = malloc(sizeof(char)*100);
+                sprintf(temp_buffer4,"Reached end of message (size=%d)",actual_total_size);
+                set_current_status_id(temp_buffer4,req_data->thread_id);
                 break;
             }
         }
