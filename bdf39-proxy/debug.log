@@ -2,467 +2,533 @@
 
 =============================================================
 ====================REQUEST (thread 0)====================
-GET http://www.gnu.org/ HTTP/1.1
-Host: www.gnu.org
+POST http://ss.symcd.com/ HTTP/1.1
+Host: ss.symcd.com
 User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
 Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
 Accept-Language: en-US,en;q=0.5
 Accept-Encoding: gzip, deflate
+Content-Length: 83
+Content-Type: application/ocsp-request
 Connection: keep-alive
-Upgrade-Insecure-Requests: 1
-Cache-Control: max-age=0
 
-
-==================SENT REQUEST [16:16:7]===================
-GET / HTTP/1.1
-Host: www.gnu.org:80
+0Q0O0M0K0I0	+
+==================SENT REQUEST [16:44:24]===================
+POST / HTTP/1.1
+Host: ss.symcd.com:80
 User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
 Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
 Accept-Language: en-US,en;q=0.5
 Accept-Encoding: gzip, deflate
+Content-Length: 83
+Content-Type: application/ocsp-request
 Connection: keep-alive
-Upgrade-Insecure-Requests: 1
-Cache-Control: max-age=0
 
-
-===================RESPONSE [16:16:8]======================
+0Q0O0M0K0I0	+
+===================RESPONSE [16:44:24]======================
 HTTP/1.1 200 OK
-Date: Tue, 28 Feb 2017 21:16:04 GMT
-Server: Apache/2.4.7
-Content-Location: home.html
-Vary: negotiate,accept-language,Accept-Encoding
-TCN: choice
-Access-Control-Allow-Origin: (null)
-Accept-Ranges: bytes
-Content-Encoding: gzip
-Cache-Control: max-age=0
-Expires: Tue, 28 Feb 2017 21:16:04 GMT
-Content-Length: 8714
-Keep-Alive: timeout=3, max=100
-Connection: Keep-Alive
-Content-Type: text/html
-Content-Language: en
-
-ã
-Qh8ÄÅÄp&2f∑¢(j·ﬁ_ÄÙÌ˘x‡¡ ‹≥|Ä8ZS0U
-<©†≈ÁãkÃ>)õˇiè©l¶¢
-(RL£€∑I¥j
-]MS¥M–q¿5öëéÖÜÉéU∫Ñ:¢(9¸£˘âeÅ™º®Y£
-	~)O`û¯GyÑÎ
-‚¨~íMu~Ö»æ¥ìÕÃì.“«vÓ‡ƒ˙Åéàoçc;_pbù@G,∂∆±ù#8ÈzÄ>”íÌëmÂNú˚Á#—[#ŸŒú4æüáf∂˝‰lÁˇMj«œ«Rlçe;Áo‚º>â,∑F≤ùÁ7©]>ÀªÌ∂ù€7©˝=ÀÖ⁄Àv>ﬂ§vˆ<,…ˆ€Œ·õ4ûûá&€~ΩlÁÌMåõÁ°»∑G±ù´7i˚x™¢⁄’v~ﬁÑ<É~ø5ÜÌúº…:ÔŒCX]¨ ÊŒj≠›ΩﬂË	}ÿo⁄1Óû≥{µ°ØüÃÙ,%í
-2ÉÙËùíYœi‰Õ>±∂%0Ü
-0è*í‡uï£˘ï›¥˛∫à¢≈ìΩ—Ωùﬁ‰ßØûüöëû?;1Oœû"GÃ¿RÙT]s‹¬‹AÌzìví˝ÃP ä*˘EŒrÙß◊5îHÇw[§√ºPËb£B¿XÄv¨§SZnTÌé¡çqÓUÆtπ∆iZÔ3A€∑o^8Gi!„]Î¿¨Ûq\”q˘;˜æ¨˚å€ùL≥àgëH6#r#á°n˙∫1Ø¡Ù’˚ŸWum-ÆìXñ˚Ü †ˆÃÚï¡«ë¶ΩHO∞0…\‡M¯∫ê)/Æ}ﬂ2ÂWâ»ÊôÙéVùKÍ«x√pÙFﬂr≥kŸå«ÒUF:SŒ3VÂnT¥\WùM#¿f≈µ€%÷qBq´ﬂÑo≠‡eHw∏˚°ã»Ø∂ZàËB¿2Cèû∂PM≈ßOzÏãC™fA°¸í!ùèÕéËûbNñÆW a(‰pÎÈ¥K‘dÆ±*DÃ¶◊îÊmÇ´ïÕ Ójl
-wöÂËÒ£˜
-´ÃöÍ)„órN‡à3UB1 L<DË∆õÁ”√©™J,li4‚¡V+~ˆÍÌπ—>ƒ$,ëÇ‰zΩêâ“*_\˚†Ú˙©wiø~ˆ¸≈´≥WØü˝|#–GgRdbü’‹ãÁG'ßg'gÅùƒUdπ—@ÓasÂ¬ê„∑GáÁœ_ùnËÊÕáÁ ãÍg=_==ˇ¸Õ…F`«*Ú·ƒ*¬.îxuÙˆÂ…È˘ÕÙ<IÓ√X¿=˝≤PûùºxΩn"aa¢lxÚƒÜçÏ4ŸëåÎNGÙÍ<¬⁄ûù‘Æ#k2⁄"Ñ.@&5≠!ï%◊´Ea∂àLƒÅ€yÑµ}çYãπºLñ⁄VàY˚:`Ïs¨†TOÜ•aK|`ﬂÇcEøü“ÍÛ
-ˇìÁû+–p‡-˝à∆1à¿Û≥W·Œhg'¸ÈÎÂY[ºÕ¡˜¸Ω∆Ëˇ/¡x¯h¡òÉÕù±›¡¯w,\¥gµ>¡yÆ˜˙lg4~0
-
-=============================================================
-
-
-=============================================================
-====================REQUEST (thread 3)====================
-GET http://www.gnu.org/layout.min.css HTTP/1.1
-Host: www.gnu.org
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: text/css,*/*;q=0.1
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://www.gnu.org/
+Server: nginx/1.10.2
+Content-Type: application/ocsp-response
+Content-Length: 1609
+content-transfer-encoding: binary
+Cache-Control: max-age=384833, public, no-transform, must-revalidate
+Last-Modified: Sun, 26 Feb 2017 08:38:07 GMT
+Expires: Sun, 5 Mar 2017 08:38:07 GMT
+Date: Tue, 28 Feb 2017 21:44:21 GMT
 Connection: keep-alive
-Cache-Control: max-age=0
 
-
-==================SENT REQUEST [16:16:8]===================
-GET /layout.min.css HTTP/1.1
-Host: www.gnu.org:80
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: text/css,*/*;q=0.1
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://www.gnu.org/
-Connection: keep-alive
-Cache-Control: max-age=0
-
-
-===================RESPONSE [16:16:8]======================
-HTTP/1.1 200 OK
-Date: Tue, 28 Feb 2017 21:16:04 GMT
-Server: Apache/2.4.7
-Access-Control-Allow-Origin: (null)
-Last-Modified: Sun, 06 Nov 2016 21:38:02 GMT
-ETag: "33bb-540a8b8ceabb6-gzip"
-Accept-Ranges: bytes
-Vary: Accept-Encoding
-Content-Encoding: gzip
-Cache-Control: max-age=2592000
-Expires: Thu, 30 Mar 2017 21:16:04 GMT
-Content-Length: 3711
-Keep-Alive: timeout=3, max=100
-Connection: Keep-Alive
-Content-Type: text/css
-Content-Language: non-html
-
-ã
-MÛRíûûJ6#í€ï˚r	7A‰>©Â4;LãkŒM√⁄¨guÕ{óyIÄ”¨¶ÌQ Ú]¶¡:µÙUÚFáÆefª›¬¡&≈3∞Ï‘∂ŸlÆÙ∑¢eÁﬂG£Áw•SÎ·+Ô@OÁSÔÃ¿À ÙR∞È_Y2}x¶.h‘¶(BÉht∞Zt™›ü(ˆ´!∑–/6L∆€¨dWã‘ve'8`˚≠N¬-∆!¨≤ø2ÿRt„¯ê¯ÄO˘√*q-Z Ìïf≠®ﬂ´ÑûNÌ›S
-û(æ$ÕFÀÆ™∆kZı6z6˜öÇZc-jâ
+0ÇE
+
 
 =============================================================
 
 
 =============================================================
 ====================REQUEST (thread 1)====================
-GET http://www.gnu.org/combo.css HTTP/1.1
-Host: www.gnu.org
+POST http://ss.symcd.com/ HTTP/1.1
+Host: ss.symcd.com
 User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: text/css,*/*;q=0.1
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
 Accept-Language: en-US,en;q=0.5
 Accept-Encoding: gzip, deflate
-Referer: http://www.gnu.org/
+Content-Length: 83
+Content-Type: application/ocsp-request
 Connection: keep-alive
-Cache-Control: max-age=0
 
-
-==================SENT REQUEST [16:16:8]===================
-GET /combo.css HTTP/1.1
-Host: www.gnu.org:80
+0Q0O0M0K0I0	+
+==================SENT REQUEST [16:44:25]===================
+POST / HTTP/1.1
+Host: ss.symcd.com:80
 User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: text/css,*/*;q=0.1
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
 Accept-Language: en-US,en;q=0.5
 Accept-Encoding: gzip, deflate
-Referer: http://www.gnu.org/
+Content-Length: 83
+Content-Type: application/ocsp-request
 Connection: keep-alive
-Cache-Control: max-age=0
 
-
-===================RESPONSE [16:16:11]======================
+0Q0O0M0K0I0	+
+===================RESPONSE [16:44:25]======================
 HTTP/1.1 200 OK
-Date: Tue, 28 Feb 2017 21:16:04 GMT
-Server: Apache/2.4.7
-Access-Control-Allow-Origin: (null)
-Last-Modified: Tue, 24 Apr 2012 21:45:10 GMT
-ETag: "1a5a-4be73ab3eff98-gzip"
-Accept-Ranges: bytes
-Vary: Accept-Encoding
-Content-Encoding: gzip
-Cache-Control: max-age=2592000
-Expires: Thu, 30 Mar 2017 21:16:04 GMT
-Content-Length: 1831
-Keep-Alive: timeout=3, max=100
-Connection: Keep-Alive
-Content-Type: text/css
-Content-Language: non-html
+Server: nginx/1.10.2
+Content-Type: application/ocsp-response
+Content-Length: 1609
+content-transfer-encoding: binary
+Cache-Control: max-age=376138, public, no-transform, must-revalidate
+Last-Modified: Sun, 26 Feb 2017 06:12:38 GMT
+Expires: Sun, 5 Mar 2017 06:12:38 GMT
+Date: Tue, 28 Feb 2017 21:44:22 GMT
+Connection: keep-alive
 
-ã
-@d¿Ó=œ£¸îÔô5∏ø·Ω$ÏﬂÅ0œÇÊ€ixú´!¨.y|’ãN4º› AE!w·‘Ë¡´wÛ‘ÍœàD÷2ÂjÚ0!ì	ùNh2°ÈÑŒ4ù⁄÷R€—´f#¥÷qgcüxbì©Mõ§6yY44ŸD…A&[$OVù>¬Î≤ì±™ñcÙ¶út∆!3ùq≤]SáÆÈ0∂^Ó˛â“O∫-ÙÔ√ﬂ∞≤{ÙÅˇ`=c=ß{õõx”¨&[Ü(PD{Ω$,c˚˝∏◊(I{Ωn,E¬cÓ∂¸Õfö˝ÌÉ]Â¸?∏ıps'⁄ó≥ΩúïÂ._Ó„©üw¨∆17€ßÆ0WﬂÄ¥1ﬁè‘l•±'ÓXê§ó±Pß∫Ø÷Àa^/cØÖøÿœU'òIœ-éÕu√õvÍ¯b~”+ÕÚt¶8≈®_lAwlß’%>:æ{œËàEßÜ<å"˛≥≥õß‰∂oF^ﬁ“áÄΩ,÷‹Bå<Øå|πf«so„xDå≥ó+y≥„lîÂº∆æ°‰måﬂ‘÷Õ74ËR
-gÁ‰¬ûKnüß‰a~fˆäu¨^¬›i_é¯∏≤Ùa+XägvÛ˘˝næg≈›y6`ﬁ=∑pÿâÅÔÁ›•≥vFõ:¶=9Ïæπw1ô˜9Èg]¯>Ô†˙ª^‘"ãJ-äXµ®l2R˚‡|àÏ7{=Kq£î”∏
-!ÛËï’,aú…sò3Bh°wX;îZıÄl¿4†pö?Ñ8Ü^‘˛u' jÑ§5visœú\O™ rﬂd¬'T˜ÏÃÉf2¢ß†£ ˛ãi>z÷≥[¢á_zòN¢÷û‰NF¶S—5dNvÅ.ﬂÅ[ïöd¶ß™UòS^F-=ZÉaÛnºC(üÕ’úMÊÄ‡êG≠1ÌÓ'ÈÑŒXﬁÒG¶˛‘ÔWê=D|@‚$kFh‘ûf;Xù^ñ	GÑÿÉçNo?t◊·ŒÁZp¶]&ŒÆﬂ9èÓ¬∏PèµK:öJ≈¬ÓÖY3∞˙ïŸ†XQ[^˛ZP“Óáâ1Âòª™Ï‰π§?|Hsö~Iƒ€áˇZÏ*&LLy–5r¬ÛGÃfàã◊U¯›üs~íóZ
+0ÇE
+
+70U#0Ä_`œaêUﬂÑCä`*≤ızÙCÔ0UE ®ãäeüu˙ıÈ
+x“7û0Uˇ0
 
 =============================================================
 
 
 =============================================================
 ====================REQUEST (thread 2)====================
-GET http://www.gnu.org/mini.css HTTP/1.1
-Host: www.gnu.org
+POST http://ss.symcd.com/ HTTP/1.1
+Host: ss.symcd.com
 User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: text/css,*/*;q=0.1
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
 Accept-Language: en-US,en;q=0.5
 Accept-Encoding: gzip, deflate
-Referer: http://www.gnu.org/
+Content-Length: 83
+Content-Type: application/ocsp-request
 Connection: keep-alive
-If-Modified-Since: Tue, 26 Jan 2010 20:20:01 GMT
-If-None-Match: "71d-47e1702abbe40"
-Cache-Control: max-age=0
 
-
-==================SENT REQUEST [16:16:8]===================
-GET /mini.css HTTP/1.1
-Host: www.gnu.org:80
+0Q0O0M0K0I0	+
+==================SENT REQUEST [16:44:25]===================
+POST / HTTP/1.1
+Host: ss.symcd.com:80
 User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: text/css,*/*;q=0.1
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
 Accept-Language: en-US,en;q=0.5
 Accept-Encoding: gzip, deflate
-Referer: http://www.gnu.org/
+Content-Length: 83
+Content-Type: application/ocsp-request
 Connection: keep-alive
-If-Modified-Since: Tue, 26 Jan 2010 20:20:01 GMT
-If-None-Match: "71d-47e1702abbe40"
-Cache-Control: max-age=0
+
+0Q0O0M0K0I0	+
+===================RESPONSE [16:44:25]======================
+HTTP/1.1 200 OK
+Server: nginx/1.10.2
+Content-Type: application/ocsp-response
+Content-Length: 1609
+content-transfer-encoding: binary
+Cache-Control: max-age=376138, public, no-transform, must-revalidate
+Last-Modified: Sun, 26 Feb 2017 06:12:38 GMT
+Expires: Sun, 5 Mar 2017 06:12:38 GMT
+Date: Tue, 28 Feb 2017 21:44:22 GMT
+Connection: keep-alive
+
+0ÇE
+
+70U#0Ä_`œaêUﬂÑCä`*≤ızÙCÔ0UE ®ãäeüu˙ıÈ
+x“7û0Uˇ0
+
+=============================================================
 
 
-===================RESPONSE [16:16:11]======================
-HTTP/1.1 304 Not Modified
-Date: Tue, 28 Feb 2017 21:16:04 GMT
-Server: Apache/2.4.7
-Connection: Keep-Alive
-Keep-Alive: timeout=3, max=100
-ETag: "71d-47e1702abbe40"
-Expires: Thu, 30 Mar 2017 21:16:04 GMT
-Cache-Control: max-age=2592000
+=============================================================
+====================REQUEST (thread 3)====================
+POST http://ocsp2.globalsign.com/gsorganizationvalsha2g2 HTTP/1.1
+Host: ocsp2.globalsign.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Length: 85
+Content-Type: application/ocsp-request
+Connection: keep-alive
 
+0S0Q0O0M0K0	+
+==================SENT REQUEST [16:44:25]===================
+POST /gsorganizationvalsha2g2 HTTP/1.1
+Host: ocsp2.globalsign.com:80
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Length: 85
+Content-Type: application/ocsp-request
+Connection: keep-alive
 
+0S0Q0O0M0K0	+
+===================RESPONSE [16:44:25]======================
+HTTP/1.1 200 OK
+Date: Tue, 28 Feb 2017 21:44:22 GMT
+Content-Type: application/ocsp-response
+Content-Length: 1576
+Connection: keep-alive
+Set-Cookie: __cfduid=d695f5e37be14fcc24e9cebcfef013c9c1488318262; expires=Wed, 28-Feb-18 21:44:22 GMT; path=/; domain=.globalsign.com; HttpOnly
+Last-Modified: Tue, 28 Feb 2017 19:30:10 GMT
+Expires: Sat, 04 Mar 2017 19:30:10 GMT
+ETag: "2874a1a82397c227f27be9012a5d749235ac2870"
+Cache-Control: public, no-transform, must-revalidate
+CF-Cache-Status: HIT
+Vary: Accept-Encoding
+Server: cloudflare-nginx
+CF-RAY: 33870eb4e54c4716-EWR
+
+0Ç$
+
+Œ∑¡/ù…z£-hiØk‡π˝öÆÌD∑π•’¸ˇÉÌu>h¡π¸T2.í~Ò*;ø÷üv^¢!dÏ®Í˜ ˙8Ép⁄e¶¢me’î>¨ÓVñ·•lªP6ÜVÅ≈GÂ”;Xõ‹π˛12U)D—E(ldQÍá67Õ@™ù˝«lîAû>lÈÛΩº›Ùm‘e;ÿ±ìÄ∑nˆ~êêWbÅ?¢ãgE’å∏êòπ≥a‡KM˘FŒÇ}Åqo;SÂ`/÷síòÎñ6˜ç°GÎa
 
 =============================================================
 
 
 =============================================================
 ====================REQUEST (thread 4)====================
-GET http://www.gnu.org/print.min.css HTTP/1.1
-Host: www.gnu.org
+POST http://clients1.google.com/ocsp HTTP/1.1
+Host: clients1.google.com
 User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: text/css,*/*;q=0.1
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
 Accept-Language: en-US,en;q=0.5
 Accept-Encoding: gzip, deflate
-Referer: http://www.gnu.org/
+Content-Length: 75
+Content-Type: application/ocsp-request
 Connection: keep-alive
-If-Modified-Since: Thu, 03 Nov 2016 21:32:02 GMT
-If-None-Match: "678-5406c49cf2493"
-Cache-Control: max-age=0
 
-
-==================SENT REQUEST [16:16:8]===================
-GET /print.min.css HTTP/1.1
-Host: www.gnu.org:80
+0I0G0E0C0A0	+
+==================SENT REQUEST [16:44:25]===================
+POST /ocsp HTTP/1.1
+Host: clients1.google.com:80
 User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: text/css,*/*;q=0.1
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
 Accept-Language: en-US,en;q=0.5
 Accept-Encoding: gzip, deflate
-Referer: http://www.gnu.org/
+Content-Length: 75
+Content-Type: application/ocsp-request
 Connection: keep-alive
-If-Modified-Since: Thu, 03 Nov 2016 21:32:02 GMT
-If-None-Match: "678-5406c49cf2493"
-Cache-Control: max-age=0
 
+0I0G0E0C0A0	+
+===================RESPONSE [16:44:26]======================
+HTTP/1.1 200 OK
+Content-Type: application/ocsp-response
+Date: Tue, 28 Feb 2017 21:44:22 GMT
+Expires: Sat, 04 Mar 2017 21:44:22 GMT
+Cache-Control: public, max-age=345600
+Server: ocsp_responder
+Content-Length: 463
+X-XSS-Protection: 1; mode=block
+X-Frame-Options: SAMEORIGIN
 
-===================RESPONSE [16:16:11]======================
-HTTP/1.1 304 Not Modified
-Date: Tue, 28 Feb 2017 21:16:04 GMT
-Server: Apache/2.4.7
-Connection: Keep-Alive
-Keep-Alive: timeout=3, max=100
-ETag: "678-5406c49cf2493"
-Expires: Thu, 30 Mar 2017 21:16:04 GMT
-Cache-Control: max-age=2592000
-
-
+0ÇÀ
+
 
 =============================================================
 
 
 =============================================================
 ====================REQUEST (thread 5)====================
-GET http://www.gnu.org/graphics/heckert_gnu.small.png HTTP/1.1
-Host: www.gnu.org
+POST http://ss.symcd.com/ HTTP/1.1
+Host: ss.symcd.com
 User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: */*
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
 Accept-Language: en-US,en;q=0.5
 Accept-Encoding: gzip, deflate
-Referer: http://www.gnu.org/
+Content-Length: 83
+Content-Type: application/ocsp-request
 Connection: keep-alive
-If-Modified-Since: Sun, 05 Dec 2010 20:58:51 GMT
-If-None-Match: "135f-496b009e118c0"
-Cache-Control: max-age=0
 
-
-==================SENT REQUEST [16:16:11]===================
-GET /graphics/heckert_gnu.small.png HTTP/1.1
-Host: www.gnu.org:80
+0Q0O0M0K0I0	+
+==================SENT REQUEST [16:44:26]===================
+POST / HTTP/1.1
+Host: ss.symcd.com:80
 User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: */*
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
 Accept-Language: en-US,en;q=0.5
 Accept-Encoding: gzip, deflate
-Referer: http://www.gnu.org/
+Content-Length: 83
+Content-Type: application/ocsp-request
 Connection: keep-alive
-If-Modified-Since: Sun, 05 Dec 2010 20:58:51 GMT
-If-None-Match: "135f-496b009e118c0"
-Cache-Control: max-age=0
 
-
-===================RESPONSE [16:16:14]======================
-HTTP/1.1 304 Not Modified
-Date: Tue, 28 Feb 2017 21:16:08 GMT
-Server: Apache/2.4.7
-Connection: Keep-Alive
-Keep-Alive: timeout=3, max=100
-ETag: "135f-496b009e118c0"
-Expires: Thu, 30 Mar 2017 21:16:08 GMT
-Cache-Control: max-age=2592000
-
-
-
-=============================================================
-
-
-=============================================================
-====================REQUEST (thread 7)====================
-GET http://www.gnu.org/feed-icon-10x10.png HTTP/1.1
-Host: www.gnu.org
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: */*
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://www.gnu.org/
+0Q0O0M0K0I0	+
+===================RESPONSE [16:44:26]======================
+HTTP/1.1 200 OK
+Server: nginx/1.10.2
+Content-Type: application/ocsp-response
+Content-Length: 1609
+content-transfer-encoding: binary
+Cache-Control: max-age=574738, public, no-transform, must-revalidate
+Last-Modified: Tue, 28 Feb 2017 13:20:15 GMT
+Expires: Tue, 7 Mar 2017 13:20:15 GMT
+X-Serial: 8218
+X-Check-Cacheable: YES
+Date: Tue, 28 Feb 2017 21:44:22 GMT
 Connection: keep-alive
-If-Modified-Since: Mon, 28 Nov 2011 19:34:23 GMT
-If-None-Match: "1d5-4b2d096fdcdc0"
-Cache-Control: max-age=0
 
-
-==================SENT REQUEST [16:16:11]===================
-GET /feed-icon-10x10.png HTTP/1.1
-Host: www.gnu.org:80
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: */*
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://www.gnu.org/
-Connection: keep-alive
-If-Modified-Since: Mon, 28 Nov 2011 19:34:23 GMT
-If-None-Match: "1d5-4b2d096fdcdc0"
-Cache-Control: max-age=0
-
-
-===================RESPONSE [16:16:14]======================
-HTTP/1.1 304 Not Modified
-Date: Tue, 28 Feb 2017 21:16:08 GMT
-Server: Apache/2.4.7
-Connection: Keep-Alive
-Keep-Alive: timeout=3, max=100
-ETag: "1d5-4b2d096fdcdc0"
-Expires: Thu, 30 Mar 2017 21:16:08 GMT
-Cache-Control: max-age=2592000
-
-
-
-=============================================================
-
-
-=============================================================
-====================REQUEST (thread 8)====================
-GET http://www.gnu.org/graphics/fsf-logo-notext-small.png HTTP/1.1
-Host: www.gnu.org
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: */*
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://www.gnu.org/
-Connection: keep-alive
-If-Modified-Since: Wed, 04 Nov 2015 06:59:09 GMT
-If-None-Match: "9be-523b18c06e940"
-Cache-Control: max-age=0
-
-
-==================SENT REQUEST [16:16:11]===================
-GET /graphics/fsf-logo-notext-small.png HTTP/1.1
-Host: www.gnu.org:80
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: */*
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://www.gnu.org/
-Connection: keep-alive
-If-Modified-Since: Wed, 04 Nov 2015 06:59:09 GMT
-If-None-Match: "9be-523b18c06e940"
-Cache-Control: max-age=0
-
-
-===================RESPONSE [16:16:14]======================
-HTTP/1.1 304 Not Modified
-Date: Tue, 28 Feb 2017 21:16:08 GMT
-Server: Apache/2.4.7
-Connection: Keep-Alive
-Keep-Alive: timeout=3, max=100
-ETag: "9be-523b18c06e940"
-Expires: Thu, 30 Mar 2017 21:16:08 GMT
-Cache-Control: max-age=2592000
-
-
+0ÇE
+
+
 
 =============================================================
 
 
 =============================================================
 ====================REQUEST (thread 6)====================
-GET http://www.gnu.org/distros/screenshots/gnewsense2-medium.jpg HTTP/1.1
-Host: www.gnu.org
+POST http://ss.symcd.com/ HTTP/1.1
+Host: ss.symcd.com
 User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: */*
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
 Accept-Language: en-US,en;q=0.5
 Accept-Encoding: gzip, deflate
-Referer: http://www.gnu.org/
+Content-Length: 83
+Content-Type: application/ocsp-request
 Connection: keep-alive
-If-Modified-Since: Mon, 05 Sep 2016 08:13:26 GMT
-If-None-Match: "121af-53bbe41201580"
-Cache-Control: max-age=0
 
-
-==================SENT REQUEST [16:16:11]===================
-GET /distros/screenshots/gnewsense2-medium.jpg HTTP/1.1
-Host: www.gnu.org:80
+0Q0O0M0K0I0	+
+==================SENT REQUEST [16:44:26]===================
+POST / HTTP/1.1
+Host: ss.symcd.com:80
 User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: */*
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
 Accept-Language: en-US,en;q=0.5
 Accept-Encoding: gzip, deflate
-Referer: http://www.gnu.org/
+Content-Length: 83
+Content-Type: application/ocsp-request
 Connection: keep-alive
-If-Modified-Since: Mon, 05 Sep 2016 08:13:26 GMT
-If-None-Match: "121af-53bbe41201580"
-Cache-Control: max-age=0
+
+0Q0O0M0K0I0	+
+===================RESPONSE [16:44:26]======================
+HTTP/1.1 200 OK
+Server: nginx/1.10.2
+Content-Type: application/ocsp-response
+Content-Length: 1609
+content-transfer-encoding: binary
+Cache-Control: max-age=574828, public, no-transform, must-revalidate
+Last-Modified: Tue, 28 Feb 2017 13:20:15 GMT
+Expires: Tue, 7 Mar 2017 13:20:15 GMT
+Date: Tue, 28 Feb 2017 21:44:22 GMT
+Connection: keep-alive
+
+0ÇE
+
+70U#0Ä_`œaêUﬂÑCä`*≤ızÙCÔ0UE ®ãäeüu˙ıÈ
+x“7û0Uˇ0
+
+=============================================================
 
 
-===================RESPONSE [16:16:14]======================
-HTTP/1.1 304 Not Modified
-Date: Tue, 28 Feb 2017 21:16:08 GMT
-Server: Apache/2.4.7
-Connection: Keep-Alive
-Keep-Alive: timeout=3, max=100
-ETag: "121af-53bbe41201580"
-Expires: Thu, 30 Mar 2017 21:16:08 GMT
-Cache-Control: max-age=2592000
+=============================================================
+====================REQUEST (thread 7)====================
+POST http://clients1.google.com/ocsp HTTP/1.1
+Host: clients1.google.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Length: 75
+Content-Type: application/ocsp-request
+Connection: keep-alive
 
+0I0G0E0C0A0	+
+==================SENT REQUEST [16:44:26]===================
+POST /ocsp HTTP/1.1
+Host: clients1.google.com:80
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Length: 75
+Content-Type: application/ocsp-request
+Connection: keep-alive
 
+0I0G0E0C0A0	+
+===================RESPONSE [16:44:26]======================
+HTTP/1.1 200 OK
+Content-Type: application/ocsp-response
+Date: Tue, 28 Feb 2017 21:44:23 GMT
+Expires: Sat, 04 Mar 2017 21:44:23 GMT
+Cache-Control: public, max-age=345600
+Server: ocsp_responder
+Content-Length: 463
+X-XSS-Protection: 1; mode=block
+X-Frame-Options: SAMEORIGIN
+
+0ÇÀ
+
 
 =============================================================
 
 
 =============================================================
 ====================REQUEST (thread 9)====================
-GET http://www.gnu.org/graphics/fs-gang.png HTTP/1.1
-Host: www.gnu.org
+POST http://ocsp.digicert.com/ HTTP/1.1
+Host: ocsp.digicert.com
 User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: */*
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
 Accept-Language: en-US,en;q=0.5
 Accept-Encoding: gzip, deflate
-Referer: http://www.gnu.org/
+Content-Length: 83
+Content-Type: application/ocsp-request
 Connection: keep-alive
-If-Modified-Since: Sat, 29 Mar 2014 05:11:02 GMT
-If-None-Match: "af04-4f5b7d834c580"
-Cache-Control: max-age=0
 
-
-==================SENT REQUEST [16:16:11]===================
-GET /graphics/fs-gang.png HTTP/1.1
-Host: www.gnu.org:80
+0Q0O0M0K0I0	+
+==================SENT REQUEST [16:44:26]===================
+POST / HTTP/1.1
+Host: ocsp.digicert.com:80
 User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: */*
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
 Accept-Language: en-US,en;q=0.5
 Accept-Encoding: gzip, deflate
-Referer: http://www.gnu.org/
+Content-Length: 83
+Content-Type: application/ocsp-request
 Connection: keep-alive
-If-Modified-Since: Sat, 29 Mar 2014 05:11:02 GMT
-If-None-Match: "af04-4f5b7d834c580"
-Cache-Control: max-age=0
+
+0Q0O0M0K0I0	+
+===================RESPONSE [16:44:26]======================
+HTTP/1.1 200 OK
+Accept-Ranges: bytes
+Cache-Control: public, max-age=172800
+Content-Type: application/ocsp-response
+Date: Tue, 28 Feb 2017 21:44:23 GMT
+Etag: "58b5cb26-1d7"
+Expires: Tue, 07 Mar 2017 09:44:23 GMT
+Last-Modified: Tue, 28 Feb 2017 19:10:30 GMT
+Server: ECS (lga/13D5)
+X-Cache: HIT
+Content-Length: 471
+
+0Ç”
+
+
+=============================================================
 
 
-===================RESPONSE [16:16:14]======================
-HTTP/1.1 304 Not Modified
-Date: Tue, 28 Feb 2017 21:16:08 GMT
-Server: Apache/2.4.7
-Connection: Keep-Alive
-Keep-Alive: timeout=3, max=100
-ETag: "af04-4f5b7d834c580"
-Expires: Thu, 30 Mar 2017 21:16:08 GMT
-Cache-Control: max-age=2592000
+=============================================================
+====================REQUEST (thread 8)====================
+POST http://ocsp.digicert.com/ HTTP/1.1
+Host: ocsp.digicert.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Length: 83
+Content-Type: application/ocsp-request
+Connection: keep-alive
+
+0Q0O0M0K0I0	+
+==================SENT REQUEST [16:44:26]===================
+POST / HTTP/1.1
+Host: ocsp.digicert.com:80
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Length: 83
+Content-Type: application/ocsp-request
+Connection: keep-alive
+
+0Q0O0M0K0I0	+
+===================RESPONSE [16:44:26]======================
+HTTP/1.1 200 OK
+Accept-Ranges: bytes
+Cache-Control: public, max-age=172800
+Content-Type: application/ocsp-response
+Date: Tue, 28 Feb 2017 21:44:23 GMT
+Etag: "58b5cb26-1d7"
+Expires: Tue, 07 Mar 2017 09:44:23 GMT
+Last-Modified: Tue, 28 Feb 2017 19:10:30 GMT
+Server: ECS (lga/1385)
+X-Cache: HIT
+Content-Length: 471
+
+0Ç”
+
+
+=============================================================
 
 
+=============================================================
+====================REQUEST (thread 10)====================
+POST http://ss.symcd.com/ HTTP/1.1
+Host: ss.symcd.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Length: 83
+Content-Type: application/ocsp-request
+Connection: keep-alive
+
+0Q0O0M0K0I0	+
+==================SENT REQUEST [16:44:26]===================
+POST / HTTP/1.1
+Host: ss.symcd.com:80
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Length: 83
+Content-Type: application/ocsp-request
+Connection: keep-alive
+
+0Q0O0M0K0I0	+
+===================RESPONSE [16:44:27]======================
+HTTP/1.1 200 OK
+Server: nginx/1.10.2
+Content-Type: application/ocsp-response
+Content-Length: 1609
+content-transfer-encoding: binary
+Cache-Control: max-age=415300, public, no-transform, must-revalidate
+Last-Modified: Sun, 26 Feb 2017 17:04:26 GMT
+Expires: Sun, 5 Mar 2017 17:04:26 GMT
+Date: Tue, 28 Feb 2017 21:44:23 GMT
+Connection: keep-alive
+
+0ÇE
+
+70U#0Ä_`œaêUﬂÑCä`*≤ızÙCÔ0UE ®ãäeüu˙ıÈ
+x“7û0Uˇ0
+
+=============================================================
+
+
+=============================================================
+====================REQUEST (thread 11)====================
+POST http://ss.symcd.com/ HTTP/1.1
+Host: ss.symcd.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Length: 83
+Content-Type: application/ocsp-request
+Connection: keep-alive
+
+0Q0O0M0K0I0	+
+==================SENT REQUEST [16:44:27]===================
+POST / HTTP/1.1
+Host: ss.symcd.com:80
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Length: 83
+Content-Type: application/ocsp-request
+Connection: keep-alive
+
+0Q0O0M0K0I0	+
+===================RESPONSE [16:44:27]======================
+HTTP/1.1 200 OK
+Server: nginx/1.10.2
+Content-Type: application/ocsp-response
+Content-Length: 1609
+content-transfer-encoding: binary
+Cache-Control: max-age=415300, public, no-transform, must-revalidate
+Last-Modified: Sun, 26 Feb 2017 17:04:26 GMT
+Expires: Sun, 5 Mar 2017 17:04:26 GMT
+Date: Tue, 28 Feb 2017 21:44:24 GMT
+Connection: keep-alive
+
+0ÇE
+
+70U#0Ä_`œaêUﬂÑCä`*≤ızÙCÔ0UE ®ãäeüu˙ıÈ
+x“7û0Uˇ0
 
 =============================================================

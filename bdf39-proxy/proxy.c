@@ -14,7 +14,7 @@
 #include "time.h"
 
 #define BUFFER_PAGE_WIDTH 4096 // 1024
-#define BUFFER_PAGE_COUNT 10   // 1024
+#define BUFFER_PAGE_COUNT 100   // 1024
 
 // handle separate naming for Windows, Apple, and Unix machines
 #ifdef _WIN32
@@ -74,12 +74,11 @@ int *ENABLE_TIME_SPINNER;
 // data structure to hold all essential information pertaining to a request
 typedef struct request_data
 {
-    char request_buffer[4096]; // unparsed, entire contents of request
+    char request_buffer[BUFFER_PAGE_WIDTH]; // unparsed, entire contents of client request
     int request_buffer_size; // size of the request_buffer, as reported by socket read
 
-    // all data in request past the POST or GET 
-    char req_after_host[24][1024]; // broken by line (max 24)
-    int num_lines_after_host; // track number of lines used
+    char req_after_host[BUFFER_PAGE_WIDTH]; // portion of request after second line (host specification line)
+    int req_after_host_size; // size of the above req_after_host array
 
     int specified_req_size; // the size the client says the request content is (if one)
 
@@ -92,7 +91,7 @@ typedef struct request_data
     char req_protocol[100]; // HTTP/1.1, etc.
     char req_host_path[512]; // /text/index.html from http://www.cnn.com:80/test/index.html
 
-    char full_response[BUFFER_PAGE_COUNT][BUFFER_PAGE_WIDTH]; // line-by-line response from server
+    char full_response[BUFFER_PAGE_COUNT][BUFFER_PAGE_WIDTH]; // buffered server response to request
     int num_lines_response; // to hold the number of response lines
 
     char response_code[100]; // to hold the return code
@@ -329,6 +328,7 @@ void handle_time_spinner()
     int waiting_spin_index = 0; // the state of the waiting spinner (range [-bar_distance,max_distance])
     
     time_t refresh_seconds = 0; // refresh the waiter/timer after this many seconds
+    
     typedef struct timespec // struct used to specify how much time to use in nanosleep
     {
         time_t tv_sec;
@@ -491,13 +491,23 @@ void update_cli(struct request_data *req_data, int thread_index, int threads_ope
         sprintf(spacer_after_response_info,"\t");
     }
 
-    if ( strstr(req_data->req_command,"POST")!=NULL )
+    char size_based_spacer[10];
+    if ( resp_size<100 )
     {
-        printf("%d\t(%d workers) > %s %s %s %dB > [%s,%dB] %s %d s\n",thread_index,threads_open,req_data->req_command,req_host_long_shortened,spacer,request_size,req_data->response_code,resp_size,spacer_after_response_info,total_time);
+        sprintf(size_based_spacer,"   ");
     }
     else
     {
-        printf("%d\t(%d workers) > %s  %s %s %dB > [%s,%dB] %s %d s\n",thread_index,threads_open,req_data->req_command,req_host_long_shortened,spacer,request_size,req_data->response_code,resp_size,spacer_after_response_info,total_time);
+        sprintf(size_based_spacer,"");
+    }
+
+    if ( strstr(req_data->req_command,"POST")!=NULL )
+    {
+        printf("%d\t(%d workers) > %s %s %s %dB > [%s,%dB] %s%s %d s\n",thread_index,threads_open,req_data->req_command,req_host_long_shortened,spacer,request_size,req_data->response_code,resp_size,spacer_after_response_info,size_based_spacer,total_time);
+    }
+    else
+    {
+        printf("%d\t(%d workers) > %s  %s %s %dB > [%s,%dB] %s%s %d s\n",thread_index,threads_open,req_data->req_command,req_host_long_shortened,spacer,request_size,req_data->response_code,resp_size,spacer_after_response_info,size_based_spacer,total_time);
     }
     fflush(stdout);
 }
@@ -554,7 +564,17 @@ void log_information(const char *buffer,const struct request_data *req_data, con
 {
     if ( req_data->request_blocked==1 ){  return;  } // skip logging if this request was blocked
 
-    while (*ALREADY_LOGGING_DEBUG_INFO==1){  Sleep(1);  }
+    time_t refresh_seconds = 0; // refresh the waiter/timer after this many seconds
+    typedef struct timespec // struct used to specify how much time to use in nanosleep
+    {
+        time_t tv_sec;
+        long tv_nsec;   
+    } timespec;
+    timespec t;
+    t.tv_sec = refresh_seconds;
+    t.tv_nsec = (long)10000.0; // once per second
+
+    while (*ALREADY_LOGGING_DEBUG_INFO==1){  nanosleep(&t,NULL);  }
 
     *ALREADY_LOGGING_DEBUG_INFO = 1;
     fprintf(debug_log,"\n\n=============================================================\n");
@@ -564,10 +584,14 @@ void log_information(const char *buffer,const struct request_data *req_data, con
     if (strcmp(req_data->req_command,"GET")==0) {  fprintf(debug_log,"GET %s %s\r\n",req_data->req_host_path,req_data->req_protocol);  }
     if (strcmp(req_data->req_command,"POST")==0){  fprintf(debug_log,"POST %s %s\r\n",req_data->req_host_path,req_data->req_protocol);  }
     fprintf(debug_log,"Host: %s:%s\r\n",req_data->req_host_domain,req_data->req_host_port);
+    /*
     for(int i=0; i<req_data->num_lines_after_host; i++)
     {
         fprintf(debug_log,"%s",req_data->req_after_host[i]);
     }
+    */
+    fprintf(debug_log,"%s",req_data->req_after_host);
+
     fprintf(debug_log,"\n===================RESPONSE [%s]======================\n",req_data->server_responded_time);
     int calculated_size = 0;
     for(int i=0; i<req_data->num_lines_response; i++)
@@ -585,8 +609,18 @@ void log_information(const char *buffer,const struct request_data *req_data, con
 // format_log_entry function to format data & writing to proxy.log)
 void log_request( struct sockaddr_in *sockaddr,  char *uri,  int size)
 {
+    time_t refresh_seconds = 0; // refresh the waiter/timer after this many seconds
+    typedef struct timespec // struct used to specify how much time to use in nanosleep
+    {
+        time_t tv_sec;
+        long tv_nsec;   
+    } timespec;
+    timespec t;
+    t.tv_sec = refresh_seconds;
+    t.tv_nsec = (long)10000.0; // once per second
+
     // busy wait until we can get a handle on the proxy.log file
-    while (ALREADY_LOGGING==1){  Sleep(1);  }
+    while (ALREADY_LOGGING==1){  nanosleep(&t,NULL);  }
     ALREADY_LOGGING = 1; // tell all other threads to wait
     char logstring[1024]; // to hold output of format_log_entry
     format_log_entry((char *)&logstring,sockaddr,uri,size); 
@@ -813,13 +847,17 @@ int fulfill_request(struct request_data *req_data, int client_socket, struct soc
 
     set_current_status_id("Forwarding request",req_data->thread_id); // update UI
 
+    /*
     // forward the rest of the data (data after first two lines)
     for (int i=0; i<req_data->num_lines_after_host; i++)
     {
         int m = send( remotefd, req_data->req_after_host[i], sizeof(char)*strlen(req_data->req_after_host[i]), 0);
         if (m<0){  printf("\nERROR: could not write to remote socket\n");  }
     }
-    int m = send( remotefd, "\r\n", 2,0);
+    */
+    int m = send(remotefd, req_data->req_after_host, req_data->req_after_host_size, 0);
+    if (m<0){  printf("\nERROR: could not write to remote socket\n");  }
+    m = send( remotefd, "\r\n", 2,0);
 
     ssize_t n;
     int total_size = 0; // total size of the message received 
@@ -1133,8 +1171,10 @@ char* parse_request(struct request_data *req_data, char *buffer)
             sprintf(temp_buffer2,"Content-Length (request) = %d, snip length = %d",post_delim_data_size,snip_length);
             set_current_status_id(temp_buffer2,req_data->thread_id);
 
-            memcpy(req_data->req_after_host[0],&req_data->request_buffer[start_snip],snip_length);
-            req_data->num_lines_after_host = 1;
+            memcpy(req_data->req_after_host,&req_data->request_buffer[start_snip],snip_length);
+            req_data->req_after_host_size = snip_length;
+
+            //req_data->num_lines_after_host = 1;
             break;
         }
 
