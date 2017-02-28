@@ -2,8 +2,8 @@
 
 =============================================================
 ====================REQUEST (thread 0)====================
-POST http://ss.symcd.com/ HTTP/1.1
-Host: ss.symcd.com
+POST http://ocsp.digicert.com/ HTTP/1.1
+Host: ocsp.digicert.com
 User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
 Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
 Accept-Language: en-US,en;q=0.5
@@ -13,9 +13,9 @@ Content-Type: application/ocsp-request
 Connection: keep-alive
 
 0Q0O0M0K0I0	+
-==================SENT REQUEST [16:44:24]===================
+==================SENT REQUEST [17:54:31]===================
 POST / HTTP/1.1
-Host: ss.symcd.com:80
+Host: ocsp.digicert.com:80
 User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
 Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
 Accept-Language: en-US,en;q=0.5
@@ -25,19 +25,196 @@ Content-Type: application/ocsp-request
 Connection: keep-alive
 
 0Q0O0M0K0I0	+
-===================RESPONSE [16:44:24]======================
+===================RESPONSE [17:54:31]======================
 HTTP/1.1 200 OK
-Server: nginx/1.10.2
+Accept-Ranges: bytes
+Cache-Control: public, max-age=172800
 Content-Type: application/ocsp-response
-Content-Length: 1609
-content-transfer-encoding: binary
-Cache-Control: max-age=384833, public, no-transform, must-revalidate
-Last-Modified: Sun, 26 Feb 2017 08:38:07 GMT
-Expires: Sun, 5 Mar 2017 08:38:07 GMT
-Date: Tue, 28 Feb 2017 21:44:21 GMT
+Date: Tue, 28 Feb 2017 22:54:28 GMT
+Etag: "58b58bca-1d7"
+Expires: Tue, 07 Mar 2017 10:54:28 GMT
+Last-Modified: Tue, 28 Feb 2017 14:40:10 GMT
+Server: ECS (lga/13D5)
+X-Cache: HIT
+Content-Length: 471
+
+0Ç”
+
+
+=============================================================
+
+
+=============================================================
+====================REQUEST (thread 2)====================
+POST http://ocsp.digicert.com/ HTTP/1.1
+Host: ocsp.digicert.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Length: 83
+Content-Type: application/ocsp-request
 Connection: keep-alive
 
-0ÇE
+0Q0O0M0K0I0	+
+==================SENT REQUEST [17:54:32]===================
+POST / HTTP/1.1
+Host: ocsp.digicert.com:80
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Length: 83
+Content-Type: application/ocsp-request
+Connection: keep-alive
+
+0Q0O0M0K0I0	+
+===================RESPONSE [17:54:32]======================
+HTTP/1.1 200 OK
+Accept-Ranges: bytes
+Cache-Control: public, max-age=172800
+Content-Type: application/ocsp-response
+Date: Tue, 28 Feb 2017 22:54:28 GMT
+Etag: "58b5a478-1d7"
+Expires: Tue, 07 Mar 2017 10:54:28 GMT
+Last-Modified: Tue, 28 Feb 2017 16:25:28 GMT
+Server: ECS (lga/13A4)
+X-Cache: HIT
+Content-Length: 471
+
+0Ç”
+
+
+=============================================================
+
+
+=============================================================
+====================REQUEST (thread 4)====================
+POST http://ocsp.digicert.com/ HTTP/1.1
+Host: ocsp.digicert.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Length: 83
+Content-Type: application/ocsp-request
+Connection: keep-alive
+
+0Q0O0M0K0I0	+
+==================SENT REQUEST [17:54:32]===================
+POST / HTTP/1.1
+Host: ocsp.digicert.com:80
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Length: 83
+Content-Type: application/ocsp-request
+Connection: keep-alive
+
+0Q0O0M0K0I0	+
+===================RESPONSE [17:54:32]======================
+HTTP/1.1 200 OK
+Accept-Ranges: bytes
+Cache-Control: public, max-age=172800
+Content-Type: application/ocsp-response
+Date: Tue, 28 Feb 2017 22:54:28 GMT
+Etag: "58b5a478-1d7"
+Expires: Tue, 07 Mar 2017 10:54:28 GMT
+Last-Modified: Tue, 28 Feb 2017 16:25:28 GMT
+Server: ECS (lga/1390)
+X-Cache: HIT
+Content-Length: 471
+
+0Ç”
+
+
+=============================================================
+
+
+=============================================================
+====================REQUEST (thread 5)====================
+POST http://ocsp.digicert.com/ HTTP/1.1
+Host: ocsp.digicert.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Length: 83
+Content-Type: application/ocsp-request
+Connection: keep-alive
+
+0Q0O0M0K0I0	+
+==================SENT REQUEST [17:54:32]===================
+POST / HTTP/1.1
+Host: ocsp.digicert.com:80
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Length: 83
+Content-Type: application/ocsp-request
+Connection: keep-alive
+
+0Q0O0M0K0I0	+
+===================RESPONSE [17:54:32]======================
+HTTP/1.1 200 OK
+Accept-Ranges: bytes
+Cache-Control: public, max-age=172800
+Content-Type: application/ocsp-response
+Date: Tue, 28 Feb 2017 22:54:28 GMT
+Etag: "58b5a478-1d7"
+Expires: Tue, 07 Mar 2017 10:54:28 GMT
+Last-Modified: Tue, 28 Feb 2017 16:25:28 GMT
+Server: ECS (lga/13A4)
+X-Cache: HIT
+Content-Length: 471
+
+0Ç”
+
+
+=============================================================
+
+
+=============================================================
+====================REQUEST (thread 3)====================
+POST http://ocsp.digicert.com/ HTTP/1.1
+Host: ocsp.digicert.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Length: 83
+Content-Type: application/ocsp-request
+Connection: keep-alive
+
+0Q0O0M0K0I0	+
+==================SENT REQUEST [17:54:32]===================
+POST / HTTP/1.1
+Host: ocsp.digicert.com:80
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Length: 83
+Content-Type: application/ocsp-request
+Connection: keep-alive
+
+0Q0O0M0K0I0	+
+===================RESPONSE [17:54:32]======================
+HTTP/1.1 200 OK
+Accept-Ranges: bytes
+Cache-Control: public, max-age=172800
+Content-Type: application/ocsp-response
+Date: Tue, 28 Feb 2017 22:54:28 GMT
+Etag: "58b5a478-1d7"
+Expires: Tue, 07 Mar 2017 10:54:28 GMT
+Last-Modified: Tue, 28 Feb 2017 16:25:28 GMT
+Server: ECS (lga/13A4)
+X-Cache: HIT
+Content-Length: 471
+
+0Ç”
 
 
 =============================================================
@@ -45,144 +222,6 @@ Connection: keep-alive
 
 =============================================================
 ====================REQUEST (thread 1)====================
-POST http://ss.symcd.com/ HTTP/1.1
-Host: ss.symcd.com
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Content-Length: 83
-Content-Type: application/ocsp-request
-Connection: keep-alive
-
-0Q0O0M0K0I0	+
-==================SENT REQUEST [16:44:25]===================
-POST / HTTP/1.1
-Host: ss.symcd.com:80
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Content-Length: 83
-Content-Type: application/ocsp-request
-Connection: keep-alive
-
-0Q0O0M0K0I0	+
-===================RESPONSE [16:44:25]======================
-HTTP/1.1 200 OK
-Server: nginx/1.10.2
-Content-Type: application/ocsp-response
-Content-Length: 1609
-content-transfer-encoding: binary
-Cache-Control: max-age=376138, public, no-transform, must-revalidate
-Last-Modified: Sun, 26 Feb 2017 06:12:38 GMT
-Expires: Sun, 5 Mar 2017 06:12:38 GMT
-Date: Tue, 28 Feb 2017 21:44:22 GMT
-Connection: keep-alive
-
-0ÇE
-
-70U#0Ä_`œaêUﬂÑCä`*≤ızÙCÔ0UE ®ãäeüu˙ıÈ
-x“7û0Uˇ0
-
-=============================================================
-
-
-=============================================================
-====================REQUEST (thread 2)====================
-POST http://ss.symcd.com/ HTTP/1.1
-Host: ss.symcd.com
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Content-Length: 83
-Content-Type: application/ocsp-request
-Connection: keep-alive
-
-0Q0O0M0K0I0	+
-==================SENT REQUEST [16:44:25]===================
-POST / HTTP/1.1
-Host: ss.symcd.com:80
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Content-Length: 83
-Content-Type: application/ocsp-request
-Connection: keep-alive
-
-0Q0O0M0K0I0	+
-===================RESPONSE [16:44:25]======================
-HTTP/1.1 200 OK
-Server: nginx/1.10.2
-Content-Type: application/ocsp-response
-Content-Length: 1609
-content-transfer-encoding: binary
-Cache-Control: max-age=376138, public, no-transform, must-revalidate
-Last-Modified: Sun, 26 Feb 2017 06:12:38 GMT
-Expires: Sun, 5 Mar 2017 06:12:38 GMT
-Date: Tue, 28 Feb 2017 21:44:22 GMT
-Connection: keep-alive
-
-0ÇE
-
-70U#0Ä_`œaêUﬂÑCä`*≤ızÙCÔ0UE ®ãäeüu˙ıÈ
-x“7û0Uˇ0
-
-=============================================================
-
-
-=============================================================
-====================REQUEST (thread 3)====================
-POST http://ocsp2.globalsign.com/gsorganizationvalsha2g2 HTTP/1.1
-Host: ocsp2.globalsign.com
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Content-Length: 85
-Content-Type: application/ocsp-request
-Connection: keep-alive
-
-0S0Q0O0M0K0	+
-==================SENT REQUEST [16:44:25]===================
-POST /gsorganizationvalsha2g2 HTTP/1.1
-Host: ocsp2.globalsign.com:80
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Content-Length: 85
-Content-Type: application/ocsp-request
-Connection: keep-alive
-
-0S0Q0O0M0K0	+
-===================RESPONSE [16:44:25]======================
-HTTP/1.1 200 OK
-Date: Tue, 28 Feb 2017 21:44:22 GMT
-Content-Type: application/ocsp-response
-Content-Length: 1576
-Connection: keep-alive
-Set-Cookie: __cfduid=d695f5e37be14fcc24e9cebcfef013c9c1488318262; expires=Wed, 28-Feb-18 21:44:22 GMT; path=/; domain=.globalsign.com; HttpOnly
-Last-Modified: Tue, 28 Feb 2017 19:30:10 GMT
-Expires: Sat, 04 Mar 2017 19:30:10 GMT
-ETag: "2874a1a82397c227f27be9012a5d749235ac2870"
-Cache-Control: public, no-transform, must-revalidate
-CF-Cache-Status: HIT
-Vary: Accept-Encoding
-Server: cloudflare-nginx
-CF-RAY: 33870eb4e54c4716-EWR
-
-0Ç$
-
-Œ∑¡/ù…z£-hiØk‡π˝öÆÌD∑π•’¸ˇÉÌu>h¡π¸T2.í~Ò*;ø÷üv^¢!dÏ®Í˜ ˙8Ép⁄e¶¢me’î>¨ÓVñ·•lªP6ÜVÅ≈GÂ”;Xõ‹π˛12U)D—E(ldQÍá67Õ@™ù˝«lîAû>lÈÛΩº›Ùm‘e;ÿ±ìÄ∑nˆ~êêWbÅ?¢ãgE’å∏êòπ≥a‡KM˘FŒÇ}Åqo;SÂ`/÷síòÎñ6˜ç°GÎa
-
-=============================================================
-
-
-=============================================================
-====================REQUEST (thread 4)====================
 POST http://clients1.google.com/ocsp HTTP/1.1
 Host: clients1.google.com
 User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
@@ -194,7 +233,7 @@ Content-Type: application/ocsp-request
 Connection: keep-alive
 
 0I0G0E0C0A0	+
-==================SENT REQUEST [16:44:25]===================
+==================SENT REQUEST [17:54:32]===================
 POST /ocsp HTTP/1.1
 Host: clients1.google.com:80
 User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
@@ -206,11 +245,11 @@ Content-Type: application/ocsp-request
 Connection: keep-alive
 
 0I0G0E0C0A0	+
-===================RESPONSE [16:44:26]======================
+===================RESPONSE [17:54:32]======================
 HTTP/1.1 200 OK
 Content-Type: application/ocsp-response
-Date: Tue, 28 Feb 2017 21:44:22 GMT
-Expires: Sat, 04 Mar 2017 21:44:22 GMT
+Date: Tue, 28 Feb 2017 22:54:29 GMT
+Expires: Sat, 04 Mar 2017 22:54:29 GMT
 Cache-Control: public, max-age=345600
 Server: ocsp_responder
 Content-Length: 463
@@ -219,97 +258,6 @@ X-Frame-Options: SAMEORIGIN
 
 0ÇÀ
 
-
-=============================================================
-
-
-=============================================================
-====================REQUEST (thread 5)====================
-POST http://ss.symcd.com/ HTTP/1.1
-Host: ss.symcd.com
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Content-Length: 83
-Content-Type: application/ocsp-request
-Connection: keep-alive
-
-0Q0O0M0K0I0	+
-==================SENT REQUEST [16:44:26]===================
-POST / HTTP/1.1
-Host: ss.symcd.com:80
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Content-Length: 83
-Content-Type: application/ocsp-request
-Connection: keep-alive
-
-0Q0O0M0K0I0	+
-===================RESPONSE [16:44:26]======================
-HTTP/1.1 200 OK
-Server: nginx/1.10.2
-Content-Type: application/ocsp-response
-Content-Length: 1609
-content-transfer-encoding: binary
-Cache-Control: max-age=574738, public, no-transform, must-revalidate
-Last-Modified: Tue, 28 Feb 2017 13:20:15 GMT
-Expires: Tue, 7 Mar 2017 13:20:15 GMT
-X-Serial: 8218
-X-Check-Cacheable: YES
-Date: Tue, 28 Feb 2017 21:44:22 GMT
-Connection: keep-alive
-
-0ÇE
-
-
-
-=============================================================
-
-
-=============================================================
-====================REQUEST (thread 6)====================
-POST http://ss.symcd.com/ HTTP/1.1
-Host: ss.symcd.com
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Content-Length: 83
-Content-Type: application/ocsp-request
-Connection: keep-alive
-
-0Q0O0M0K0I0	+
-==================SENT REQUEST [16:44:26]===================
-POST / HTTP/1.1
-Host: ss.symcd.com:80
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Content-Length: 83
-Content-Type: application/ocsp-request
-Connection: keep-alive
-
-0Q0O0M0K0I0	+
-===================RESPONSE [16:44:26]======================
-HTTP/1.1 200 OK
-Server: nginx/1.10.2
-Content-Type: application/ocsp-response
-Content-Length: 1609
-content-transfer-encoding: binary
-Cache-Control: max-age=574828, public, no-transform, must-revalidate
-Last-Modified: Tue, 28 Feb 2017 13:20:15 GMT
-Expires: Tue, 7 Mar 2017 13:20:15 GMT
-Date: Tue, 28 Feb 2017 21:44:22 GMT
-Connection: keep-alive
-
-0ÇE
-
-70U#0Ä_`œaêUﬂÑCä`*≤ızÙCÔ0UE ®ãäeüu˙ıÈ
-x“7û0Uˇ0
 
 =============================================================
 
@@ -327,7 +275,7 @@ Content-Type: application/ocsp-request
 Connection: keep-alive
 
 0I0G0E0C0A0	+
-==================SENT REQUEST [16:44:26]===================
+==================SENT REQUEST [17:54:32]===================
 POST /ocsp HTTP/1.1
 Host: clients1.google.com:80
 User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
@@ -339,11 +287,11 @@ Content-Type: application/ocsp-request
 Connection: keep-alive
 
 0I0G0E0C0A0	+
-===================RESPONSE [16:44:26]======================
+===================RESPONSE [17:54:32]======================
 HTTP/1.1 200 OK
 Content-Type: application/ocsp-response
-Date: Tue, 28 Feb 2017 21:44:23 GMT
-Expires: Sat, 04 Mar 2017 21:44:23 GMT
+Date: Tue, 28 Feb 2017 22:54:29 GMT
+Expires: Sat, 04 Mar 2017 22:54:29 GMT
 Cache-Control: public, max-age=345600
 Server: ocsp_responder
 Content-Length: 463
@@ -357,9 +305,9 @@ X-Frame-Options: SAMEORIGIN
 
 
 =============================================================
-====================REQUEST (thread 9)====================
-POST http://ocsp.digicert.com/ HTTP/1.1
-Host: ocsp.digicert.com
+====================REQUEST (thread 6)====================
+POST http://gp.symcd.com/ HTTP/1.1
+Host: gp.symcd.com
 User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
 Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
 Accept-Language: en-US,en;q=0.5
@@ -369,9 +317,9 @@ Content-Type: application/ocsp-request
 Connection: keep-alive
 
 0Q0O0M0K0I0	+
-==================SENT REQUEST [16:44:26]===================
+==================SENT REQUEST [17:54:32]===================
 POST / HTTP/1.1
-Host: ocsp.digicert.com:80
+Host: gp.symcd.com:80
 User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
 Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
 Accept-Language: en-US,en;q=0.5
@@ -381,20 +329,19 @@ Content-Type: application/ocsp-request
 Connection: keep-alive
 
 0Q0O0M0K0I0	+
-===================RESPONSE [16:44:26]======================
+===================RESPONSE [17:54:32]======================
 HTTP/1.1 200 OK
-Accept-Ranges: bytes
-Cache-Control: public, max-age=172800
+Server: nginx/1.10.2
 Content-Type: application/ocsp-response
-Date: Tue, 28 Feb 2017 21:44:23 GMT
-Etag: "58b5cb26-1d7"
-Expires: Tue, 07 Mar 2017 09:44:23 GMT
-Last-Modified: Tue, 28 Feb 2017 19:10:30 GMT
-Server: ECS (lga/13D5)
-X-Cache: HIT
-Content-Length: 471
+Content-Length: 1415
+content-transfer-encoding: binary
+Cache-Control: max-age=516124, public, no-transform, must-revalidate
+Last-Modified: Mon, 27 Feb 2017 22:14:16 GMT
+Expires: Mon, 6 Mar 2017 22:14:16 GMT
+Date: Tue, 28 Feb 2017 22:54:29 GMT
+Connection: keep-alive
 
-0Ç”
+0ÇÉ
 
 
 =============================================================
@@ -413,7 +360,7 @@ Content-Type: application/ocsp-request
 Connection: keep-alive
 
 0Q0O0M0K0I0	+
-==================SENT REQUEST [16:44:26]===================
+==================SENT REQUEST [17:54:32]===================
 POST / HTTP/1.1
 Host: ocsp.digicert.com:80
 User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
@@ -425,16 +372,60 @@ Content-Type: application/ocsp-request
 Connection: keep-alive
 
 0Q0O0M0K0I0	+
-===================RESPONSE [16:44:26]======================
+===================RESPONSE [17:54:32]======================
 HTTP/1.1 200 OK
 Accept-Ranges: bytes
 Cache-Control: public, max-age=172800
 Content-Type: application/ocsp-response
-Date: Tue, 28 Feb 2017 21:44:23 GMT
-Etag: "58b5cb26-1d7"
-Expires: Tue, 07 Mar 2017 09:44:23 GMT
-Last-Modified: Tue, 28 Feb 2017 19:10:30 GMT
-Server: ECS (lga/1385)
+Date: Tue, 28 Feb 2017 22:54:29 GMT
+Etag: "58b5b84e-1d7"
+Expires: Tue, 07 Mar 2017 10:54:29 GMT
+Last-Modified: Tue, 28 Feb 2017 17:50:06 GMT
+Server: ECS (lga/1378)
+X-Cache: HIT
+Content-Length: 471
+
+0Ç”
+
+
+=============================================================
+
+
+=============================================================
+====================REQUEST (thread 9)====================
+POST http://ocsp.digicert.com/ HTTP/1.1
+Host: ocsp.digicert.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Length: 83
+Content-Type: application/ocsp-request
+Connection: keep-alive
+
+0Q0O0M0K0I0	+
+==================SENT REQUEST [17:54:33]===================
+POST / HTTP/1.1
+Host: ocsp.digicert.com:80
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Length: 83
+Content-Type: application/ocsp-request
+Connection: keep-alive
+
+0Q0O0M0K0I0	+
+===================RESPONSE [17:54:33]======================
+HTTP/1.1 200 OK
+Accept-Ranges: bytes
+Cache-Control: public, max-age=172800
+Content-Type: application/ocsp-response
+Date: Tue, 28 Feb 2017 22:54:29 GMT
+Etag: "58b584e0-1d7"
+Expires: Tue, 07 Mar 2017 10:54:29 GMT
+Last-Modified: Tue, 28 Feb 2017 14:10:40 GMT
+Server: ECS (lga/1318)
 X-Cache: HIT
 Content-Length: 471
 
@@ -446,8 +437,8 @@ Content-Length: 471
 
 =============================================================
 ====================REQUEST (thread 10)====================
-POST http://ss.symcd.com/ HTTP/1.1
-Host: ss.symcd.com
+POST http://ocsp.digicert.com/ HTTP/1.1
+Host: ocsp.digicert.com
 User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
 Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
 Accept-Language: en-US,en;q=0.5
@@ -457,9 +448,9 @@ Content-Type: application/ocsp-request
 Connection: keep-alive
 
 0Q0O0M0K0I0	+
-==================SENT REQUEST [16:44:26]===================
+==================SENT REQUEST [17:54:33]===================
 POST / HTTP/1.1
-Host: ss.symcd.com:80
+Host: ocsp.digicert.com:80
 User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
 Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
 Accept-Language: en-US,en;q=0.5
@@ -469,22 +460,21 @@ Content-Type: application/ocsp-request
 Connection: keep-alive
 
 0Q0O0M0K0I0	+
-===================RESPONSE [16:44:27]======================
+===================RESPONSE [17:54:33]======================
 HTTP/1.1 200 OK
-Server: nginx/1.10.2
+Accept-Ranges: bytes
+Cache-Control: public, max-age=172800
 Content-Type: application/ocsp-response
-Content-Length: 1609
-content-transfer-encoding: binary
-Cache-Control: max-age=415300, public, no-transform, must-revalidate
-Last-Modified: Sun, 26 Feb 2017 17:04:26 GMT
-Expires: Sun, 5 Mar 2017 17:04:26 GMT
-Date: Tue, 28 Feb 2017 21:44:23 GMT
-Connection: keep-alive
+Date: Tue, 28 Feb 2017 22:54:29 GMT
+Etag: "58b584e0-1d7"
+Expires: Tue, 07 Mar 2017 10:54:29 GMT
+Last-Modified: Tue, 28 Feb 2017 14:10:40 GMT
+Server: ECS (lga/1318)
+X-Cache: HIT
+Content-Length: 471
 
-0ÇE
+0Ç”
 
-70U#0Ä_`œaêUﬂÑCä`*≤ızÙCÔ0UE ®ãäeüu˙ıÈ
-x“7û0Uˇ0
 
 =============================================================
 
@@ -502,7 +492,7 @@ Content-Type: application/ocsp-request
 Connection: keep-alive
 
 0Q0O0M0K0I0	+
-==================SENT REQUEST [16:44:27]===================
+==================SENT REQUEST [17:54:33]===================
 POST / HTTP/1.1
 Host: ss.symcd.com:80
 User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
@@ -514,21 +504,153 @@ Content-Type: application/ocsp-request
 Connection: keep-alive
 
 0Q0O0M0K0I0	+
-===================RESPONSE [16:44:27]======================
+===================RESPONSE [17:54:33]======================
 HTTP/1.1 200 OK
 Server: nginx/1.10.2
 Content-Type: application/ocsp-response
 Content-Length: 1609
 content-transfer-encoding: binary
-Cache-Control: max-age=415300, public, no-transform, must-revalidate
+Cache-Control: max-age=411056, public, no-transform, must-revalidate
 Last-Modified: Sun, 26 Feb 2017 17:04:26 GMT
 Expires: Sun, 5 Mar 2017 17:04:26 GMT
-Date: Tue, 28 Feb 2017 21:44:24 GMT
+Date: Tue, 28 Feb 2017 22:54:30 GMT
 Connection: keep-alive
 
 0ÇE
 
 70U#0Ä_`œaêUﬂÑCä`*≤ızÙCÔ0UE ®ãäeüu˙ıÈ
 x“7û0Uˇ0
+
+=============================================================
+
+
+=============================================================
+====================REQUEST (thread 12)====================
+POST http://ss.symcd.com/ HTTP/1.1
+Host: ss.symcd.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Length: 83
+Content-Type: application/ocsp-request
+Connection: keep-alive
+
+0Q0O0M0K0I0	+
+==================SENT REQUEST [17:54:33]===================
+POST / HTTP/1.1
+Host: ss.symcd.com:80
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Length: 83
+Content-Type: application/ocsp-request
+Connection: keep-alive
+
+0Q0O0M0K0I0	+
+===================RESPONSE [17:54:33]======================
+HTTP/1.1 200 OK
+Server: nginx/1.10.2
+Content-Type: application/ocsp-response
+Content-Length: 1609
+content-transfer-encoding: binary
+Cache-Control: max-age=411036, public, no-transform, must-revalidate
+Last-Modified: Sun, 26 Feb 2017 17:04:26 GMT
+Expires: Sun, 5 Mar 2017 17:04:26 GMT
+Date: Tue, 28 Feb 2017 22:54:30 GMT
+Connection: keep-alive
+
+0ÇE
+
+
+=============================================================
+
+
+=============================================================
+====================REQUEST (thread 13)====================
+POST http://ocsp.sca1b.amazontrust.com/ HTTP/1.1
+Host: ocsp.sca1b.amazontrust.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Length: 83
+Content-Type: application/ocsp-request
+Connection: keep-alive
+
+0Q0O0M0K0I0	+
+==================SENT REQUEST [17:54:33]===================
+POST / HTTP/1.1
+Host: ocsp.sca1b.amazontrust.com:80
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Length: 83
+Content-Type: application/ocsp-request
+Connection: keep-alive
+
+0Q0O0M0K0I0	+
+===================RESPONSE [17:54:33]======================
+HTTP/1.1 200 OK
+Content-Type: application/ocsp-response
+Content-Length: 471
+Connection: keep-alive
+Accept-Ranges: bytes
+Cache-Control: public, max-age=172800
+Date: Tue, 28 Feb 2017 22:54:30 GMT
+Etag: "58b58d0b-1d7"
+Expires: Tue, 07 Mar 2017 10:54:30 GMT
+Last-Modified: Tue, 28 Feb 2017 14:45:31 GMT
+Server: ECS (lga/1378)
+X-Cache: Miss from cloudfront
+Via: 1.1 d269b53199a539a1ee8c6d8da6c17acf.cloudfront.net (CloudFront)
+X-Amz-Cf-Id: 5qcLmtD3R9m0xWZFLY-KStFMBz1u5QqQpo9RF-8tibp2D6OB-VALGw==
+
+0Ç”
+
+
+=============================================================
+
+
+=============================================================
+====================REQUEST (thread 14)====================
+POST http://clients1.google.com/ocsp HTTP/1.1
+Host: clients1.google.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Length: 75
+Content-Type: application/ocsp-request
+Connection: keep-alive
+
+0I0G0E0C0A0	+
+==================SENT REQUEST [17:54:34]===================
+POST /ocsp HTTP/1.1
+Host: clients1.google.com:80
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Length: 75
+Content-Type: application/ocsp-request
+Connection: keep-alive
+
+0I0G0E0C0A0	+
+===================RESPONSE [17:54:34]======================
+HTTP/1.1 200 OK
+Content-Type: application/ocsp-response
+Date: Tue, 28 Feb 2017 22:54:31 GMT
+Expires: Sat, 04 Mar 2017 22:54:31 GMT
+Cache-Control: public, max-age=345600
+Server: ocsp_responder
+Content-Length: 463
+X-XSS-Protection: 1; mode=block
+X-Frame-Options: SAMEORIGIN
+
+0ÇÀ
+
 
 =============================================================
