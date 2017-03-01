@@ -43,7 +43,7 @@ The following is a simplified trace of a standard use case:
 #include "time.h"
 
 #define BUFFER_PAGE_WIDTH 4096 // size of each read/write buffer
-#define BUFFER_PAGE_COUNT 100   // maximum number of buffers held in request_data struct
+#define BUFFER_PAGE_COUNT 400   // maximum number of buffers held in request_data struct
 
 // handle separate naming for Windows, Apple, and Unix machines
 #ifdef _WIN32
