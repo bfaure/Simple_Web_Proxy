@@ -42,8 +42,9 @@ The following is a simplified trace of a standard use case:
 #include "csapp.h"
 #include "time.h"
 
-#define BUFFER_PAGE_WIDTH 4096 // size of each read/write buffer
+#define BUFFER_PAGE_WIDTH 4096  // size of each read/write buffer
 #define BUFFER_PAGE_COUNT 400   // maximum number of buffers held in request_data struct
+#define BUFFER_PAGE_COUNT_DYNAMIC 5000 // maximum number of dynamically size buffers 
 
 // handle separate naming for Windows, Apple, and Unix machines
 #ifdef _WIN32
@@ -77,6 +78,12 @@ int     *ALREADY_LOGGING_DEBUG_INFO; // set to 1 while debuggin data is being wr
 int     *ENABLE_TIME_SPINNER; // if 0 then show waiting line, 1 show loading spinner, 2 show nothing
 int     *REFRESHING_UI_HEADER; // 0 if not refreshing table header right now, 1 otherwise
 
+int     *USER_EXIT;  // set to 1 if user hits Ctrl+C and 'Y', causes all threads to exit
+int     *USER_PAUSE; // set to 1 if the user hits Ctrl+C, pauses all threads but the top parent
+
+int     CUR_SERVER_SOCKET; // thread-specific global variable (for handling thread exiting) 
+int     CUR_CLIENT_SOCKET; // thread-specific global variable (for handling thread exiting)
+
 // Data structure to hold all essential information pertaining to a request. This is the
 // main vehicle used in the two main processes (parse_request and fulfill_request) to hold
 // and transfer data among functions.
@@ -101,6 +108,8 @@ typedef struct request_data
     int resp_length[BUFFER_PAGE_COUNT]; // hold size of each element of response buffer
     int num_lines_response; // to hold the number of response lines
 
+    char *full_response_dynamic[BUFFER_PAGE_COUNT]; // same as full_response but each page is dynamically sized
+
     char response_code[100]; // to hold the return code
     char sent_time[100]; // time when the request was sent to remote server
     char server_responded_time[100]; // time when the server responded
@@ -118,8 +127,8 @@ typedef struct request_data
 // Request Handling...
 char*   parse_request(struct request_data *req_data, char *buffer);
 int     fulfill_request(struct request_data *req_data, int client_socket);
-int     forward_request_to_remote(struct request_data *req_data, int remotefd);
-int     receive_response_from_remote(struct request_data *req_data, int remotefd);
+int     forward_request_to_remote(struct request_data *req_data, int remote_socket);
+int     receive_response_from_remote(struct request_data *req_data, int remote_socket);
 int     forward_response_to_client(struct request_data *req_data, int client_socket);
 
 // Logging...
@@ -150,6 +159,13 @@ char*   shorten_string(const char *input_str, const int new_size);
 int     is_blocked_domain(struct request_data *req_data);
 void    strip_trailing_char(char *source, const char to_remove);
 
+// Threading...
+void    on_thread_exit(int signal);
+void    on_user_command(int signal);
+void    on_child_exit(int signal);
+void    ignore_signal(int signal);
+void    synchronize_thread();
+
 //////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////
 
@@ -174,6 +190,12 @@ int main(int argc, char **argv)
     int listening_port      = parse_listening_port_num(argv); // parse the listening port number
     int listening_socket    = Open_listenfd(listening_port); // initialize the listening socket
 
+    if (listening_socket<0)
+    {
+        fprintf(stderr,"Listening port is already in use");
+        exit(0);
+    }
+
     init_ui_header(listening_port,listening_socket); // draw out the table header for the CLI
     *ENABLE_TIME_SPINNER = 0; // start the waiting line
     
@@ -187,6 +209,10 @@ int main(int argc, char **argv)
     struct sockaddr_in client_addr;
     socklen_t addrlen = sizeof(client_addr);
 
+    signal(SIGTERM, on_thread_exit); // call 'on_thread_exit' when a thread receives a signal to terminate
+    signal(SIGINT, on_user_command); // call 'on_user_command' when a user hits Ctrl+C in terminal
+    signal(SIGCHLD, on_child_exit); // call 'on_child_exit' if child process is terminated
+
     while (1)
     {
         // wait for a connection from a client at listening socket
@@ -197,6 +223,12 @@ int main(int argc, char **argv)
         {
             case 0: // new child
                 set_current_status(""); // denote that we have started a new request in status.log file
+
+                // prevent this thread from reacting to 'Ctrl+C' other than setting the USER_PAUSE variable to 1
+                if ( signal(SIGINT,SIG_IGN)!= SIG_IGN){  signal(SIGINT,ignore_signal);  }
+                
+                CUR_CLIENT_SOCKET = client_socket; // if thread is killed, we want to be able to close the socket
+                CUR_SERVER_SOCKET = -1; // default, will be set in fulfill_request
 
                 close(listening_socket);
                 request_data req_data; // create new request_data struct to hold parsed data
@@ -219,8 +251,9 @@ int main(int argc, char **argv)
                 memcpy(req_data.request_buffer,buffer,request_size); // copy the buffer into req_data
                 req_data.request_buffer_size = request_size; // save the size of the socket read
 
-                char *temp_buffer3 = malloc(sizeof(char)*50);
-                sprintf(temp_buffer3,"request_size=%d, strlen(buffer)=%d",request_size,(int)strlen(buffer));
+                char temp_buffer3[50];
+                //char *temp_buffer3 = malloc(sizeof(char)*50);
+                sprintf(temp_buffer3,"Request size = %d",request_size);
                 set_current_status_id(temp_buffer3,req_data.thread_id);
 
                 if (request_size<0){  printf("> Error reading from socket \n");  }
@@ -272,7 +305,6 @@ int main(int argc, char **argv)
                 // tell the handle_time_spinner thread to show the waiting animation
                 if ( *threads_open==-1) {  *ENABLE_TIME_SPINNER = 0;  }
                 
-                if ( (req_data.thread_id % 50 == 0) && (req_data.thread_id!=0) ){  refresh_ui_header();  } // refresh the UI header table
                 exit(0); // close this thread (opened on Fork())
 
             case -1: // error when creating new thread
@@ -282,6 +314,7 @@ int main(int argc, char **argv)
 
             default: // this is the parent thread
                 close(client_socket); // close the socket we left to the child
+                if ( (req_data.thread_id % 50 == 0) && (req_data.thread_id!=0) ){  refresh_ui_header();  } // refresh the UI header table
         }
         // clear the command line if not loading a request
         if ( *threads_open==-1)
@@ -309,11 +342,11 @@ char* parse_request(struct request_data *req_data, char *buffer)
     {
         req_data->specified_req_size = content_size;
         char *temp_buffer = malloc(sizeof(char)*50); 
-        sprintf(temp_buffer,"Found request size (%d)",req_data->specified_req_size);
+        sprintf(temp_buffer,"Specified request size = %d",req_data->specified_req_size);
         set_current_status_id(temp_buffer,req_data->thread_id); // update CLI and write to status.log
     }
     // if there is no 'Content-Length' specified in request
-    else{   set_current_status_id("No request size",req_data->thread_id);  }
+    else{   set_current_status_id("No request size specified",req_data->thread_id);  }
 
     // copy over the request to a new char array so we can use strtok_r without
     // effecting the copy in the req_data struct
@@ -363,7 +396,7 @@ char* parse_request(struct request_data *req_data, char *buffer)
             int delim_index = (int)(delim-req_data->request_buffer); // get index of separator
             int delim_size = 4; // size of '\r\n\r\n'
 
-            int post_delim_data_size = req_data->request_buffer_size-delim_index-delim_size; // get size of body of request
+            //int post_delim_data_size = req_data->request_buffer_size-delim_index-delim_size; // get size of body of request
 
             // now we need to get the size of the request prior to the third line (the size of the first 2 lines)
             char *first_line_CRENDL = strstr(req_data->request_buffer,"\r\n"); 
@@ -372,9 +405,9 @@ char* parse_request(struct request_data *req_data, char *buffer)
             int start_snip = (int)(second_line_CRENDL - req_data->request_buffer)+2; // end of second line
             int snip_length = (int)(req_data->request_buffer_size - start_snip); // until end of body of request
 
-            char *temp_buffer2 = malloc(400);
-            sprintf(temp_buffer2,"Content-Length (request) = %d, snip length = %d",post_delim_data_size,snip_length);
-            set_current_status_id(temp_buffer2,req_data->thread_id); // update CLI and write to status.log
+            //char *temp_buffer2 = malloc(400);
+            //sprintf(temp_buffer2,"Content-Length (request) = %d, snip length = %d",post_delim_data_size,snip_length);
+            //set_current_status_id(temp_buffer2,req_data->thread_id); // update CLI and write to status.log
 
             // copy everything after the first two lines into the req_after_host member of req_data
             memcpy(req_data->req_after_host,&req_data->request_buffer[start_snip],snip_length);
@@ -401,20 +434,21 @@ char* parse_request(struct request_data *req_data, char *buffer)
 int fulfill_request(struct request_data *req_data, int client_socket)
 {
     set_current_status_id("Connecting to remote socket",req_data->thread_id); // update CLI and status.log file
-    int remotefd = Open_clientfd(req_data->req_host_domain,req_data->req_host_port_num); // try to open socket on remote machine
+    int remote_socket = Open_clientfd(req_data->req_host_domain,req_data->req_host_port_num); // try to open socket on remote machine
+    CUR_SERVER_SOCKET = remote_socket; // save this as a global variable (in case of premature thread exiting, see on_thread_exit)
 
-    int send_success = forward_request_to_remote(req_data,remotefd); // send the request to remote machine
+    int send_success = forward_request_to_remote(req_data,remote_socket); // send the request to remote machine
 
     if (send_success == -1) // if we were not able to send the request
     {
         set_current_status_id("Could not connect to remote",req_data->thread_id);
         Sleep(1); // allow time for writing to log
         close(client_socket); // close connection to client
-        close(remotefd); // close attempted connection to remote
+        close(remote_socket); // close attempted connection to remote
         exit(0); // exit the thread
     }
 
-    int response_size = receive_response_from_remote(req_data,remotefd); // get the response from the remote machine
+    int response_size = receive_response_from_remote(req_data,remote_socket); // get the response from the remote machine
     set_current_status_id("Forwarding response to client",req_data->thread_id); // update CLI and status.log file
 
     int forwarding_success = forward_response_to_client(req_data,client_socket); // forward to response to client
@@ -423,7 +457,7 @@ int fulfill_request(struct request_data *req_data, int client_socket)
         set_current_status_id("Could not forward response to client",req_data->thread_id);
         Sleep(1); // allow time for writing to log
         close(client_socket); // close connection to client
-        close(remotefd); // close attempted connection to remote
+        close(remote_socket); // close attempted connection to remote
         exit(0); // exit the thread 
     }
     return response_size; // return the size of response
@@ -432,12 +466,12 @@ int fulfill_request(struct request_data *req_data, int client_socket)
 // Called from fulfill_request after a connection has been established with
 // the remote socket. Forwards the parsed request on to the remote socket.
 // Returns -1 if it was not possible and 1 if success.
-int forward_request_to_remote(struct request_data *req_data, int remotefd)
+int forward_request_to_remote(struct request_data *req_data, int remote_socket)
 {
     strcpy(req_data->sent_time, get_time_string()); // record the time we started to send data to remote
     set_current_status_id("Forwarding request",req_data->thread_id); // update CLI and status.log file
 
-    if (remotefd<0) // check to ensure the remote socket could be established...
+    if (remote_socket<0) // check to ensure the remote socket could be established...
     {
         printf("\n> DNS could not connect to remote %s\n",req_data->req_host_long);
         return -1; // return error code
@@ -445,14 +479,14 @@ int forward_request_to_remote(struct request_data *req_data, int remotefd)
 
     char buffer[BUFFER_PAGE_WIDTH]; // to hold the information we will be sending to remote socket
     sprintf(buffer,"%s %s %s\r\n",req_data->req_command,req_data->req_host_path,req_data->req_protocol);
-    int m = send(remotefd,buffer,strlen(buffer),0); // send the first line to remote socket
+    int m = send(remote_socket,buffer,strlen(buffer),0); // send the first line to remote socket
     if (m<0){  printf("\nERROR: could not write to remote socket\n");  } // check for failure
 
     sprintf(buffer, "Host: %s:%s\r\n", req_data->req_host_domain,req_data->req_host_port); 
-    m = send(remotefd,buffer,strlen(buffer),0); // send the second line to remote socket
+    m = send(remote_socket,buffer,strlen(buffer),0); // send the second line to remote socket
     if (m<0){  printf("\nERROR: could not write to remote socket\n");  } // check for failure
 
-    m = send(remotefd, req_data->req_after_host, req_data->req_after_host_size, 0); // send the rest of request to remote socket
+    m = send(remote_socket, req_data->req_after_host, req_data->req_after_host_size, 0); // send the rest of request to remote socket
     if (m<0){  printf("\nERROR: could not write to remote socket\n");  } // check for failure
     
     return 1; // denote success
@@ -461,7 +495,7 @@ int forward_request_to_remote(struct request_data *req_data, int remotefd)
 // Called from fulfill_request after the request has been forwarded to the
 // remote socket. Reads in the response from the server and returns the total
 // size of the message received.
-int receive_response_from_remote(struct request_data *req_data, int remotefd)
+int receive_response_from_remote(struct request_data *req_data, int remote_socket)
 {
     char buffer[BUFFER_PAGE_WIDTH];
 
@@ -486,7 +520,7 @@ int receive_response_from_remote(struct request_data *req_data, int remotefd)
     // response is specified, if so we will break out of this loop prematurely if we
     // have read up to the size specified. If there is no specified size, we will break
     // the loop prematurely if we reach a '\r\n\r\n' string.
-    while ((n = recv(remotefd,buffer,BUFFER_PAGE_WIDTH-1,0)) > 0)
+    while ((n = recv(remote_socket,buffer,BUFFER_PAGE_WIDTH-1,0)) > 0)
     {
         buffer[n] = 0; // zero-terminate buffer
 
@@ -584,7 +618,7 @@ int receive_response_from_remote(struct request_data *req_data, int remotefd)
     fprintf(RESPONSE_LOG,"\n\n--------------------------------------------------\n\n");
     fflush(RESPONSE_LOG);
 
-    close(remotefd); // close the connection to remote machine
+    close(remote_socket); // close the connection to remote machine
     if (actual_total_size!=-1){  return actual_total_size;  }
     return total_size;
 }
@@ -961,16 +995,18 @@ void get_host_path_and_port(struct request_data *req_data)
     {  
         strcpy(req_data->req_host_port,"80");  
         req_data->req_host_port_num = 80;
+        set_current_status_id("No request port specified",req_data->thread_id); // update CLI and status.log
     }
     // convert parsed port to integer and set appropriate member in req_data
     else
     {
         int port_num = atoi(req_data->req_host_port);
         req_data->req_host_port_num = port_num;
-    }
 
-    //printf("\n>> Found path: %s\n",req_data->req_host_path);
-    //printf(">> Found port: %s\n",req_data->req_host_port);
+        char temp_buffer6[100];
+        sprintf(temp_buffer6,"Specified request port = %d",port_num);
+        set_current_status_id(temp_buffer6,req_data->thread_id);
+    }
 }
 
 // Called from the main function at start of program, prints out the header for the table
@@ -993,7 +1029,7 @@ void refresh_ui_header()
     if (*REFRESHING_UI_HEADER){  return;  } // if another thread already doing it, skip
 
     *REFRESHING_UI_HEADER = 1;
-    printf("%s\r",UI_WIPE); // wipe the current line
+    printf("%s\r",UI_WIPE[0]); // wipe the current line
     printf("=====================================================================================================\n");
     printf("[   Thread Info    ][           Client Request Info            ][    Response Info    ][ Total Time ]\n");
     printf("_____________________________________________________________________________________________________\n");
@@ -1011,6 +1047,10 @@ void refresh_ui_header()
 // spinning pinwheel to signify that it is loading.
 void handle_time_spinner()
 {
+    // prevent this thread from reacting to SIGINT requests, other than setting
+    // USER_PAUSE equal to true to prevent other threads from continuing to process
+    if (signal(SIGINT,SIG_IGN) != SIG_IGN){  signal(SIGINT,ignore_signal);  }
+
     int time_spin_index = 0; // the state of the time spinner (range [0,3])
     int waiting_spin_index = 0; // the state of the waiting spinner (range [-bar_distance,max_distance])
     
@@ -1036,7 +1076,10 @@ void handle_time_spinner()
 
     while(1)
     {
+        synchronize_thread();  // check for USER_PAUSE and USER_EXIT
         nanosleep(&t,NULL); // sleep for a second
+        synchronize_thread();
+
         printf("%s\r",UI_WIPE[0]); // wipe the display
         fflush(stdout);
 
@@ -1091,6 +1134,7 @@ void handle_time_spinner()
             if ( waiting_spin_index==max_distance ){  waiting_spin_index=-1*bar_distance;  }
             continue;
         }
+        synchronize_thread(); // check for USER_PAUSE and USER_EXIT
     }
 }
 
@@ -1102,6 +1146,8 @@ void handle_time_spinner()
 // line window table (set up by init_ui_header).
 void update_cli(struct request_data *req_data, int thread_index, int threads_open, int resp_size, int request_size, int total_time)
 {
+    synchronize_thread(); // check for USER_PAUSE and USER_EXIT global variables
+
     // initialize some variables to help with printing 
     printf("%s\r",UI_WIPE[0]);
     fflush(stdout);
@@ -1165,6 +1211,12 @@ void set_current_status_id(const char *input_str, const int thread_id)
 // for all of the .log files which can then, also, be accessed from all threads.
 void init_global_variables()
 {
+    USER_PAUSE =  mmap(NULL,sizeof(int), PROT_READ|PROT_WRITE, MAP_SHARED|MAP_A, -1, 0);
+    *USER_PAUSE = 0;
+
+    USER_EXIT =  mmap(NULL,sizeof(int), PROT_READ|PROT_WRITE, MAP_SHARED|MAP_A, -1, 0);
+    *USER_EXIT = 0;
+
     ALREADY_LOGGING_DEBUG_INFO = mmap(NULL,sizeof(int), PROT_READ|PROT_WRITE, MAP_SHARED|MAP_A, -1, 0);
     *ALREADY_LOGGING_DEBUG_INFO = 0; // 1 if writing to debug.log 
 
@@ -1272,5 +1324,134 @@ void strip_trailing_char(char *source, const char to_remove)
         // else, break because we are done
         //printf("> Initial source length = %d, after stripping = %d\n",src_len,strlen(source));
         return;
+    }
+}
+
+// Gets user input on the command line until they hit enter
+char* get_user_input()
+{
+    char *input = malloc(sizeof(char)*100);
+    int buffer_max = 20;
+
+    while (1) { /* skip leading whitespace */
+        int c = getchar();
+        if (c == EOF) break; /* end of file */
+        if (!isspace(c)) {
+             ungetc(c, stdin);
+             break;
+        }
+    }
+
+    int i = 0;
+    while (1) {
+        int c = getchar();
+        if (isspace(c) || c == EOF) { /* at end, add terminating zero */
+            input[i] = 0;
+            break;
+        }
+        input[i] = c;
+        if (i == buffer_max - 1) { /* buffer full */
+            buffer_max += buffer_max;
+            input = (char*) realloc(input, buffer_max); /* get a new and larger buffer */
+        }
+        i++;
+    }
+    return input;
+}
+
+// Called if the child of a process has exited, prevents the child from 
+// becoming a zombie by freeing its pid for later use by other threads.
+void on_child_exit(int signal)
+{
+    while (waitpid(-1, NULL, WNOHANG) > 0);
+}
+
+// Cleans up if a thread is terminated.
+void on_thread_exit(int signal)
+{
+    close(CUR_SERVER_SOCKET);
+    close(CUR_CLIENT_SOCKET);
+    exit(0);
+}
+
+// Called from the main parent thread if the user hits 'Ctrl+C', this will prompt the
+// user to enter 'Y' or 'N' to denote whether or not they want to exit the program.
+void on_user_command(int signal)
+{
+    *USER_PAUSE = 1; // tell other threads to pause
+    set_current_status("USER");
+
+    fflush(stdout);
+    printf("                                                                                                     \r");
+    fflush(stdout);
+    printf("QUIT [y/n]: ");
+    fflush(stdout);
+    char *answer = get_user_input();
+    if ( strcmp(answer,"y")==0 || strcmp(answer,"Y")==0 )
+    {
+        *USER_PAUSE = 1;
+        printf("Exiting.\n\n");
+        exit(0);
+    }
+    else
+    {
+        printf("\r                                                                                           \r");
+
+        sigset_t block_sigint, prev_mask;
+        sigemptyset(&block_sigint);
+        sigaddset(&block_sigint, SIGINT);
+        if ( sigprocmask(SIG_SETMASK, &block_sigint, &prev_mask) < 0)
+        {
+            perror("Couldn't block SIGINT");
+            exit(0);
+        }
+
+        struct sigaction ign_sigint, prev;
+        ign_sigint.sa_handler = SIG_IGN;
+        ign_sigint.sa_flags = 0;
+        sigemptyset(&ign_sigint.sa_mask);
+        if ( sigaction(SIGINT, &ign_sigint, &prev) < 0)
+        {
+            perror("Couldn't ignore SIGINT");
+            exit(0);
+        }
+        if ( sigaction(SIGINT, &prev, NULL) < 0)
+        {
+            perror("Couldn't restore default SIGINT behavior");
+            exit(0);
+        }
+        if ( sigprocmask(SIG_SETMASK, &prev_mask, NULL) < 0)
+        {
+            perror("Couldn't restore original process sigmask");
+            exit(0);
+        }
+        *USER_PAUSE = 0; // tell other threads to stop pausing
+    }
+}
+
+// Ignores the signal provided but sets the global variable USER_PAUSE equal to 1. This
+// is the SIGINT signal handler for all threads but the main parent one.
+void ignore_signal(int signal)
+{
+    *USER_PAUSE = 1;
+    set_current_status("USER");
+}
+
+// Holds a thread until the USER_PAUSE variable is set to 0, if USER_EXIT is set to 1 the
+// thread will exit the program.
+void synchronize_thread()
+{
+    if (*USER_EXIT)
+    {
+        close(CUR_CLIENT_SOCKET);
+        close(CUR_SERVER_SOCKET);
+        exit(0);
+    }
+    while (*USER_PAUSE){  Sleep(1);  }
+    if (*USER_EXIT)
+    {
+        close(CUR_CLIENT_SOCKET);
+        close(CUR_SERVER_SOCKET);
+        exit(0);
     }
 }
