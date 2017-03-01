@@ -9,8 +9,34 @@
  * must also provide a header comment at the beginning of each
  * function that describes what that function does.
 
+When the program is first started, the main function will attempt to make
+a connection to the local socket, if able to, it will enter a loop and begin
+waiting for requests. When a request is received, a new thread is started to
+manage the processing of the request while the initial thread is left to return
+and continue listening for anything coming in on the client socket. The worker
+thread that is tasked with handling the request will first (on a high level) call
+parse_request to transform the buffer char array (read directly from local socket)
+into a completed request_data struct. Once this is complete it will call
+fulfill_request to manage sending forwarding the request to the server, waiting
+for a response, and finally forwarding the response to the client.
 
+While the process is running the command line window will be constantly updated
+with information pertinent to the status of the execution. For each completed 
+request, a line will be printed with data such as the time taken, the request
+URL, the response size, etc. If there is no request currently being handled, the
+CLI will show an animated line traversing the current line to represent the fact
+that it is idle at this moment.
 
+The following is a simplified trace of a standard use case:
+
+--> main() [received a request]
+    --> parse_request()
+        --> parse_size()
+        --> get_host_port_and_path()
+    --> fulfill_request()
+        --> forward_request_to_remote()
+        --> receive_response_from_remote()
+        --> forward_response_to_client()
  */ 
 
 #include "csapp.h"
@@ -114,13 +140,13 @@ void    set_current_status(const char *input_str);
 void    set_current_status_id(const char *input_str, const int thread_id);
 
 // Misc...
-char*   get_time_string();
 void    init_global_variables();
+char*   get_time_string();
+int     elapsed_time(time_t t1, time_t t2);
+char*   get_spacer_string(const int size);
+char*   shorten_string(const char *input_str, const int new_size);
 int     is_blocked_domain(struct request_data *req_data);
 void    strip_trailing_char(char *source, const char to_remove);
-int     elapsed_time(time_t t1, time_t t2);
-char*   shorten_string(const char *input_str, const int new_size);
-char*   get_spacer_string(const int size);
 
 //////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////
@@ -404,503 +430,6 @@ int fulfill_request(struct request_data *req_data, int client_socket, struct soc
     return response_size; // return the size of response
 }
 
-// Responsible for spinning the loading spinner and pushing updates to CLI,
-// this function is called by the main process and is run in its own thread.
-// While the other worker threads are processing requests or waiting idle, 
-// this thread will continue to update the console window with the current
-// status. If there are no requests being processed it will output an animated
-// line which travels across the bottom line of the console window. If there
-// is a request being processed, it will output the current status and a 
-// spinning pinwheel to signify that it is loading.
-void handle_time_spinner()
-{
-    int time_spin_index = 0; // the state of the time spinner (range [0,3])
-    int waiting_spin_index = 0; // the state of the waiting spinner (range [-bar_distance,max_distance])
-    
-    time_t refresh_seconds = 0; // refresh the waiter/timer after this many seconds
-    
-    typedef struct timespec // struct used to specify how much time to use in nanosleep
-    {
-        time_t tv_sec;
-        long tv_nsec;   
-    } timespec;
-
-    timespec t;
-    t.tv_sec = refresh_seconds;
-    t.tv_nsec = (long)100000000.0; // once per second
-    //t.tv_nsec = (long)20000000.0; // once per second
-
-    int max_distance = 101; // the width to run across for the waiting line 
-    int bar_distance = 3; // the length of the waiting line (5 default)
-    char left_wall[1] = ""; // character to represent left bound of waiting line
-    char right_wall[1] = ""; // character to represent right bound of waiting line
-    char bar_reg_char[1] = "-"; // character used in line ('-----')
-    char empty_reg_char[1] = " "; // character used if line not present
-
-    while(1)
-    {
-        nanosleep(&t,NULL); // sleep for a second
-        printf("%s\r",UI_WIPE[0]); // wipe the display
-        fflush(stdout);
-
-        // if a request is being processed (at any stage) the *ENABLE_TIME_SPINNER will be set to 1
-        // by the main event loop of the worker thread, if this is 1 then we enter the first case below
-        // and output a spinning widget to show that loading is taking place, the CURRENT_STATUS will also
-        // be appended after the spinner which will include some information such as the ID of the
-        // worker thread and the event taking place
-        if (*ENABLE_TIME_SPINNER==1)
-        {
-            char temp_buffer5[300];
-            temp_buffer5[1] = 0;
-
-            // depending in the current state of time_spin_index we will output a different character
-            if (time_spin_index==0){  sprintf(temp_buffer5," ( | )  %s ",CURRENT_STATUS);  }
-            if (time_spin_index==1){  sprintf(temp_buffer5," ( / )  %s ",CURRENT_STATUS);  }
-            if (time_spin_index==2){  sprintf(temp_buffer5," ( - )  %s ",CURRENT_STATUS);  }
-            if (time_spin_index==3){  sprintf(temp_buffer5," ( \\ )  %s ",CURRENT_STATUS); }
-            printf("%s\r",temp_buffer5);
-            fflush(stdout);
-
-            time_spin_index++; // increment time_spin_index
-            if ( time_spin_index>=4 ){  time_spin_index=0;  }
-            continue;
-        }
-
-        if (*ENABLE_TIME_SPINNER==0) // show line that floats across screen to denote waiting
-        {
-            char *temp_buffer5 = malloc(sizeof(char)*300);
-            temp_buffer5[1] = 0;
-            int temp_buffer_index = 0;
-
-            for (int i=0; i<max_distance; i++)
-            {
-                if (i>=(waiting_spin_index) && i<=(waiting_spin_index+(bar_distance)*(0.1*waiting_spin_index)))
-                {
-                    temp_buffer5[temp_buffer_index] = bar_reg_char[0]; // no line at this index
-                    temp_buffer_index++;
-                    temp_buffer5[temp_buffer_index] = 0;
-                }
-                else
-                {
-                    temp_buffer5[temp_buffer_index] = empty_reg_char[0]; // line at this index
-                    temp_buffer_index++;
-                    temp_buffer5[temp_buffer_index] = 0;
-                }
-            }
-            printf("%s%s%s\r",left_wall,temp_buffer5,right_wall);
-            fflush(stdout);
-
-            waiting_spin_index++; // increment waiting spin index
-            if ( waiting_spin_index==max_distance ){  waiting_spin_index=-1*bar_distance;  }
-            continue;
-        }
-    }
-}
-
-// Called from main at the start of the program execution. Initializes global
-// variables which are used across all threads. Also creates file descriptors
-// for all of the .log files which can then, also, be accessed from all threads.
-void init_global_variables()
-{
-    ALREADY_LOGGING_DEBUG_INFO = mmap(NULL,sizeof(int), PROT_READ|PROT_WRITE, MAP_SHARED|MAP_A, -1, 0);
-    *ALREADY_LOGGING_DEBUG_INFO = 0;
-
-    PROXY_LOG = Fopen("proxy.log","w"); // as per instructions
-    DEBUG_LOG = Fopen("debug.log","w"); // logs request-response pairs
-    RESPONSE_LOG = Fopen("response.log","w"); // logs all responses
-    REQUEST_LOG = Fopen("request.log","w"); // logs all requests
-    STATUS_LOG = Fopen("status.log","w"); // logs all status updates
-
-    // variable to hold current status
-    CURRENT_STATUS = mmap(NULL,sizeof(char), PROT_READ|PROT_WRITE, MAP_SHARED|MAP_A,-1,0);
-    set_current_status(" ");
-
-    ENABLE_TIME_SPINNER = mmap(NULL,sizeof(int),PROT_READ|PROT_WRITE, MAP_SHARED|MAP_A, -1, 0);
-    *ENABLE_TIME_SPINNER = 2; // dont show either spinner or waiting line
-}
-
-// Called from the two functions handling current_status updates (set_current_status
-// and set_current_status_id) as well as several other functions which write to .log
-// files and require timestamps. Returns a formatted string (H:M:S) representing
-// the current time.
-char* get_time_string()
-{
-    char *time_str = malloc(sizeof(char)*20);
-    time_t rawtime;
-    struct tm *timeinfo;
-    time(&rawtime);
-    timeinfo = localtime(&rawtime);
-    sprintf(time_str,"%d:%d:%d",timeinfo->tm_hour,timeinfo->tm_min,timeinfo->tm_sec);
-    return time_str;
-}
-
-// Called when a function wants to update the command line with a status update,
-// the actual update won't be processed until the handle_time_spinner function 
-// wakes up but the status update will be written to status.log immediately.
-void set_current_status_id(const char *input_str, const int thread_id)
-{
-    char temp[100];
-    sprintf(temp,"(idx=%d) - %s",thread_id,input_str);
-    strcpy(CURRENT_STATUS,temp);
-    fprintf(STATUS_LOG,"%s\t>%s\n",get_time_string(),temp);
-    fflush(STATUS_LOG);
-}
-
-// Same as set_current_status_id but does not require a thread id number.
-void set_current_status(const char *input_str)
-{
-    strcpy(CURRENT_STATUS,input_str);
-    fprintf(STATUS_LOG,"%s\t>%s\n",get_time_string(),input_str);
-    fflush(STATUS_LOG);
-}
-
-// Called from the main function to get the total time taken by a request.
-// Provided two time_t structs, it computes the difference.
-int elapsed_time(time_t t1, time_t t2)
-{
-    double diff = difftime(t2,t1);
-    return (int)diff;
-}
-
-// Called from the main function after a request has been completed (i.e.
-// the request has been read, sent to server, server responded, response sent
-// to client). Responsible for clearing anything being printed by handle_time_spinner
-// and writing out the details of the request-response communication. Most of the
-// logic in this function is simply to align the items so they fit into the command
-// line window table (set up by init_ui_header).
-void update_cli(struct request_data *req_data, int thread_index, int threads_open, int resp_size, int request_size, int total_time)
-{
-    // initialize some variables to help with printing 
-    printf("%s\r",UI_WIPE[0]);
-    fflush(stdout);
-    int max_host_length = 30;
-    char *req_host_long_shortened = shorten_string(req_data->req_host_long, max_host_length);
-    char *spacer = get_spacer_string(max_host_length-strlen(req_host_long_shortened));
-
-    char spacer_after_response_info[10];
-    if (strlen(req_data->response_code)<=7)
-    {
-        sprintf(spacer_after_response_info,"\t\t");
-    }
-    else
-    {
-        sprintf(spacer_after_response_info,"\t");
-    }
-
-    char size_based_spacer[10];
-    if ( resp_size<100 )
-    {
-        sprintf(size_based_spacer,"     ");
-    }
-    else
-    {
-        sprintf(size_based_spacer," ");
-    }
-
-    if ( strstr(req_data->req_command,"POST")!=NULL )
-    {
-        printf("%d\t(%d workers) > %s %s %s %dB > [%s,%dB] %s%s %d s\n",thread_index,threads_open,req_data->req_command,req_host_long_shortened,spacer,request_size,req_data->response_code,resp_size,size_based_spacer,spacer_after_response_info,total_time);
-    }
-    else
-    {
-        printf("%d\t(%d workers) > %s  %s %s %dB > [%s,%dB] %s%s %d s\n",thread_index,threads_open,req_data->req_command,req_host_long_shortened,spacer,request_size,req_data->response_code,resp_size,size_based_spacer,spacer_after_response_info,total_time);
-    }
-    fflush(stdout);
-}
-
-// Called from update_cli, returns a char array of length 'size' where
-// each item is a space character (" "). This is used to align the table items
-// in the command line window interface.
-char* get_spacer_string(const int size)
-{
-    char *spacer = malloc(sizeof(char)*30);
-    spacer[1] = 0;
-    for(int i=0; i<size; i++)
-    {
-        spacer[i] = ' ';
-    }
-    spacer[size] = 0;
-    return spacer;
-}
-
-// Called from update_cli, returns a copy of input_str but shortened
-// in size to 'new_size' length. Items are trimmed off the right side.
-char* shorten_string(const char *input_str, const int new_size)
-{
-    char *shortened = malloc(sizeof(char)*1024);
-    strcpy(shortened,input_str);
-    shortened[new_size] = 0; // zero-terminate the string
-    return shortened;
-}
-
-// Called from the main function, checks if the domain name being processed currently
-// (req_data->req_host_domain) is in the list of specifically blocked domains (see the
-// global variable blocked_domains at the top of the file). This was used mostly for
-// debugging to allow for blocking of certain-formatted message types to figure out
-// why they weren't being processed correctly.
-int is_blocked_domain(struct request_data *req_data)
-{
-    // iterate over each blocked domain and check if it matches the input domain name
-    for ( int i=0; i<num_blocked_domains; i++)
-    {
-        // we have a match
-        if ( strstr(req_data->req_host_domain,blocked_domains[i])!=NULL ){  return 1; }
-    }
-    return 0; // the domain is not blocked
-}
-
-// Called from the main function at start of program, prints out the header for the table
-// used to align the items which are printed out in update_cli.
-void init_ui_header(const int listening_port, const int listening_socket)
-{
-    printf("\n\n=====================================================================================================\n");
-    printf("=====================================================================================================\n");
-    printf("> Listening: {PORT: %d SOCKET: %d}\n",listening_port,listening_socket);
-    printf("=====================================================================================================\n");
-    printf("[   Thread Info    ][           Client Request Info            ][    Response Info    ][ Total Time ]\n");
-    printf("_____________________________________________________________________________________________________\n");
-    fflush(stdout);
-}
-
-// Called from the main function after a request has been fully processed, writes
-// out request, processed request (request sent to server), and server response to
-// the global debug_log (debug.log file).
-void log_information(const char *buffer,const struct request_data *req_data, const int thread_id)
-{
-    if ( req_data->request_blocked==1 ){  return;  } // skip logging if this request was blocked
-
-    time_t refresh_seconds = 0; // refresh the waiter/timer after this many seconds
-    typedef struct timespec // struct used to specify how much time to use in nanosleep
-    {
-        time_t tv_sec;
-        long tv_nsec;   
-    } timespec;
-    timespec t;
-    t.tv_sec = refresh_seconds;
-    t.tv_nsec = (long)10000.0; // once per second
-
-    while (*ALREADY_LOGGING_DEBUG_INFO==1){  nanosleep(&t,NULL);  }
-
-    *ALREADY_LOGGING_DEBUG_INFO = 1;
-    fprintf(DEBUG_LOG,"\n\n=============================================================\n");
-    fprintf(DEBUG_LOG,"====================REQUEST (thread %d)====================\n",thread_id);
-    fprintf(DEBUG_LOG,"%s",buffer);
-    fprintf(DEBUG_LOG,"\n==================SENT REQUEST [%s]===================\n",req_data->sent_time);
-    if (strcmp(req_data->req_command,"GET")==0) {  fprintf(DEBUG_LOG,"GET %s %s\r\n",req_data->req_host_path,req_data->req_protocol);  }
-    if (strcmp(req_data->req_command,"POST")==0){  fprintf(DEBUG_LOG,"POST %s %s\r\n",req_data->req_host_path,req_data->req_protocol);  }
-    fprintf(DEBUG_LOG,"Host: %s:%s\r\n",req_data->req_host_domain,req_data->req_host_port);
-    fprintf(DEBUG_LOG,"%s",req_data->req_after_host);
-    fprintf(DEBUG_LOG,"\n===================RESPONSE [%s]======================\n",req_data->server_responded_time);
-    for(int i=0; i<req_data->num_lines_response; i++)
-    {   
-        fprintf(DEBUG_LOG,"%s\n",req_data->full_response[i]);
-    }
-    fprintf(DEBUG_LOG,"\n=============================================================\n");
-    fflush(DEBUG_LOG);
-    *ALREADY_LOGGING_DEBUG_INFO = 0;
-}
-
-// Called from the main function (same time frame as log_information), writes out
-// the request in the format specified in assignment (making use of format_log_entry)
-// to the proxy_log global variable (proxy.log file).
-void log_request( struct sockaddr_in *sockaddr,  char *uri,  int size)
-{
-    time_t refresh_seconds = 0; // refresh the waiter/timer after this many seconds
-    typedef struct timespec // struct used to specify how much time to use in nanosleep
-    {
-        time_t tv_sec;
-        long tv_nsec;   
-    } timespec;
-    timespec t;
-    t.tv_sec = refresh_seconds;
-    t.tv_nsec = (long)10000.0; // once per second
-
-    // busy wait until we can get a handle on the proxy.log file
-    while (ALREADY_LOGGING==1){  nanosleep(&t,NULL);  }
-    ALREADY_LOGGING = 1; // tell all other threads to wait
-    char logstring[1024]; // to hold output of format_log_entry
-    format_log_entry((char *)&logstring,sockaddr,uri,size); 
-    fprintf(PROXY_LOG,"%s",logstring); // print out formatted string
-    fprintf(PROXY_LOG,"\n"); // new line
-    fflush(PROXY_LOG);
-    ALREADY_LOGGING = 0; // tell all other threads it's okay to write to proxy.log
-}
-
-/*
- * format_log_entry - Create a formatted log entry in logstring. 
- * 
- * The inputs are the socket address of the requesting client
- * (sockaddr), the URI from the request (uri), and the size in bytes
- * of the response from the server (size).
- */
-void format_log_entry(char *logstring, struct sockaddr_in *sockaddr, char *uri, int size)
-{
-    time_t now;
-    char time_str[MAXLINE];
-    unsigned long host;
-    unsigned char a, b, c, d;
-
-    /* Get a formatted time string */
-    now = time(NULL);
-    strftime(time_str, MAXLINE, "%a %d %b %Y %H:%M:%S %Z", localtime(&now));
-
-    /* 
-     * Convert the IP address in network byte order to dotted decimal
-     * form. Note that we could have used inet_ntoa, but chose not to
-     * because inet_ntoa is a Class 3 thread unsafe function that
-     * returns a pointer to a static variable (Ch 13, CS:APP).
-     */
-    host = ntohl(sockaddr->sin_addr.s_addr);
-    a = host >> 24;
-    b = (host >> 16) & 0xff;
-    c = (host >> 8) & 0xff;
-    d = host & 0xff;
-
-
-    /* Return the formatted log entry string */
-    sprintf(logstring, "%s: %d.%d.%d.%d %s", time_str, a, b, c, d, uri);
-}
-
-// Called from the main function at program launch (so long as the correct) number
-// of arguments are provided, returns the listening port in integer format.
-int parse_listening_port_num(char ** argv)
-{
-    char * port_str = argv[1];
-    int port_num = atoi(port_str);
-    return port_num;
-}
-
-// Called from receive_response_from_remote, the provided buffer is the first buffer
-// read in from the remote-facing socket (first BUFFER_PAGE_WIDTH data read of server response).
-// Parses through the response until it finds the response code (i.e. 200 OK) and sets the
-// response_code element of the input req_data struct equal to said code. If no code is found
-// nothing will be written to req_data but this is handled by the caller by setting it to
-// "NONE" before calling to allow for difference checking to see if there exists a response code.
-void parse_response_code(const char *buffer, struct request_data *req_data)
-{
-    char status_code[100];
-    int status_code_index = 0;
-
-    char protocol_buffer[100];
-    int past_protocol = 0;
-
-    // iterate over first 100 chars in response buffer
-    for (int k=0; k<100; k++)
-    {
-        char current_char = buffer[k];
-
-        if ( past_protocol==1 )
-        {
-            if ( current_char=='\r' ){  break;  }
-            else
-            {
-                status_code[status_code_index] = buffer[k];
-                status_code[status_code_index+1] = 0;
-                status_code_index++;
-            }
-        }
-        else
-        {
-            protocol_buffer[k] = buffer[k];
-            if ( strstr(protocol_buffer,"HTTP/1.1 ")!=NULL ){  past_protocol = 1;  }
-        }
-    }
-    if (status_code_index!=0){  strcpy(req_data->response_code,status_code);  }
-}
-
-// Checks the buffer array for the string 'Content-Length' which is used
-// in http to specify the size of the body of the response. If it is able
-// to find said attribute it will return that value in integer format. If
-// it is not able to find 'Content-Length' than -1 will be returned by default.
-// Called by both parse_request and receive_response_from_remote.
-int parse_size(const char *buffer)
-{
-    char cur_line_buffer[1000];
-    int cur_line_buffer_index = 0;
-
-    char size_buffer[20];
-    int size_buffer_index = 0;
-
-    int on_content_length_line = 0;
-
-    int farthest_possible_content_length_location = 900;
-
-    int i=0;
-    while (1) // iterate over each character in buffer
-    {
-        if ( i>=farthest_possible_content_length_location )
-        {
-            return -1;
-        }
-
-        if ( i>=strlen(buffer) ) // if we have reached the end of buffer string
-        {
-            //printf("\nERROR: parse_request_size(), buffer=%s\ncur_line_buffer=%s\n",buffer,cur_line_buffer);
-            return -1;
-        }
-
-        if (buffer[i]=='\n') // if we have reached the end of a line
-        {
-            if ( on_content_length_line ) // if this is the Content-Length line
-            {
-                int found_space = 0; 
-                for (int j=0; j<strlen(cur_line_buffer); j++) // iterate over characters in Content-Length line
-                {
-                    if ( cur_line_buffer[j]=='\r') // if this is the last character in the line
-                    {
-                        if (found_space)
-                        {
-                            size_buffer[size_buffer_index] = 0;
-                            return atoi(size_buffer); // return the size
-                        }
-                        printf("\rERROR: parse_size(), cur_line_buffer=%s\n",cur_line_buffer);
-                        return -1;
-                    }
-                    if ( found_space ) // if we have already found ' ' after 'Content-Length'
-                    {
-                        size_buffer[size_buffer_index] = cur_line_buffer[j];
-                        size_buffer_index++;
-                        continue;
-                    }
-                    if (cur_line_buffer[j]==' ')
-                    {
-                        found_space = 1;
-                        continue;
-                    }
-                }
-            }
-
-            if ( buffer[0]=='\r') // if the only thing in the buffer is '\r'
-            {
-                return -1; // return false because we have reached the end of header
-            }
-
-            // if the only thing in the buffer wasn't '\r' then we can continue
-            // iterating through the header items individually after clearing cur_line_buffer
-
-            // flush the cur_line_buffer array
-            //memset(&cur_line_buffer[0],0,sizeof(cur_line_buffer));
-            cur_line_buffer[0] = 0;
-            cur_line_buffer_index = 0;
-            i+=1;
-            continue; // skip to the next character
-        }
-
-        // if we get here then we should record the current character into the cur_line_buffer
-        cur_line_buffer[cur_line_buffer_index] = buffer[i];
-        cur_line_buffer[cur_line_buffer_index+1] = 0;
-        cur_line_buffer_index++;
-
-        // if the buffer now contains 'Content-Length' we should set 'on_content_length_line'
-        // to 1 such that, upon reaching the next '\n', we will enter the case above
-        if ( strstr(cur_line_buffer,"Content-Length")!=NULL ) // if this line contains 'Content-Length'
-        {
-            on_content_length_line = 1;
-        }
-        i+=1;
-    }
-}
-
 // Called from fulfill_request after a connection has been established with
 // the remote socket. Forwards the parsed request on to the remote socket.
 // Returns -1 if it was not possible and 1 if success.
@@ -1076,6 +605,245 @@ int forward_response_to_client(struct request_data *req_data, int client_socket)
     return 1;
 }
 
+// Called from the main function (same time frame as log_information), writes out
+// the request in the format specified in assignment (making use of format_log_entry)
+// to the proxy_log global variable (proxy.log file).
+void log_request( struct sockaddr_in *sockaddr,  char *uri,  int size)
+{
+    time_t refresh_seconds = 0; // refresh the waiter/timer after this many seconds
+    typedef struct timespec // struct used to specify how much time to use in nanosleep
+    {
+        time_t tv_sec;
+        long tv_nsec;   
+    } timespec;
+    timespec t;
+    t.tv_sec = refresh_seconds;
+    t.tv_nsec = (long)10000.0; // once per second
+
+    // busy wait until we can get a handle on the proxy.log file
+    while (ALREADY_LOGGING==1){  nanosleep(&t,NULL);  }
+    ALREADY_LOGGING = 1; // tell all other threads to wait
+    char logstring[1024]; // to hold output of format_log_entry
+    format_log_entry((char *)&logstring,sockaddr,uri,size); 
+    fprintf(PROXY_LOG,"%s",logstring); // print out formatted string
+    fprintf(PROXY_LOG,"\n"); // new line
+    fflush(PROXY_LOG);
+    ALREADY_LOGGING = 0; // tell all other threads it's okay to write to proxy.log
+}
+
+// Called from the main function after a request has been fully processed, writes
+// out request, processed request (request sent to server), and server response to
+// the global debug_log (debug.log file).
+void log_information(const char *buffer,const struct request_data *req_data, const int thread_id)
+{
+    if ( req_data->request_blocked==1 ){  return;  } // skip logging if this request was blocked
+
+    time_t refresh_seconds = 0; // refresh the waiter/timer after this many seconds
+    typedef struct timespec // struct used to specify how much time to use in nanosleep
+    {
+        time_t tv_sec;
+        long tv_nsec;   
+    } timespec;
+    timespec t;
+    t.tv_sec = refresh_seconds;
+    t.tv_nsec = (long)10000.0; // once per second
+
+    while (*ALREADY_LOGGING_DEBUG_INFO==1){  nanosleep(&t,NULL);  }
+
+    *ALREADY_LOGGING_DEBUG_INFO = 1;
+    fprintf(DEBUG_LOG,"\n\n=============================================================\n");
+    fprintf(DEBUG_LOG,"====================REQUEST (thread %d)====================\n",thread_id);
+    fprintf(DEBUG_LOG,"%s",buffer);
+    fprintf(DEBUG_LOG,"\n==================SENT REQUEST [%s]===================\n",req_data->sent_time);
+    if (strcmp(req_data->req_command,"GET")==0) {  fprintf(DEBUG_LOG,"GET %s %s\r\n",req_data->req_host_path,req_data->req_protocol);  }
+    if (strcmp(req_data->req_command,"POST")==0){  fprintf(DEBUG_LOG,"POST %s %s\r\n",req_data->req_host_path,req_data->req_protocol);  }
+    fprintf(DEBUG_LOG,"Host: %s:%s\r\n",req_data->req_host_domain,req_data->req_host_port);
+    fprintf(DEBUG_LOG,"%s",req_data->req_after_host);
+    fprintf(DEBUG_LOG,"\n===================RESPONSE [%s]======================\n",req_data->server_responded_time);
+    for(int i=0; i<req_data->num_lines_response; i++)
+    {   
+        fprintf(DEBUG_LOG,"%s\n",req_data->full_response[i]);
+    }
+    fprintf(DEBUG_LOG,"\n=============================================================\n");
+    fflush(DEBUG_LOG);
+    *ALREADY_LOGGING_DEBUG_INFO = 0;
+}
+
+/*
+ * format_log_entry - Create a formatted log entry in logstring. 
+ * 
+ * The inputs are the socket address of the requesting client
+ * (sockaddr), the URI from the request (uri), and the size in bytes
+ * of the response from the server (size).
+ */
+void format_log_entry(char *logstring, struct sockaddr_in *sockaddr, char *uri, int size)
+{
+    time_t now;
+    char time_str[MAXLINE];
+    unsigned long host;
+    unsigned char a, b, c, d;
+
+    /* Get a formatted time string */
+    now = time(NULL);
+    strftime(time_str, MAXLINE, "%a %d %b %Y %H:%M:%S %Z", localtime(&now));
+
+    /* 
+     * Convert the IP address in network byte order to dotted decimal
+     * form. Note that we could have used inet_ntoa, but chose not to
+     * because inet_ntoa is a Class 3 thread unsafe function that
+     * returns a pointer to a static variable (Ch 13, CS:APP).
+     */
+    host = ntohl(sockaddr->sin_addr.s_addr);
+    a = host >> 24;
+    b = (host >> 16) & 0xff;
+    c = (host >> 8) & 0xff;
+    d = host & 0xff;
+
+
+    /* Return the formatted log entry string */
+    sprintf(logstring, "%s: %d.%d.%d.%d %s", time_str, a, b, c, d, uri);
+}
+
+// Called from the main function at program launch (so long as the correct) number
+// of arguments are provided, returns the listening port in integer format.
+int parse_listening_port_num(char ** argv)
+{
+    char * port_str = argv[1];
+    int port_num = atoi(port_str);
+    return port_num;
+}
+
+// Checks the buffer array for the string 'Content-Length' which is used
+// in http to specify the size of the body of the response. If it is able
+// to find said attribute it will return that value in integer format. If
+// it is not able to find 'Content-Length' than -1 will be returned by default.
+// Called by both parse_request and receive_response_from_remote.
+int parse_size(const char *buffer)
+{
+    char cur_line_buffer[1000];
+    int cur_line_buffer_index = 0;
+
+    char size_buffer[20];
+    int size_buffer_index = 0;
+
+    int on_content_length_line = 0;
+
+    int farthest_possible_content_length_location = 900;
+
+    int i=0;
+    while (1) // iterate over each character in buffer
+    {
+        if ( i>=farthest_possible_content_length_location )
+        {
+            return -1;
+        }
+
+        if ( i>=strlen(buffer) ) // if we have reached the end of buffer string
+        {
+            //printf("\nERROR: parse_request_size(), buffer=%s\ncur_line_buffer=%s\n",buffer,cur_line_buffer);
+            return -1;
+        }
+
+        if (buffer[i]=='\n') // if we have reached the end of a line
+        {
+            if ( on_content_length_line ) // if this is the Content-Length line
+            {
+                int found_space = 0; 
+                for (int j=0; j<strlen(cur_line_buffer); j++) // iterate over characters in Content-Length line
+                {
+                    if ( cur_line_buffer[j]=='\r') // if this is the last character in the line
+                    {
+                        if (found_space)
+                        {
+                            size_buffer[size_buffer_index] = 0;
+                            return atoi(size_buffer); // return the size
+                        }
+                        printf("\rERROR: parse_size(), cur_line_buffer=%s\n",cur_line_buffer);
+                        return -1;
+                    }
+                    if ( found_space ) // if we have already found ' ' after 'Content-Length'
+                    {
+                        size_buffer[size_buffer_index] = cur_line_buffer[j];
+                        size_buffer_index++;
+                        continue;
+                    }
+                    if (cur_line_buffer[j]==' ')
+                    {
+                        found_space = 1;
+                        continue;
+                    }
+                }
+            }
+
+            if ( buffer[0]=='\r') // if the only thing in the buffer is '\r'
+            {
+                return -1; // return false because we have reached the end of header
+            }
+
+            // if the only thing in the buffer wasn't '\r' then we can continue
+            // iterating through the header items individually after clearing cur_line_buffer
+
+            // flush the cur_line_buffer array
+            //memset(&cur_line_buffer[0],0,sizeof(cur_line_buffer));
+            cur_line_buffer[0] = 0;
+            cur_line_buffer_index = 0;
+            i+=1;
+            continue; // skip to the next character
+        }
+
+        // if we get here then we should record the current character into the cur_line_buffer
+        cur_line_buffer[cur_line_buffer_index] = buffer[i];
+        cur_line_buffer[cur_line_buffer_index+1] = 0;
+        cur_line_buffer_index++;
+
+        // if the buffer now contains 'Content-Length' we should set 'on_content_length_line'
+        // to 1 such that, upon reaching the next '\n', we will enter the case above
+        if ( strstr(cur_line_buffer,"Content-Length")!=NULL ) // if this line contains 'Content-Length'
+        {
+            on_content_length_line = 1;
+        }
+        i+=1;
+    }
+}
+
+// Called from receive_response_from_remote, the provided buffer is the first buffer
+// read in from the remote-facing socket (first BUFFER_PAGE_WIDTH data read of server response).
+// Parses through the response until it finds the response code (i.e. 200 OK) and sets the
+// response_code element of the input req_data struct equal to said code. If no code is found
+// nothing will be written to req_data but this is handled by the caller by setting it to
+// "NONE" before calling to allow for difference checking to see if there exists a response code.
+void parse_response_code(const char *buffer, struct request_data *req_data)
+{
+    char status_code[100];
+    int status_code_index = 0;
+
+    char protocol_buffer[100];
+    int past_protocol = 0;
+
+    // iterate over first 100 chars in response buffer
+    for (int k=0; k<100; k++)
+    {
+        char current_char = buffer[k];
+
+        if ( past_protocol==1 )
+        {
+            if ( current_char=='\r' ){  break;  }
+            else
+            {
+                status_code[status_code_index] = buffer[k];
+                status_code[status_code_index+1] = 0;
+                status_code_index++;
+            }
+        }
+        else
+        {
+            protocol_buffer[k] = buffer[k];
+            if ( strstr(protocol_buffer,"HTTP/1.1 ")!=NULL ){  past_protocol = 1;  }
+        }
+    }
+    if (status_code_index!=0){  strcpy(req_data->response_code,status_code);  }
+}
+
 // Called from parse_request, parses through req_data->req_host_long to fill in several more
 // items in the req_data struct including req_host_path and req_host_port_num.
 void get_host_path_and_port(struct request_data *req_data)
@@ -1199,6 +967,264 @@ void get_host_path_and_port(struct request_data *req_data)
 
     //printf("\n>> Found path: %s\n",req_data->req_host_path);
     //printf(">> Found port: %s\n",req_data->req_host_port);
+}
+
+// Called from the main function at start of program, prints out the header for the table
+// used to align the items which are printed out in update_cli.
+void init_ui_header(const int listening_port, const int listening_socket)
+{
+    printf("\n\n=====================================================================================================\n");
+    printf("=====================================================================================================\n");
+    printf("> Listening: {PORT: %d SOCKET: %d}\n",listening_port,listening_socket);
+    printf("=====================================================================================================\n");
+    printf("[   Thread Info    ][           Client Request Info            ][    Response Info    ][ Total Time ]\n");
+    printf("_____________________________________________________________________________________________________\n");
+    fflush(stdout);
+}
+
+// Responsible for spinning the loading spinner and pushing updates to CLI,
+// this function is called by the main process and is run in its own thread.
+// While the other worker threads are processing requests or waiting idle, 
+// this thread will continue to update the console window with the current
+// status. If there are no requests being processed it will output an animated
+// line which travels across the bottom line of the console window. If there
+// is a request being processed, it will output the current status and a 
+// spinning pinwheel to signify that it is loading.
+void handle_time_spinner()
+{
+    int time_spin_index = 0; // the state of the time spinner (range [0,3])
+    int waiting_spin_index = 0; // the state of the waiting spinner (range [-bar_distance,max_distance])
+    
+    time_t refresh_seconds = 0; // refresh the waiter/timer after this many seconds
+    
+    typedef struct timespec // struct used to specify how much time to use in nanosleep
+    {
+        time_t tv_sec;
+        long tv_nsec;   
+    } timespec;
+
+    timespec t;
+    t.tv_sec = refresh_seconds;
+    t.tv_nsec = (long)100000000.0; // once per second
+    //t.tv_nsec = (long)20000000.0; // once per second
+
+    int max_distance = 101; // the width to run across for the waiting line 
+    int bar_distance = 3; // the length of the waiting line (5 default)
+    char left_wall[1] = ""; // character to represent left bound of waiting line
+    char right_wall[1] = ""; // character to represent right bound of waiting line
+    char bar_reg_char[1] = "-"; // character used in line ('-----')
+    char empty_reg_char[1] = " "; // character used if line not present
+
+    while(1)
+    {
+        nanosleep(&t,NULL); // sleep for a second
+        printf("%s\r",UI_WIPE[0]); // wipe the display
+        fflush(stdout);
+
+        // if a request is being processed (at any stage) the *ENABLE_TIME_SPINNER will be set to 1
+        // by the main event loop of the worker thread, if this is 1 then we enter the first case below
+        // and output a spinning widget to show that loading is taking place, the CURRENT_STATUS will also
+        // be appended after the spinner which will include some information such as the ID of the
+        // worker thread and the event taking place
+        if (*ENABLE_TIME_SPINNER==1)
+        {
+            char temp_buffer5[300];
+            temp_buffer5[1] = 0;
+
+            // depending in the current state of time_spin_index we will output a different character
+            if (time_spin_index==0){  sprintf(temp_buffer5," ( | )  %s ",CURRENT_STATUS);  }
+            if (time_spin_index==1){  sprintf(temp_buffer5," ( / )  %s ",CURRENT_STATUS);  }
+            if (time_spin_index==2){  sprintf(temp_buffer5," ( - )  %s ",CURRENT_STATUS);  }
+            if (time_spin_index==3){  sprintf(temp_buffer5," ( \\ )  %s ",CURRENT_STATUS); }
+            printf("%s\r",temp_buffer5);
+            fflush(stdout);
+
+            time_spin_index++; // increment time_spin_index
+            if ( time_spin_index>=4 ){  time_spin_index=0;  }
+            continue;
+        }
+
+        if (*ENABLE_TIME_SPINNER==0) // show line that floats across screen to denote waiting
+        {
+            char *temp_buffer5 = malloc(sizeof(char)*300);
+            temp_buffer5[1] = 0;
+            int temp_buffer_index = 0;
+
+            for (int i=0; i<max_distance; i++)
+            {
+                if (i>=(waiting_spin_index) && i<=(waiting_spin_index+(bar_distance)*(0.1*waiting_spin_index)))
+                {
+                    temp_buffer5[temp_buffer_index] = bar_reg_char[0]; // no line at this index
+                    temp_buffer_index++;
+                    temp_buffer5[temp_buffer_index] = 0;
+                }
+                else
+                {
+                    temp_buffer5[temp_buffer_index] = empty_reg_char[0]; // line at this index
+                    temp_buffer_index++;
+                    temp_buffer5[temp_buffer_index] = 0;
+                }
+            }
+            printf("%s%s%s\r",left_wall,temp_buffer5,right_wall);
+            fflush(stdout);
+
+            waiting_spin_index++; // increment waiting spin index
+            if ( waiting_spin_index==max_distance ){  waiting_spin_index=-1*bar_distance;  }
+            continue;
+        }
+    }
+}
+
+// Called from the main function after a request has been completed (i.e.
+// the request has been read, sent to server, server responded, response sent
+// to client). Responsible for clearing anything being printed by handle_time_spinner
+// and writing out the details of the request-response communication. Most of the
+// logic in this function is simply to align the items so they fit into the command
+// line window table (set up by init_ui_header).
+void update_cli(struct request_data *req_data, int thread_index, int threads_open, int resp_size, int request_size, int total_time)
+{
+    // initialize some variables to help with printing 
+    printf("%s\r",UI_WIPE[0]);
+    fflush(stdout);
+    int max_host_length = 30;
+    char *req_host_long_shortened = shorten_string(req_data->req_host_long, max_host_length);
+    char *spacer = get_spacer_string(max_host_length-strlen(req_host_long_shortened));
+
+    char spacer_after_response_info[10];
+    if (strlen(req_data->response_code)<=7)
+    {
+        sprintf(spacer_after_response_info,"\t\t");
+    }
+    else
+    {
+        sprintf(spacer_after_response_info,"\t");
+    }
+
+    char size_based_spacer[10];
+    if ( resp_size<100 )
+    {
+        sprintf(size_based_spacer,"     ");
+    }
+    else
+    {
+        sprintf(size_based_spacer," ");
+    }
+
+    if ( strstr(req_data->req_command,"POST")!=NULL )
+    {
+        printf("%d\t(%d workers) > %s %s %s %dB > [%s,%dB] %s%s %d s\n",thread_index,threads_open,req_data->req_command,req_host_long_shortened,spacer,request_size,req_data->response_code,resp_size,size_based_spacer,spacer_after_response_info,total_time);
+    }
+    else
+    {
+        printf("%d\t(%d workers) > %s  %s %s %dB > [%s,%dB] %s%s %d s\n",thread_index,threads_open,req_data->req_command,req_host_long_shortened,spacer,request_size,req_data->response_code,resp_size,size_based_spacer,spacer_after_response_info,total_time);
+    }
+    fflush(stdout);
+}
+
+// Same as set_current_status_id but does not require a thread id number.
+void set_current_status(const char *input_str)
+{
+    strcpy(CURRENT_STATUS,input_str);
+    fprintf(STATUS_LOG,"%s\t>%s\n",get_time_string(),input_str);
+    fflush(STATUS_LOG);
+}
+
+// Called when a function wants to update the command line with a status update,
+// the actual update won't be processed until the handle_time_spinner function 
+// wakes up but the status update will be written to status.log immediately.
+void set_current_status_id(const char *input_str, const int thread_id)
+{
+    char temp[100];
+    sprintf(temp,"(idx=%d) - %s",thread_id,input_str);
+    strcpy(CURRENT_STATUS,temp);
+    fprintf(STATUS_LOG,"%s\t>%s\n",get_time_string(),temp);
+    fflush(STATUS_LOG);
+}
+
+// Called from main at the start of the program execution. Initializes global
+// variables which are used across all threads. Also creates file descriptors
+// for all of the .log files which can then, also, be accessed from all threads.
+void init_global_variables()
+{
+    ALREADY_LOGGING_DEBUG_INFO = mmap(NULL,sizeof(int), PROT_READ|PROT_WRITE, MAP_SHARED|MAP_A, -1, 0);
+    *ALREADY_LOGGING_DEBUG_INFO = 0;
+
+    PROXY_LOG = Fopen("proxy.log","w"); // as per instructions
+    DEBUG_LOG = Fopen("debug.log","w"); // logs request-response pairs
+    RESPONSE_LOG = Fopen("response.log","w"); // logs all responses
+    REQUEST_LOG = Fopen("request.log","w"); // logs all requests
+    STATUS_LOG = Fopen("status.log","w"); // logs all status updates
+
+    // variable to hold current status
+    CURRENT_STATUS = mmap(NULL,sizeof(char), PROT_READ|PROT_WRITE, MAP_SHARED|MAP_A,-1,0);
+    set_current_status(" ");
+
+    ENABLE_TIME_SPINNER = mmap(NULL,sizeof(int),PROT_READ|PROT_WRITE, MAP_SHARED|MAP_A, -1, 0);
+    *ENABLE_TIME_SPINNER = 2; // dont show either spinner or waiting line
+}
+
+// Called from the two functions handling current_status updates (set_current_status
+// and set_current_status_id) as well as several other functions which write to .log
+// files and require timestamps. Returns a formatted string (H:M:S) representing
+// the current time.
+char* get_time_string()
+{
+    char *time_str = malloc(sizeof(char)*20);
+    time_t rawtime;
+    struct tm *timeinfo;
+    time(&rawtime);
+    timeinfo = localtime(&rawtime);
+    sprintf(time_str,"%d:%d:%d",timeinfo->tm_hour,timeinfo->tm_min,timeinfo->tm_sec);
+    return time_str;
+}
+
+// Called from the main function to get the total time taken by a request.
+// Provided two time_t structs, it computes the difference.
+int elapsed_time(time_t t1, time_t t2)
+{
+    double diff = difftime(t2,t1);
+    return (int)diff;
+}
+
+// Called from update_cli, returns a char array of length 'size' where
+// each item is a space character (" "). This is used to align the table items
+// in the command line window interface.
+char* get_spacer_string(const int size)
+{
+    char *spacer = malloc(sizeof(char)*30);
+    spacer[1] = 0;
+    for(int i=0; i<size; i++)
+    {
+        spacer[i] = ' ';
+    }
+    spacer[size] = 0;
+    return spacer;
+}
+
+// Called from update_cli, returns a copy of input_str but shortened
+// in size to 'new_size' length. Items are trimmed off the right side.
+char* shorten_string(const char *input_str, const int new_size)
+{
+    char *shortened = malloc(sizeof(char)*1024);
+    strcpy(shortened,input_str);
+    shortened[new_size] = 0; // zero-terminate the string
+    return shortened;
+}
+
+// Called from the main function, checks if the domain name being processed currently
+// (req_data->req_host_domain) is in the list of specifically blocked domains (see the
+// global variable blocked_domains at the top of the file). This was used mostly for
+// debugging to allow for blocking of certain-formatted message types to figure out
+// why they weren't being processed correctly.
+int is_blocked_domain(struct request_data *req_data)
+{
+    // iterate over each blocked domain and check if it matches the input domain name
+    for ( int i=0; i<num_blocked_domains; i++)
+    {
+        // we have a match
+        if ( strstr(req_data->req_host_domain,blocked_domains[i])!=NULL ){  return 1; }
+    }
+    return 0; // the domain is not blocked
 }
 
 // Called from parse_request to remove trailing '\r' chars from req_host_domain & req_protocol
