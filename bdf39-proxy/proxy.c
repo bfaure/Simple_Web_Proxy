@@ -162,7 +162,6 @@ int main(int argc, char **argv)
     if (argc != 2) 
     {
         fprintf(stderr, "Usage: %s <port number>\n", argv[0]);
-        Fclose(DEBUG_LOG);
         exit(0);
     }
 
