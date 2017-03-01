@@ -3,18 +3,21 @@
  *
  * Course Name: 14:332:456-Network Centric Programming
  * Assignment 2
- * Student Name:______________________
+ * Student Name: Brian Faure
  * 
  * IMPORTANT: Give a high level description of your code here. You
  * must also provide a header comment at the beginning of each
  * function that describes what that function does.
+
+
+
  */ 
 
 #include "csapp.h"
 #include "time.h"
 
-#define BUFFER_PAGE_WIDTH 4096 // 1024
-#define BUFFER_PAGE_COUNT 100   // 1024
+#define BUFFER_PAGE_WIDTH 4096 // size of each read/write buffer
+#define BUFFER_PAGE_COUNT 100   // maximum number of buffers held in request_data struct
 
 // handle separate naming for Windows, Apple, and Unix machines
 #ifdef _WIN32
@@ -25,46 +28,37 @@
     int MAP_A = MAP_ANONYMOUS;
 #endif
 
+//////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////
+
 FILE *RESPONSE_LOG; // file to log all responses from remote clients
 FILE *REQUEST_LOG; // file to log all requests sent to remote clients
 FILE *STATUS_LOG; // file to write status update to (also sent to current CLI line)
 FILE *DEBUG_LOG; // file to save debugging info to, can be accessed from any function in this file 
 FILE *PROXY_LOG; // file to log each request (as per instructions)
 
-/*
- * Function prototypes
- */
-void format_log_entry(char *logstring, struct sockaddr_in *sockaddr, char *uri, int size);
-
-// if 1, data will be written to debug.log file
-int debugging = 1;
-
 // list of domains I have added to the list to block
-const int num_blocked_domains = 0;
-const char *blocked_domains[1] = {""};
+const int num_blocked_domains = 0; // number of items in list below
+const char *blocked_domains[1] = {""}; // empty (not blocking anything)
 
 // character sequence used to wipe the current line of the terminal
-const char *UI_WIPE[1] = {"                                                                                          "};
+const char *UI_WIPE[1] = {"                                                                                                   "};
 
-char *current_status; // to hold what we are currently processing
+char    *CURRENT_STATUS; // to hold what we are currently processing
+int     PROCESSING_REQUEST = 0; // set to 1 while a request is being processed to prevent concurrency problems
+int     ALREADY_LOGGING = 0; // set to 1 while a request is being written to the proxy.log file
+int     *ALREADY_LOGGING_DEBUG_INFO; // set to 1 while debuggin data is being written
+int     *ENABLE_TIME_SPINNER; // if 0 then show waiting line, 1 show loading spinner, 2 show nothing
 
-// parses the port number from the command line arguments
-int parse_listening_port_num(char ** argv);
-
-int PROCESSING_REQUEST = 0; // set to 1 while a request is being processed to prevent concurrency problems
-int ALREADY_LOGGING = 0; // set to 1 while a request is being written to the proxy.log file
-int *ALREADY_LOGGING_DEBUG_INFO; // set to 1 while debuggin data is being written
-int *ENABLE_TIME_SPINNER; // if 0 then show waiting line, 1 show loading spinner, 2 show nothing
-
-// data structure to hold all essential information pertaining to a request
+// Data structure to hold all essential information pertaining to a request. This is the
+// main vehicle used in the two main processes (parse_request and fulfill_request) to hold
+// and transfer data among functions.
 typedef struct request_data
 {
     char request_buffer[BUFFER_PAGE_WIDTH]; // unparsed, entire contents of client request
     int request_buffer_size; // size of the request_buffer, as reported by socket read
-
     char req_after_host[BUFFER_PAGE_WIDTH]; // portion of request after second line (host specification line)
     int req_after_host_size; // size of the above req_after_host array
-
     int specified_req_size; // the size the client says the request content is (if one)
 
     // certain portions of the request, parsed out to help with forwarding
@@ -90,85 +84,65 @@ typedef struct request_data
 
 } request_data;
 
-// parses through received request and fills in the above variables
-char* parse_request(struct request_data *req_data, char *buffer);
+//////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////
+// see comments above function definitions for more detail
 
-// called after parse_request
-int fulfill_request(struct request_data *req_data, int client_socket, struct sockaddr_in client_addr);
+// Request Handling...
+char*   parse_request(struct request_data *req_data, char *buffer);
+int     fulfill_request(struct request_data *req_data, int client_socket, struct sockaddr_in client_addr);
+int     forward_request_to_remote(struct request_data *req_data, int remotefd);
+int     receive_response_from_remote(struct request_data *req_data, int remotefd);
+int     forward_response_to_client(struct request_data *req_data, int client_socket);
 
-// count the number of occurrences of target in input
-int get_match_count(const char *input, const char *target);
+// Logging...
+void    log_request( struct sockaddr_in *sockaddr,  char *uri,  int size);
+void    log_information(const char *buffer, const struct request_data *req_data, const int thread_id);
+void    format_log_entry(char *logstring, struct sockaddr_in *sockaddr, char *uri, int size);
 
-// remove trailing to_remove from the end of source (if exists)
-void strip_trailing_char(char *source, const char to_remove);
+// HTTP Parsing Utilities...
+int     parse_listening_port_num(char ** argv);
+int     parse_size(const char *buffer);
+void    parse_response_code(const char *buffer, struct request_data *req_data);
+void    get_host_path_and_port(struct request_data *req_data);
 
-// apply any changes we need to data before signaling to DNS
-void fix_data(struct request_data *req_data);
+// Command-Line Interface management...
+void    init_ui_header(const int listening_port, const int listening_socket);
+void    handle_time_spinner();
+void    update_cli(struct request_data *req_data, int thread_index, int threads_open, int resp_size, int request_size, int total_time);
+void    set_current_status(const char *input_str);
+void    set_current_status_id(const char *input_str, const int thread_id);
 
-// get the path (after the domain name in the URL)
-void get_host_path_and_port(struct request_data *req_data);
+// Misc...
+char*   get_time_string();
+void    init_global_variables();
+int     is_blocked_domain(struct request_data *req_data);
+void    strip_trailing_char(char *source, const char to_remove);
+int     elapsed_time(time_t t1, time_t t2);
+char*   shorten_string(const char *input_str, const int new_size);
+char*   get_spacer_string(const int size);
 
-// logs a request to the proxy.log file
-void log_request( struct sockaddr_in *sockaddr,  char *uri,  int size);
+//////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////
 
-// log debugging information
-void log_information(const char *buffer, const struct request_data *req_data, const int thread_id);
-
-// initialize the header lines of the table for the CLI
-void init_ui_header(const int listening_port, const int listening_socket);
-
-// check if input is in the list of blocked domains (blocked_domains)
-int is_blocked_domain(struct request_data *req_data);
-
-// returns a shorter version of the input string
-char* shorten_string(const char *input_str, const int new_size);
-
-// returns a char array of spaces (" ") of length 'size' (must be < 30)
-char* get_spacer_string(const int size);
-
-// prints out the current state of the process
-void update_cli(struct request_data *req_data, int thread_index, int threads_open, int resp_size, int request_size, int total_time);
-
-// parses the response code (e.g. 200 OK) from the server response
-void parse_response_code(const char *buffer, struct request_data *req_data);
-
-// get the elapsed time between two intervals (clock() inputs)
-long elapsed_time(clock_t t1, clock_t t2);
-
-// get the elapsed time between two intervals (time() inputs, threadsafe)
-int elapsed_time2(time_t t1, time_t t2);
-
-// sets the global variable current_status
-void set_current_status(const char *input_str);
-
-// sets the global variable current_status and appends the threadid
-void set_current_status_id(const char *input_str, const int thread_id);
-
-// get a formatted string representing the current time (H:M:S)
-char* get_time_string();
-
-// initialize global, cross-thread variables
-void init_global_variables();
-
-// controls the UI time spinner (during loading and waiting)
-void handle_time_spinner();
-
-/* 
- * main - Main routine for the proxy program 
- */
+// Called when the program is run from the command line. Initializes
+// global variables, opens connection to provided port and listens until
+// a request is sent. Once a request is received a new thread is created
+// using Fork() to process the request while the parent thread returns to
+// keep listening to the port for another request.
 int main(int argc, char **argv)
 {
-    init_global_variables();    // initialize cross-thread global variables
-
-    if (Fork() == 0){  handle_time_spinner();  } // start the time spinner thread
-    
     /* Check arguments */
     if (argc != 2) 
     {
-	    fprintf(stderr, "Usage: %s <port number>\n", argv[0]);
+        fprintf(stderr, "Usage: %s <port number>\n", argv[0]);
         Fclose(DEBUG_LOG);
-	    exit(0);
+        exit(0);
     }
+
+    init_global_variables();    // initialize cross-thread global variables
+
+    if (Fork() == 0){  handle_time_spinner();  } // start the time spinner thread
 
     int listening_port      = parse_listening_port_num(argv); // parse the listening port number
     int listening_socket    = Open_listenfd(listening_port); // initialize the listening socket
@@ -176,7 +150,7 @@ int main(int argc, char **argv)
     init_ui_header(listening_port,listening_socket); // draw out the table header for the CLI
     *ENABLE_TIME_SPINNER = 0; // start the waiting line
     
-    // initialize cross-thread variables...
+    // initialize variables used across worker threads
     int *thread_ct  = mmap(NULL,sizeof(int), PROT_READ|PROT_WRITE, MAP_SHARED|MAP_A, -1, 0);
     *thread_ct      = 0; // unique id for each thread (thread index)
 
@@ -249,7 +223,7 @@ int main(int argc, char **argv)
                 // record the end time of the request
                 time_t t2;
                 time(&t2);
-                int request_time = elapsed_time2(t1,t2);
+                int request_time = elapsed_time(t1,t2);
 
                 // update the command line interface UI
                 update_cli(&req_data,req_data.thread_id,*threads_open,resp_size,request_size,request_time);
@@ -260,12 +234,8 @@ int main(int argc, char **argv)
                 {
                     // log the request as per Sakai pdf
                     log_request((struct sockaddr_in*)&client_addr,uri,resp_size);
-
-                    if (debugging==1)
-                    {
-                        // print out additional information (debugging)
-                        log_information(buffer,&req_data,req_data.thread_id);
-                    }
+                    // print out additional information (debugging)
+                    log_information(buffer,&req_data,req_data.thread_id);
                 }
                 
                 *threads_open = *threads_open - 1;
@@ -300,8 +270,148 @@ int main(int argc, char **argv)
     exit(0);
 }
 
-// responsible for spinning the loading spinner and pushing updates to CLI,
-// this function is called by the main process and is run in its own thread
+// Called from the main function directly after a request has been read from the
+// client. At this point the buffer contains the full request and the main job of
+// this function is to parse through said request and fill in certain items of the
+// req_data struct such as req_command (i.e. POST, GET), req_host_long (the URI),
+// req_protocol (i.e. http/1.1), and req_host_domain. Returns the URL of the request.
+char* parse_request(struct request_data *req_data, char *buffer)
+{
+    set_current_status_id("Parsing request",req_data->thread_id); // update CLI and write to status.log
+
+    int content_size = parse_size(buffer); // check if 'Content-Length' is in the request
+    if ( content_size!=-1 ) // if a size is specified
+    {
+        req_data->specified_req_size = content_size;
+        char *temp_buffer = malloc(sizeof(char)*50); 
+        sprintf(temp_buffer,"Found request size (%d)",req_data->specified_req_size);
+        set_current_status_id(temp_buffer,req_data->thread_id); // update CLI and write to status.log
+    }
+    // if there is no 'Content-Length' specified in request
+    else{   set_current_status_id("No request size",req_data->thread_id);  }
+
+    // copy over the request to a new char array so we can use strtok_r without
+    // effecting the copy in the req_data struct
+    char buffer_copy[req_data->request_buffer_size];
+    memcpy(buffer_copy,req_data->request_buffer,req_data->request_buffer_size);
+
+    // split the buffer_copy into lines (split on '\n')
+    char *end_str;
+    char *line = strtok_r(buffer_copy,"\n",&end_str);
+
+    int line_index = 0; // to hold the index of the current line in overall request
+
+    // each iteration of while loop looks at a single line of the request (held in buffer_copy),
+    // for the first two lines we will parse and save the data we need whereas for everything
+    // past that point we will just save into the req_data req_after_host buffer
+    while (line != NULL)
+    {
+        if (line_index<=1)
+        {
+            // if either the first or second line we will parse through each word 
+            // individually to gather the data we need to establish the connection
+            // with the remote server when we forward the request
+            char *end_token; 
+            char *word = strtok_r(line," ",&end_token); // split line on " " space character
+
+            int word_index = 0;
+            while (word != NULL)
+            {
+                // Iterate over each word in line
+                if (line_index==0 && word_index==0){  strcpy(req_data->req_command,word);  }
+                if (line_index==0 && word_index==1){  strcpy(req_data->req_host_long,word);  }
+                if (line_index==0 && word_index==2){  strcpy(req_data->req_protocol,word);  }
+                if (line_index==1 && word_index==1){  strcpy(req_data->req_host_domain,word);  }
+
+                word = strtok_r(NULL," ",&end_token);
+                word_index++;
+            }
+        }
+
+        if (line_index==1)
+        {
+            // if this is the second line then we want to exit (we have all the data we need)
+            // and save the rest of the data into the first spot in the req_after_host array
+            // in the req_data struct
+
+            char *delim = strstr(req_data->request_buffer,"\r\n\r\n"); // separator between header and body of request
+            int delim_index = (int)(delim-req_data->request_buffer); // get index of separator
+            int delim_size = 4; // size of '\r\n\r\n'
+
+            int post_delim_data_size = req_data->request_buffer_size-delim_index-delim_size; // get size of body of request
+
+            // now we need to get the size of the request prior to the third line (the size of the first 2 lines)
+            char *first_line_CRENDL = strstr(req_data->request_buffer,"\r\n"); 
+            char *second_line_CRENDL = strstr(first_line_CRENDL+4,"\r\n"); // end of second line
+
+            int start_snip = (int)(second_line_CRENDL - req_data->request_buffer)+2; // end of second line
+            int snip_length = (int)(req_data->request_buffer_size - start_snip); // until end of body of request
+
+            char *temp_buffer2 = malloc(400);
+            sprintf(temp_buffer2,"Content-Length (request) = %d, snip length = %d",post_delim_data_size,snip_length);
+            set_current_status_id(temp_buffer2,req_data->thread_id); // update CLI and write to status.log
+
+            // copy everything after the first two lines into the req_after_host member of req_data
+            memcpy(req_data->req_after_host,&req_data->request_buffer[start_snip],snip_length);
+            req_data->req_after_host_size = snip_length; // set the correct size of everything after the 1st 2 lines
+            break;
+        }
+        line = strtok_r(NULL,"\n",&end_str); // get next line of request
+        line_index++;
+    }
+
+    strip_trailing_char(req_data->req_host_domain,'\r'); // remove '\r' from domain name
+    strip_trailing_char(req_data->req_protocol,'\r'); // remove '\r' from the protocol type
+    get_host_path_and_port(req_data); // get the path specified in the URL (after the domain name) & the port (if one)
+
+    set_current_status_id("Finished parsing request",req_data->thread_id);
+    return req_data->req_host_long; // return the URI (long URL)
+}
+
+// Called from the main function after the request has been fully parsed using
+// parse_request. Calls forward_request_to_remote to handle the forwarding of the 
+// request to the server, after which it will call receive_response_from_remote to 
+// handle the parsing of the server response and finally forward_response_to_client 
+// to forward on this response to the local client (web browser).
+int fulfill_request(struct request_data *req_data, int client_socket, struct sockaddr_in client_addr)
+{
+    set_current_status_id("Connecting to remote socket",req_data->thread_id); // update CLI and status.log file
+    int remotefd = Open_clientfd(req_data->req_host_domain,req_data->req_host_port_num); // try to open socket on remote machine
+
+    int send_success = forward_request_to_remote(req_data,remotefd); // send the request to remote machine
+
+    if (send_success == -1) // if we were not able to send the request
+    {
+        set_current_status_id("Could not connect to remote",req_data->thread_id);
+        Sleep(1); // allow time for writing to log
+        close(client_socket); // close connection to client
+        close(remotefd); // close attempted connection to remote
+        exit(0); // exit the thread
+    }
+
+    int response_size = receive_response_from_remote(req_data,remotefd); // get the response from the remote machine
+    set_current_status_id("Forwarding response to client",req_data->thread_id); // update CLI and status.log file
+
+    int forwarding_success = forward_response_to_client(req_data,client_socket); // forward to response to client
+    if (forwarding_success == -1) // if we were not able to forward the response
+    {
+        set_current_status_id("Could not forward response to client",req_data->thread_id);
+        Sleep(1); // allow time for writing to log
+        close(client_socket); // close connection to client
+        close(remotefd); // close attempted connection to remote
+        exit(0); // exit the thread 
+    }
+    return response_size; // return the size of response
+}
+
+// Responsible for spinning the loading spinner and pushing updates to CLI,
+// this function is called by the main process and is run in its own thread.
+// While the other worker threads are processing requests or waiting idle, 
+// this thread will continue to update the console window with the current
+// status. If there are no requests being processed it will output an animated
+// line which travels across the bottom line of the console window. If there
+// is a request being processed, it will output the current status and a 
+// spinning pinwheel to signify that it is loading.
 void handle_time_spinner()
 {
     int time_spin_index = 0; // the state of the time spinner (range [0,3])
@@ -318,9 +428,10 @@ void handle_time_spinner()
     timespec t;
     t.tv_sec = refresh_seconds;
     t.tv_nsec = (long)100000000.0; // once per second
+    //t.tv_nsec = (long)20000000.0; // once per second
 
     int max_distance = 101; // the width to run across for the waiting line 
-    int bar_distance = 5; // the length of the waiting line
+    int bar_distance = 3; // the length of the waiting line (5 default)
     char left_wall[1] = ""; // character to represent left bound of waiting line
     char right_wall[1] = ""; // character to represent right bound of waiting line
     char bar_reg_char[1] = "-"; // character used in line ('-----')
@@ -334,7 +445,7 @@ void handle_time_spinner()
 
         // if a request is being processed (at any stage) the *ENABLE_TIME_SPINNER will be set to 1
         // by the main event loop of the worker thread, if this is 1 then we enter the first case below
-        // and output a spinning widget to show that loading is taking place, the current_status will also
+        // and output a spinning widget to show that loading is taking place, the CURRENT_STATUS will also
         // be appended after the spinner which will include some information such as the ID of the
         // worker thread and the event taking place
         if (*ENABLE_TIME_SPINNER==1)
@@ -343,10 +454,10 @@ void handle_time_spinner()
             temp_buffer5[1] = 0;
 
             // depending in the current state of time_spin_index we will output a different character
-            if (time_spin_index==0){  sprintf(temp_buffer5," ( | )  %s ",current_status);  }
-            if (time_spin_index==1){  sprintf(temp_buffer5," ( / )  %s ",current_status);  }
-            if (time_spin_index==2){  sprintf(temp_buffer5," ( - )  %s ",current_status);  }
-            if (time_spin_index==3){  sprintf(temp_buffer5," ( \\ )  %s ",current_status); }
+            if (time_spin_index==0){  sprintf(temp_buffer5," ( | )  %s ",CURRENT_STATUS);  }
+            if (time_spin_index==1){  sprintf(temp_buffer5," ( / )  %s ",CURRENT_STATUS);  }
+            if (time_spin_index==2){  sprintf(temp_buffer5," ( - )  %s ",CURRENT_STATUS);  }
+            if (time_spin_index==3){  sprintf(temp_buffer5," ( \\ )  %s ",CURRENT_STATUS); }
             printf("%s\r",temp_buffer5);
             fflush(stdout);
 
@@ -363,7 +474,7 @@ void handle_time_spinner()
 
             for (int i=0; i<max_distance; i++)
             {
-                if (i>=waiting_spin_index && i<=(waiting_spin_index+bar_distance))
+                if (i>=(waiting_spin_index) && i<=(waiting_spin_index+(bar_distance)*(0.1*waiting_spin_index)))
                 {
                     temp_buffer5[temp_buffer_index] = bar_reg_char[0]; // no line at this index
                     temp_buffer_index++;
@@ -386,7 +497,9 @@ void handle_time_spinner()
     }
 }
 
-// initialize global, cross-thread variables
+// Called from main at the start of the program execution. Initializes global
+// variables which are used across all threads. Also creates file descriptors
+// for all of the .log files which can then, also, be accessed from all threads.
 void init_global_variables()
 {
     ALREADY_LOGGING_DEBUG_INFO = mmap(NULL,sizeof(int), PROT_READ|PROT_WRITE, MAP_SHARED|MAP_A, -1, 0);
@@ -399,14 +512,17 @@ void init_global_variables()
     STATUS_LOG = Fopen("status.log","w"); // logs all status updates
 
     // variable to hold current status
-    current_status = mmap(NULL,sizeof(char), PROT_READ|PROT_WRITE, MAP_SHARED|MAP_A,-1,0);
+    CURRENT_STATUS = mmap(NULL,sizeof(char), PROT_READ|PROT_WRITE, MAP_SHARED|MAP_A,-1,0);
     set_current_status(" ");
 
     ENABLE_TIME_SPINNER = mmap(NULL,sizeof(int),PROT_READ|PROT_WRITE, MAP_SHARED|MAP_A, -1, 0);
     *ENABLE_TIME_SPINNER = 2; // dont show either spinner or waiting line
 }
 
-// get a formatted string representing the current time (H:M:S)
+// Called from the two functions handling current_status updates (set_current_status
+// and set_current_status_id) as well as several other functions which write to .log
+// files and require timestamps. Returns a formatted string (H:M:S) representing
+// the current time.
 char* get_time_string()
 {
     char *time_str = malloc(sizeof(char)*20);
@@ -418,51 +534,51 @@ char* get_time_string()
     return time_str;
 }
 
-// sets the global variable current_status and appends the threadid
+// Called when a function wants to update the command line with a status update,
+// the actual update won't be processed until the handle_time_spinner function 
+// wakes up but the status update will be written to status.log immediately.
 void set_current_status_id(const char *input_str, const int thread_id)
 {
     char temp[100];
     sprintf(temp,"(idx=%d) - %s",thread_id,input_str);
-    strcpy(current_status,temp);
+    strcpy(CURRENT_STATUS,temp);
     fprintf(STATUS_LOG,"%s\t>%s\n",get_time_string(),temp);
     fflush(STATUS_LOG);
 }
 
-// sets the global variable current_status
+// Same as set_current_status_id but does not require a thread id number.
 void set_current_status(const char *input_str)
 {
-    strcpy(current_status,input_str);
+    strcpy(CURRENT_STATUS,input_str);
     fprintf(STATUS_LOG,"%s\t>%s\n",get_time_string(),input_str);
     fflush(STATUS_LOG);
 }
 
-// get the elapsed time between two intervals (time() inputs, threadsafe)
-int elapsed_time2(time_t t1, time_t t2)
+// Called from the main function to get the total time taken by a request.
+// Provided two time_t structs, it computes the difference.
+int elapsed_time(time_t t1, time_t t2)
 {
     double diff = difftime(t2,t1);
     return (int)diff;
 }
 
-// get the elapsed time between two intervals (clock() inputs)
-long elapsed_time(clock_t t1, clock_t t2)
-{
-    long elapsed;
-    elapsed = ((double)t2 - (double)t1) / CLOCKS_PER_SEC * 1000;
-    return elapsed;
-}
-
-// prints out the current state of the process to the CLI
+// Called from the main function after a request has been completed (i.e.
+// the request has been read, sent to server, server responded, response sent
+// to client). Responsible for clearing anything being printed by handle_time_spinner
+// and writing out the details of the request-response communication. Most of the
+// logic in this function is simply to align the items so they fit into the command
+// line window table (set up by init_ui_header).
 void update_cli(struct request_data *req_data, int thread_index, int threads_open, int resp_size, int request_size, int total_time)
 {
     // initialize some variables to help with printing 
-    //printf("                    \r"); // clear the spinner from the command line
     printf("%s\r",UI_WIPE[0]);
+    fflush(stdout);
     int max_host_length = 30;
     char *req_host_long_shortened = shorten_string(req_data->req_host_long, max_host_length);
     char *spacer = get_spacer_string(max_host_length-strlen(req_host_long_shortened));
 
     char spacer_after_response_info[10];
-    if (strlen(req_data->response_code)<=6)
+    if (strlen(req_data->response_code)<=7)
     {
         sprintf(spacer_after_response_info,"\t\t");
     }
@@ -474,7 +590,7 @@ void update_cli(struct request_data *req_data, int thread_index, int threads_ope
     char size_based_spacer[10];
     if ( resp_size<100 )
     {
-        sprintf(size_based_spacer,"   ");
+        sprintf(size_based_spacer,"     ");
     }
     else
     {
@@ -483,19 +599,20 @@ void update_cli(struct request_data *req_data, int thread_index, int threads_ope
 
     if ( strstr(req_data->req_command,"POST")!=NULL )
     {
-        printf("%d\t(%d workers) > %s %s %s %dB > [%s,%dB] %s%s %d s\n",thread_index,threads_open,req_data->req_command,req_host_long_shortened,spacer,request_size,req_data->response_code,resp_size,spacer_after_response_info,size_based_spacer,total_time);
+        printf("%d\t(%d workers) > %s %s %s %dB > [%s,%dB] %s%s %d s\n",thread_index,threads_open,req_data->req_command,req_host_long_shortened,spacer,request_size,req_data->response_code,resp_size,size_based_spacer,spacer_after_response_info,total_time);
     }
     else
     {
-        printf("%d\t(%d workers) > %s  %s %s %dB > [%s,%dB] %s%s %d s\n",thread_index,threads_open,req_data->req_command,req_host_long_shortened,spacer,request_size,req_data->response_code,resp_size,spacer_after_response_info,size_based_spacer,total_time);
+        printf("%d\t(%d workers) > %s  %s %s %dB > [%s,%dB] %s%s %d s\n",thread_index,threads_open,req_data->req_command,req_host_long_shortened,spacer,request_size,req_data->response_code,resp_size,size_based_spacer,spacer_after_response_info,total_time);
     }
     fflush(stdout);
 }
 
-// returns a char array of spaces (" ") of length 'size' (must be < 30)
+// Called from update_cli, returns a char array of length 'size' where
+// each item is a space character (" "). This is used to align the table items
+// in the command line window interface.
 char* get_spacer_string(const int size)
 {
-    //char spacer[30] = " ";
     char *spacer = malloc(sizeof(char)*30);
     spacer[1] = 0;
     for(int i=0; i<size; i++)
@@ -506,7 +623,8 @@ char* get_spacer_string(const int size)
     return spacer;
 }
 
-// returns a shorter version of the input string
+// Called from update_cli, returns a copy of input_str but shortened
+// in size to 'new_size' length. Items are trimmed off the right side.
 char* shorten_string(const char *input_str, const int new_size)
 {
     char *shortened = malloc(sizeof(char)*1024);
@@ -515,7 +633,11 @@ char* shorten_string(const char *input_str, const int new_size)
     return shortened;
 }
 
-// check if the domain name of the req_data struct is in the list of blocked domains
+// Called from the main function, checks if the domain name being processed currently
+// (req_data->req_host_domain) is in the list of specifically blocked domains (see the
+// global variable blocked_domains at the top of the file). This was used mostly for
+// debugging to allow for blocking of certain-formatted message types to figure out
+// why they weren't being processed correctly.
 int is_blocked_domain(struct request_data *req_data)
 {
     // iterate over each blocked domain and check if it matches the input domain name
@@ -527,7 +649,8 @@ int is_blocked_domain(struct request_data *req_data)
     return 0; // the domain is not blocked
 }
 
-// print out the header lines for the CLI UI table
+// Called from the main function at start of program, prints out the header for the table
+// used to align the items which are printed out in update_cli.
 void init_ui_header(const int listening_port, const int listening_socket)
 {
     printf("\n\n=====================================================================================================\n");
@@ -539,7 +662,9 @@ void init_ui_header(const int listening_port, const int listening_socket)
     fflush(stdout);
 }
 
-// log debugging information
+// Called from the main function after a request has been fully processed, writes
+// out request, processed request (request sent to server), and server response to
+// the global debug_log (debug.log file).
 void log_information(const char *buffer,const struct request_data *req_data, const int thread_id)
 {
     if ( req_data->request_blocked==1 ){  return;  } // skip logging if this request was blocked
@@ -564,29 +689,20 @@ void log_information(const char *buffer,const struct request_data *req_data, con
     if (strcmp(req_data->req_command,"GET")==0) {  fprintf(DEBUG_LOG,"GET %s %s\r\n",req_data->req_host_path,req_data->req_protocol);  }
     if (strcmp(req_data->req_command,"POST")==0){  fprintf(DEBUG_LOG,"POST %s %s\r\n",req_data->req_host_path,req_data->req_protocol);  }
     fprintf(DEBUG_LOG,"Host: %s:%s\r\n",req_data->req_host_domain,req_data->req_host_port);
-    /*
-    for(int i=0; i<req_data->num_lines_after_host; i++)
-    {
-        fprintf(DEBUG_LOG,"%s",req_data->req_after_host[i]);
-    }
-    */
     fprintf(DEBUG_LOG,"%s",req_data->req_after_host);
-
     fprintf(DEBUG_LOG,"\n===================RESPONSE [%s]======================\n",req_data->server_responded_time);
-    int calculated_size = 0;
     for(int i=0; i<req_data->num_lines_response; i++)
     {   
         fprintf(DEBUG_LOG,"%s\n",req_data->full_response[i]);
-        calculated_size += sizeof(req_data->full_response[i]);
     }
-    //fprintf(DEBUG_LOG,"Calculated size = %d",calculated_size/4);
     fprintf(DEBUG_LOG,"\n=============================================================\n");
     fflush(DEBUG_LOG);
     *ALREADY_LOGGING_DEBUG_INFO = 0;
 }
 
-// log a single request in the format specified in Sakai pdf (using the 
-// format_log_entry function to format data & writing to proxy.log)
+// Called from the main function (same time frame as log_information), writes out
+// the request in the format specified in assignment (making use of format_log_entry)
+// to the proxy_log global variable (proxy.log file).
 void log_request( struct sockaddr_in *sockaddr,  char *uri,  int size)
 {
     time_t refresh_seconds = 0; // refresh the waiter/timer after this many seconds
@@ -645,7 +761,8 @@ void format_log_entry(char *logstring, struct sockaddr_in *sockaddr, char *uri, 
     sprintf(logstring, "%s: %d.%d.%d.%d %s", time_str, a, b, c, d, uri);
 }
 
-// parses out the port number and returns it as an integer
+// Called from the main function at program launch (so long as the correct) number
+// of arguments are provided, returns the listening port in integer format.
 int parse_listening_port_num(char ** argv)
 {
     char * port_str = argv[1];
@@ -653,7 +770,12 @@ int parse_listening_port_num(char ** argv)
     return port_num;
 }
 
-// parses the response code (e.g. 200 OK) from the server response
+// Called from receive_response_from_remote, the provided buffer is the first buffer
+// read in from the remote-facing socket (first BUFFER_PAGE_WIDTH data read of server response).
+// Parses through the response until it finds the response code (i.e. 200 OK) and sets the
+// response_code element of the input req_data struct equal to said code. If no code is found
+// nothing will be written to req_data but this is handled by the caller by setting it to
+// "NONE" before calling to allow for difference checking to see if there exists a response code.
 void parse_response_code(const char *buffer, struct request_data *req_data)
 {
     char status_code[100];
@@ -686,10 +808,12 @@ void parse_response_code(const char *buffer, struct request_data *req_data)
     if (status_code_index!=0){  strcpy(req_data->response_code,status_code);  }
 }
 
-// parses the specified response size (Content-Length), if one, returns
-// 1 if it finds a specified size and sets req_data->specified_resp_size 
-// equal to it, returns 0 if none found
-int parse_response_size(const char *buffer, struct request_data *req_data)
+// Checks the buffer array for the string 'Content-Length' which is used
+// in http to specify the size of the body of the response. If it is able
+// to find said attribute it will return that value in integer format. If
+// it is not able to find 'Content-Length' than -1 will be returned by default.
+// Called by both parse_request and receive_response_from_remote.
+int parse_size(const char *buffer)
 {
     char cur_line_buffer[1000];
     int cur_line_buffer_index = 0;
@@ -706,13 +830,13 @@ int parse_response_size(const char *buffer, struct request_data *req_data)
     {
         if ( i>=farthest_possible_content_length_location )
         {
-            return 0;
+            return -1;
         }
 
         if ( i>=strlen(buffer) ) // if we have reached the end of buffer string
         {
             //printf("\nERROR: parse_request_size(), buffer=%s\ncur_line_buffer=%s\n",buffer,cur_line_buffer);
-            return 0;
+            return -1;
         }
 
         if (buffer[i]=='\n') // if we have reached the end of a line
@@ -727,11 +851,10 @@ int parse_response_size(const char *buffer, struct request_data *req_data)
                         if (found_space)
                         {
                             size_buffer[size_buffer_index] = 0;
-                            req_data->specified_resp_size = atoi(size_buffer);
-                            return 1;
+                            return atoi(size_buffer); // return the size
                         }
-                        printf("\rERROR: parse_response_size(), cur_line_buffer=%s\n",cur_line_buffer);
-                        return 0;
+                        printf("\rERROR: parse_size(), cur_line_buffer=%s\n",cur_line_buffer);
+                        return -1;
                     }
                     if ( found_space ) // if we have already found ' ' after 'Content-Length'
                     {
@@ -749,7 +872,7 @@ int parse_response_size(const char *buffer, struct request_data *req_data)
 
             if ( buffer[0]=='\r') // if the only thing in the buffer is '\r'
             {
-                return 0; // return false because we have reached the end of header
+                return -1; // return false because we have reached the end of header
             }
 
             // if the only thing in the buffer wasn't '\r' then we can continue
@@ -778,8 +901,9 @@ int parse_response_size(const char *buffer, struct request_data *req_data)
     }
 }
 
-// called from fulfill_request
-// 
+// Called from fulfill_request after a connection has been established with
+// the remote socket. Forwards the parsed request on to the remote socket.
+// Returns -1 if it was not possible and 1 if success.
 int forward_request_to_remote(struct request_data *req_data, int remotefd)
 {
     strcpy(req_data->sent_time, get_time_string()); // record the time we started to send data to remote
@@ -806,8 +930,9 @@ int forward_request_to_remote(struct request_data *req_data, int remotefd)
     return 1; // denote success
 }
 
-// called from fulfill_request
-//
+// Called from fulfill_request after the request has been forwarded to the
+// remote socket. Reads in the response from the server and returns the total
+// size of the message received.
 int receive_response_from_remote(struct request_data *req_data, int remotefd)
 {
     char buffer[BUFFER_PAGE_WIDTH];
@@ -842,9 +967,10 @@ int receive_response_from_remote(struct request_data *req_data, int remotefd)
             set_current_status_id("Got first response",req_data->thread_id);
             parse_response_code(buffer,req_data);
 
-            int has_response_size = parse_response_size(buffer,req_data);
-            if (has_response_size)
+            int response_size = parse_size(buffer);
+            if ( response_size != -1)
             {
+                req_data->specified_resp_size = response_size;
                 char *temp_buffer = malloc(sizeof(char)*50);
                 sprintf(temp_buffer,"Found response size (%d)",req_data->specified_resp_size);
                 set_current_status_id(temp_buffer,req_data->thread_id);
@@ -930,8 +1056,9 @@ int receive_response_from_remote(struct request_data *req_data, int remotefd)
     return total_size;
 }
 
-// called from fulfill request
-//
+// Called from fulfill request after the response has been received from the
+// remote machine, forwards the response on to the local client. Returns -1 if
+// failure, 1 if success.
 int forward_response_to_client(struct request_data *req_data, int client_socket)
 {
     for (int i=0; i<req_data->num_lines_response; i++)
@@ -949,233 +1076,10 @@ int forward_response_to_client(struct request_data *req_data, int client_socket)
     return 1;
 }
 
-
-int fulfill_request(struct request_data *req_data, int client_socket, struct sockaddr_in client_addr)
-{
-    set_current_status_id("Connecting to remote socket",req_data->thread_id); // update CLI and status.log file
-    int remotefd = Open_clientfd(req_data->req_host_domain,req_data->req_host_port_num); // try to open socket on remote machine
-
-    int send_success = forward_request_to_remote(req_data,remotefd); // send the request to remote machine
-
-    if (send_success == -1) // if we were not able to send the request
-    {
-        set_current_status_id("Could not connect to remote",req_data->thread_id);
-        Sleep(1); // allow time for writing to log
-        close(client_socket); // close connection to client
-        close(remotefd); // close attempted connection to remote
-        exit(0); // exit the thread
-    }
-
-    int response_size = receive_response_from_remote(req_data,remotefd); // get the response from the remote machine
-    set_current_status_id("Forwarding response to client",req_data->thread_id); // update CLI and status.log file
-
-    int forwarding_success = forward_response_to_client(req_data,client_socket); // forward to response to client
-    if (forwarding_success == -1) // if we were not able to forward the response
-    {
-        set_current_status_id("Could not forward response to client",req_data->thread_id);
-        Sleep(1); // allow time for writing to log
-        close(client_socket); // close connection to client
-        close(remotefd); // close attempted connection to remote
-        exit(0); // exit the thread 
-    }
-    return response_size; // return the size of response
-}
-
-// parses the specified request size (Content-Length), if one, returns
-// 1 if it finds a specified size and sets req_data->specified_req_size 
-// equal to it, returns 0 if none found
-int parse_request_size(const char *buffer, struct request_data *req_data)
-{
-    char cur_line_buffer[1000];
-    int cur_line_buffer_index = 0;
-
-    char size_buffer[20];
-    int size_buffer_index = 0;
-
-    int on_content_length_line = 0;
-
-    int farthest_possible_content_length_location = 900;
-
-    int i=0;
-    while (1) // iterate over each character in buffer
-    {
-        if ( i>=farthest_possible_content_length_location )
-        {
-            return 0;
-        }
-
-        if ( i>=strlen(buffer) ) // if we have reached the end of buffer string
-        {
-            //printf("\nERROR: parse_request_size(), buffer=%s\ncur_line_buffer=%s\n",buffer,cur_line_buffer);
-            return 0;
-        }
-
-        if (buffer[i]=='\n') // if we have reached the end of a line
-        {
-            if ( on_content_length_line ) // if this is the Content-Length line
-            {
-                int found_space = 0; 
-                for (int j=0; j<strlen(cur_line_buffer); j++) // iterate over characters in Content-Length line
-                {
-                    if ( cur_line_buffer[j]=='\r') // if this is the last character in the line
-                    {
-                        if (found_space)
-                        {
-                            size_buffer[size_buffer_index] = 0;
-                            req_data->specified_req_size = atoi(size_buffer);
-                            return 1;
-                        }
-                        printf("\rERROR: parse_request_size(), cur_line_buffer=%s\n",cur_line_buffer);
-                        return 0;
-                    }
-                    if ( found_space ) // if we have already found ' ' after 'Content-Length'
-                    {
-                        size_buffer[size_buffer_index] = cur_line_buffer[j];
-                        size_buffer_index++;
-                        continue;
-                    }
-                    if (cur_line_buffer[j]==' ')
-                    {
-                        found_space = 1;
-                        continue;
-                    }
-                }
-            }
-
-            if ( buffer[0]=='\r') // if the only thing in the buffer is '\r'
-            {
-                return 0; // return false because we have reached the end of header
-            }
-
-            // if the only thing in the buffer wasn't '\r' then we can continue
-            // iterating through the header items individually after clearing cur_line_buffer
-
-            // flush the cur_line_buffer array
-            //memset(&cur_line_buffer[0],0,sizeof(cur_line_buffer));
-            cur_line_buffer[0] = 0;
-            cur_line_buffer_index = 0;
-            i+=1;
-            continue; // skip to the next character
-        }
-
-        // if we get here then we should record the current character into the cur_line_buffer
-        cur_line_buffer[cur_line_buffer_index] = buffer[i];
-        cur_line_buffer[cur_line_buffer_index+1] = 0;
-        cur_line_buffer_index++;
-
-        // if the buffer now contains 'Content-Length' we should set 'on_content_length_line'
-        // to 1 such that, upon reaching the next '\n', we will enter the case above
-        if ( strstr(cur_line_buffer,"Content-Length")!=NULL ) // if this line contains 'Content-Length'
-        {
-            on_content_length_line = 1;
-        }
-        i+=1;
-    }
-}
-
-// parses the request sent by the web browser (called before fulfill_request)
-char* parse_request(struct request_data *req_data, char *buffer)
-{
-    set_current_status_id("Parsing request",req_data->thread_id); // update UI
-
-    int content_size_specified = parse_request_size(buffer,req_data);
-    if (content_size_specified)
-    {
-        // if there is a 'Content-Length' specified in request
-        char *temp_buffer = malloc(sizeof(char)*50);
-        sprintf(temp_buffer,"Found request size (%d)",req_data->specified_req_size);
-        set_current_status_id(temp_buffer,req_data->thread_id);
-    }
-    else
-    {
-        // if there is no 'Content-Length' specified in request
-        set_current_status_id("No request size",req_data->thread_id);
-    }
-
-    char buffer_copy[req_data->request_buffer_size];
-    memcpy(buffer_copy,req_data->request_buffer,req_data->request_buffer_size);
-
-    char *end_str;
-    char *line = strtok_r(buffer_copy,"\n",&end_str);
-
-    int line_index = 0;
-
-    // each iteration of while loop looks at a single line of the request (held in buffer_copy)
-    while (line != NULL)
-    {
-        if (line_index<=1)
-        {
-            // if either the first or second line we will parse through each word 
-            // individually to gather the data we need to establish the connection
-            // with the remote server when we forward the request
-            char *end_token; 
-            char *word = strtok_r(line," ",&end_token); // split line on " " space character
-
-            int word_index = 0;
-            while (word != NULL)
-            {
-                // Iterate over each word in line
-                if (line_index==0 && word_index==0){  strcpy(req_data->req_command,word);  }
-                if (line_index==0 && word_index==1){  strcpy(req_data->req_host_long,word);  }
-                if (line_index==0 && word_index==2){  strcpy(req_data->req_protocol,word);  }
-                if (line_index==1 && word_index==1){  strcpy(req_data->req_host_domain,word);  }
-
-                word = strtok_r(NULL," ",&end_token);
-                word_index++;
-            }
-        }
-
-        if (line_index==1)
-        {
-            // if this is the second line then we want to exit (we have all the data we need)
-            // and save the rest of the data into the first spot in the req_after_host array
-            // in the req_data struct
-
-            char *delim = strstr(req_data->request_buffer,"\r\n\r\n");
-            int delim_index = (int)(delim-req_data->request_buffer);
-            int delim_size = 4;
-
-            int post_delim_data_size = req_data->request_buffer_size-delim_index-delim_size;
-
-            char *first_line_CRENDL = strstr(req_data->request_buffer,"\r\n");
-            char *second_line_CRENDL = strstr(first_line_CRENDL+4,"\r\n");
-
-            int start_snip = (int)(second_line_CRENDL - req_data->request_buffer)+2;
-            int snip_length = (int)(req_data->request_buffer_size - start_snip);
-
-            char *temp_buffer2 = malloc(4096);
-            sprintf(temp_buffer2,"Content-Length (request) = %d, snip length = %d",post_delim_data_size,snip_length);
-            set_current_status_id(temp_buffer2,req_data->thread_id);
-
-            memcpy(req_data->req_after_host,&req_data->request_buffer[start_snip],snip_length);
-            req_data->req_after_host_size = snip_length;
-
-            break;
-        }
-
-        line = strtok_r(NULL,"\n",&end_str);
-        line_index++;
-    }
-
-    fix_data(req_data); // apply any changes to the data we need before calling to DNS
-
-    set_current_status_id("Finished parsing request",req_data->thread_id);
-    return req_data->req_host_long; // return the URI (long URL)
-}
-
-// apply any changes to the data we need before continuing
-void fix_data(struct request_data *req_data)
-{
-    strip_trailing_char(req_data->req_host_domain,'\r'); // remove '\r' from domain name
-    strip_trailing_char(req_data->req_protocol,'\r'); // remove '\r' from the protocol type
-    get_host_path_and_port(req_data); // get the path specified in the URL (after the domain name) & the port (if one)
-}
-
-// get the host path from the URL
+// Called from parse_request, parses through req_data->req_host_long to fill in several more
+// items in the req_data struct including req_host_path and req_host_port_num.
 void get_host_path_and_port(struct request_data *req_data)
 {
-    //strcpy(req_data->req_host_path,""); // empty the path container
-    //strcpy(req_data->req_host_port,""); // empty the port container
 
     char buffer[1024]; // fills up until we have found 'http://' portion of URL
 
@@ -1297,7 +1201,7 @@ void get_host_path_and_port(struct request_data *req_data)
     //printf(">> Found port: %s\n",req_data->req_host_port);
 }
 
-// remove trailing '\r' from data items parsed
+// Called from parse_request to remove trailing '\r' chars from req_host_domain & req_protocol
 void strip_trailing_char(char *source, const char to_remove)
 {
     int src_len = strlen(source);
@@ -1321,17 +1225,4 @@ void strip_trailing_char(char *source, const char to_remove)
         //printf("> Initial source length = %d, after stripping = %d\n",src_len,strlen(source));
         return;
     }
-}
-
-// count the number of occurrences of target in input
-int get_match_count(const char *input, const char *target)
-{
-    int count = 0;
-    const char *tmp = input;
-    while ( (tmp = strstr(tmp, target)) > 0)
-    {
-        count++;
-        tmp++;
-    }
-    return count;
 }

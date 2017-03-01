@@ -1,226 +1,323 @@
-17:54:18	> 
-17:54:31	>
-17:54:31	>(idx=0) - Reading socket
-17:54:31	>(idx=0) - request_size=460, strlen(buffer)=397
-17:54:31	>(idx=0) - Parsing request
-17:54:31	>(idx=0) - Found request size (83)
-17:54:31	>(idx=0) - Content-Length (request) = 83, snip length = 394
-17:54:31	>(idx=0) - Finished parsing request
-17:54:31	>(idx=0) - Connecting to remote socket
-17:54:31	>(idx=0) - Forwarding request
-17:54:31	>(idx=0) - Waiting for response
-17:54:31	>(idx=0) - Got first response
-17:54:31	>(idx=0) - Found response size (471)
-17:54:31	>(idx=0) - Reached end of message (size=471)
-17:54:31	>(idx=0) - Forwarding response to client
-17:54:31	>(idx=0) - Finished forwarding response
-17:54:31	>
-17:54:31	>(idx=1) - Reading socket
-17:54:31	>(idx=1) - request_size=460, strlen(buffer)=405
-17:54:31	>(idx=1) - Parsing request
-17:54:31	>(idx=1) - Found request size (75)
-17:54:31	>(idx=1) - Content-Length (request) = 75, snip length = 386
-17:54:31	>(idx=1) - Finished parsing request
-17:54:31	>(idx=1) - Connecting to remote socket
-17:54:32	>
-17:54:32	>(idx=2) - Reading socket
-17:54:32	>(idx=2) - request_size=460, strlen(buffer)=397
-17:54:32	>(idx=2) - Parsing request
-17:54:32	>(idx=2) - Found request size (83)
-17:54:32	>(idx=2) - Content-Length (request) = 83, snip length = 394
-17:54:32	>(idx=2) - Finished parsing request
-17:54:32	>(idx=2) - Connecting to remote socket
-17:54:32	>
-17:54:32	>(idx=3) - Reading socket
-17:54:32	>(idx=3) - request_size=460, strlen(buffer)=397
-17:54:32	>(idx=3) - Parsing request
-17:54:32	>(idx=3) - Found request size (83)
-17:54:32	>(idx=3) - Content-Length (request) = 83, snip length = 394
-17:54:32	>(idx=3) - Finished parsing request
-17:54:32	>(idx=3) - Connecting to remote socket
-17:54:32	>
-17:54:32	>(idx=4) - Reading socket
-17:54:32	>(idx=4) - request_size=460, strlen(buffer)=397
-17:54:32	>(idx=4) - Parsing request
-17:54:32	>(idx=4) - Found request size (83)
-17:54:32	>(idx=4) - Content-Length (request) = 83, snip length = 394
-17:54:32	>(idx=4) - Finished parsing request
-17:54:32	>(idx=4) - Connecting to remote socket
-17:54:32	>
-17:54:32	>(idx=5) - Reading socket
-17:54:32	>(idx=5) - request_size=460, strlen(buffer)=397
-17:54:32	>(idx=5) - Parsing request
-17:54:32	>(idx=5) - Found request size (83)
-17:54:32	>(idx=5) - Content-Length (request) = 83, snip length = 394
-17:54:32	>(idx=5) - Finished parsing request
-17:54:32	>(idx=5) - Connecting to remote socket
-17:54:32	>(idx=2) - Forwarding request
-17:54:32	>(idx=2) - Waiting for response
-17:54:32	>(idx=4) - Forwarding request
-17:54:32	>(idx=4) - Waiting for response
-17:54:32	>(idx=3) - Forwarding request
-17:54:32	>(idx=3) - Waiting for response
-17:54:32	>(idx=5) - Forwarding request
-17:54:32	>(idx=5) - Waiting for response
-17:54:32	>(idx=2) - Got first response
-17:54:32	>(idx=2) - Found response size (471)
-17:54:32	>(idx=2) - Reached end of message (size=471)
-17:54:32	>(idx=2) - Forwarding response to client
-17:54:32	>(idx=2) - Finished forwarding response
-17:54:32	>(idx=4) - Got first response
-17:54:32	>(idx=4) - Found response size (471)
-17:54:32	>(idx=4) - Reached end of message (size=471)
-17:54:32	>(idx=4) - Forwarding response to client
-17:54:32	>(idx=4) - Finished forwarding response
-17:54:32	>(idx=5) - Got first response
-17:54:32	>(idx=5) - Found response size (471)
-17:54:32	>(idx=5) - Reached end of message (size=471)
-17:54:32	>(idx=5) - Forwarding response to client
-17:54:32	>(idx=5) - Finished forwarding response
-17:54:32	>(idx=3) - Got first response
-17:54:32	>(idx=3) - Found response size (471)
-17:54:32	>(idx=3) - Reached end of message (size=471)
-17:54:32	>(idx=3) - Forwarding response to client
-17:54:32	>(idx=3) - Finished forwarding response
-17:54:32	>
-17:54:32	>(idx=6) - Reading socket
-17:54:32	>(idx=6) - request_size=450, strlen(buffer)=387
-17:54:32	>(idx=6) - Parsing request
-17:54:32	>(idx=6) - Found request size (83)
-17:54:32	>(idx=6) - Content-Length (request) = 83, snip length = 394
-17:54:32	>(idx=6) - Finished parsing request
-17:54:32	>(idx=6) - Connecting to remote socket
-17:54:32	>
-17:54:32	>(idx=7) - Reading socket
-17:54:32	>(idx=7) - request_size=460, strlen(buffer)=405
-17:54:32	>(idx=7) - Parsing request
-17:54:32	>(idx=7) - Found request size (75)
-17:54:32	>(idx=7) - Content-Length (request) = 75, snip length = 386
-17:54:32	>(idx=7) - Finished parsing request
-17:54:32	>(idx=7) - Connecting to remote socket
-17:54:32	>(idx=1) - Forwarding request
-17:54:32	>(idx=1) - Waiting for response
-17:54:32	>(idx=7) - Forwarding request
-17:54:32	>(idx=7) - Waiting for response
-17:54:32	>(idx=1) - Got first response
-17:54:32	>(idx=1) - Found response size (463)
-17:54:32	>(idx=1) - Reached end of message (size=463)
-17:54:32	>(idx=1) - Forwarding response to client
-17:54:32	>(idx=1) - Finished forwarding response
-17:54:32	>(idx=7) - Got first response
-17:54:32	>(idx=7) - Found response size (463)
-17:54:32	>(idx=7) - Reached end of message (size=463)
-17:54:32	>(idx=7) - Forwarding response to client
-17:54:32	>(idx=7) - Finished forwarding response
-17:54:32	>(idx=6) - Forwarding request
-17:54:32	>(idx=6) - Waiting for response
-17:54:32	>
-17:54:32	>(idx=8) - Reading socket
-17:54:32	>(idx=8) - request_size=460, strlen(buffer)=397
-17:54:32	>(idx=8) - Parsing request
-17:54:32	>(idx=8) - Found request size (83)
-17:54:32	>(idx=8) - Content-Length (request) = 83, snip length = 394
-17:54:32	>(idx=8) - Finished parsing request
-17:54:32	>(idx=8) - Connecting to remote socket
-17:54:32	>(idx=6) - Got first response
-17:54:32	>(idx=6) - Found response size (1415)
-17:54:32	>(idx=6) - Reached end of message (size=1415)
-17:54:32	>(idx=6) - Forwarding response to client
-17:54:32	>(idx=6) - Finished forwarding response
-17:54:32	>(idx=8) - Forwarding request
-17:54:32	>(idx=8) - Waiting for response
-17:54:32	>(idx=8) - Got first response
-17:54:32	>(idx=8) - Found response size (471)
-17:54:32	>(idx=8) - Reached end of message (size=471)
-17:54:32	>(idx=8) - Forwarding response to client
-17:54:32	>(idx=8) - Finished forwarding response
-17:54:33	>
-17:54:33	>(idx=9) - Reading socket
-17:54:33	>(idx=9) - request_size=460, strlen(buffer)=397
-17:54:33	>(idx=9) - Parsing request
-17:54:33	>(idx=9) - Found request size (83)
-17:54:33	>(idx=9) - Content-Length (request) = 83, snip length = 394
-17:54:33	>(idx=9) - Finished parsing request
-17:54:33	>(idx=9) - Connecting to remote socket
-17:54:33	>
-17:54:33	>(idx=10) - Reading socket
-17:54:33	>(idx=10) - request_size=460, strlen(buffer)=397
-17:54:33	>(idx=10) - Parsing request
-17:54:33	>(idx=10) - Found request size (83)
-17:54:33	>(idx=10) - Content-Length (request) = 83, snip length = 394
-17:54:33	>(idx=10) - Finished parsing request
-17:54:33	>(idx=10) - Connecting to remote socket
-17:54:33	>(idx=9) - Forwarding request
-17:54:33	>(idx=9) - Waiting for response
-17:54:33	>(idx=10) - Forwarding request
-17:54:33	>(idx=10) - Waiting for response
-17:54:33	>(idx=9) - Got first response
-17:54:33	>(idx=9) - Found response size (471)
-17:54:33	>(idx=9) - Reached end of message (size=471)
-17:54:33	>(idx=9) - Forwarding response to client
-17:54:33	>(idx=9) - Finished forwarding response
-17:54:33	>(idx=10) - Got first response
-17:54:33	>(idx=10) - Found response size (471)
-17:54:33	>(idx=10) - Reached end of message (size=471)
-17:54:33	>(idx=10) - Forwarding response to client
-17:54:33	>(idx=10) - Finished forwarding response
-17:54:33	>
-17:54:33	>(idx=11) - Reading socket
-17:54:33	>(idx=11) - request_size=450, strlen(buffer)=387
-17:54:33	>(idx=11) - Parsing request
-17:54:33	>(idx=11) - Found request size (83)
-17:54:33	>(idx=11) - Content-Length (request) = 83, snip length = 394
-17:54:33	>(idx=11) - Finished parsing request
-17:54:33	>(idx=11) - Connecting to remote socket
-17:54:33	>
-17:54:33	>(idx=12) - Reading socket
-17:54:33	>(idx=12) - request_size=450, strlen(buffer)=387
-17:54:33	>(idx=12) - Parsing request
-17:54:33	>(idx=12) - Found request size (83)
-17:54:33	>(idx=12) - Content-Length (request) = 83, snip length = 394
-17:54:33	>(idx=12) - Finished parsing request
-17:54:33	>(idx=12) - Connecting to remote socket
-17:54:33	>
-17:54:33	>(idx=13) - Reading socket
-17:54:33	>(idx=13) - request_size=478, strlen(buffer)=415
-17:54:33	>(idx=13) - Parsing request
-17:54:33	>(idx=13) - Found request size (83)
-17:54:33	>(idx=13) - Content-Length (request) = 83, snip length = 394
-17:54:33	>(idx=13) - Finished parsing request
-17:54:33	>(idx=13) - Connecting to remote socket
-17:54:33	>(idx=12) - Forwarding request
-17:54:33	>(idx=12) - Waiting for response
-17:54:33	>(idx=11) - Forwarding request
-17:54:33	>(idx=11) - Waiting for response
-17:54:33	>(idx=11) - Got first response
-17:54:33	>(idx=11) - Found response size (1609)
-17:54:33	>(idx=11) - Reached end of message (size=1609)
-17:54:33	>(idx=11) - Forwarding response to client
-17:54:33	>(idx=11) - Finished forwarding response
-17:54:33	>(idx=12) - Got first response
-17:54:33	>(idx=12) - Found response size (1609)
-17:54:33	>(idx=12) - Reached end of message (size=1609)
-17:54:33	>(idx=12) - Forwarding response to client
-17:54:33	>(idx=12) - Finished forwarding response
-17:54:33	>(idx=13) - Forwarding request
-17:54:33	>(idx=13) - Waiting for response
-17:54:33	>(idx=13) - Got first response
-17:54:33	>(idx=13) - Found response size (471)
-17:54:33	>(idx=13) - Reached end of message (size=471)
-17:54:33	>(idx=13) - Forwarding response to client
-17:54:33	>(idx=13) - Finished forwarding response
-17:54:34	>
-17:54:34	>(idx=14) - Reading socket
-17:54:34	>(idx=14) - request_size=460, strlen(buffer)=405
-17:54:34	>(idx=14) - Parsing request
-17:54:34	>(idx=14) - Found request size (75)
-17:54:34	>(idx=14) - Content-Length (request) = 75, snip length = 386
-17:54:34	>(idx=14) - Finished parsing request
-17:54:34	>(idx=14) - Connecting to remote socket
-17:54:34	>(idx=14) - Forwarding request
-17:54:34	>(idx=14) - Waiting for response
-17:54:34	>(idx=14) - Got first response
-17:54:34	>(idx=14) - Found response size (463)
-17:54:34	>(idx=14) - Reached end of message (size=463)
-17:54:34	>(idx=14) - Forwarding response to client
-17:54:34	>(idx=14) - Finished forwarding response
+19:46:55	> 
+19:47:13	>
+19:47:13	>(idx=0) - Reading socket
+19:47:13	>(idx=0) - request_size=360, strlen(buffer)=360
+19:47:13	>(idx=0) - Parsing request
+19:47:13	>(idx=0) - No request size
+19:47:13	>(idx=0) - Content-Length (request) = 0, snip length = 307
+19:47:13	>(idx=0) - Finished parsing request
+19:47:13	>(idx=0) - Connecting to remote socket
+19:47:14	>(idx=0) - Forwarding request
+19:47:14	>(idx=0) - Waiting for response
+19:47:14	>(idx=0) - Got first response
+19:47:14	>(idx=0) - Found response size (8714)
+19:47:14	>(idx=0) - Reached end of message (size=8714)
+19:47:14	>(idx=0) - Forwarding response to client
+19:47:14	>(idx=0) - Finished forwarding response
+19:47:14	>
+19:47:14	>(idx=1) - Reading socket
+19:47:14	>(idx=1) - request_size=324, strlen(buffer)=324
+19:47:14	>(idx=1) - Parsing request
+19:47:14	>(idx=1) - No request size
+19:47:14	>(idx=1) - Content-Length (request) = 0, snip length = 262
+19:47:14	>(idx=1) - Finished parsing request
+19:47:14	>(idx=1) - Connecting to remote socket
+19:47:14	>
+19:47:14	>(idx=2) - Reading socket
+19:47:14	>(idx=2) - request_size=409, strlen(buffer)=409
+19:47:14	>(idx=2) - Parsing request
+19:47:14	>(idx=2) - No request size
+19:47:14	>(idx=2) - Content-Length (request) = 0, snip length = 348
+19:47:14	>(idx=2) - Finished parsing request
+19:47:14	>(idx=2) - Connecting to remote socket
+19:47:14	>
+19:47:14	>(idx=3) - Reading socket
+19:47:14	>(idx=3) - request_size=329, strlen(buffer)=329
+19:47:14	>(idx=3) - Parsing request
+19:47:14	>(idx=3) - No request size
+19:47:14	>(idx=3) - Content-Length (request) = 0, snip length = 262
+19:47:14	>(idx=3) - Finished parsing request
+19:47:14	>(idx=3) - Connecting to remote socket
+19:47:14	>
+19:47:14	>(idx=4) - Reading socket
+19:47:14	>(idx=4) - request_size=414, strlen(buffer)=414
+19:47:14	>(idx=4) - Parsing request
+19:47:14	>(idx=4) - No request size
+19:47:14	>(idx=4) - Content-Length (request) = 0, snip length = 348
+19:47:14	>(idx=4) - Finished parsing request
+19:47:14	>(idx=4) - Connecting to remote socket
+19:47:14	>(idx=1) - Forwarding request
+19:47:14	>(idx=1) - Waiting for response
+19:47:14	>(idx=2) - Forwarding request
+19:47:14	>(idx=2) - Waiting for response
+19:47:14	>(idx=3) - Forwarding request
+19:47:14	>(idx=3) - Waiting for response
+19:47:14	>(idx=4) - Forwarding request
+19:47:14	>(idx=4) - Waiting for response
+19:47:14	>(idx=2) - Got first response
+19:47:14	>(idx=2) - Reached end of message (no size)
+19:47:14	>(idx=2) - Forwarding response to client
+19:47:14	>(idx=2) - Finished forwarding response
+19:47:14	>(idx=4) - Got first response
+19:47:14	>(idx=4) - Reached end of message (no size)
+19:47:14	>(idx=4) - Forwarding response to client
+19:47:14	>(idx=4) - Finished forwarding response
+19:47:14	>(idx=1) - Got first response
+19:47:14	>(idx=1) - Found response size (1831)
+19:47:14	>(idx=1) - Reached end of message (size=1831)
+19:47:14	>(idx=1) - Forwarding response to client
+19:47:14	>(idx=1) - Finished forwarding response
+19:47:14	>(idx=3) - Got first response
+19:47:14	>(idx=3) - Found response size (3711)
+19:47:14	>(idx=3) - Reached end of message (size=3711)
+19:47:14	>(idx=3) - Forwarding response to client
+19:47:14	>(idx=3) - Finished forwarding response
+19:47:14	>
+19:47:14	>(idx=5) - Reading socket
+19:47:14	>(idx=5) - request_size=417, strlen(buffer)=417
+19:47:14	>(idx=5) - Parsing request
+19:47:14	>(idx=5) - No request size
+19:47:14	>(idx=5) - Content-Length (request) = 0, snip length = 334
+19:47:14	>(idx=5) - Finished parsing request
+19:47:14	>(idx=5) - Connecting to remote socket
+19:47:14	>
+19:47:14	>(idx=6) - Reading socket
+19:47:14	>(idx=6) - request_size=429, strlen(buffer)=429
+19:47:14	>(idx=6) - Parsing request
+19:47:14	>(idx=6) - No request size
+19:47:14	>(idx=6) - Content-Length (request) = 0, snip length = 335
+19:47:14	>(idx=6) - Finished parsing request
+19:47:14	>(idx=6) - Connecting to remote socket
+19:47:14	>
+19:47:14	>(idx=7) - Reading socket
+19:47:14	>(idx=7) - request_size=405, strlen(buffer)=405
+19:47:14	>(idx=7) - Parsing request
+19:47:14	>(idx=7) - No request size
+19:47:14	>(idx=7) - Content-Length (request) = 0, snip length = 333
+19:47:14	>(idx=7) - Finished parsing request
+19:47:14	>(idx=7) - Connecting to remote socket
+19:47:14	>
+19:47:14	>(idx=8) - Reading socket
+19:47:14	>(idx=8) - request_size=420, strlen(buffer)=420
+19:47:14	>(idx=8) - Parsing request
+19:47:14	>(idx=8) - No request size
+19:47:14	>(idx=8) - Content-Length (request) = 0, snip length = 333
+19:47:14	>(idx=8) - Finished parsing request
+19:47:14	>(idx=8) - Connecting to remote socket
+19:47:14	>
+19:47:14	>(idx=9) - Reading socket
+19:47:14	>(idx=9) - request_size=407, strlen(buffer)=407
+19:47:14	>(idx=9) - Parsing request
+19:47:14	>(idx=9) - No request size
+19:47:14	>(idx=9) - Content-Length (request) = 0, snip length = 334
+19:47:14	>(idx=9) - Finished parsing request
+19:47:14	>(idx=9) - Connecting to remote socket
+19:47:14	>(idx=5) - Forwarding request
+19:47:14	>(idx=5) - Waiting for response
+19:47:14	>(idx=6) - Forwarding request
+19:47:14	>(idx=6) - Waiting for response
+19:47:14	>(idx=7) - Forwarding request
+19:47:14	>(idx=7) - Waiting for response
+19:47:14	>(idx=8) - Forwarding request
+19:47:14	>(idx=8) - Waiting for response
+19:47:14	>(idx=9) - Forwarding request
+19:47:14	>(idx=9) - Waiting for response
+19:47:14	>(idx=5) - Got first response
+19:47:14	>(idx=5) - Reached end of message (no size)
+19:47:14	>(idx=5) - Forwarding response to client
+19:47:14	>(idx=5) - Finished forwarding response
+19:47:14	>(idx=7) - Got first response
+19:47:14	>(idx=7) - Reached end of message (no size)
+19:47:14	>(idx=7) - Forwarding response to client
+19:47:14	>(idx=7) - Finished forwarding response
+19:47:14	>(idx=6) - Got first response
+19:47:14	>(idx=6) - Reached end of message (no size)
+19:47:14	>(idx=6) - Forwarding response to client
+19:47:14	>(idx=6) - Finished forwarding response
+19:47:14	>(idx=8) - Got first response
+19:47:14	>(idx=8) - Reached end of message (no size)
+19:47:14	>(idx=8) - Forwarding response to client
+19:47:14	>(idx=8) - Finished forwarding response
+19:47:14	>(idx=9) - Got first response
+19:47:14	>(idx=9) - Reached end of message (no size)
+19:47:14	>(idx=9) - Forwarding response to client
+19:47:14	>(idx=9) - Finished forwarding response
+19:48:21	>
+19:48:21	>(idx=10) - Reading socket
+19:48:21	>(idx=10) - request_size=415, strlen(buffer)=415
+19:48:21	>(idx=10) - Parsing request
+19:48:21	>(idx=10) - No request size
+19:48:21	>(idx=10) - Content-Length (request) = 0, snip length = 360
+19:48:21	>(idx=10) - Finished parsing request
+19:48:21	>(idx=10) - Connecting to remote socket
+19:48:21	>(idx=10) - Forwarding request
+19:48:21	>(idx=10) - Waiting for response
+19:48:21	>(idx=10) - Got first response
+19:48:21	>(idx=10) - Found response size (6698)
+19:48:22	>(idx=10) - Reached end of message (size=6698)
+19:48:22	>(idx=10) - Forwarding response to client
+19:48:22	>(idx=10) - Finished forwarding response
+19:48:22	>
+19:48:22	>(idx=11) - Reading socket
+19:48:22	>(idx=11) - request_size=290, strlen(buffer)=290
+19:48:22	>(idx=11) - Parsing request
+19:48:22	>(idx=11) - No request size
+19:48:22	>(idx=11) - Content-Length (request) = 0, snip length = 222
+19:48:22	>(idx=11) - Finished parsing request
+19:48:22	>(idx=11) - Connecting to remote socket
+19:48:22	>
+19:48:22	>(idx=12) - Reading socket
+19:48:22	>(idx=12) - request_size=738, strlen(buffer)=738
+19:48:22	>(idx=12) - Parsing request
+19:48:22	>(idx=12) - No request size
+19:48:22	>(idx=12) - Content-Length (request) = 0, snip length = 586
+19:48:22	>(idx=12) - Finished parsing request
+19:48:22	>(idx=12) - Connecting to remote socket
+19:48:22	>(idx=11) - Forwarding request
+19:48:22	>(idx=11) - Waiting for response
+19:48:22	>(idx=11) - Got first response
+19:48:22	>(idx=11) - Found response size (834)
+19:48:22	>(idx=11) - Reached end of message (size=834)
+19:48:22	>(idx=11) - Forwarding response to client
+19:48:22	>(idx=11) - Finished forwarding response
+19:48:22	>
+19:48:22	>(idx=13) - Reading socket
+19:48:22	>(idx=13) - request_size=545, strlen(buffer)=545
+19:48:22	>(idx=13) - Parsing request
+19:48:22	>(idx=13) - No request size
+19:48:22	>(idx=13) - Content-Length (request) = 0, snip length = 366
+19:48:22	>(idx=13) - Finished parsing request
+19:48:22	>(idx=13) - Connecting to remote socket
+19:48:22	>
+19:48:22	>(idx=14) - Reading socket
+19:48:22	>(idx=14) - request_size=480, strlen(buffer)=480
+19:48:22	>(idx=14) - Parsing request
+19:48:22	>(idx=14) - No request size
+19:48:22	>(idx=14) - Content-Length (request) = 0, snip length = 406
+19:48:22	>(idx=14) - Finished parsing request
+19:48:22	>(idx=14) - Connecting to remote socket
+19:48:22	>(idx=12) - Forwarding request
+19:48:22	>(idx=12) - Waiting for response
+19:48:22	>
+19:48:22	>(idx=15) - Reading socket
+19:48:22	>(idx=15) - request_size=756, strlen(buffer)=756
+19:48:22	>(idx=15) - Parsing request
+19:48:22	>(idx=15) - No request size
+19:48:22	>(idx=15) - Content-Length (request) = 0, snip length = 586
+19:48:22	>(idx=15) - Finished parsing request
+19:48:22	>(idx=15) - Connecting to remote socket
+19:48:22	>(idx=13) - Forwarding request
+19:48:22	>(idx=13) - Waiting for response
+19:48:22	>(idx=12) - Got first response
+19:48:22	>(idx=12) - Found response size (586)
+19:48:22	>(idx=12) - Reached end of message (size=586)
+19:48:22	>(idx=12) - Forwarding response to client
+19:48:22	>(idx=12) - Finished forwarding response
+19:48:22	>(idx=15) - Forwarding request
+19:48:22	>(idx=15) - Waiting for response
+19:48:22	>(idx=14) - Forwarding request
+19:48:22	>(idx=14) - Waiting for response
+19:48:22	>(idx=15) - Got first response
+19:48:22	>(idx=15) - Found response size (586)
+19:48:22	>(idx=15) - Reached end of message (size=586)
+19:48:22	>(idx=15) - Forwarding response to client
+19:48:22	>(idx=15) - Finished forwarding response
+19:48:22	>(idx=14) - Got first response
+19:48:22	>(idx=14) - Found response size (334)
+19:48:22	>(idx=14) - Reached end of message (size=334)
+19:48:22	>(idx=14) - Forwarding response to client
+19:48:22	>(idx=14) - Finished forwarding response
+19:48:22	>
+19:48:22	>(idx=16) - Reading socket
+19:48:22	>(idx=16) - request_size=391, strlen(buffer)=391
+19:48:22	>(idx=16) - Parsing request
+19:48:22	>(idx=16) - No request size
+19:48:22	>(idx=16) - Content-Length (request) = 0, snip length = 322
+19:48:22	>(idx=16) - Finished parsing request
+19:48:22	>(idx=16) - Connecting to remote socket
+19:48:22	>(idx=13) - Got first response
+19:48:22	>(idx=13) - Found response size (42)
+19:48:22	>(idx=13) - Reached end of message (size=42)
+19:48:22	>(idx=13) - Forwarding response to client
+19:48:22	>(idx=13) - Finished forwarding response
+19:48:22	>(idx=16) - Forwarding request
+19:48:22	>(idx=16) - Waiting for response
+19:48:22	>(idx=16) - Got first response
+19:48:22	>(idx=16) - Found response size (8281)
+19:48:22	>(idx=16) - Reached end of message (size=8281)
+19:48:22	>(idx=16) - Forwarding response to client
+19:48:22	>(idx=16) - Finished forwarding response
+19:48:22	>
+19:48:22	>(idx=17) - Reading socket
+19:48:22	>(idx=17) - request_size=450, strlen(buffer)=387
+19:48:22	>(idx=17) - Parsing request
+19:48:22	>(idx=17) - Found request size (83)
+19:48:22	>(idx=17) - Content-Length (request) = 83, snip length = 394
+19:48:22	>(idx=17) - Finished parsing request
+19:48:22	>(idx=17) - Connecting to remote socket
+19:48:22	>(idx=17) - Forwarding request
+19:48:22	>(idx=17) - Waiting for response
+19:48:22	>(idx=17) - Got first response
+19:48:22	>(idx=17) - Found response size (1415)
+19:48:22	>(idx=17) - Reached end of message (size=1415)
+19:48:22	>(idx=17) - Forwarding response to client
+19:48:22	>(idx=17) - Finished forwarding response
+19:48:23	>
+19:48:23	>(idx=18) - Reading socket
+19:48:23	>(idx=18) - request_size=410, strlen(buffer)=410
+19:48:23	>(idx=18) - Parsing request
+19:48:23	>(idx=18) - No request size
+19:48:23	>(idx=18) - Content-Length (request) = 0, snip length = 322
+19:48:23	>(idx=18) - Finished parsing request
+19:48:23	>(idx=18) - Connecting to remote socket
+19:48:23	>
+19:48:23	>(idx=19) - Reading socket
+19:48:23	>(idx=19) - request_size=393, strlen(buffer)=393
+19:48:23	>(idx=19) - Parsing request
+19:48:23	>(idx=19) - No request size
+19:48:23	>(idx=19) - Content-Length (request) = 0, snip length = 322
+19:48:23	>(idx=19) - Finished parsing request
+19:48:23	>(idx=19) - Connecting to remote socket
+19:48:23	>(idx=19) - Forwarding request
+19:48:23	>(idx=19) - Waiting for response
+19:48:23	>(idx=18) - Forwarding request
+19:48:23	>(idx=18) - Waiting for response
+19:48:23	>
+19:48:23	>(idx=20) - Reading socket
+19:48:23	>(idx=20) - request_size=450, strlen(buffer)=387
+19:48:23	>(idx=20) - Parsing request
+19:48:23	>(idx=20) - Found request size (83)
+19:48:23	>(idx=20) - Content-Length (request) = 83, snip length = 394
+19:48:23	>(idx=20) - Finished parsing request
+19:48:23	>(idx=20) - Connecting to remote socket
+19:48:23	>
+19:48:23	>(idx=21) - Reading socket
+19:48:23	>(idx=21) - request_size=450, strlen(buffer)=387
+19:48:23	>(idx=21) - Parsing request
+19:48:23	>(idx=21) - Found request size (83)
+19:48:23	>(idx=21) - Content-Length (request) = 83, snip length = 394
+19:48:23	>(idx=21) - Finished parsing request
+19:48:23	>(idx=21) - Connecting to remote socket
+19:48:23	>(idx=18) - Got first response
+19:48:23	>(idx=18) - Reached end of message (no size)
+19:48:23	>(idx=18) - Forwarding response to client
+19:48:23	>(idx=18) - Finished forwarding response
+19:48:23	>(idx=19) - Got first response
+19:48:23	>(idx=19) - Found response size (2012)
+19:48:23	>(idx=19) - Reached end of message (size=2012)
+19:48:23	>(idx=19) - Forwarding response to client
+19:48:23	>(idx=19) - Finished forwarding response
+19:48:23	>(idx=20) - Forwarding request
+19:48:23	>(idx=20) - Waiting for response
+19:48:23	>(idx=21) - Forwarding request
+19:48:23	>(idx=21) - Waiting for response
+19:48:23	>(idx=21) - Got first response
+19:48:23	>(idx=21) - Found response size (1419)
+19:48:23	>(idx=21) - Reached end of message (size=1419)
+19:48:23	>(idx=20) - Got first response
+19:48:23	>(idx=20) - Found response size (1419)
+19:48:23	>(idx=20) - Reached end of message (size=1419)
+19:48:23	>(idx=21) - Forwarding response to client
+19:48:23	>(idx=20) - Forwarding response to client
+19:48:23	>(idx=20) - Finished forwarding response
+19:48:23	>(idx=21) - Finished forwarding response
