@@ -68,13 +68,14 @@ const int num_blocked_domains = 0; // number of items in list below
 const char *blocked_domains[1] = {""}; // empty (not blocking anything)
 
 // character sequence used to wipe the current line of the terminal
-const char *UI_WIPE[1] = {"                                                                                                   "};
+const char *UI_WIPE[1] = {"                                                                                                       "};
 
 char    *CURRENT_STATUS; // to hold what we are currently processing
 int     PROCESSING_REQUEST = 0; // set to 1 while a request is being processed to prevent concurrency problems
 int     ALREADY_LOGGING = 0; // set to 1 while a request is being written to the proxy.log file
 int     *ALREADY_LOGGING_DEBUG_INFO; // set to 1 while debuggin data is being written
 int     *ENABLE_TIME_SPINNER; // if 0 then show waiting line, 1 show loading spinner, 2 show nothing
+int     *REFRESHING_UI_HEADER; // 0 if not refreshing table header right now, 1 otherwise
 
 // Data structure to hold all essential information pertaining to a request. This is the
 // main vehicle used in the two main processes (parse_request and fulfill_request) to hold
@@ -116,7 +117,7 @@ typedef struct request_data
 
 // Request Handling...
 char*   parse_request(struct request_data *req_data, char *buffer);
-int     fulfill_request(struct request_data *req_data, int client_socket, struct sockaddr_in client_addr);
+int     fulfill_request(struct request_data *req_data, int client_socket);
 int     forward_request_to_remote(struct request_data *req_data, int remotefd);
 int     receive_response_from_remote(struct request_data *req_data, int remotefd);
 int     forward_response_to_client(struct request_data *req_data, int client_socket);
@@ -134,6 +135,7 @@ void    get_host_path_and_port(struct request_data *req_data);
 
 // Command-Line Interface management...
 void    init_ui_header(const int listening_port, const int listening_socket);
+void    refresh_ui_header();
 void    handle_time_spinner();
 void    update_cli(struct request_data *req_data, int thread_index, int threads_open, int resp_size, int request_size, int total_time);
 void    set_current_status(const char *input_str);
@@ -195,6 +197,7 @@ int main(int argc, char **argv)
         {
             case 0: // new child
                 set_current_status(""); // denote that we have started a new request in status.log file
+
                 close(listening_socket);
                 request_data req_data; // create new request_data struct to hold parsed data
 
@@ -243,7 +246,7 @@ int main(int argc, char **argv)
                 }
 
                 // forward the request to the remote server, recieve response, formward to client
-                else{  resp_size = fulfill_request(&req_data, client_socket,client_addr);  }
+                else{  resp_size = fulfill_request(&req_data, client_socket);  }
 
                 // record the end time of the request
                 time_t t2;
@@ -266,13 +269,10 @@ int main(int argc, char **argv)
                 *threads_open = *threads_open - 1;
                 close(client_socket); // close the client socket
 
-                 // clear the command line if not loading a request
-                if ( *threads_open==-1)
-                {  
-                    *ENABLE_TIME_SPINNER = 0;
-                    printf("*%s\n",UI_WIPE[0]);
-                    fflush(stdout);
-                }
+                // tell the handle_time_spinner thread to show the waiting animation
+                if ( *threads_open==-1) {  *ENABLE_TIME_SPINNER = 0;  }
+                
+                if ( (req_data.thread_id % 50 == 0) && (req_data.thread_id!=0) ){  refresh_ui_header();  } // refresh the UI header table
                 exit(0); // close this thread (opened on Fork())
 
             case -1: // error when creating new thread
@@ -398,7 +398,7 @@ char* parse_request(struct request_data *req_data, char *buffer)
 // request to the server, after which it will call receive_response_from_remote to 
 // handle the parsing of the server response and finally forward_response_to_client 
 // to forward on this response to the local client (web browser).
-int fulfill_request(struct request_data *req_data, int client_socket, struct sockaddr_in client_addr)
+int fulfill_request(struct request_data *req_data, int client_socket)
 {
     set_current_status_id("Connecting to remote socket",req_data->thread_id); // update CLI and status.log file
     int remotefd = Open_clientfd(req_data->req_host_domain,req_data->req_host_port_num); // try to open socket on remote machine
@@ -481,6 +481,11 @@ int receive_response_from_remote(struct request_data *req_data, int remotefd)
 
     int actual_total_size = -1;
 
+    // Continue iterating until we have read all of the data in the remote socket,
+    // for the first read we will check the actual buffer to see if the size of the
+    // response is specified, if so we will break out of this loop prematurely if we
+    // have read up to the size specified. If there is no specified size, we will break
+    // the loop prematurely if we reach a '\r\n\r\n' string.
     while ((n = recv(remotefd,buffer,BUFFER_PAGE_WIDTH-1,0)) > 0)
     {
         buffer[n] = 0; // zero-terminate buffer
@@ -981,6 +986,21 @@ void init_ui_header(const int listening_port, const int listening_socket)
     fflush(stdout);
 }
 
+// Called from the main function after a certain number of requests have been processed.
+// Function re-draws the UI header that was initially drawn with init_ui_header.
+void refresh_ui_header()
+{
+    if (*REFRESHING_UI_HEADER){  return;  } // if another thread already doing it, skip
+
+    *REFRESHING_UI_HEADER = 1;
+    printf("%s\r",UI_WIPE); // wipe the current line
+    printf("=====================================================================================================\n");
+    printf("[   Thread Info    ][           Client Request Info            ][    Response Info    ][ Total Time ]\n");
+    printf("_____________________________________________________________________________________________________\n");
+    fflush(stdout);
+    *REFRESHING_UI_HEADER = 0;
+}
+
 // Responsible for spinning the loading spinner and pushing updates to CLI,
 // this function is called by the main process and is run in its own thread.
 // While the other worker threads are processing requests or waiting idle, 
@@ -1031,10 +1051,10 @@ void handle_time_spinner()
             temp_buffer5[1] = 0;
 
             // depending in the current state of time_spin_index we will output a different character
-            if (time_spin_index==0){  sprintf(temp_buffer5," ( | )  %s ",CURRENT_STATUS);  }
-            if (time_spin_index==1){  sprintf(temp_buffer5," ( / )  %s ",CURRENT_STATUS);  }
-            if (time_spin_index==2){  sprintf(temp_buffer5," ( - )  %s ",CURRENT_STATUS);  }
-            if (time_spin_index==3){  sprintf(temp_buffer5," ( \\ )  %s ",CURRENT_STATUS); }
+            if (time_spin_index==0){  sprintf(temp_buffer5,"... |   %s ",CURRENT_STATUS);  }
+            if (time_spin_index==1){  sprintf(temp_buffer5,"... /   %s ",CURRENT_STATUS);  }
+            if (time_spin_index==2){  sprintf(temp_buffer5,"... -   %s ",CURRENT_STATUS);  }
+            if (time_spin_index==3){  sprintf(temp_buffer5,"... \\   %s ",CURRENT_STATUS); }
             printf("%s\r",temp_buffer5);
             fflush(stdout);
 
@@ -1146,7 +1166,10 @@ void set_current_status_id(const char *input_str, const int thread_id)
 void init_global_variables()
 {
     ALREADY_LOGGING_DEBUG_INFO = mmap(NULL,sizeof(int), PROT_READ|PROT_WRITE, MAP_SHARED|MAP_A, -1, 0);
-    *ALREADY_LOGGING_DEBUG_INFO = 0;
+    *ALREADY_LOGGING_DEBUG_INFO = 0; // 1 if writing to debug.log 
+
+    REFRESHING_UI_HEADER = mmap(NULL,sizeof(int), PROT_READ|PROT_WRITE, MAP_SHARED|MAP_A, -1, 0);
+    *REFRESHING_UI_HEADER = 0; // 1 if refreshing UI table header
 
     PROXY_LOG = Fopen("proxy.log","w"); // as per instructions
     DEBUG_LOG = Fopen("debug.log","w"); // logs request-response pairs
