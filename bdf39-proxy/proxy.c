@@ -422,22 +422,12 @@ char* parse_request(struct request_data *req_data, char *buffer)
             // and save the rest of the data into the first spot in the req_after_host array
             // in the req_data struct
 
-            //char *delim = strstr(req_data->request_buffer,"\r\n\r\n"); // separator between header and body of request
-            //int delim_index = (int)(delim-req_data->request_buffer); // get index of separator
-            //int delim_size = 4; // size of '\r\n\r\n'
-
-            //int post_delim_data_size = req_data->request_buffer_size-delim_index-delim_size; // get size of body of request
-
             // now we need to get the size of the request prior to the third line (the size of the first 2 lines)
             char *first_line_CRENDL = strstr(req_data->request_buffer,"\r\n"); 
             char *second_line_CRENDL = strstr(first_line_CRENDL+4,"\r\n"); // end of second line
 
             int start_snip = (int)(second_line_CRENDL - req_data->request_buffer)+2; // end of second line
             int snip_length = (int)(req_data->request_buffer_size - start_snip); // until end of body of request
-
-            //char *temp_buffer2 = malloc(400);
-            //sprintf(temp_buffer2,"Content-Length (request) = %d, snip length = %d",post_delim_data_size,snip_length);
-            //set_current_status_id(temp_buffer2,req_data->thread_id); // update CLI and write to status.log
 
             // copy everything after the first two lines into the req_after_host member of req_data
             memcpy(req_data->req_after_host,&req_data->request_buffer[start_snip],snip_length);
@@ -595,20 +585,25 @@ int receive_response_from_remote(struct request_data *req_data, int remote_socke
             }
         }
 
+        // if we have parsed out a specified response size
         if ( req_data->specified_resp_size != -1)
         {
+            // if we have read at least as much as the specified resp size
             if ( total_size >= req_data->specified_resp_size )
             {
-                actual_total_size = total_size-n;
-                n = (req_data->specified_resp_size - (total_size-n));
-                actual_total_size = actual_total_size+n;
+                actual_total_size = total_size-n; // adjust total_size value
+                n = (req_data->specified_resp_size - (total_size-n)); // trim current buffer read
+                actual_total_size = actual_total_size+n; // set correct total size
             }
         }
 
+        // if we have not parsed out a specified size
         else
         {
             char *delim_start = strstr(buffer,"\r\n\r\n");
 
+            // check if we are past the header section, if so, and there is no
+            // specified size, we are done reading the response
             if ( delim_start != NULL )
             {
                 int delim_index = (int)(delim_start - buffer)+4;
