@@ -313,6 +313,10 @@ int main(int argc, char **argv)
                 update_cli(&req_data,req_data.thread_id,*threads_open,resp_size,request_size,request_time);
                 fflush(stdout);
 
+                // To prevent the handle_time_spinner from selecting a status update for a request
+                // that has already been processed we need to mark that this thread id is finished...
+                remove_thread_id_from_stat_buf(req_data.thread_id); // remove this thread_id from the stat_buf
+
                 // log the information so long as the request wasn't blocked
                 if ( req_data.request_blocked==0 )
                 {
@@ -330,7 +334,6 @@ int main(int argc, char **argv)
 
                 if ( (req_data.thread_id % 50 == 0) && (req_data.thread_id!=0) ){  refresh_ui_header();  } // refresh the UI header table
 
-                remove_thread_id_from_stat_buf(req_data.thread_id); // remove this thread_id from the stat_buf
                 free_request_data(&req_data); // free the memory allocated to req_data
                 exit(0); // close this thread (opened on Fork())
 
@@ -1236,8 +1239,10 @@ void update_cli(struct request_data *req_data, int thread_index, int threads_ope
 // Same as set_current_status_id but does not require a thread id number.
 void set_current_status(const char *input_str)
 {
-    strcpy(CURRENT_STATUS,input_str);
-    fprintf(STATUS_LOG,"%s\t>%s\n",get_time_string(),input_str);
+    char *temp = malloc(sizeof(char)*300);
+    sprintf(temp,"%s - %s",get_time_string(),input_str);
+    strcpy(CURRENT_STATUS,temp);
+    fprintf(STATUS_LOG,"%s\n",temp);
     fflush(STATUS_LOG);
 }
 
@@ -1246,11 +1251,11 @@ void set_current_status(const char *input_str)
 // wakes up but the status update will be written to status.log immediately.
 void set_current_status_id(const char *input_str, const int thread_id)
 {
-    char *temp = malloc(sizeof(char)*100);
-    sprintf(temp,"(idx=%d) - %s",thread_id,input_str);
+    char *temp = malloc(sizeof(char)*300);
+    sprintf(temp,"%s - (id=%d) - %s",get_time_string(),thread_id,input_str);
     strcpy(CURRENT_STATUS,temp);
     add_status_to_stat_buf(temp,thread_id); // add this status update to the stat_buf struct
-    fprintf(STATUS_LOG,"%s\t>%s\n",get_time_string(),temp);
+    fprintf(STATUS_LOG,"%s\n",temp);
     fflush(STATUS_LOG);
 }
 
@@ -1347,6 +1352,7 @@ char* stat_buf_top()
         }
     }
     *stat_buf_lock = 0;
+    printf("\nNothing in the stat_buf\n");
     return CURRENT_STATUS;
 }
 
@@ -1368,7 +1374,7 @@ void add_status_to_stat_buf(char *status, int thread_id)
     *stat_buf_lock = 1;
     for (int i=0; i<STATUS_BUFFER_COUNT; i++)
     {
-        if ( stat_buf->prior_status_thread[i]==-1 || stat_buf->prior_status_thread==thread_id)
+        if ( stat_buf->prior_status_thread[i]==-1 || stat_buf->prior_status_thread[i]==thread_id)
         {
             strcpy(stat_buf->prior_status[i],status);
             stat_buf->prior_status_thread[i] = thread_id;
@@ -1385,7 +1391,7 @@ void init_global_variables()
 {
     stat_buf_lock =  mmap(NULL,sizeof(int), PROT_READ|PROT_WRITE, MAP_SHARED|MAP_A, -1, 0);
     *stat_buf_lock = 0;
-    
+
     stat_buf = mmap(NULL,sizeof(status_buffer),PROT_READ|PROT_WRITE, MAP_SHARED|MAP_A, -1, 0);
     init_stat_buf();
 

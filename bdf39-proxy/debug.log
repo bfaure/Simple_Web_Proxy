@@ -2,6 +2,655 @@
 
 =============================================================
 ====================REQUEST (thread 0)====================
+GET http://www.gnu.org/ HTTP/1.1
+Host: www.gnu.org
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+
+
+==================SENT REQUEST [12:32:8]===================
+GET / HTTP/1.1
+Host: www.gnu.org:80
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+
+
+===================RESPONSE [12:32:8]======================
+HTTP/1.1 200 OK
+Date: Thu, 02 Mar 2017 17:32:09 GMT
+Server: Apache/2.4.7
+Content-Location: home.html
+Vary: negotiate,accept-language,Accept-Encoding
+TCN: choice
+Access-Control-Allow-Origin: (null)
+Accept-Ranges: bytes
+Content-Encoding: gzip
+Cache-Control: max-age=0
+Expires: Thu, 02 Mar 2017 17:32:09 GMT
+Content-Length: 8753
+Keep-Alive: timeout=3, max=100
+Connection: Keep-Alive
+Content-Type: text/html
+Content-Language: en
+
+ã
+]Ò§Ç_Œóò}R6ˇ”SŸTEPŒ•òFwÔíh’<∫ö§hõ,†s‚Äk844?"/´:t	tDQ˛r¯èÊ'ñ™Ú¢fç*$¯•<Åy‚Âé≠+à≥˙I6—˘·ODˆS;ŸÃ<È"mplÁé≠Ë·à¯÷8∂Û«÷	Ùpƒbk€9Ç„ÆË3-ŸŸV^‡ÿπ>Ω5íÌ\¿q„˚yh¶€OŒv˛ﬂ∏v¸|,≈÷X∂s˛∆ŒÎÛê»rk$€y~„⁄ÂÛ∞ºﬂûa€π}„⁄ﬂÛ∞\™≠±lÁÛçkgœ√ílœ±Ìæq„Èyh≤Ì◊Àvﬁﬁÿ∏yä|{€πz„∂èÁ°*™≠QmÁÁç…¡Û0Ë[cÿŒ…ØÛÓ<Ñ’Â
+¬aÓ¨÷⁄›˚çû–Ì~”Æq˜ú›´}˝d™ß!(ëTê§GÔïÃBxN#oˆâµ-ÅÅ7‰PÄyTëßx®´»üŸMÎO°ã(
+Q<€ﬂy∞€ˇ·õØÕH/ûüöã≥Û3‰àxCäû®kcé[ò;à°]o‹N≤ü
+D—@%ø»πBé˛tYCâ$x∑E:ÃÖ.ˆ0*åh«Jö•Âf@’ﬁ‹Á^ÂJókú¶ı>¥˝‚›KÁ(Õe£´`òu>ékb˙c".ˇ…ÓÉü÷}FÌN¶Yƒ≥H$õπë√P7}›ò◊`˙ŸáÈœÍ,⁄Z\ß±,A@ÌôÂ+É5é#M{ëûbaí∏¿õm!S^,}ﬂ2Â◊â»fôÙÔ¨:ó‘èÒ8Ü·ËçæÂf◊≤%é„gË¸M9ÀXïªQ—r]u6ç
+^è¬ô»ƒK_á∞ñ.C£E,|wAÿ7@‹W2äâk¨m≠}'ﬁ§µ&Ãõ'Á?ùµÁJL{s≤Æ`∑®≤>ÃTπ^æ¢˙∏ä·Q4áËqs=Ô†v÷jÖ”¶
+TÉ1ÕMr◊xÕnaÜˇDDx|7æ$©òÿ¬J¶Dtv£q±º£È∆éıñ)~ÿ»âHﬂ~À0¡M$ìGæáÖ°9÷˝£Áe@‘ÆΩ∞ùõÍ)[åN«}WbÄ⁄ãJ°â3ˆ‡ÖÅ2±€>Ï¯ò}ˆU¯˙ÑÌvµ0√rz˝Ê¬ùÆ"5≈ı“Œå;¡Ü’†8§zı6∫˚ô„•¶Dêß&é∂K«¢J1¬÷ïUÕfrå^’~fdi≥FCò˛±ä*\gxƒHµ—î(™KJªau¡˚JÖ©7∏§Í≥@TB±1yJt,@œE<∞À«û·˘å8¶Í$pÅRï(o–+;÷S„NıvwvF}øªÙª◊C,Ù44∑î,0ŸO
+sìJÄ	ÜÖ4&¯≠i¯+x47c±ÅqA”%I√L9∆CÈ¸_ò4ÄV˜ß√}•≈èöÏû	ªkz&ß’úú
+
+=============================================================
+
+
+=============================================================
+====================REQUEST (thread 1)====================
+GET http://www.gnu.org/combo.css HTTP/1.1
+Host: www.gnu.org
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/css,*/*;q=0.1
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.gnu.org/
+Connection: keep-alive
+
+
+==================SENT REQUEST [12:32:8]===================
+GET /combo.css HTTP/1.1
+Host: www.gnu.org:80
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/css,*/*;q=0.1
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.gnu.org/
+Connection: keep-alive
+
+
+===================RESPONSE [12:32:8]======================
+HTTP/1.1 200 OK
+Date: Thu, 02 Mar 2017 17:32:09 GMT
+Server: Apache/2.4.7
+Access-Control-Allow-Origin: (null)
+Last-Modified: Tue, 24 Apr 2012 21:45:10 GMT
+ETag: "1a5a-4be73ab3eff98-gzip"
+Accept-Ranges: bytes
+Vary: Accept-Encoding
+Content-Encoding: gzip
+Cache-Control: max-age=2592000
+Expires: Sat, 01 Apr 2017 17:32:09 GMT
+Content-Length: 1831
+Keep-Alive: timeout=3, max=100
+Connection: Keep-Alive
+Content-Type: text/css
+Content-Language: non-html
+
+ã
+@d¿Ó=œ£¸îÔô5∏ø·Ω$ÏﬂÅ0œÇÊ€ixú´!¨.y|’ãN4º› AE!w·‘Ë¡´wÛ‘ÍœàD÷2ÂjÚ0!ì	ùNh2°ÈÑŒ4ù⁄÷R€—´f#¥÷qgcüxbì©Mõ§6yY44ŸD…A&[$OVù>¬Î≤ì±™ñcÙ¶út∆!3ùq≤]SáÆÈ0∂^Ó˛â“O∫-ÙÔ√ﬂ∞≤{ÙÅˇ`=c=ß{õõx”¨&[Ü(PD{Ω$,c˚˝∏◊(I{Ωn,E¬cÓ∂¸Õfö˝ÌÉ]Â¸?∏ıps'⁄ó≥ΩúïÂ._Ó„©üw¨∆17€ßÆ0WﬂÄ¥1ﬁè‘l•±'ÓXê§ó±Pß∫Ø÷Àa^/cØÖøÿœU'òIœ-éÕu√õvÍ¯b~”+ÕÚt¶8≈®_lAwlß’%>:æ{œËàEßÜ<å"˛≥≥õß‰∂oF^ﬁ“áÄΩ,÷‹Bå<Øå|πf«so„xDå≥ó+y≥„lîÂº∆æ°‰måﬂ‘÷Õ74ËR
+gÁ‰¬ûKnüß‰a~fˆäu¨^¬›i_é¯∏≤Ùa+XägvÛ˘˝næg≈›y6`ﬁ=∑pÿâÅÔÁ›•≥vFõ:¶=9Ïæπw1ô˜9Èg]¯>Ô†˙ª^‘"ãJ-äXµ®l2R˚‡|àÏ7{=Kq£î”∏
+!ÛËï’,aú…sò3Bh°wX;îZıÄl¿4†pö?Ñ8Ü^‘˛u' jÑ§5visœú\O™ rﬂd¬'T˜ÏÃÉf2¢ß†£ ˛ãi>z÷≥[¢á_zòN¢÷û‰NF¶S—5dNvÅ.ﬂÅ[ïöd¶ß™UòS^F-=ZÉaÛnºC(üÕ’úMÊÄ‡êG≠1ÌÓ'ÈÑŒXﬁÒG¶˛‘ÔWê=D|@‚$kFh‘ûf;Xù^ñ	GÑÿÉçNo?t◊·ŒÁZp¶]&ŒÆﬂ9èÓ¬∏PèµK:öJ≈¬ÓÖY3∞˙ïŸ†XQ[^˛ZP“Óáâ1Âòª™Ï‰π§?|Hsö~Iƒ€áˇZÏ*&LLy–5r¬ÛGÃfàã◊U¯›üs~íóZ
+
+=============================================================
+
+
+=============================================================
+====================REQUEST (thread 2)====================
+GET http://www.gnu.org/mini.css HTTP/1.1
+Host: www.gnu.org
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/css,*/*;q=0.1
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.gnu.org/
+Connection: keep-alive
+
+
+==================SENT REQUEST [12:32:8]===================
+GET /mini.css HTTP/1.1
+Host: www.gnu.org:80
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/css,*/*;q=0.1
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.gnu.org/
+Connection: keep-alive
+
+
+===================RESPONSE [12:32:8]======================
+HTTP/1.1 200 OK
+Date: Thu, 02 Mar 2017 17:32:09 GMT
+Server: Apache/2.4.7
+Access-Control-Allow-Origin: (null)
+Last-Modified: Tue, 26 Jan 2010 20:20:01 GMT
+ETag: "71d-47e1702abbe40-gzip"
+Accept-Ranges: bytes
+Vary: Accept-Encoding
+Content-Encoding: gzip
+Cache-Control: max-age=2592000
+Expires: Sat, 01 Apr 2017 17:32:09 GMT
+Content-Length: 842
+Keep-Alive: timeout=3, max=100
+Connection: Keep-Alive
+Content-Type: text/css
+Content-Language: non-html
+
+ã
+
+=============================================================
+
+
+=============================================================
+====================REQUEST (thread 4)====================
+GET http://www.gnu.org/print.min.css HTTP/1.1
+Host: www.gnu.org
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/css,*/*;q=0.1
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.gnu.org/
+Connection: keep-alive
+
+
+==================SENT REQUEST [12:32:8]===================
+GET /print.min.css HTTP/1.1
+Host: www.gnu.org:80
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/css,*/*;q=0.1
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.gnu.org/
+Connection: keep-alive
+
+
+===================RESPONSE [12:32:8]======================
+HTTP/1.1 200 OK
+Date: Thu, 02 Mar 2017 17:32:09 GMT
+Server: Apache/2.4.7
+Access-Control-Allow-Origin: (null)
+Last-Modified: Thu, 03 Nov 2016 21:32:02 GMT
+ETag: "678-5406c49cf2493-gzip"
+Accept-Ranges: bytes
+Vary: Accept-Encoding
+Content-Encoding: gzip
+Cache-Control: max-age=2592000
+Expires: Sat, 01 Apr 2017 17:32:09 GMT
+Content-Length: 898
+Keep-Alive: timeout=3, max=100
+Connection: Keep-Alive
+Content-Type: text/css
+Content-Language: non-html
+
+ã
+
+=============================================================
+
+
+=============================================================
+====================REQUEST (thread 5)====================
+GET http://www.gnu.org/graphics/gnu-head-mini.png HTTP/1.1
+Host: www.gnu.org
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+
+==================SENT REQUEST [12:32:8]===================
+GET /graphics/gnu-head-mini.png HTTP/1.1
+Host: www.gnu.org:80
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+
+===================RESPONSE [12:32:8]======================
+HTTP/1.1 200 OK
+Date: Thu, 02 Mar 2017 17:32:09 GMT
+Server: Apache/2.4.7
+Access-Control-Allow-Origin: (null)
+Last-Modified: Sat, 15 Dec 2012 00:30:08 GMT
+ETag: "651-4d0d9400ebd4b"
+Accept-Ranges: bytes
+Content-Length: 1617
+Cache-Control: max-age=2592000
+Expires: Sat, 01 Apr 2017 17:32:09 GMT
+Keep-Alive: timeout=3, max=100
+Connection: Keep-Alive
+Content-Type: image/png
+Content-Language: non-html
+
+âPNG
+
+
+%Î⁄ÌùxLπ}Zö]ÚJ≈3•À|õ¸À
+
+=============================================================
+
+
+=============================================================
+====================REQUEST (thread 3)====================
+GET http://www.gnu.org/layout.min.css HTTP/1.1
+Host: www.gnu.org
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/css,*/*;q=0.1
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.gnu.org/
+Connection: keep-alive
+
+
+==================SENT REQUEST [12:32:8]===================
+GET /layout.min.css HTTP/1.1
+Host: www.gnu.org:80
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/css,*/*;q=0.1
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.gnu.org/
+Connection: keep-alive
+
+
+===================RESPONSE [12:32:8]======================
+HTTP/1.1 200 OK
+Date: Thu, 02 Mar 2017 17:32:09 GMT
+Server: Apache/2.4.7
+Access-Control-Allow-Origin: (null)
+Last-Modified: Sun, 06 Nov 2016 21:38:02 GMT
+ETag: "33bb-540a8b8ceabb6-gzip"
+Accept-Ranges: bytes
+Vary: Accept-Encoding
+Content-Encoding: gzip
+Cache-Control: max-age=2592000
+Expires: Sat, 01 Apr 2017 17:32:09 GMT
+Content-Length: 3711
+Keep-Alive: timeout=3, max=100
+Connection: Keep-Alive
+Content-Type: text/css
+Content-Language: non-html
+
+ã
+MÛRíûûJ6#í€ï˚r	7A‰>©Â4;LãkŒM√⁄¨guÕ{óyIÄ”¨¶ÌQ Ú]¶¡:µÙUÚFáÆefª›¬¡&≈3∞Ï‘∂ŸlÆÙ∑¢eÁﬂG£Áw•SÎ·+Ô@OÁSÔÃ¿À ÙR∞È_Y2}x¶.h‘¶(BÉht∞Zt™›ü(ˆ´!∑–/6L∆€¨dWã‘ve'8`˚≠N¬-∆!¨≤ø2ÿRt„¯ê¯ÄO˘√*q-Z Ìïf≠®ﬂ´ÑûNÌ›S
+û(æ$ÕFÀÆ™∆kZı6z6˜öÇZc-jâ
+îÇ¥·Y?∫íj«'Jã Å≈åñ8´∆Ê¶%çc’C^⁄J^Bî”F~Ñ@7ôR"“€ˇˇÌ˜3"I¥Bìb.¢ˇFdxÚf¡Tï¥Èÿazôùeßûüü›Ùª>[çïÙÖÖæú
+ùr¶Øƒ∑˝$>eRÕ¶A2âô?˜≥2s_ä±u¥ö'Á≥döan3yzÓVQ–e_Y¨l4ieß_~.XˆCúàfùwÈP9„T≥§?íx
+ãA?
+8@=h°R™xûóÃÄXrvtì`N)≈âÏÏ’Ωl’a†˜:fëÀäãy∏3Ï¢2£Gﬂu~7˛ü‘ìK8¨S o-mé∑Û$°ojúp}òª˛≈synYgØ't4ßúùó[rZﬂã¶2ó©EÍ^^—“ ;yÿ˝‚º6X…ùXtpòu√ûŸArGbÄ;,o}nÍgÔÔL¢ëú6˙!¡f≥â◊â¬¡©Ä	yMÌZ◊:r˜ÜFWeı˙À”%1wå…0ﬁ≈ÚöŒÇ”xG'ÅÁ,Ø[këÂ¯sK+◊Ú‹Ê7PÒëÖ%‡+x∏9’lßùy¢“Î_^ôBÔœh7¨D“YpjÚ·Û|ÅºyÁ£`±aŒïIY‹Xòew¥~·†;ŒZiY»∏â‰™#~Ò«:Ü£\Íay¢Úâu¿´\E/'Dä"w"hÂÆHìnÕ)ÌëAÅaègúî:6¢ì˜ú-C¯ é*A&á•˜iœ‡‰aù“ı≠
+
+=============================================================
+
+
+=============================================================
+====================REQUEST (thread 6)====================
+GET http://www.gnu.org/graphics/heckert_gnu.small.png HTTP/1.1
+Host: www.gnu.org
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.gnu.org/
+Connection: keep-alive
+
+
+==================SENT REQUEST [12:32:8]===================
+GET /graphics/heckert_gnu.small.png HTTP/1.1
+Host: www.gnu.org:80
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.gnu.org/
+Connection: keep-alive
+
+
+===================RESPONSE [12:32:9]======================
+HTTP/1.1 200 OK
+Date: Thu, 02 Mar 2017 17:32:09 GMT
+Server: Apache/2.4.7
+Access-Control-Allow-Origin: (null)
+Last-Modified: Sun, 05 Dec 2010 20:58:51 GMT
+ETag: "135f-496b009e118c0"
+Accept-Ranges: bytes
+Content-Length: 4959
+Cache-Control: max-age=2592000
+Expires: Sat, 01 Apr 2017 17:32:09 GMT
+Keep-Alive: timeout=3, max=100
+Connection: Keep-Alive
+Content-Type: image/png
+Content-Language: non-html
+
+âPNG
+
+
+ów3xáÚYm‡^>_>áØÆâ!B◊ºÎØH÷a…∏l]&.B˚CÊyóë3VÎá⁄∞/_ﬂ÷>pCu|]Mÿp˜xœπ™Lç.+ï EÎ7æßƒväÊ)Å~£VπÍ0—Kz¨tp
+wöΩÍÓV_;3bÊPJè≥y·òz√=Ûå	Éâ{›»Ë≠ñ‹FªÄãox˝ƒ‘Qñ¿ˆ3EÈú¿8“·U^Kˆ;U ˜ò0ò⁄ﬂ“ñ©%6ãÓ3=ﬁ:ç(l1s§2µ$sÆµ‰î@]˜LL"†Ì@Dãr,ﬂ∂X¡´jàœ÷Ä©älFw77gâs~kA’ „DãÃÃ‘uE†£pRÛ⁄,p	ô›]˛LH1S∫"êo0u´RŒî/t…º§^|ëF›‡Ìnçò1xˆ#¸ÑÔ,ˆt)ôzñaï&Sïê¶¬©ÃˆüsƒTW/Æôs¶©®‘ä«a‡A’|‰ô¡37
+
+=============================================================
+
+
+=============================================================
+====================REQUEST (thread 8)====================
+GET http://www.gnu.org/feed-icon-10x10.png HTTP/1.1
+Host: www.gnu.org
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.gnu.org/
+Connection: keep-alive
+
+
+==================SENT REQUEST [12:32:8]===================
+GET /feed-icon-10x10.png HTTP/1.1
+Host: www.gnu.org:80
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.gnu.org/
+Connection: keep-alive
+
+
+===================RESPONSE [12:32:9]======================
+HTTP/1.1 200 OK
+Date: Thu, 02 Mar 2017 17:32:09 GMT
+Server: Apache/2.4.7
+Access-Control-Allow-Origin: (null)
+Last-Modified: Mon, 28 Nov 2011 19:34:23 GMT
+ETag: "1d5-4b2d096fdcdc0"
+Accept-Ranges: bytes
+Content-Length: 469
+Cache-Control: max-age=2592000
+Expires: Sat, 01 Apr 2017 17:32:09 GMT
+Keep-Alive: timeout=3, max=100
+Connection: Keep-Alive
+Content-Type: image/png
+Content-Language: non-html
+
+âPNG
+
+
+
+=============================================================
+
+
+=============================================================
+====================REQUEST (thread 9)====================
+GET http://www.gnu.org/graphics/fsf-logo-notext-small.png HTTP/1.1
+Host: www.gnu.org
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.gnu.org/
+Connection: keep-alive
+
+
+==================SENT REQUEST [12:32:8]===================
+GET /graphics/fsf-logo-notext-small.png HTTP/1.1
+Host: www.gnu.org:80
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.gnu.org/
+Connection: keep-alive
+
+
+===================RESPONSE [12:32:9]======================
+HTTP/1.1 200 OK
+Date: Thu, 02 Mar 2017 17:32:09 GMT
+Server: Apache/2.4.7
+Access-Control-Allow-Origin: (null)
+Last-Modified: Wed, 04 Nov 2015 06:59:09 GMT
+ETag: "9be-523b18c06e940"
+Accept-Ranges: bytes
+Content-Length: 2494
+Cache-Control: max-age=2592000
+Expires: Sat, 01 Apr 2017 17:32:09 GMT
+Keep-Alive: timeout=3, max=100
+Connection: Keep-Alive
+Content-Type: image/png
+Content-Language: non-html
+
+âPNG
+
+
+t◊mﬁJÊƒIqd†vﬂ^ ?ﬂ∆°5´9∂„KÇæ¨p-)â‘a√qı5åæ·FRâ”ŸÕa,√ƒñíú∞¡™´l©S=`√Ç;–]Æˆ˛ùzÔAé|º
+
+=============================================================
+
+
+=============================================================
+====================REQUEST (thread 10)====================
+GET http://www.gnu.org/graphics/fs-gang.png HTTP/1.1
+Host: www.gnu.org
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.gnu.org/
+Connection: keep-alive
+
+
+==================SENT REQUEST [12:32:8]===================
+GET /graphics/fs-gang.png HTTP/1.1
+Host: www.gnu.org:80
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.gnu.org/
+Connection: keep-alive
+
+
+===================RESPONSE [12:32:9]======================
+HTTP/1.1 200 OK
+Date: Thu, 02 Mar 2017 17:32:09 GMT
+Server: Apache/2.4.7
+Access-Control-Allow-Origin: (null)
+Last-Modified: Sat, 29 Mar 2014 05:11:02 GMT
+ETag: "af04-4f5b7d834c580"
+Accept-Ranges: bytes
+Content-Length: 44804
+Cache-Control: max-age=2592000
+Expires: Sat, 01 Apr 2017 17:32:09 GMT
+Keep-Alive: timeout=3, max=100
+Connection: Keep-Alive
+Content-Type: image/png
+Content-Language: non-html
+
+âPNG
+
+
+”AÆÃêMQ2ôJ!%ïÇÍ¯5Œâ¢(¥j’ä&≠¶¶¶>|8¨¨¨JïŒ°/€ºy3dR)3&T80EÑ0`PE!HM•L7fÖááì[∑në…ì'Îàâπyâ◊~RUΩiS”uÓÚBBÊ’˘˛˚SÑÄ$$$ê––PBd2È“•È“•i‹∏Òˇ/ÃÂxÌû?{ÜACÜTÿÎgjjJ“SRHù˙ıôÒTâ¿çâ°j∂jU¶i¬îDÇº¸|‚ÎÎK≤≥≥â@  |>ü˘|"à°°!4h˘°{wb`h»å0`Pz
+…saÌËËBlmmëôëQ&◊P*ë†SßN®Y≥&º>|ÄL&√ÄËç@^Nd2∫tÈBì‰øˇ˛ŒŒŒJ*›∫uÉ∑∑7Í’´ß—ã¨+1j⁄¥)“RR ÂÒíS¡Ä∫uÎVo≤©©)ö5kÜˇ˝ÔË◊Ø÷Æ]ã;wÓ‡Ó›ªò;w.ö4i¢Ò≥AAAÃÿb¿Ä †(
+ñññj={oﬂæ≈Ÿ≥g1vÏXµ‰∆ÃÃc«é≈ô3gêíí¢5yÄ=z®|Ô$ArÚlkkKìÁÏÏlËrΩq„FB–πsg‰ÂÊÍùD≥##)?__ºvwá8?ÑíûíÇ>}˙ 3-πAA-Û(èWØ`ii	èWØ@Q(ôå&—m€∂Ev¡˜ÊLMMÈ‹”Ò„«√√√CeLhkˆˆˆãD…© Ë—√L$†}˚ˆ>ı«÷÷>
+ï•µh—9U@gæh“¬fC(‚÷≠[5jåååJ|Ak’™{{{Ãö5ªwÔ∆˝˚˜å˝˚˜√––ê~ﬂÙÈ”ôTJ»ÕÕ’Hñ¨≠≠ÒË—#bcôMWÇ(3ì ÕÕ≈ù;whÕ”‚¨oﬂæ˚Ís
+
+'''¸¸Ûœ®^Ω∫VÛI·◊Æ\πÇ`Ãò1»Ø
+™)°Oü>˝jiÖ-//è!–UâDgÔ≥¢999ÈÕ„SY·˜·ˆÏﬁç&Mö¿‹‹≥fÕBÄßß⁄Á*»À'é√∆ø˛¬Í’´±tÈR¨\π˜o›B¿€∑_ı:äsr®◊Ø_Îu—UÙÓ>{ˆ!!!ZÕ7Ç§§]±Xå?ˇ¸S•
+è«C``†⁄\¬ÄÄ
+DZÇT´VGè•ΩJâââ¯·BBBêõõOOO∏ππÅß°ªÂÊÕõir≤q„F•ˆÓ›ªaiiI•o)$uÂ“%yyU™ﬂCI$HII¡´WØ∞j’™R5v"‰ÌÔqBBÏÌÌ±eÀ|¸¯QI¶LÆ≠khhà]ªv©çñÒ(''ß"øÛÿ±cÙqΩººË„ =FämÀ¿ÁÛaggß”Ô™¨Ruä‰πOü>‡j—ïÆ8ÙË—Kñ,—˘s>>>tèœü?´%ÿ5k÷D˜Ó›’ "11ÚÒP≥fMxzzÍ}N
+’´º}˚ÇÑJ˛Ÿ+V®|è¢îÀÂ‚ˆÌ€ò6mΩ0[ZZb√ÜàääÇT*EBB¬√√ÑÙÙtàD"≠7Ú¢√ Hû	!8sÊå^»≥◊ót%⁄‰z⁄≈!  
+d2$%%)mfvÓ‹©Dúùùa``
+ÊÊÊ*2iE¡››˝˙ı√§Iì‚≈P°PàååPÖ‡‡`<Ñòòòhlb
+CHLLT€]–¬¬Çnº¬·p˚ÔøkuÏ∫uÎ‚’´W
+
+R…É’’ÊÕõ˜%^èœ‘‘‘"˙2}t	’∆ﬁæ}
+\Áº$]Åµ±ÖB*ïñZ^R€
+¶wXXX`¡Ç∏vÌ>~¸.ó777tË–¶¶¶xÒ‚M¢#«èo•ÒôŒÕ•J"™ãÕò1œû=+Û˚ˇ« 99˙\/å‘‘TzìµvÌZz„Ù¸˘s:'~ﬁºy∏ˇ>ù
+≥n›:ç«;v,¢££UûÌj’™·‚≈ãHII—{ë6—†é¬◊≤¨„∆Úá˜ÔoE!l6'Oû‘IZS[µ%Áip¿7oﬁ–Î«Éòµπ§‡p8h◊Æù^⁄_*"33ìN≤OKK”À±%é‹€¨u”y»SZ≠Z++t	èÍÀZ∂l©˜N_ï}#ÛÊÕöà∂oﬂû.îëEÒ˘|‘¨Y?˛¯#ù˚[´V-z¡—ïDôòò‡…ì'%j,^ºè=*”E[úñFBH‹‚≈öŒáíH ãè"	}ç5p‡¿x<ƒƒƒ¿ﬂﬂªwÔÆê‰y¯·àèè/2<ÔÏÏëHÑ?ˇ¸S/E]öl»ê!»  “Jie÷¨YJ^‰ü~˙©\ÆóÖÖRRR0a¬˙5'''ƒ≈≈)u˘‘’&Oû¸•k¶HÑﬂ~˚fffxˇ˛=˝˚§•iΩ9~¸∏Œ≠©µ5sss§¶¶ñπt]≥fÕêõõãËı∏«èWâh6ˇ˛˚/˙ıÎß¥![ºx1<==±p·¬"ã¨MLL©§ÍaaaÅ7oﬁ ==]•SkYYıÍ’ëêêÄ¯%KåãöK)ÖB°l6Jø_[∞`D99T‰®QΩuôÀ√√√ïR∑lŸAeWÒ¯Z‡geQÚÊ˙ˆnÀ=D6¸“˘+%•ƒ˘6IIIj%t⁄∑oØ4q+~∆≈≈=zÙ
+ˇ¸SÈ=666ÿ∂mBBBÏŸ3ÿÿÿË•(,??€∂m”⁄´‹Ø_?ºxÒ"ë˜Ôﬂ◊ª“√‘©Sëêê†u·€®Q£pÚ‰Iå1¢\k+|||‘—Ú˘¸"«)¢5ˆ·√±sÁNú={qqqÚz⁄~˛˘gµ:==√ÜS±û={ñ™Äˇ˚êöö™Wπ>¢!çÍˆÌ€z/æ]∏p!¢££ÀL⁄o—¢EE\\úúú¥ !.{ıÍ=.$\.û={¶SSù÷≠[
+ô¶D¢r”ëU¥Àó/kƒ/L8Êœüè9(B!?7o.ù9iuË–!xxx ::<Om4†8y˘Ú%ˆÌ€áS¶î€$¡·p‰d ≈,--ã%ã;vÏÄ¥)3
+YYåÊ\Sú ¥oﬂ•∂°Uh,ç.ò¨à∫sÁN»
+a©e2,_æ¸ìàôLàÇì⁄⁄⁄2h˜JÃT*ººº†À®°T*qÔﬁ=Ω;%æøY[[#<<ú∆ì
+ÇÉÉq·¬≥+öÀ¢££È,Œí%KP§…™ãDü8ú<xÄ+V†SßN®SßéIæıÍ’√ë#G·√ºzı
+ÛÊÕ3˙\≥f≠p¶k7m"RRR%≤˙ıÎcÒ‚≈ÙÙ§IÛµMõ§ø]ªvåé¸‚Xë\é3f†äHd∂Lt‰‡¡C		dtt4]~Ø[∑.ÚÛÛ—•KΩ|®ûûûx˛¸π NÕñ-[¬√√ÉŒÊØ^ΩÎ◊ØGff&Ó‹π√ÿy∑oﬂû±˘»ÀÀ√”ßOq‡A¨_ø´WØ∆Ôøˇ///:Û,óÀ1}˙tÙÏŸ´V≠¬’´Wä¯¯x§••!77HNNF@@
+øˇ.∏°j’™ uJâ
+ÉÇ3 òÇèñ´j†œ$âIô:Ì]ıÄ‡‚‚¬õôÍ›ª7Ô§ÒÏŸ3ﬁÔR∂vÌZÜ¥7ó?~Õõ7Á˝˚™U´Ã>6XRØ+V¨ÄZ≠f+--çï—–T|˛˚••ë2ôqqqÛÛChh(RSSÈ‡…÷÷nnnÁïóm›∫5rrr7Ã€Ï óÅ2Ncccı ‚Í˙–°CfPËC◊˚Ì7˝Ω“Ï°°°∞µµel`ùùù°R© ì…???xxx¿’’ïÄá‹‹\:–}¸¯±I˜fÔﬁΩåƒETTﬁºyÉá‚Ó›ªpuu≈oø˝Ü¡ÉÎÖôâtÿV@í
+ÀÅ˛¸yF
+öT}©U´,X@7¶Q,)≈a3fÇ@Éh9iKè≤∞ê‹πsß¡wPàOõ6rπ3gŒîÅÊjŒ.4åO±⁄««áı€AAAú¨nˇstXXÿß¶µ‹‹OM]J%‹‹‹Ù‚≈D:MA"=ZÊ€∑oGxx8nﬁºâ¸'Nú(g·øˆØô ï≠çä"¥≥’§Lˆ/n€ÇœfŒú9º•]mˆµTJÓŸ≥«(˘tëÜ«‹RÊÌÌm∂
+X
+ª
+∞	Ç y6oﬁPÆ¢Ç˚ı◊_1yÚ‰.ùàfŒú˘?ã›vŒU=Ö∏∞˚i”¶	ÓÙ®„√?‘¯}&Lò–È
+
+=============================================================
+
+
+=============================================================
+====================REQUEST (thread 7)====================
+GET http://www.gnu.org/distros/screenshots/gnewsense2-medium.jpg HTTP/1.1
+Host: www.gnu.org
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.gnu.org/
+Connection: keep-alive
+
+
+==================SENT REQUEST [12:32:8]===================
+GET /distros/screenshots/gnewsense2-medium.jpg HTTP/1.1
+Host: www.gnu.org:80
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.gnu.org/
+Connection: keep-alive
+
+
+===================RESPONSE [12:32:9]======================
+HTTP/1.1 200 OK
+Date: Thu, 02 Mar 2017 17:32:09 GMT
+Server: Apache/2.4.7
+Access-Control-Allow-Origin: (null)
+Last-Modified: Mon, 05 Sep 2016 08:13:26 GMT
+ETag: "121af-53bbe41201580"
+Accept-Ranges: bytes
+Content-Length: 74159
+Cache-Control: max-age=2592000
+Expires: Sat, 01 Apr 2017 17:32:09 GMT
+Keep-Alive: timeout=3, max=100
+Connection: Keep-Alive
+Content-Type: image/jpeg
+Content-Language: non-html
+
+ˇÿˇ‡
+¨xÏµ˙∫É´˚å§6O/Û∫8≥"cÂ
+Åòfòf0Pá$í<∂Jà†'llÙ°Ë\≈ºdπê9¸M–elÚv≠úÌî-ô9cÎö˚ˆPáÍFp
+x]l
+]Úµ˜]1˜kªåÖπãyFÃ
+Ÿ⁄∂T™*T¨™UïJï*Vaäï+1R£CH*UïH{Z0˜j~}º£;N¸[•≥◊KJ˘ 
+Iï[d˛-yIõjßw9î‘ÁŸTúV˚hqıæ‰Ü‘°√<F©L||PWKçÛ Óæk=fdû#’ÿbâ∏B+Ù∏i’s)<OﬁGO#?6·˚≈†¯¶z|OÔ˜ﬁÁ‡m§∆í°ùÀ;Ï;m7‚H71ü¸Ê&j$æQ£ﬂ<RnpD∂†—∑{∞∆1ò’Ü®/˛≈ß…®zN˛¸2o√ØV"ö‹‹KÃ·T•Jûå=p±.ñ\:ø
+?wÅô¡èÈ[¸~72ŒMïàÊ‚à’]°ßWúÕE¢·<⁄MÜÂkÀîí-F"¿•ƒ∏Vµ∞ﬁ!¯¯«Xo’pÁ∑}Qotäëaƒ*Ë°Œ'B}ñ±˝{ÍÆ≈ Ï≠ò¨áHáq¶9¯öœíºW˙ägßƒ˛ˇ
+bÓaß	‘Úf	<¶‰4»HÜ*˝áË–{ﬁ`ÂÚøôåÃŸ/1ôÖ9 Á1Êc3X)∑PÁ:31*i∆S.õ≠©GíÁ'Á:À+ë»ñjg3õÌ’RYùµnf31ôåÃfc3òÃ∆f31ôåÃfcüÁU˝ˇ
+ÙøVœ‘AÙﬂWzÆ {◊◊√_±7ˆ Ù‹]ıL0ê¬C6h0–YiµSO8§+˛≈Ùp˜æ4ÆXI∏ZÁuDF˝∫ÑsqLã?EPy⁄ƒÙøVÃøì”}\NY ‚Ω}|5˚lØMéåÏL˚|1∏@oáñ®‡{$ùÇxvju2–â!ΩT	:≤b—‘XEñQç/‚øÿæé˜’ﬁCEÃbTk5Kc™tuNé©–©Ó j´›"z_´g˘‡˙o´âΩW=ÎÎ·Øÿõ˚ezn,8§‚g≥ÉY¡¨‡¬ë‹^i)3‰l\H8Q(5üç»ÿíîìXØˆ/£áΩıò-ÙÕIåÎãà√ †∂¢8-ˆÙ	–“‘ZüuâÈ~≠ü®ÉÈæÆ&ı\@˜ØØÜøboÌïÈ∏≠◊qC t2C t2Iß∫ÚWR–mƒ>æç¡—∏al£˛≈Ùp˜æ¥Ÿ=6}Â¬fr^√1ùR∞ÙE>xz"Öü¢©˜XûóÍŒÖ!Á`zo´à"Ω&_“hΩ˙¯kˆ&˛Ÿ^ôPs∏j¡-∑‹–;ös@r≈+mjé·ˇ
+≠|@°qÊ¯•P“°„ú;sºL¢}Q∏£E¸‡®pT8*úŒ
+Äæ,‘-ÿÁ◊LëƒöIÊÃ¯´Ld|A√Üƒl<•£â‘Içä4±QÊ’GP«®£úA√Ô%æ$“6~c–Qƒ⁄$<|C¢»∏çAœä4cΩ≈JáÑ&S¬|∏ãá»º¬√πƒ‚Ö%y¡P<‡®pT8*«*Ï^¿êgàÍB15SdÊ#™Z⁄ƒ’,©xä•¬<ER•G≈UëÖWj°1Êï@ÛJ†y•P<“®iT4™öUÕ*ÅÊï@ÛJ†y•P<“®iT4™öUÕ*ÅÊï@ÛJ†y•P<“®iT4™öUÕ*ÅÊï@ÛJ†y•P<“®
+‚5Vº}rOVÁV0Ù~ V%œˇƒ
+˙~äáøì˙J‘#+D›5ﬂMà≈ÖÜ|ò7ó7_Ø—I‘ºlK$µÖ¶gJ¢^q›ˇ
+s˜ç{~¬Òﬁ~bÛüò'·ãø◊¢à_Sú_XÊ≈4∂îí0œ
+!ıäX6ù∆k6ŸÏù™ÿ`u3zÏ@’ÖmﬁQdC„Y˙≈ëçd5ﬁã¶≥b{40—µ÷,œ∑π>AV#àP±ú¡TZ√#rx≤Ú±ç©¯6Ü◊usnµå0ÜΩ|cqıoX8Ln˘¶ìZ)m≈ÔUpvzgüº°∞SS¡€ŒÛ≤H˘f%kŒ‰`VΩ∂n>ui™⁄π–k@êÁZñ•©jZñ•©jZñ•©jZñ•©V2±QK£æõUZ˘BŒÖù:t,ËY–≥°gBŒÖù
+#õL,/ù…Å¥¬<ke1∂]	£«\*›VÕ@|;S«é∏=¿ä‚˚Kè˚ª ”lJ˜ˆ&S1Aô≠Î˝zìã©Æô3≈7[5è¶eYa≥WmàR&n´-Z˚˝â≥•ZRÎRÒ˘ÓQ]áR]=ËJûÍñ.∞~áBµóô¥Õ¸∆i—<h¥í.´$¥≥tΩù»ìLsâ÷ÔWr|©´€ºüäŒÖù:t,ËY–≥°gBŒÑÏj≥tÁ uoQA}ën≠Å1¨tö…Ÿ`Ω”±E´Ô1¢c Àn
+çb÷TÿÖjE!“e\ûiOz0ÃjES∞âmöä⁄—»Ö∆÷Z&ãa∂å™ü¸P‹Êƒƒºñ…DÜÃRo∞b}'	nmZñUﬂ}ÍóΩæ„T@{Ä-≠Á]qMn%Hìpkoáø¬%e∑©Nr◊·∂ÌsE¨l:ªY/°b!ﬁµç·âêá—~ÂF¿eToªﬂ%W<I(¡ÇÆ1™N…Ÿ≠:˜D∂WzñKYgúmú˚ìLR%¨5Jqo¨n‹ÜRZØQ0D5†
+≥ï ÷HπÚ›W~¥Z—§&⁄ù&1≥∂zø]ÎÀJv]∏|f•V°ìß\ãÂd•ŒÖb‹´G2f˝ˆ&úJ≥3”ÃÔDã:Q>LI∂[ÆœÕ:∏ ˜TÑæ)ÿÅ∂HwßH6^i≥µ[p˝ †8Q‹ËfÉ&€Ï<6˙’≤çVﬂ(¡—ö≈&¸-C∞Y;Á⁄†√ãEhØyiÊü∂ƒpÃ!¯GJrµµ¨ªöJë]çhë´#9Ñ‡ÿXH@ ˚oMÇ;Œ≈Kﬁﬂq™†=ätváæ€„Òí?≤√—Æ”ÊÌ>60™°≠ï∂¯ÅÜÿÇVNÕhá¬mJŸZÂ5‡ÉúZ+∑Z≠Äd‰qgªıÍM1
+‘»Q!»dD"wÿy≠Ï	ìyäpôs¶o&’H.pl‡ ”~0Pÿ˜ÜπÊMlü¿™Sk
+”Üeˇ
+9ŒZƒä£Ó>¬®ﬂÜﬂg”;«µS7∑‹	˛ã=—ı%ß]àµ∞®r..Õ∫Úgˆì°∫µ¬©Ún˘ì‚º49˙ôw©R<J8Œ/ÕªŒ5lë_ÛwAàyu£!a[Ç"ÈÓ◊%Fm>81≥Ü5èôüB‰ÔÍ°{·P¿∑∆Í’Æ£Sa¡ki1Dú‰ÌÍèä¸l;¿~À\†Dtw9é}`⁄ˆÿmöˇ
+ËßÙ‹£Õ≈Ã2ñ5ô[˛S7∑‹o’P,.Ä?ÂÅ†◊E∫F¥ñêŒÑ•C∞Yz“–¥Üt!H1ö‡Õ@zóˆ°∆ﬁ⁄‚rm®˛÷˚o≈Cˆ»ñ]b”"t'~Ÿ˚¥∑üÌZK∏VíÓ§ªÖi.·ZK∏VíÓ§ªÖi.·P€≤C±:?å>sçÄzë˝≠ˆÛ)
+d@7-2'BóçƒñÂ?â=ÀIw
+“]¬¥óp≠%‹+Iw
+“]¬¥óp≠%‹(¿ÆÁï˙f|Ä‰œÍa˚¡zœµEÙJ‰›—=Ô©à6Ñ^>¡Qa6«3ÔÃﬂ+B¶oo∏ﬂ™†˛(P∆ÿcÿ£F ä8kKZÛ≠3
+	¥H…4¯√Ê”4\ËÔwï√H›{H±UJÂˆìj´⁄øµAÙ◊7zìΩ„ı—}JÙÃ¯ˇ
+ã÷∂!$ œR§ﬁp‚©’dÄ7nOq∆ê‹K}Ö9Á<VÍ⁄mP}¸lORÉ˝3>?¿Q).ÕÉ±∆k./YQx
+Àã¿V\^≤‚ïóÑ¨∏º%_Ä´‚ÖsãH≠ˇ
+àX‚ßØ•8tñƒkÜ≤Ÿ€ÓhÈ—Wx*L+XÃ¨∫^Úï©BÉràB]d®ä^‹cÀœ6c~±eÂõ0∑Iê*Ñ≥jgõ©.ìÈ8"Ã-“4qEòﬂ¨œ7R]'“d
+°,⁄è/<Ÿç˙≈óñl¬›&@™Õ©ûn§∫O§H‡ã0∑H—≈c~≥<›ItüIê*Ñ≥j<ºÛf7Î^Y≥tô®K6¶y∫íÈ>ë#Ç,¬›#GYç˙ÃÛu%“}&@™Õ®ÚÛÕòﬂ¨YyfÃ-“d
+°,⁄ôÊÍK§˙Dé≥tçQf7Î3Õ‘óIÙô®K6£Àœ6c~±eÂõ0∑Iê*Ñ≥jgõ©.ìÈ8bÃ-“`q@‘
+8	}øz'·O¬üÖ?
+~¸®¨:ƒ/J\Ê™≠È't¨/à/ø‘o_®r‡∆ä„ÄÒnÃ%™›ßx∂Q¬“ﬁúö·9å©Ï#‘eOi|A}˛£xÇ˚˝J⁄ˆÆ~ñïØSÑ±kÔü•ÜsSÿKïz=,:,vœ_Jk™^5ä]æ„XÄª}Ãÿ∏p™êIÿEÃÜNb†ãéa[pˇ
+ÄÂ;./ˇ
+ΩÇ	2‚7¬◊qDJ5zúa9b!â„ÜH`è]í|ŒX£!9â–4¬7ëdâP†ÉJã
+^=ÀãäJ~Ê~Ê~Ê~Ê~Ê~Ê~Ê~Ê~Ê~Ê~Ê~Ê	Ú| Ì†Ñ
+yµ˝
+Ç Ç É–uÌıMø(˚§j4ó‚|‚_â√Î/F‡¯^0<>I|\>Yx/	Ò¯OZ"RiëA88n	Dn%BV´ˆ–°ÜaÜaõ>q±°
+1Æ1zAì√∏É‡	˚§æ∑k¶∫k°Ã|DDNùx¢!Ö~ìaÀ˝ª?∑˚¿ÌÎ‰=>AAAAË:ˆ˙¶ﬂîã–GˆÛˆÛˆÛˆÚõª›SS0î êOÃ¿‰1,ÀîK!±RMùÁÊaπ≥g°C0˙aÜl˘¬G•uö°:ù;
+0"•⁄ÏAû¿ò:Ù¿àÄRÜÇEI°»ìl!v»4ïí{èi∞Â˛›á€˝‡vﬁ—ÈÇ Ç Ç ÇA◊∑’6¸†QÑdÌhxõCƒ⁄!õDà3%®`ÇHV
+È	$A¶S#ÄTÂäáæ®3cå≈DN(j°H‡úÅâÁËP√>Üaõ>r‹ÑRıól`ò∏ÖQ¡	´ﬂ|a5#$$hea[·jF¡X)ëÂÇ¨lJWp"hØ» SøˆÁπß)∞Â˛¬ã@qˇ
+Ç’bÓcHJ%a8≈4-AØp]k≠b{N'ÖJC"4I
+
+9o9l∑ú∂[-Á-ñÛñÛñÀyÀe≤ﬁrŸo9o9l∑ú∂[-Á-ñÛñÛñÀyÀe≤ﬁrŸo9o9l∑ú∂jgªÔ‡Î~&øo*kz#!ÈŒ~ﬂÌˇ
+ø<f*·ÜVÂÑ¶ïZÿ_ΩeFÆˆ∆›¢Ë∏`0∑,#Ë∏‡1ø<eFÆˆ∆›•4™÷¬˝Î1W3ø<f*·ÜVÂÑ¶ïZÿ_ΩeFÆˆ∆›¢Ë∏`0∑,#Ë∏‡1ø<eFÆˆ∆›•4™÷¬˝Î1W3ø<f*·ÜVÂÑ¶ïZÿ_ΩeFÆˆ∆›¢Ë∏`0∑,#Ë∏‡1ø<eFÆˆ∆›•4™÷¬˝Î+µ«Ôœ
+
+áÀ	Öåãé«*rI	Gπ√ÈYà%fFZA®úz!8æ2ˆ•ç®™Udj $Çâ∑cbèLu"E
+OÆiàcHêÿÅHà¶ƒÙ5€15`∏(‰öÏﬁs®  YReÔß©¶x˝z…ƒQíY¿‚§ÿ&º
+Å]™é∞⁄@#P]—Üë)~]óÉ'à»_ZÎ&l0Öè
+ºEà‡◊˙v‰’+¬?ßó9%á√‡r„Dò” QöàZrºbäÇÄÿj´
+º
+y–˛Ú?°˝‰C˚»˛á˜ë˝Ô#˙ﬁGÙ?ºèËy–˛Ú?°˝‰C˚»˛á˜ë˝Ô#˙ﬁGÙ?ºèËy–˛Ú?°˝‰C˚»~á˜ê®öNrE˛˛Mí≈dëY4b∂àeË¨SPlCüæDÄ"ÇZ°ÑîW„˙æºy∂<X±‚îÒ–	X†™îì¿$º`KBB<.•ÍöZUö‹	º˜3ÛûÊ~s‹œŒˆ].X%@Q-[ë•ó•ÄÚ‰ÉpbÌŸ§Ä*J÷Rîƒ°íå;9;HÚ:)≠≠\àmìÃ…ÊdÛ2yô<ÃûfO3'ôìÃ…Êd"	∞ˇ
+DÎTT1®/7í∂™=Jd†…ñ†bÄ2!î"ÉxC#∞&g<Ç;-î«Ö††U}¬Ÿìı®,πõe»4÷^¿ãDù"å<bªH/¶ÊeUY`P¶ŒSg è9èuïk%˘‡·nú2	@>B¢òıbEí"Ú
+
+=============================================================
+
+
+=============================================================
+====================REQUEST (thread 11)====================
+GET http://www.youtube.com/ HTTP/1.1
+Host: www.youtube.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+
+
+==================SENT REQUEST [12:32:17]===================
+GET / HTTP/1.1
+Host: www.youtube.com:80
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+
+
+===================RESPONSE [12:32:17]======================
+HTTP/1.1 301 Moved Permanently
+P3P: CP="This is not a P3P policy! See http://support.google.com/accounts/answer/151657?hl=en for more info."
+X-XSS-Protection: 1; mode=block; report=https://www.google.com/appserve/security-bugs/log/youtube
+Location: https://www.youtube.com/
+Expires: Tue, 27 Apr 1971 19:44:06 EST
+Content-Length: 0
+X-Content-Type-Options: nosniff
+Content-Type: text/html; charset=utf-8
+Cache-Control: no-cache
+Date: Thu, 02 Mar 2017 17:32:18 GMT
+Server: YouTubeFrontEnd
+Set-Cookie: VISITOR_INFO1_LIVE=i8daIFMU3Yg; path=/; domain=.youtube.com; expires=Wed, 01-Nov-2017 05:25:18 GMT; httponly
+Set-Cookie: YSC=5LAXhIrhN3s; path=/; domain=.youtube.com; httponly
+
+
+
+=============================================================
+
+
+=============================================================
+====================REQUEST (thread 12)====================
 POST http://clients1.google.com/ocsp HTTP/1.1
 Host: clients1.google.com
 User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
@@ -13,7 +662,7 @@ Content-Type: application/ocsp-request
 Connection: keep-alive
 
 0I0G0E0C0A0	+
-==================SENT REQUEST [3:3:6]===================
+==================SENT REQUEST [12:32:18]===================
 POST /ocsp HTTP/1.1
 Host: clients1.google.com:80
 User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
@@ -25,11 +674,11 @@ Content-Type: application/ocsp-request
 Connection: keep-alive
 
 0I0G0E0C0A0	+
-===================RESPONSE [3:3:6]======================
+===================RESPONSE [12:32:18]======================
 HTTP/1.1 200 OK
 Content-Type: application/ocsp-response
-Date: Thu, 02 Mar 2017 08:03:06 GMT
-Expires: Mon, 06 Mar 2017 08:03:06 GMT
+Date: Thu, 02 Mar 2017 17:32:18 GMT
+Expires: Mon, 06 Mar 2017 17:32:18 GMT
 Cache-Control: public, max-age=345600
 Server: ocsp_responder
 Content-Length: 463
@@ -43,7 +692,931 @@ X-Frame-Options: SAMEORIGIN
 
 
 =============================================================
-====================REQUEST (thread 2)====================
+====================REQUEST (thread 13)====================
+POST http://clients1.google.com/ocsp HTTP/1.1
+Host: clients1.google.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Length: 75
+Content-Type: application/ocsp-request
+Connection: keep-alive
+
+0I0G0E0C0A0	+
+==================SENT REQUEST [12:32:19]===================
+POST /ocsp HTTP/1.1
+Host: clients1.google.com:80
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Length: 75
+Content-Type: application/ocsp-request
+Connection: keep-alive
+
+0I0G0E0C0A0	+
+===================RESPONSE [12:32:19]======================
+HTTP/1.1 200 OK
+Content-Type: application/ocsp-response
+Date: Thu, 02 Mar 2017 17:32:19 GMT
+Expires: Mon, 06 Mar 2017 17:32:19 GMT
+Cache-Control: public, max-age=345600
+Server: ocsp_responder
+Content-Length: 463
+X-XSS-Protection: 1; mode=block
+X-Frame-Options: SAMEORIGIN
+
+0ÇÀ
+
+
+=============================================================
+
+
+=============================================================
+====================REQUEST (thread 14)====================
+POST http://clients1.google.com/ocsp HTTP/1.1
+Host: clients1.google.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Length: 75
+Content-Type: application/ocsp-request
+Connection: keep-alive
+
+0I0G0E0C0A0	+
+==================SENT REQUEST [12:32:19]===================
+POST /ocsp HTTP/1.1
+Host: clients1.google.com:80
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Length: 75
+Content-Type: application/ocsp-request
+Connection: keep-alive
+
+0I0G0E0C0A0	+
+===================RESPONSE [12:32:19]======================
+HTTP/1.1 200 OK
+Content-Type: application/ocsp-response
+Date: Thu, 02 Mar 2017 17:32:19 GMT
+Expires: Mon, 06 Mar 2017 17:32:19 GMT
+Cache-Control: public, max-age=345600
+Server: ocsp_responder
+Content-Length: 463
+X-XSS-Protection: 1; mode=block
+X-Frame-Options: SAMEORIGIN
+
+0ÇÀ
+
+
+=============================================================
+
+
+=============================================================
+====================REQUEST (thread 15)====================
+POST http://clients1.google.com/ocsp HTTP/1.1
+Host: clients1.google.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Length: 75
+Content-Type: application/ocsp-request
+Connection: keep-alive
+
+0I0G0E0C0A0	+
+==================SENT REQUEST [12:32:19]===================
+POST /ocsp HTTP/1.1
+Host: clients1.google.com:80
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Length: 75
+Content-Type: application/ocsp-request
+Connection: keep-alive
+
+0I0G0E0C0A0	+
+===================RESPONSE [12:32:19]======================
+HTTP/1.1 200 OK
+Content-Type: application/ocsp-response
+Date: Thu, 02 Mar 2017 17:32:19 GMT
+Expires: Mon, 06 Mar 2017 17:32:19 GMT
+Cache-Control: public, max-age=345600
+Server: ocsp_responder
+Content-Length: 463
+X-XSS-Protection: 1; mode=block
+X-Frame-Options: SAMEORIGIN
+
+0ÇÀ
+
+
+=============================================================
+
+
+=============================================================
+====================REQUEST (thread 16)====================
+POST http://clients1.google.com/ocsp HTTP/1.1
+Host: clients1.google.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Length: 75
+Content-Type: application/ocsp-request
+Connection: keep-alive
+
+0I0G0E0C0A0	+
+==================SENT REQUEST [12:32:19]===================
+POST /ocsp HTTP/1.1
+Host: clients1.google.com:80
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Length: 75
+Content-Type: application/ocsp-request
+Connection: keep-alive
+
+0I0G0E0C0A0	+
+===================RESPONSE [12:32:19]======================
+HTTP/1.1 200 OK
+Content-Type: application/ocsp-response
+Date: Thu, 02 Mar 2017 17:32:20 GMT
+Expires: Mon, 06 Mar 2017 17:32:20 GMT
+Cache-Control: public, max-age=345600
+Server: ocsp_responder
+Content-Length: 463
+X-XSS-Protection: 1; mode=block
+X-Frame-Options: SAMEORIGIN
+
+0ÇÀ
+
+
+=============================================================
+
+
+=============================================================
+====================REQUEST (thread 17)====================
+POST http://clients1.google.com/ocsp HTTP/1.1
+Host: clients1.google.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Length: 75
+Content-Type: application/ocsp-request
+Connection: keep-alive
+
+0I0G0E0C0A0	+
+==================SENT REQUEST [12:32:19]===================
+POST /ocsp HTTP/1.1
+Host: clients1.google.com:80
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Length: 75
+Content-Type: application/ocsp-request
+Connection: keep-alive
+
+0I0G0E0C0A0	+
+===================RESPONSE [12:32:19]======================
+HTTP/1.1 200 OK
+Content-Type: application/ocsp-response
+Date: Thu, 02 Mar 2017 17:32:20 GMT
+Expires: Mon, 06 Mar 2017 17:32:20 GMT
+Cache-Control: public, max-age=345600
+Server: ocsp_responder
+Content-Length: 463
+X-XSS-Protection: 1; mode=block
+X-Frame-Options: SAMEORIGIN
+
+0ÇÀ
+
+
+=============================================================
+
+
+=============================================================
+====================REQUEST (thread 18)====================
+POST http://clients1.google.com/ocsp HTTP/1.1
+Host: clients1.google.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Length: 75
+Content-Type: application/ocsp-request
+Connection: keep-alive
+
+0I0G0E0C0A0	+
+==================SENT REQUEST [12:32:19]===================
+POST /ocsp HTTP/1.1
+Host: clients1.google.com:80
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Length: 75
+Content-Type: application/ocsp-request
+Connection: keep-alive
+
+0I0G0E0C0A0	+
+===================RESPONSE [12:32:19]======================
+HTTP/1.1 200 OK
+Content-Type: application/ocsp-response
+Date: Thu, 02 Mar 2017 17:32:20 GMT
+Expires: Mon, 06 Mar 2017 17:32:20 GMT
+Cache-Control: public, max-age=345600
+Server: ocsp_responder
+Content-Length: 463
+X-XSS-Protection: 1; mode=block
+X-Frame-Options: SAMEORIGIN
+
+0ÇÀ
+
+
+=============================================================
+
+
+=============================================================
+====================REQUEST (thread 19)====================
+POST http://clients1.google.com/ocsp HTTP/1.1
+Host: clients1.google.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Length: 75
+Content-Type: application/ocsp-request
+Connection: keep-alive
+
+0I0G0E0C0A0	+
+==================SENT REQUEST [12:32:19]===================
+POST /ocsp HTTP/1.1
+Host: clients1.google.com:80
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Length: 75
+Content-Type: application/ocsp-request
+Connection: keep-alive
+
+0I0G0E0C0A0	+
+===================RESPONSE [12:32:19]======================
+HTTP/1.1 200 OK
+Content-Type: application/ocsp-response
+Date: Thu, 02 Mar 2017 17:32:20 GMT
+Expires: Mon, 06 Mar 2017 17:32:20 GMT
+Cache-Control: public, max-age=345600
+Server: ocsp_responder
+Content-Length: 463
+X-XSS-Protection: 1; mode=block
+X-Frame-Options: SAMEORIGIN
+
+0ÇÀ
+
+
+=============================================================
+
+
+=============================================================
+====================REQUEST (thread 20)====================
+POST http://clients1.google.com/ocsp HTTP/1.1
+Host: clients1.google.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Length: 75
+Content-Type: application/ocsp-request
+Connection: keep-alive
+
+0I0G0E0C0A0	+
+==================SENT REQUEST [12:32:19]===================
+POST /ocsp HTTP/1.1
+Host: clients1.google.com:80
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Length: 75
+Content-Type: application/ocsp-request
+Connection: keep-alive
+
+0I0G0E0C0A0	+
+===================RESPONSE [12:32:19]======================
+HTTP/1.1 200 OK
+Content-Type: application/ocsp-response
+Date: Thu, 02 Mar 2017 17:32:20 GMT
+Expires: Mon, 06 Mar 2017 17:32:20 GMT
+Cache-Control: public, max-age=345600
+Server: ocsp_responder
+Content-Length: 463
+X-XSS-Protection: 1; mode=block
+X-Frame-Options: SAMEORIGIN
+
+0ÇÀ
+
+
+=============================================================
+
+
+=============================================================
+====================REQUEST (thread 22)====================
+POST http://clients1.google.com/ocsp HTTP/1.1
+Host: clients1.google.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Length: 75
+Content-Type: application/ocsp-request
+Connection: keep-alive
+
+0I0G0E0C0A0	+
+==================SENT REQUEST [12:32:19]===================
+POST /ocsp HTTP/1.1
+Host: clients1.google.com:80
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Length: 75
+Content-Type: application/ocsp-request
+Connection: keep-alive
+
+0I0G0E0C0A0	+
+===================RESPONSE [12:32:19]======================
+HTTP/1.1 200 OK
+Content-Type: application/ocsp-response
+Date: Thu, 02 Mar 2017 17:32:20 GMT
+Expires: Mon, 06 Mar 2017 17:32:20 GMT
+Cache-Control: public, max-age=345600
+Server: ocsp_responder
+Content-Length: 463
+X-XSS-Protection: 1; mode=block
+X-Frame-Options: SAMEORIGIN
+
+0ÇÀ
+
+
+=============================================================
+
+
+=============================================================
+====================REQUEST (thread 21)====================
+POST http://clients1.google.com/ocsp HTTP/1.1
+Host: clients1.google.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Length: 75
+Content-Type: application/ocsp-request
+Connection: keep-alive
+
+0I0G0E0C0A0	+
+==================SENT REQUEST [12:32:19]===================
+POST /ocsp HTTP/1.1
+Host: clients1.google.com:80
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Length: 75
+Content-Type: application/ocsp-request
+Connection: keep-alive
+
+0I0G0E0C0A0	+
+===================RESPONSE [12:32:19]======================
+HTTP/1.1 200 OK
+Content-Type: application/ocsp-response
+Date: Thu, 02 Mar 2017 17:32:20 GMT
+Expires: Mon, 06 Mar 2017 17:32:20 GMT
+Cache-Control: public, max-age=345600
+Server: ocsp_responder
+Content-Length: 463
+X-XSS-Protection: 1; mode=block
+X-Frame-Options: SAMEORIGIN
+
+0ÇÀ
+
+
+=============================================================
+
+
+=============================================================
+====================REQUEST (thread 23)====================
+POST http://clients1.google.com/ocsp HTTP/1.1
+Host: clients1.google.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Length: 75
+Content-Type: application/ocsp-request
+Connection: keep-alive
+
+0I0G0E0C0A0	+
+==================SENT REQUEST [12:32:20]===================
+POST /ocsp HTTP/1.1
+Host: clients1.google.com:80
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Length: 75
+Content-Type: application/ocsp-request
+Connection: keep-alive
+
+0I0G0E0C0A0	+
+===================RESPONSE [12:32:20]======================
+HTTP/1.1 200 OK
+Content-Type: application/ocsp-response
+Date: Thu, 02 Mar 2017 17:32:20 GMT
+Expires: Mon, 06 Mar 2017 17:32:20 GMT
+Cache-Control: public, max-age=345600
+Server: ocsp_responder
+Content-Length: 463
+X-XSS-Protection: 1; mode=block
+X-Frame-Options: SAMEORIGIN
+
+0ÇÀ
+
+
+=============================================================
+
+
+=============================================================
+====================REQUEST (thread 24)====================
+POST http://clients1.google.com/ocsp HTTP/1.1
+Host: clients1.google.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Length: 75
+Content-Type: application/ocsp-request
+Connection: keep-alive
+
+0I0G0E0C0A0	+
+==================SENT REQUEST [12:32:20]===================
+POST /ocsp HTTP/1.1
+Host: clients1.google.com:80
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Length: 75
+Content-Type: application/ocsp-request
+Connection: keep-alive
+
+0I0G0E0C0A0	+
+===================RESPONSE [12:32:20]======================
+HTTP/1.1 200 OK
+Content-Type: application/ocsp-response
+Date: Thu, 02 Mar 2017 17:32:20 GMT
+Expires: Mon, 06 Mar 2017 17:32:20 GMT
+Cache-Control: public, max-age=345600
+Server: ocsp_responder
+Content-Length: 463
+X-XSS-Protection: 1; mode=block
+X-Frame-Options: SAMEORIGIN
+
+0ÇÀ
+
+
+=============================================================
+
+
+=============================================================
+====================REQUEST (thread 25)====================
+POST http://clients1.google.com/ocsp HTTP/1.1
+Host: clients1.google.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Length: 75
+Content-Type: application/ocsp-request
+Connection: keep-alive
+
+0I0G0E0C0A0	+
+==================SENT REQUEST [12:32:20]===================
+POST /ocsp HTTP/1.1
+Host: clients1.google.com:80
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Length: 75
+Content-Type: application/ocsp-request
+Connection: keep-alive
+
+0I0G0E0C0A0	+
+===================RESPONSE [12:32:20]======================
+HTTP/1.1 200 OK
+Content-Type: application/ocsp-response
+Date: Thu, 02 Mar 2017 17:32:20 GMT
+Expires: Mon, 06 Mar 2017 17:32:20 GMT
+Cache-Control: public, max-age=345600
+Server: ocsp_responder
+Content-Length: 463
+X-XSS-Protection: 1; mode=block
+X-Frame-Options: SAMEORIGIN
+
+0ÇÀ
+
+
+=============================================================
+
+
+=============================================================
+====================REQUEST (thread 27)====================
+POST http://clients1.google.com/ocsp HTTP/1.1
+Host: clients1.google.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Length: 75
+Content-Type: application/ocsp-request
+Connection: keep-alive
+
+0I0G0E0C0A0	+
+==================SENT REQUEST [12:32:20]===================
+POST /ocsp HTTP/1.1
+Host: clients1.google.com:80
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Length: 75
+Content-Type: application/ocsp-request
+Connection: keep-alive
+
+0I0G0E0C0A0	+
+===================RESPONSE [12:32:20]======================
+HTTP/1.1 200 OK
+Content-Type: application/ocsp-response
+Date: Thu, 02 Mar 2017 17:32:20 GMT
+Expires: Mon, 06 Mar 2017 17:32:20 GMT
+Cache-Control: public, max-age=345600
+Server: ocsp_responder
+Content-Length: 463
+X-XSS-Protection: 1; mode=block
+X-Frame-Options: SAMEORIGIN
+
+0ÇÀ
+
+
+=============================================================
+
+
+=============================================================
+====================REQUEST (thread 26)====================
+POST http://clients1.google.com/ocsp HTTP/1.1
+Host: clients1.google.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Length: 75
+Content-Type: application/ocsp-request
+Connection: keep-alive
+
+0I0G0E0C0A0	+
+==================SENT REQUEST [12:32:20]===================
+POST /ocsp HTTP/1.1
+Host: clients1.google.com:80
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Length: 75
+Content-Type: application/ocsp-request
+Connection: keep-alive
+
+0I0G0E0C0A0	+
+===================RESPONSE [12:32:20]======================
+HTTP/1.1 200 OK
+Content-Type: application/ocsp-response
+Date: Thu, 02 Mar 2017 17:32:20 GMT
+Expires: Mon, 06 Mar 2017 17:32:20 GMT
+Cache-Control: public, max-age=345600
+Server: ocsp_responder
+Content-Length: 463
+X-XSS-Protection: 1; mode=block
+X-Frame-Options: SAMEORIGIN
+
+0ÇÀ
+
+
+=============================================================
+
+
+=============================================================
+====================REQUEST (thread 28)====================
+POST http://clients1.google.com/ocsp HTTP/1.1
+Host: clients1.google.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Length: 75
+Content-Type: application/ocsp-request
+Connection: keep-alive
+
+0I0G0E0C0A0	+
+==================SENT REQUEST [12:32:20]===================
+POST /ocsp HTTP/1.1
+Host: clients1.google.com:80
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Length: 75
+Content-Type: application/ocsp-request
+Connection: keep-alive
+
+0I0G0E0C0A0	+
+===================RESPONSE [12:32:20]======================
+HTTP/1.1 200 OK
+Content-Type: application/ocsp-response
+Date: Thu, 02 Mar 2017 17:32:21 GMT
+Expires: Mon, 06 Mar 2017 17:32:21 GMT
+Cache-Control: public, max-age=345600
+Server: ocsp_responder
+Content-Length: 463
+X-XSS-Protection: 1; mode=block
+X-Frame-Options: SAMEORIGIN
+
+0ÇÀ
+
+
+=============================================================
+
+
+=============================================================
+====================REQUEST (thread 30)====================
+POST http://clients1.google.com/ocsp HTTP/1.1
+Host: clients1.google.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Length: 75
+Content-Type: application/ocsp-request
+Connection: keep-alive
+
+0I0G0E0C0A0	+
+==================SENT REQUEST [12:32:20]===================
+POST /ocsp HTTP/1.1
+Host: clients1.google.com:80
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Length: 75
+Content-Type: application/ocsp-request
+Connection: keep-alive
+
+0I0G0E0C0A0	+
+===================RESPONSE [12:32:20]======================
+HTTP/1.1 200 OK
+Content-Type: application/ocsp-response
+Date: Thu, 02 Mar 2017 17:32:21 GMT
+Expires: Mon, 06 Mar 2017 17:32:21 GMT
+Cache-Control: public, max-age=345600
+Server: ocsp_responder
+Content-Length: 463
+X-XSS-Protection: 1; mode=block
+X-Frame-Options: SAMEORIGIN
+
+0ÇÀ
+
+
+=============================================================
+
+
+=============================================================
+====================REQUEST (thread 31)====================
+POST http://clients1.google.com/ocsp HTTP/1.1
+Host: clients1.google.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Length: 75
+Content-Type: application/ocsp-request
+Connection: keep-alive
+
+0I0G0E0C0A0	+
+==================SENT REQUEST [12:32:20]===================
+POST /ocsp HTTP/1.1
+Host: clients1.google.com:80
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Length: 75
+Content-Type: application/ocsp-request
+Connection: keep-alive
+
+0I0G0E0C0A0	+
+===================RESPONSE [12:32:20]======================
+HTTP/1.1 200 OK
+Content-Type: application/ocsp-response
+Date: Thu, 02 Mar 2017 17:32:21 GMT
+Expires: Mon, 06 Mar 2017 17:32:21 GMT
+Cache-Control: public, max-age=345600
+Server: ocsp_responder
+Content-Length: 463
+X-XSS-Protection: 1; mode=block
+X-Frame-Options: SAMEORIGIN
+
+0ÇÀ
+
+
+=============================================================
+
+
+=============================================================
+====================REQUEST (thread 29)====================
+POST http://clients1.google.com/ocsp HTTP/1.1
+Host: clients1.google.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Length: 75
+Content-Type: application/ocsp-request
+Connection: keep-alive
+
+0I0G0E0C0A0	+
+==================SENT REQUEST [12:32:20]===================
+POST /ocsp HTTP/1.1
+Host: clients1.google.com:80
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Length: 75
+Content-Type: application/ocsp-request
+Connection: keep-alive
+
+0I0G0E0C0A0	+
+===================RESPONSE [12:32:20]======================
+HTTP/1.1 200 OK
+Content-Type: application/ocsp-response
+Date: Thu, 02 Mar 2017 17:32:21 GMT
+Expires: Mon, 06 Mar 2017 17:32:21 GMT
+Cache-Control: public, max-age=345600
+Server: ocsp_responder
+Content-Length: 463
+X-XSS-Protection: 1; mode=block
+X-Frame-Options: SAMEORIGIN
+
+0ÇÀ
+
+
+=============================================================
+
+
+=============================================================
+====================REQUEST (thread 32)====================
+POST http://clients1.google.com/ocsp HTTP/1.1
+Host: clients1.google.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Length: 75
+Content-Type: application/ocsp-request
+Connection: keep-alive
+
+0I0G0E0C0A0	+
+==================SENT REQUEST [12:32:20]===================
+POST /ocsp HTTP/1.1
+Host: clients1.google.com:80
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Length: 75
+Content-Type: application/ocsp-request
+Connection: keep-alive
+
+0I0G0E0C0A0	+
+===================RESPONSE [12:32:20]======================
+HTTP/1.1 200 OK
+Content-Type: application/ocsp-response
+Date: Thu, 02 Mar 2017 17:32:21 GMT
+Expires: Mon, 06 Mar 2017 17:32:21 GMT
+Cache-Control: public, max-age=345600
+Server: ocsp_responder
+Content-Length: 463
+X-XSS-Protection: 1; mode=block
+X-Frame-Options: SAMEORIGIN
+
+0ÇÀ
+
+
+=============================================================
+
+
+=============================================================
+====================REQUEST (thread 33)====================
+POST http://clients1.google.com/ocsp HTTP/1.1
+Host: clients1.google.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Length: 75
+Content-Type: application/ocsp-request
+Connection: keep-alive
+
+0I0G0E0C0A0	+
+==================SENT REQUEST [12:32:20]===================
+POST /ocsp HTTP/1.1
+Host: clients1.google.com:80
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Length: 75
+Content-Type: application/ocsp-request
+Connection: keep-alive
+
+0I0G0E0C0A0	+
+===================RESPONSE [12:32:20]======================
+HTTP/1.1 200 OK
+Content-Type: application/ocsp-response
+Date: Thu, 02 Mar 2017 17:32:21 GMT
+Expires: Mon, 06 Mar 2017 17:32:21 GMT
+Cache-Control: public, max-age=345600
+Server: ocsp_responder
+Content-Length: 463
+X-XSS-Protection: 1; mode=block
+X-Frame-Options: SAMEORIGIN
+
+0ÇÀ
+
+
+=============================================================
+
+
+=============================================================
+====================REQUEST (thread 34)====================
+POST http://clients1.google.com/ocsp HTTP/1.1
+Host: clients1.google.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Length: 75
+Content-Type: application/ocsp-request
+Connection: keep-alive
+
+0I0G0E0C0A0	+
+==================SENT REQUEST [12:32:28]===================
+POST /ocsp HTTP/1.1
+Host: clients1.google.com:80
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Length: 75
+Content-Type: application/ocsp-request
+Connection: keep-alive
+
+0I0G0E0C0A0	+
+===================RESPONSE [12:32:28]======================
+HTTP/1.1 200 OK
+Content-Type: application/ocsp-response
+Date: Thu, 02 Mar 2017 17:32:29 GMT
+Expires: Mon, 06 Mar 2017 17:32:29 GMT
+Cache-Control: public, max-age=345600
+Server: ocsp_responder
+Content-Length: 463
+X-XSS-Protection: 1; mode=block
+X-Frame-Options: SAMEORIGIN
+
+0ÇÀ
+
+
+=============================================================
+
+
+=============================================================
+====================REQUEST (thread 35)====================
 POST http://ocsp.digicert.com/ HTTP/1.1
 Host: ocsp.digicert.com
 User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
@@ -55,7 +1628,7 @@ Content-Type: application/ocsp-request
 Connection: keep-alive
 
 0Q0O0M0K0I0	+
-==================SENT REQUEST [3:3:59]===================
+==================SENT REQUEST [12:32:37]===================
 POST / HTTP/1.1
 Host: ocsp.digicert.com:80
 User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
@@ -67,462 +1640,20 @@ Content-Type: application/ocsp-request
 Connection: keep-alive
 
 0Q0O0M0K0I0	+
-===================RESPONSE [3:3:59]======================
+===================RESPONSE [12:32:37]======================
 HTTP/1.1 200 OK
 Accept-Ranges: bytes
 Cache-Control: public, max-age=172800
 Content-Type: application/ocsp-response
-Date: Thu, 02 Mar 2017 08:03:59 GMT
-Etag: "58b7860d-1d7"
-Expires: Wed, 08 Mar 2017 20:03:59 GMT
-Last-Modified: Thu, 02 Mar 2017 02:40:13 GMT
-Server: ECS (lga/1385)
+Date: Thu, 02 Mar 2017 17:32:38 GMT
+Etag: "58b8221c-1d7"
+Expires: Thu, 09 Mar 2017 05:32:38 GMT
+Last-Modified: Thu, 02 Mar 2017 13:46:04 GMT
+Server: ECS (lga/1378)
 X-Cache: HIT
 Content-Length: 471
 
 0Ç”
 
-
-=============================================================
-
-
-=============================================================
-====================REQUEST (thread 3)====================
-POST http://ocsp.digicert.com/ HTTP/1.1
-Host: ocsp.digicert.com
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Content-Length: 83
-Content-Type: application/ocsp-request
-Connection: keep-alive
-
-0Q0O0M0K0I0	+
-==================SENT REQUEST [3:3:59]===================
-POST / HTTP/1.1
-Host: ocsp.digicert.com:80
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Content-Length: 83
-Content-Type: application/ocsp-request
-Connection: keep-alive
-
-0Q0O0M0K0I0	+
-===================RESPONSE [3:3:59]======================
-HTTP/1.1 200 OK
-Accept-Ranges: bytes
-Cache-Control: public, max-age=172800
-Content-Type: application/ocsp-response
-Date: Thu, 02 Mar 2017 08:03:59 GMT
-Etag: "58b79d83-1d7"
-Expires: Wed, 08 Mar 2017 20:03:59 GMT
-Last-Modified: Thu, 02 Mar 2017 04:20:19 GMT
-Server: ECS (lga/1386)
-X-Cache: HIT
-Content-Length: 471
-
-0Ç”
-
-
-=============================================================
-
-
-=============================================================
-====================REQUEST (thread 4)====================
-POST http://ocsp.digicert.com/ HTTP/1.1
-Host: ocsp.digicert.com
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Content-Length: 83
-Content-Type: application/ocsp-request
-Connection: keep-alive
-
-0Q0O0M0K0I0	+
-==================SENT REQUEST [3:3:59]===================
-POST / HTTP/1.1
-Host: ocsp.digicert.com:80
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Content-Length: 83
-Content-Type: application/ocsp-request
-Connection: keep-alive
-
-0Q0O0M0K0I0	+
-===================RESPONSE [3:3:59]======================
-HTTP/1.1 200 OK
-Accept-Ranges: bytes
-Cache-Control: public, max-age=172800
-Content-Type: application/ocsp-response
-Date: Thu, 02 Mar 2017 08:03:59 GMT
-Etag: "58b79d83-1d7"
-Expires: Wed, 08 Mar 2017 20:03:59 GMT
-Last-Modified: Thu, 02 Mar 2017 04:20:19 GMT
-Server: ECS (lga/13A4)
-X-Cache: HIT
-Content-Length: 471
-
-0Ç”
-
-
-=============================================================
-
-
-=============================================================
-====================REQUEST (thread 5)====================
-POST http://ocsp.digicert.com/ HTTP/1.1
-Host: ocsp.digicert.com
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Content-Length: 83
-Content-Type: application/ocsp-request
-Connection: keep-alive
-
-0Q0O0M0K0I0	+
-==================SENT REQUEST [3:3:59]===================
-POST / HTTP/1.1
-Host: ocsp.digicert.com:80
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Content-Length: 83
-Content-Type: application/ocsp-request
-Connection: keep-alive
-
-0Q0O0M0K0I0	+
-===================RESPONSE [3:3:59]======================
-HTTP/1.1 200 OK
-Accept-Ranges: bytes
-Cache-Control: public, max-age=172800
-Content-Type: application/ocsp-response
-Date: Thu, 02 Mar 2017 08:03:59 GMT
-Etag: "58b79d83-1d7"
-Expires: Wed, 08 Mar 2017 20:03:59 GMT
-Last-Modified: Thu, 02 Mar 2017 04:20:19 GMT
-Server: ECS (lga/13A4)
-X-Cache: HIT
-Content-Length: 471
-
-0Ç”
-
-
-=============================================================
-
-
-=============================================================
-====================REQUEST (thread 6)====================
-POST http://ocsp.digicert.com/ HTTP/1.1
-Host: ocsp.digicert.com
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Content-Length: 83
-Content-Type: application/ocsp-request
-Connection: keep-alive
-
-0Q0O0M0K0I0	+
-==================SENT REQUEST [3:4:0]===================
-POST / HTTP/1.1
-Host: ocsp.digicert.com:80
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Content-Length: 83
-Content-Type: application/ocsp-request
-Connection: keep-alive
-
-0Q0O0M0K0I0	+
-===================RESPONSE [3:4:0]======================
-HTTP/1.1 200 OK
-Accept-Ranges: bytes
-Cache-Control: public, max-age=172800
-Content-Type: application/ocsp-response
-Date: Thu, 02 Mar 2017 08:04:00 GMT
-Etag: "58b75e2c-1d7"
-Expires: Wed, 08 Mar 2017 20:04:00 GMT
-Last-Modified: Wed, 01 Mar 2017 23:50:04 GMT
-Server: ECS (lga/1386)
-X-Cache: HIT
-Content-Length: 471
-
-0Ç”
-
-
-=============================================================
-
-
-=============================================================
-====================REQUEST (thread 7)====================
-POST http://ss.symcd.com/ HTTP/1.1
-Host: ss.symcd.com
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Content-Length: 83
-Content-Type: application/ocsp-request
-Connection: keep-alive
-
-0Q0O0M0K0I0	+
-==================SENT REQUEST [3:4:1]===================
-POST / HTTP/1.1
-Host: ss.symcd.com:80
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Content-Length: 83
-Content-Type: application/ocsp-request
-Connection: keep-alive
-
-0Q0O0M0K0I0	+
-===================RESPONSE [3:4:1]======================
-HTTP/1.1 200 OK
-Server: nginx/1.10.2
-Content-Type: application/ocsp-response
-Content-Length: 1609
-content-transfer-encoding: binary
-Cache-Control: max-age=549745, public, no-transform, must-revalidate
-Last-Modified: Wed, 1 Mar 2017 16:43:43 GMT
-Expires: Wed, 8 Mar 2017 16:43:43 GMT
-Date: Thu, 02 Mar 2017 08:04:01 GMT
-Connection: keep-alive
-
-0ÇE
-
-0U#0Ä_`œaêUﬂÑCä`*≤ızÙCÔ0UE ®ãäeüu˙ıÈ
-x“7û0Uˇ0
-
-=============================================================
-
-
-=============================================================
-====================REQUEST (thread 8)====================
-POST http://ss.symcd.com/ HTTP/1.1
-Host: ss.symcd.com
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Content-Length: 83
-Content-Type: application/ocsp-request
-Connection: keep-alive
-
-0Q0O0M0K0I0	+
-==================SENT REQUEST [3:4:1]===================
-POST / HTTP/1.1
-Host: ss.symcd.com:80
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Content-Length: 83
-Content-Type: application/ocsp-request
-Connection: keep-alive
-
-0Q0O0M0K0I0	+
-===================RESPONSE [3:4:1]======================
-HTTP/1.1 200 OK
-Server: nginx/1.10.2
-Content-Type: application/ocsp-response
-Content-Length: 1609
-content-transfer-encoding: binary
-Cache-Control: max-age=549745, public, no-transform, must-revalidate
-Last-Modified: Wed, 1 Mar 2017 16:43:43 GMT
-Expires: Wed, 8 Mar 2017 16:43:43 GMT
-Date: Thu, 02 Mar 2017 08:04:01 GMT
-Connection: keep-alive
-
-0ÇE
-
-
-=============================================================
-
-
-=============================================================
-====================REQUEST (thread 9)====================
-POST http://ocsp.sca1b.amazontrust.com/ HTTP/1.1
-Host: ocsp.sca1b.amazontrust.com
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Content-Length: 83
-Content-Type: application/ocsp-request
-Connection: keep-alive
-
-0Q0O0M0K0I0	+
-==================SENT REQUEST [3:4:1]===================
-POST / HTTP/1.1
-Host: ocsp.sca1b.amazontrust.com:80
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Content-Length: 83
-Content-Type: application/ocsp-request
-Connection: keep-alive
-
-0Q0O0M0K0I0	+
-===================RESPONSE [3:4:1]======================
-HTTP/1.1 200 OK
-Content-Type: application/ocsp-response
-Content-Length: 471
-Connection: keep-alive
-Accept-Ranges: bytes
-Cache-Control: public, max-age=172800
-Date: Thu, 02 Mar 2017 08:04:01 GMT
-Etag: "58b7898f-1d7"
-Expires: Wed, 08 Mar 2017 20:04:01 GMT
-Last-Modified: Thu, 02 Mar 2017 02:55:11 GMT
-Server: ECS (lga/1386)
-X-Cache: Miss from cloudfront
-Via: 1.1 3b992cd8d9e4ace056bc70d5a73491d2.cloudfront.net (CloudFront)
-X-Amz-Cf-Id: RPYH04jLCTns4BKQx9u2pTdN7o_801aMW1Gd3cK0S6E3cWIeun6oRg==
-
-0Ç”
-
-
-=============================================================
-
-
-=============================================================
-====================REQUEST (thread 10)====================
-POST http://ss.symcd.com/ HTTP/1.1
-Host: ss.symcd.com
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Content-Length: 83
-Content-Type: application/ocsp-request
-Connection: keep-alive
-
-0Q0O0M0K0I0	+
-==================SENT REQUEST [3:4:2]===================
-POST / HTTP/1.1
-Host: ss.symcd.com:80
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Content-Length: 83
-Content-Type: application/ocsp-request
-Connection: keep-alive
-
-0Q0O0M0K0I0	+
-===================RESPONSE [3:4:2]======================
-HTTP/1.1 200 OK
-Server: nginx/1.10.2
-Content-Type: application/ocsp-response
-Content-Length: 1609
-content-transfer-encoding: binary
-Cache-Control: max-age=503664, public, no-transform, must-revalidate
-Last-Modified: Wed, 1 Mar 2017 03:56:16 GMT
-Expires: Wed, 8 Mar 2017 03:56:16 GMT
-Date: Thu, 02 Mar 2017 08:04:02 GMT
-Connection: keep-alive
-
-0ÇE
-
-
-=============================================================
-
-
-=============================================================
-====================REQUEST (thread 11)====================
-POST http://ss.symcd.com/ HTTP/1.1
-Host: ss.symcd.com
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Content-Length: 83
-Content-Type: application/ocsp-request
-Connection: keep-alive
-
-0Q0O0M0K0I0	+
-==================SENT REQUEST [3:4:2]===================
-POST / HTTP/1.1
-Host: ss.symcd.com:80
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Content-Length: 83
-Content-Type: application/ocsp-request
-Connection: keep-alive
-
-0Q0O0M0K0I0	+
-===================RESPONSE [3:4:2]======================
-HTTP/1.1 200 OK
-Server: nginx/1.10.2
-Content-Type: application/ocsp-response
-Content-Length: 1609
-content-transfer-encoding: binary
-Cache-Control: max-age=503664, public, no-transform, must-revalidate
-Last-Modified: Wed, 1 Mar 2017 03:56:16 GMT
-Expires: Wed, 8 Mar 2017 03:56:16 GMT
-Date: Thu, 02 Mar 2017 08:04:02 GMT
-Connection: keep-alive
-
-0ÇE
-
-
-=============================================================
-
-
-=============================================================
-====================REQUEST (thread 12)====================
-POST http://ss.symcd.com/ HTTP/1.1
-Host: ss.symcd.com
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Content-Length: 83
-Content-Type: application/ocsp-request
-Connection: keep-alive
-
-0Q0O0M0K0I0	+
-==================SENT REQUEST [3:4:2]===================
-POST / HTTP/1.1
-Host: ss.symcd.com:80
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Content-Length: 83
-Content-Type: application/ocsp-request
-Connection: keep-alive
-
-0Q0O0M0K0I0	+
-===================RESPONSE [3:4:2]======================
-HTTP/1.1 200 OK
-Server: nginx/1.10.2
-Content-Type: application/ocsp-response
-Content-Length: 1609
-content-transfer-encoding: binary
-Cache-Control: max-age=503664, public, no-transform, must-revalidate
-Last-Modified: Wed, 1 Mar 2017 03:56:16 GMT
-Expires: Wed, 8 Mar 2017 03:56:16 GMT
-Date: Thu, 02 Mar 2017 08:04:02 GMT
-Connection: keep-alive
-
-0ÇE
-
-0U#0Ä_`œaêUﬂÑCä`*≤ızÙCÔ0UE ®ãäeüu˙ıÈ
-x“7û0Uˇ0
 
 =============================================================

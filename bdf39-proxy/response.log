@@ -3,9 +3,765 @@
 --------------------------------------------------
 
 HTTP/1.1 200 OK
+Date: Thu, 02 Mar 2017 17:32:09 GMT
+Server: Apache/2.4.7
+Content-Location: home.html
+Vary: negotiate,accept-language,Accept-Encoding
+TCN: choice
+Access-Control-Allow-Origin: (null)
+Accept-Ranges: bytes
+Content-Encoding: gzip
+Cache-Control: max-age=0
+Expires: Thu, 02 Mar 2017 17:32:09 GMT
+Content-Length: 8753
+Keep-Alive: timeout=3, max=100
+Connection: Keep-Alive
+Content-Type: text/html
+Content-Language: en
+
+‹]ñ¤‚_Î—˜}R6ÿÓSÙTEPÎ¥˜Fwï’hÕ<ºš¤h›, sâ€k844?"/«:t	tDQşrøæ'–ªò¢f*$ø¥<yâå­+ˆ³úI6ÑùáODöS;ÙÌ<é"mplç­èáˆøÖ8¶óÇÖ	ôpÄbkÛ9‚ã®è3-ÙÙV^àØ¹>½5’í\Àqãûyh¦ÛOÎvşß¸vü|,ÅÖX¶sşÆÎëóÈrk$Ûy~ãÚåó°¼ßaÛ¹}ãÚßó°\ª­±lçókgÏÃ’lÏ±í¾qãéyh²í×ËvŞŞØ¸yŠ|{Û¹zã¶ç¡*ª­QmççÉÁó0è[cØÎÉ¯óî<„Õå
+Âaî¬ÖÚİûĞí~Ó®q÷œİ«}ıdª§!(‘T¤Gï•ÌBxN#oö‰µ-7äP€yT‘§x¨«ÈŸÙMëO¡‹(
+Q<Ûßy°Ûÿá›¯ÍH/Ÿš‹³ó3äˆxCŠ¨kc[˜;ˆ¡]oÜN²Ÿ
+DÑ@%¿È¹BştYC‰$x·E:Ì….ö0*ŒhÇJš¥åf@ÕŞÜç^åJ—kœ¦õ>´ıâİKç(Íe£«`˜u>kbúc".ÿÉîƒŸÖ}FíN¦YÄ³H$›¹‘ÃP7}İ˜×`úÙ‡éÏê,ÚZ\§±,A@í™å+ƒ5#M{‘ba’¸À›ğm!S^,}ß2å×‰Èf™ôï¬:—Ôñ8†áè¾åf×²%ãgèüM9ËX•»QÑr]u6^Â™ÈÄK_‡°–.C£E,|wAØ7@ÜW2Š‰k¬m­}'ğŞ¤µ&Ì›'ç?µçJğL{s²®`·¨²>ÌT¹^¾¢ú¸ŠáQ4‡èqs=ï vÖj…Ó¦Tƒ1ÍMr×xÍna†ÿDDx|7¾$©˜ØÂJ¦Dtv£q±¼£éÆõ–)~ØÈ‰Hß~Ë0ÁM$“G¾‡…¡9Öı£çe@Ô®½°›ê)[ŒNÇ}Wb€Ú‹J¡‰3öà…2±Û>ìø˜}öUøú„ívµ0ÃrzıæÂ®"5ÅõÒÎŒ;Á†Õ 8¤zõ6ºû™ã¥¦D§&¶KÇ¢J1ÂÖ•UÍfrŒ^Õ~fdi³FC˜ş±Š*\gxÄHµÑ”(ªKJ»auÁûJ…©7¸¤ê³@TB±1yJt,@ÏE<°ËÇáùŒ8¦ê$pR•(oĞ+;ÖSãNõvwvF}¿»ô»×C,ô44·”,0ÙOs“J€	†…4&ø­iø+x47c±qAÓ%IÃL9ÆCéü_˜4€V÷§Ã}¥Åšì	»kz&§Õœœ
+
+--------------------------------------------------
+
+
+
+--------------------------------------------------
+
+
+
+--------------------------------------------------
+
+
+
+--------------------------------------------------
+
+
+
+--------------------------------------------------
+
+
+
+--------------------------------------------------
+
+HTTP/1.1 200 OK
+Date: Thu, 02 Mar 2017 17:32:09 GMT
+Server: Apache/2.4.7
+Access-Control-Allow-Origin: (null)
+Last-Modified: Tue, 24 Apr 2012 21:45:10 GMT
+ETag: "1a5a-4be73ab3eff98-gzip"
+Accept-Ranges: bytes
+Vary: Accept-Encoding
+Content-Encoding: gzip
+Cache-Control: max-age=2592000
+Expires: Sat, 01 Apr 2017 17:32:09 GMT
+Content-Length: 1831
+Keep-Alive: timeout=3, max=100
+Connection: Keep-Alive
+Content-Type: text/css
+Content-Language: non-html
+
+‹@ğdÀî=Ï£ü”ï™5¸¿á½$ìß0Ï‚æÛixœ«!¬.y|Õ‹N4¼İ AE!wáÔèÁ«wóÔêÏˆDÖ2åjò0!“	Nh2¡é„Î4ÚÖRÛÑ«f#´ÖqgcŸxb“©M›¤6yY44ÙDÉA&[$OV>Âë²“±ª–cô¦œtÆ!3q²]S‡®é0¶^îş‰ÒOº-ôïÃß°²{ôÿ`=c=§{››xÓ¬&[†(PD{½$,cûı¸×(I{½n,EğÂcî¶üÍfšıíƒ]åü?¸õps'Ú—³½œ•å._îã©Ÿw¬Æ17Û§®0Wß€´1ŞÔl¥±'îX¤—±P§º¯ÖËa^/c¯…¿ØÏU'˜IÏ-ÍuÃ›vêøb~Ó+Íòt¦8Å¨_lAwl§Õ%>:¾{ÏèˆE§†<Œ"ş³³›§ä¶oF^ŞÒ‡€½,ÖÜBŒ<¯Œ|¹fÇsoãxDŒ³—+y³ãl”å¼Æ¾¡ämŒßÔÖÍ74èR
+gçäÂKnŸ§äa~föŠu¬^Âİi_ø¸²ôa+XŠgvóùın¾gÅİy6`Ş=·pØ‰ïçİ¥³vF›:¦=9ì¾¹w1™÷9ég]ø>ï ú»^Ô"‹J-ŠXµ¨l2Rûà|ˆì7{=Kq£”Ó¸
+!óè•Õ,aœÉs˜3Bh¡wX;”Zõ€lÀ4 pš?„8†^Ôşu'Êj„¤5visÏœ\Oª rßdÂ'T÷ìÌƒf2¢§ £Êş‹i>zÖ³[¢‡_z˜N¢ÖäNF¦SÑ5dNv.ß[•šd¦§ªU˜S^F-=Zƒaón¼C(ŸÍÕœMæ€àG­1íî'é„ÎXŞñG¦şÔïW=D|@â$kFhÔf;X^–	G„ØƒNo?t×áÎçZp¦]&ğÎ®ß9îÂ¸PµK:šJÅÂî…Y3°ú•Ù XQ[^şZPÒî‡‰1å˜»ªìä¹¤?|Hsš~IÄÛ‡ÿZì*&LLyĞ5rÂóGÌfˆ‹×UøİŸs~’—Z
+
+--------------------------------------------------
+
+HTTP/1.1 200 OK
+Date: Thu, 02 Mar 2017 17:32:09 GMT
+Server: Apache/2.4.7
+Access-Control-Allow-Origin: (null)
+Last-Modified: Tue, 26 Jan 2010 20:20:01 GMT
+ETag: "71d-47e1702abbe40-gzip"
+Accept-Ranges: bytes
+Vary: Accept-Encoding
+Content-Encoding: gzip
+Cache-Control: max-age=2592000
+Expires: Sat, 01 Apr 2017 17:32:09 GMT
+Content-Length: 842
+Keep-Alive: timeout=3, max=100
+Connection: Keep-Alive
+Content-Type: text/css
+Content-Language: non-html
+
+‹
+
+--------------------------------------------------
+
+HTTP/1.1 200 OK
+Date: Thu, 02 Mar 2017 17:32:09 GMT
+Server: Apache/2.4.7
+Access-Control-Allow-Origin: (null)
+Last-Modified: Thu, 03 Nov 2016 21:32:02 GMT
+ETag: "678-5406c49cf2493-gzip"
+Accept-Ranges: bytes
+Vary: Accept-Encoding
+Content-Encoding: gzip
+Cache-Control: max-age=2592000
+Expires: Sat, 01 Apr 2017 17:32:09 GMT
+Content-Length: 898
+Keep-Alive: timeout=3, max=100
+Connection: Keep-Alive
+Content-Type: text/css
+Content-Language: non-html
+
+‹
+
+--------------------------------------------------
+
+HTTP/1.1 200 OK
+Date: Thu, 02 Mar 2017 17:32:09 GMT
+Server: Apache/2.4.7
+Access-Control-Allow-Origin: (null)
+Last-Modified: Sat, 15 Dec 2012 00:30:08 GMT
+ETag: "651-4d0d9400ebd4b"
+Accept-Ranges: bytes
+Content-Length: 1617
+Cache-Control: max-age=2592000
+Expires: Sat, 01 Apr 2017 17:32:09 GMT
+Keep-Alive: timeout=3, max=100
+Connection: Keep-Alive
+Content-Type: image/png
+Content-Language: non-html
+
+‰PNG
+
+%ëÚíxL¹}Zš]òJÅ3¥Ë|›üË
+
+--------------------------------------------------
+
+HTTP/1.1 200 OK
+Date: Thu, 02 Mar 2017 17:32:09 GMT
+Server: Apache/2.4.7
+Access-Control-Allow-Origin: (null)
+Last-Modified: Sun, 06 Nov 2016 21:38:02 GMT
+ETag: "33bb-540a8b8ceabb6-gzip"
+Accept-Ranges: bytes
+Vary: Accept-Encoding
+Content-Encoding: gzip
+Cache-Control: max-age=2592000
+Expires: Sat, 01 Apr 2017 17:32:09 GMT
+Content-Length: 3711
+Keep-Alive: timeout=3, max=100
+Connection: Keep-Alive
+Content-Type: text/css
+Content-Language: non-html
+
+‹MóR’J6#’Û•ûr	7Aä>ğ©å4;L‹kÎMÃÚ¬guÍ{—yI€Ó¬¦íQğ ò]¦Á:µôUòF‡®ef»İÂÁ&Å3°ìÔ¶Ùl®ô·¢eçßG£çw¥Sëá+ï@OçSïÌÀËÊôR°é_Y2}x¦.hÔ¦(Bƒht°ZtªİŸ(ö«!·Ğ/6LÆÛ¬dW‹Ôve'8`û­NÂ-Æ!¬²¿2ØRtãøø€OùÃ*q-Z í•f­¨ß«„NíİS
+(¾$ÍFË®ªÆkZõ6z6÷š‚Zc-j‰”‚´áY?º’jÇ'J‹ ÅŒ–8«Ææ¦%cÕC^ÚJ^B”ÓF~„@7™R"ÒÛÿÿí÷3"I´B“b.¢ÿFdxòfÁT•´éØaz™e§ŸŸİô»>[•ô……¾œ
+r¦¯Ä·ı$>eRÍ¦A2‰™?÷³2s_Š±u´š'çğ³dšan3yzîVQĞe_Y¬l4ie§_~.XöCœˆfwéP9ãT³¤?’x
+‹A?
+8@=h¡Rªx—Ì€Xrvt“`N)Å‰ììÕ½lÕa ÷:f‘ËŠ‹y¸3ì¢2£Gßu~7şŸÔ“K8¬SÊo-m·ó$¡ojœp}˜»şÅsynYg¯'t4§œ—[rZß‹¦2—©Eê^^ÑÒÊ;yØıâ¼6XÉXtp˜uÃÙArGb€;,o}nêgïïL¢‘œ6ú!Áf³‰×‰ÂÁ©€	yMíZ×:r÷†FWeõúËÓ%1wŒÉ0ŞÅòšÎ‚ÓxG'ç,¯[k‘åøsK+×òÜæ7Pñ‘…%à+x¸9Õl§y¢Òë_^™BïÏh7¬DÒYpjòáó|¼yç£`±aÎ•IYÜX˜ew´~á ;ÎZiYÈ¸‰äª#~ñÇ:†£\êay¢ò‰uÀ«\E/'DŠ"w"hå®H“nÍ)í‘Aagœ”:6¢“÷œ-CøÊ*A&‡¥÷iÏàäaÒõ­
+
+--------------------------------------------------
+
+
+
+--------------------------------------------------
+
+
+
+--------------------------------------------------
+
+
+
+--------------------------------------------------
+
+
+
+--------------------------------------------------
+
+
+
+--------------------------------------------------
+
+HTTP/1.1 200 OK
+Date: Thu, 02 Mar 2017 17:32:09 GMT
+Server: Apache/2.4.7
+Access-Control-Allow-Origin: (null)
+Last-Modified: Sun, 05 Dec 2010 20:58:51 GMT
+ETag: "135f-496b009e118c0"
+Accept-Ranges: bytes
+Content-Length: 4959
+Cache-Control: max-age=2592000
+Expires: Sat, 01 Apr 2017 17:32:09 GMT
+Keep-Alive: timeout=3, max=100
+Connection: Keep-Alive
+Content-Type: image/png
+Content-Language: non-html
+
+‰PNG
+
+—w3x‡òYmà^>_>‡¯®‰!B×¼ë¯HÖaÉ¸l]&.BûCæy—‘3Vë‡Ú°/_ßÖ>pCu|]MØp÷xÏ¹ªL.+•ÊEë7¾§ÄvğŠæ)~£V¹ê0ÑKz¬tpwš½êîV_;3bæPJ³yá˜zÃ=óŒ	ƒ‰{İÈè­–ÜF»€‹oxıÄÔQ–Àö3EéœÀ8ÒáU^Kö;U ÷˜0˜ÚßÒ–©%6‹î3=Ş:(l1s¤2µ$s®µä”@]÷LL" í@D‹r,ß¶XÁ«jˆÏÖ€©ŠlFw77g‰s~kAÕÊãD‹ÌÌÔuE £pRóÚ,p	™İ]şLH1Sº"o0u«RÎ”/tÉ¼¤^|‘Fİàín˜1xö#ü„ï,öt)™z–a•&S•¦Â©ÌöŸsÄTW/®™s¦©¨ÔŠÇaàAÕ|ä™Á37
+
+--------------------------------------------------
+
+HTTP/1.1 200 OK
+Date: Thu, 02 Mar 2017 17:32:09 GMT
+Server: Apache/2.4.7
+Access-Control-Allow-Origin: (null)
+Last-Modified: Mon, 05 Sep 2016 08:13:26 GMT
+ETag: "121af-53bbe41201580"
+Accept-Ranges: bytes
+Content-Length: 74159
+Cache-Control: max-age=2592000
+Expires: Sat, 01 Apr 2017 17:32:09 GMT
+Keep-Alive: timeout=3, max=100
+Connection: Keep-Alive
+Content-Type: image/jpeg
+Content-Language: non-html
+
+ÿØÿà¬xìµúºƒ«ûŒ¤6O/óºğ8³"cå
+˜f˜f0P‡$’<¶Jˆ 'llô¡è\Å¼d¹9üMĞelòv­œí”-™9cëšûöP‡êFpx]lğ]òµ÷]1÷k»Œ…¹‹yFÌÙÚ¶Tª*T¬ªU•J•*VaŠ•+1R£CH*U•H{Z0÷j~}¼£;Nü[¥³×KJù I•[dş-yI›j§w9”ÔçÙTœVûhqõ¾ä†Ô¡Ã<F©L||PWKó î¾k=fd#ÕØb‰¸B+ô¸iÕs)<OŞGO#?6áûÅ ø¦z|Oï÷Şçàm¤Æ’¡Ë;ì;m7âH71Ÿüæ&j$¾Q£ß<RnpD¶ Ñ·{°Æ1˜Õ†¨/şÅ§É¨zNşü2oÃ¯V"šÜÜKÌáT¥JŒ=p±.–\:¿
+?w™Áé[ü~72ÎM•ˆæâˆÕ]¡§WœÍE¢á<ÚM†åkË”’-F"À¥Ä¸Vµ°Ş!øøÇXoÕpç·}QotŠ‘aÄ*è¡Î'B}–±ı{ê®Å ì­˜¬‡H‡q¦9øšÏ’¼WúŠg§Äşÿbîa§	Ôòf	<¦ä4ÈH†*ı‡èĞ{Ş`åò¿™ŒÌÙ/1™…9Êç1æc3X)·Pç:31*iÆS.›­©G’ç'ç:Ë+‘È–jg3›íÕRYµnf31™ŒÌfc3˜ÌÆf31™ŒÌfcŸçUıÿô¿VÏÔAôßWz® {××Ã_±7öÊôÜ]õL0ÂC6h0ĞYiµSO8¤+şÅôp÷¾4®XI¸ZçuDFıº„sqL‹?EPyÚÄô¿VÌ¿“Ó}\NYÊâ½}|5ûl¯MğŒìLû|1¸@o‡–¨à{$ğ‚xvju2Ğ‰!½T	:²bÑÔXE–Q/â¿Ø¾÷ÕŞCEÌbTk5KcªtuN©Ğ©îÊj«İ"z_«gùàúo«‰½W=ëëá¯Ø›ûezn,8¤âg³ƒYÁ¬àÂ‘Ü^i)3äl\H8Q(5ŸÈØ’”“X¯ö/£‡½õ˜-ôÍIŒë‹ˆÃ  ¶¢8-öô	ĞÒÔZŸu‰é~­Ÿ¨ƒé¾®&õ\@÷¯¯†¿boí•é¸­×qC t2C t2I§ºòWRĞmÄ>¾ÁÑ¸al£şÅôp÷¾´Ù=6}åÂfr^Ã1R°ôE>xz"…Ÿ¢©÷X—êÎ…!ç`zo«ˆ"½&_Òh½úøkö&şÙ^™Ps¸jÁ-·ÜĞ;šs@rÅ+mjáÿ­|@¡qæø¥PÒ¡ãœ;s¼L¢}Q¸£Eüà¨pT8*œÎ
+€¾,Ô-Øç×L‘ÄšIæÌø«Ld|AÃ†Äl<¥£‰ÔIŠ4±QæÕGPÇ¨£œAÃï%¾$Ò6~cĞQÄÚ$<|C¢È¸AÏŠ4ğc½ÅJ‡„&SÂ|¸‹‡È¼ÂÃ¹Äâ…%yÁP<à¨pT8*Ç*ì^ÀgˆêB15Sdæ#ªZÚÄÕ,©xŠ¥Â<ER¥GÅU‘…Wj¡1æ•@óJ y¥P<Ò¨iT4ªšUÍ*æ•@óJ y¥P<Ò¨iT4ªšUÍ*æ•@óJ y¥P<Ò¨iT4ªšUÍ*æ•@óJ y¥P<Ò¨
+â5V¼}rOVçV0ô~ V%ÏÿÄHTTP/1.1 200 OK
+Date: Thu, 02 Mar 2017 17:32:09 GMT
+Server: Apache/2.4.7
+Access-Control-Allow-Origin: (null)
+Last-Modified: Mon, 28 Nov 2011 19:34:23 GMT
+ETag: "1d5-4b2d096fdcdc0"
+Accept-Ranges: bytes
+Content-Length: 469
+Cache-Control: max-age=2592000
+Expires: Sat, 01 Apr 2017 17:32:09 GMT
+Keep-Alive: timeout=3, max=100
+Connection: Keep-Alive
+Content-Type: image/png
+Content-Language: non-html
+
+‰PNG
+
+HTTP/1.1 200 OK
+Date: Thu, 02 Mar 2017 17:32:09 GMT
+Server: Apache/2.4.7
+Access-Control-Allow-Origin: (null)
+Last-Modified: Wed, 04 Nov 2015 06:59:09 GMT
+ETag: "9be-523b18c06e940"
+Accept-Ranges: bytes
+Content-Length: 2494
+Cache-Control: max-age=2592000
+Expires: Sat, 01 Apr 2017 17:32:09 GMT
+Keep-Alive: timeout=3, max=100
+Connection: Keep-Alive
+Content-Type: image/png
+Content-Language: non-html
+
+‰PNG
+
+
+
+--------------------------------------------------
+
+t×mŞJæÄIqd vß^Ê?ßÆ¡5«9¶ãK‚¾¬p-)‰ÔaÃqõ5Œ¾áFR‰ÓÙğÍa,ÃÄ–’œ°Áª«l©S=`Ã‚;Ğ]®öşzïA|¼
+
+--------------------------------------------------
+
+HTTP/1.1 200 OK
+Date: Thu, 02 Mar 2017 17:32:09 GMT
+Server: Apache/2.4.7
+Access-Control-Allow-Origin: (null)
+Last-Modified: Sat, 29 Mar 2014 05:11:02 GMT
+ETag: "af04-4f5b7d834c580"
+Accept-Ranges: bytes
+Content-Length: 44804
+Cache-Control: max-age=2592000
+Expires: Sat, 01 Apr 2017 17:32:09 GMT
+Keep-Alive: timeout=3, max=100
+Connection: Keep-Alive
+Content-Type: image/png
+Content-Language: non-html
+
+‰PNG
+
+ÓA®ÌMQ2™J!%•‚êø5Î‰¢(´jÕŠ&­¦¦¦>|8¬¬¬J•Î¡/Û¼y3dR)3&T80E„0`PE!HM¥L7f…‡‡“[·n‘É“'ëˆ‰¹y‰×~RU½iSÓuîòBBæÕùşûS„€$$$ĞĞPBd2éÒ¥éÒ¥iÜ¸ñÿ/Ìåxí?{†AC†TØëgjjJÒSRHúõ™ñT‰À‰¡j¶jU¦iÂ”D‚¼ü|âëëK²³³‰@  |>Ÿğù|"ˆ¡¡!4hù¡{wb`hÈŒ0`PzÉsaíèèBlmm‘™‘Q&×P*‘ S§N¨Y³&¼>|€L&Ã€è@^Nd2ºtéB“ä¿ÿşÎÎÎJ*İºuƒ··7êÕ«§Ñ‹¬+1jÚ´)ÒRR åñ’SÁ€ºuëVo²©©)š5k†ÿıïè×¯Ö®]‹;wîàîİ»˜;w.š4i¢ñ³AAAÌØbÀ€Ê (
+–––j={oß¾ÅÙ³g1vìXµäÆÌÌcÇÅ™3g’’¢5y€=z¨|ï$AròlkkK“çììlèr½qãFBĞ¹sgäåæêD³##)?__¼vw‡8?„’’‚>}ú 3-¹AA-ó(W¯`ii	W¯@Q(™Œ&ÑmÛ¶EvÁ÷æLMMéÜÓñãÇÃÃÃCeLhkööö‹DÉ© ğèÑÃL$ }ûö>õÇÖÖ>•¥µhÑ9U@g¾hÒÂfC(âÖ­[5jŒŒŒJ|AkÕª{{{Ìš5»wïÆıû÷Œıû÷ÃĞĞ~ßôéÓ™TJÈÍÍÕH–¬­­ñèÑ#ğbc™MW‚(3“ÊÍÍÅ;whÍÓâ¬oß¾ûês
+'''üüóÏ¨^½ºVóIá×®\¹‚`Ì˜1È¯
+ª)¡OŸ>ıji…-//!ĞU‰Dgï³¢999éÍãSYá÷áöìŞ&MšÀÜÜ³fÍB€§§Úç*ÈË'ÃÆ¿şÂêÕ«±téR¬\¹÷oİBÀÛ·_õ:Šsr¨×¯_ëuÑUôî>{ö!!!ZÍ7‚¤¤]±XŒ?ÿüS¥
+ÇC`` Ú\Â€€DZ‚T«VG¥½J‰‰‰øğáBBB››OOO¸¹¹§¡»åæÍ›ir²qãF¥öîİ»aiiI¥o)$uåÒ%yyUªßCI$HIIÁ«W¯°jÕªR5v"äíïqBBìíí±eË|üøQI¦L®­khhˆ]»v©–ñ(''§"¿óØ±côq½¼¼èãÊ=FŠmËÀçóagg§Óïª¬RuŠä¹OŸ>àjÑ•®8ôèÑK–,Ñùs>>>tÏŸ?«%Ø5kÖD÷îİÕÊ"11òñP³fMxzzê}NÕ«¼}û‚„JşÙ+V¨|¢”ËåâöíÛ˜6m½0[ZZbÃ†ˆŠŠ‚T*EBBÂÃÃ„ôôtˆD"­7ò¢ÃÊH	!8sæŒ^È³×—t%ÚäzÚÅ!  d2$%%)mfvîÜ©Dœa``æææ*2iEÁİİıúõÃ¤I“ğâÅP¡PˆŒŒP…àà`<„˜˜˜hlbCHLLTÛ]ĞÂÂ‚n¼Âápğûï¿kuìºuëâÕ«W
+
+RÉƒÕÕæÍ›÷%^ÏÔÔÔ"ú2}t	ÕÆŞ¾}\ç¼$]µ±…B*•–Z^RÛ¦wXXX`Á‚¸ví>~ü.—777tèĞ¦¦¦xñâM¢#Ço¥ñ™ÎÍ¥J"ª‹Í˜1Ï=+óûÿÇ 99ú\/ŒÔÔTz“µvíZzãôüùs:'~Ş¼y¸ÿ>
+³nİ:Ç;v,¢££UíjÕªáâÅ‹HIIÑ{‘6Ñ Â×²¬ãÆò‡÷ïoE!l6'OÔIZS[µ%çipğÀ7oŞĞëÇƒ˜µ¹¤àp8h×®^Ú_*"33“N²OKKÓË±%ÜÛ¬uÓyÈSZ­Z++t	êËZ¶l©÷N_•}#óæÍšˆ¶oß.”‘Eñù|Ô¬Y?şø#û[«V-zÁÑ•D™˜˜àÉ“'%j,^¼=*ÓE[œ–FBHÜâÅšÎ‡’H ‹"	}5pàÀğx<ÄÄÄÀßß»wï®äyøğáˆ/2<ïìì‘H„?ÿüS/E]šlÈ!ÈÊÊÒJieÖ¬YJ^äŸ~ú©\®—……RRR0aÂú5'''ÄÅÅ)uùÔÕ&Oü¥k¦H„ß~ûfffxÿş=ıû¤¥i½9~ü¸Î­©µ5sss¤¦¦–¹t]³fÍ››‹èõ¸ÇW‰h6ÿşû/úõë§´![¼x1<==±páÂ"‹¬MLL©¤êaaa7oŞ ==]¥SkYYõêÕ‘€ø%KŒ‹šK)…B¡l6J¿_[°`D99Tä¨Q½u™ËÃÃÃ•R·lÙAeWñøZàgeQòæúönË=D6üÒù+%¥Äù6IIIj%tÚ·o¯4q+~ÆÅÅ=zôÿüSé=666Ø¶mBBBğìÙ3ØØØè¥(,??Û¶mÓÚ«Ü¯_?¼xñ"‘÷ïß×»ÒÃÔ©S‘ uáÛ¨Q£pòäIŒ1¢\k+|||ÔÑòùü"Ç)¢5öğáÃ±sçNœ={qqqòzÚ~şùgµ:==Ã†S±={–ª€ğÿûššªW¹>¢!êöíÛz/¾]¸p!¢££ËLÚoÑ¢EE\\œœœ´Ê!.{õê=.$\.={¦SSÖ­[™¦D¢rÓ‘U´Ë—/kÄ/L8æÏŸ9(B!?7o.9iuèĞ!xxx ::<Om4 ğ8yùò%öíÛ‡S¦”Û$ÁápädÊÅ,--‹%‹;vì€´)3YYŒæ\Sœ ´oß¥¶¡Uh,.˜¬ˆºsçNÈ
+a©e2,_¾ü“ˆ™Lˆ‚“ÚÚÚ2h÷JÌT*¼¼¼ Ë¨¡T*qïŞ=½;%¾¿Y[[#<<œÆ“
+‚ƒƒqáÂ³+šË¢££é,Î’%KP¤Éª‹DŸ8œ<x€+V S§N¨S§I¾õêÕÃ‘#GğáÃ¼zõ
+óæÍ3ú\³f­p¦k7m"RRR%²úõëcñâÅğôô¤IóµM›¤¿]»vŒüâX‘\3f ŠHd¶LtäàÁC		dtt4]~¯[·.òóóÑ¥K½|¨xşü¹ NÍ–-[ÂÃÃƒÎæ¯^½ë×¯Gff&îÜ¹ÃØy·oß±ùÈËËÃÓ§OqğàA¬_¿«W¯Æï¿ÿ///:ó,—Ë1}útôìÙ«V­ÂÕ«WŠøøx¤¥¥!77HNNF@@¿ÿ.¸¡jÕª uJ‰ƒ‚3Ê˜‚–«j Ï$‰I™:í]õ€àââÂ›™êİ»7ï¤ñìÙ3ŞïR¶víZ†´7—?~Í›7çıûªU«Ì>6XR¯+V¬€Z­f+--•ÑĞT|şû¥¥‘2™qqqğóóChh(RSSéàÉÖÖnnnç•—mİº5rrr7ÌÛìÊ—2NcccõÊâêúĞ¡CfPèC×ûí7ı½Òì¡¡¡°µµel`¡R© “É???xxxÀÕÕ•€‡ÜÜ\:Ğ}üø±I÷fïŞ½ŒÄETTŞ¼yƒ‡âîİ»puuÅo¿ı†Áƒë…™‰tØV@’ËşüyFšT}©U«,X@7¦Q,)Åa3f‚@ƒh9iK²°Ü¹s§ÁwPˆO›6r¹3gÎ”æjÎ.4ŒO±ÚÇÇ‡õÛAAAœ¬nÿstXXØ§¦µÜÜOM]J%ÜÜÜôâÅD:MA"=ZæÛ·oGxx8nŞ¼‰ü'Nœ(gá¿ö¯™ •­Š"´³Õ¤Lö/nÛ‚ÏfÎœ9¼¥]möµTJîÙ³Ç(ùt‘†ÇÜRæíím¶Xú~Š‡¿“úJÔ#+Dİ5ßMˆÅ…†|˜7—7_¯ÑIÔ¼lK$µ…¦gJ¢^qİÿs÷{~ÂñŞ~bóŸ˜'á‹¿×¢ˆ_Sœ_XæÅ4¶”’0Ï!õŠX6Æk6ÙìªØ`u3zì@Õ…mŞQdCãYúÅ‘d5Ş‹¦³b{40ÑµÖ,Ï·¹>AV#ˆP±œÁTZÃ#rx²ò±©ø6†×usnµŒ0†½|cqõoX8Lnù¦“Z)mÅïUpvzgŸ¼¡°SSÁÛÎó²Hùf%kÎä`V½¶n>uiªÚ¹Ğk@çZ–¥©jZ–¥©jZ–¥©jZ–¥©V2±QK£¾›UZùBÎ…:t,èYĞ³¡gBÎ…
+#›L,/É´Â<ke1¶]	£Ç\*İVÍ@|;SÇ¸=ÀŠâûKû» ÓlJ÷ö&S1A™­ëız“‹©®™3Å7[5¦eYa³WmˆR&n«-Zûı‰³¥ZRëRñùîQ]‡R]=èJê–.°~‡Bµ—™´ÍüÆiÑ<h´’.«$´³t½È“Ls‰ÖïWr|©«Û¼ŸŠÎ…:t,èYĞ³¡gBÎ„ìj³tç uoQA}‘n­1¬tšÉÙ`½Ó±E«ï1¢cÊËn
+bÖTØ…jE!Òe\iOz0ÌjES°‰mšŠÚÑÈ…ÆÖZ&‹a¶ŒªŸüPÜæÄÄ¼–ÉD†ÌRo°b}'	nmZ–Uß}ê—½¾ãT@{€-­ç]qMn%H“pko‡¿Â%e·©Nr×á¶ísE¬l:»Y/¡b!Şµá‰‡Ñ~åFÀeTo»ß%W<I(Á‚®1ªNÉÙ­:÷D¶Wz–KYgœmœû“LR%¬5Jqo¬nÜ†RZ¯Q0D5 
+³• ÖH¹òİW~´ZÑ¤&Ú&1³¶z¿]ëËJv]¸|f¥V¡“§\‹åd¥Î…bÜ«G2fıö&œJ³3ÓÌïD‹:Q>LI¶[®ÏÍ:¸ ÷T„¾)Ø¶Hw§H6^i³µ[ğpı  8QÜèfƒ&Ûì<6úÕ²Vß(ÁÑğšÅ&ü-C°Y;çÚ Ã‹Eh¯yiæŸ¶ÄpÌ!øGJrµµ¬»šJ‘]h‘«#9„àØXH@ÊûoM‚;ÎÅKŞßqª =Štv‡¾Ûãñ’?²ÃÑ®Óæí>60ª¡­•¶ø†Ø‚VNÍh‡ÂmJÙZå5àƒœZ+·Z­€däqg»õêM1ÔÈQ!ÈdD"wØy­ì	“yŠp™s¦o&ÕH.plàÊÓ~0PØ÷†¹æMlŸÀªSk
+Ó†eÿ9ÎZÄŠ£î>Â¨ß†ßgÓ;ÇµS7·Ü	ş‹=Ñõ%§]ˆµ°¨r..Íºògö“¡ºµÂ©ònù“â¼49ú™w©R<J8Î/Í»Î5l‘_ówAˆyu£!a[‚"éî×%Fm>81³†5™ŸBäïê¡{áPÀ·ÆêÕ®£SaÁki1DœäíêŠül;À~Ë\ Dtw9}`ÚöØmšÿè§ôÜ£ÍÅÌ2–5™[şS7·ÜoÕP,.€?å ×EºF´–Î„¥C°YzÒĞ´†t!H1šàÍ@z—ö¡ÆŞÚârm¨şÖûoÅCöÈ–]bÓ"t'~Ùû´·ŸíZK¸V’î¤»…i.áZK¸V’î¤»…i.áPÛ²C±:?Œ>s€z‘ı­öó)
+d@7-2'B—Ä–å?‰=ËIw
+Ò]Â´—p­%Ü+Iw
+Ò]Â´—p­%Ü(À®ç•úf|€äÏêaûÁzÏµEôJäİÑ=ï©ˆ6„^>ÁQa6Ç3ïÌß+B¦oo¸ßª ş(PÆØcØ£F Š8kKZó­3
+	´HÉ4øÃæÓ4\èïw•ÃHİ{H±UJåö“j«Ú¿µAô×7z“½ãõÑ}JôÌøÿ‹Ö¶!$ÊÏR¤Şpâ©Õd€7nOqÆÜK}…9ğç<VêÚmP}ülORƒı3>?ÀQ).Íƒ±Æk./YQx
+Ë‹ÀV\^²âğ•—„¬¸¼%_€«âğ…s‹H­ÿˆXâ§¯¥8t–Äk†²ÙÛîhéÑWx*L+XÌ¬º^ò•©BƒrˆB]d¨Š^ÜcËÏ6c~±eå›0·I*„³jg›©.“é8"Ì-Ò4qE˜ß¬Ï7R]'Òd
+¡,Ú/<ÙúÅ—–lÂİ&@ªÍ©n¤ºO¤Hà‹0·HÑÅc~³<İItŸI*„³j<¼óf7ë^Y³t™¨K6¦yº’é>‘#‚,Âİ#GYúÌóu%Ò}&@ªÍ¨òóÍ˜ß¬YyfÌ-Òd
+¡,Ú™æêK¤úD³tQf7ë3ÍÔ—Iô™¨K6£ËÏ6c~±eå›0·I*„³jg›©.“é8bÌ-Ò`q@Ô
+8	}¿z'áOÂŸ…?
+~ü¨¬:Ä/J\æª­é't¬/ˆ/¿Ôo_¨ràÆŠã€ñnÌ%ªİ§x¶QÂÒŞœšá9Œ©ì#ÔeOi|A}ş£x‚ûıJÚö®~–•¯S„±kïŸ¥†sSØK•z=,:,vÏ_Jkª^5Š]¾ãX€»}ÌØ¸pªIØEÌ†Nb ‹a[pÿ€å;./ÿ½‚	2â7Â×qDJ5zœa9b!‰ã†H`]’|ÎX£!9‰Ğ4Â7‘d‰P ƒJ‹
+^=Ë‹ŠJ~æ~æ~æ~æ~æ~æ~æ~æ~æ~æ~æ~æ	ò|Êí „»
+°	‚ y6oŞP®¢‚ûõ×_1yòä.ˆfÎœù?‹İvÎU=…¸°ğûiÓ¦	îô¨ãÃ?Ôø}&L˜Ğé
+
+--------------------------------------------------
+
+yµı‚ ‚ ƒĞuíõM¿(û¤j4—â|â_‰Ãë/Fàø^0<>I|\>Yx/	ñøOZ"Ri‘A88n	Dn%BV«öĞ¡†a†a›>q±¡
+1®1zA“Ã¸ƒà	û¤¾·k¦ºk¡Ì|DDNx¢!…~“aËı»?·ûÀíëä=>AAAAè:öú¦ß”‹ĞGöóöóöóöò›»İSS0” ğOÌÀä1,Ë”K!±RMçæa¹³g¡C0úa†lùÂG¥uš¡:;
+0"¥ÚìAÀ˜:ôÀˆ€R†‚EI¡È“l!vÈ4•’{i°åşİ‡ÛıàvŞÑéğ‚ ‚ ‚ ‚A×·Õ6ü Q„díhx›CÄÚ!›Dˆ3%¨`‚HV
+é	$A¦S#€TåŠ‡¾¨3cŒÅDN(j¡Hàœ‰çèPÃ>†a›>rÜ„Rõ—l`˜¸…QÁ	«ß|a5#$$hea[ájFÁX)‘å‚¬lJWp"h¯ÈÊS¿öç¹§)°åşÂ‹@qÿ‚ÕbîcHJ%a8Å4-A¯p]k­b{N'…JC"4I9o9l·œ¶[-ç-–ó–ó–ËyËe²ŞrÙo9o9l·œ¶[-ç-–ó–ó–ËyËe²ŞrÙo9o9l·œ¶jg»ïàë~&¿o*kz#!éÎ~ßíÿ¿<f*á†Vå„¦•ZØ_½eF®öÆİ¢è¸`0·,#è¸à1¿<eF®öÆİ¥4ªÖÂıë1W3¿<f*á†Vå„¦•ZØ_½eF®öÆİ¢è¸`0·,#è¸à1¿<eF®öÆİ¥4ªÖÂıë1W3¿<f*á†Vå„¦•ZØ_½eF®öÆİ¢è¸`0·,#è¸à1¿<eF®öÆİ¥4ªÖÂıë+µÇïÏ‡Ë	…Œ‹Ç*rI	G¹ÃéYˆ%fFZA¨œz!8¾2ö¥¨ªUdj $‚‰·cbLu"E
+O®iˆcHØHˆ¦Äô5Û15`¸(äšìŞs¨ÊÊYReï§©¦xızÉÄQ’YÀâ¤Ø&¼]ª°Ú@#P]Ñ†‘)~]—ƒ'ˆÈ_Zë&l0…
+¼Eˆà×úväÕ+Â?§—9%‡ÃàrãD˜Ó QšˆZr¼bŠ‚€Øj«¼yĞşò?¡ıäCûÈş‡÷‘ıï#úŞGô?¼èyĞşò?¡ıäCûÈş‡÷‘ıï#úŞGô?¼èyĞşò?¡ıäCûÈ~‡÷¨šNrEşşM’Åd‘Y4b¶ˆeè¬SPlCŸ¾D€"‚Z¡„”Wãú¾¼y¶<X±â”ñĞ	X ª”“À$¼`KğBB<.¥êšZUšÜ	¼÷3óæ~sÜÏÎö].X%@Q-[‘¥—¥€òäƒpbíÙ¤€*JÖR”Ä¡’Œ;9;Hò:)­­\ˆm“ÌÉædó2y™<ÌfO3'™“ÌÉæd"	°ÿDëTT1¨/7’¶ª=Jd É– b€2!”"ƒxC#°&g<‚;-”Ç…  U}ÂÙ“õ¨,¹›eÈ4Ö^À‹D"Œ<b»H/¦æeUY`P¦ÎSgÊ9u•k%ùàánœ2	@>B¢˜õbE’"ò
+
+--------------------------------------------------
+
+
+
+--------------------------------------------------
+
+HTTP/1.1 301 Moved Permanently
+P3P: CP="This is not a P3P policy! See http://support.google.com/accounts/answer/151657?hl=en for more info."
+X-XSS-Protection: 1; mode=block; report=https://www.google.com/appserve/security-bugs/log/youtube
+Location: https://www.youtube.com/
+Expires: Tue, 27 Apr 1971 19:44:06 EST
+Content-Length: 0
+X-Content-Type-Options: nosniff
+Content-Type: text/html; charset=utf-8
+Cache-Control: no-cache
+Date: Thu, 02 Mar 2017 17:32:18 GMT
+Server: YouTubeFrontEnd
+Set-Cookie: VISITOR_INFO1_LIVE=i8daIFMU3Yg; path=/; domain=.youtube.com; expires=Wed, 01-Nov-2017 05:25:18 GMT; httponly
+Set-Cookie: YSC=5LAXhIrhN3s; path=/; domain=.youtube.com; httponly
+
+
+
+--------------------------------------------------
+
+
+
+--------------------------------------------------
+
+HTTP/1.1 200 OK
 Content-Type: application/ocsp-response
-Date: Thu, 02 Mar 2017 08:03:06 GMT
-Expires: Mon, 06 Mar 2017 08:03:06 GMT
+Date: Thu, 02 Mar 2017 17:32:18 GMT
+Expires: Mon, 06 Mar 2017 17:32:18 GMT
+Cache-Control: public, max-age=345600
+Server: ocsp_responder
+Content-Length: 463
+X-XSS-Protection: 1; mode=block
+X-Frame-Options: SAMEORIGIN
+
+0‚Ë
+
+
+--------------------------------------------------
+
+
+
+--------------------------------------------------
+
+HTTP/1.1 200 OK
+Content-Type: application/ocsp-response
+Date: Thu, 02 Mar 2017 17:32:19 GMT
+Expires: Mon, 06 Mar 2017 17:32:19 GMT
+Cache-Control: public, max-age=345600
+Server: ocsp_responder
+Content-Length: 463
+X-XSS-Protection: 1; mode=block
+X-Frame-Options: SAMEORIGIN
+
+0‚Ë
+
+
+--------------------------------------------------
+
+
+
+--------------------------------------------------
+
+
+
+--------------------------------------------------
+
+
+
+--------------------------------------------------
+
+
+
+--------------------------------------------------
+
+HTTP/1.1 200 OK
+Content-Type: application/ocsp-response
+Date: Thu, 02 Mar 2017 17:32:19 GMT
+Expires: Mon, 06 Mar 2017 17:32:19 GMT
+Cache-Control: public, max-age=345600
+Server: ocsp_responder
+Content-Length: 463
+X-XSS-Protection: 1; mode=block
+X-Frame-Options: SAMEORIGIN
+
+0‚Ë
+
+
+--------------------------------------------------
+
+
+
+--------------------------------------------------
+
+HTTP/1.1 200 OK
+Content-Type: application/ocsp-response
+Date: Thu, 02 Mar 2017 17:32:19 GMT
+Expires: Mon, 06 Mar 2017 17:32:19 GMT
+Cache-Control: public, max-age=345600
+Server: ocsp_responder
+Content-Length: 463
+X-XSS-Protection: 1; mode=block
+X-Frame-Options: SAMEORIGIN
+
+0‚Ë
+
+
+--------------------------------------------------
+
+
+
+--------------------------------------------------
+
+HTTP/1.1 200 OK
+Content-Type: application/ocsp-response
+Date: Thu, 02 Mar 2017 17:32:20 GMT
+Expires: Mon, 06 Mar 2017 17:32:20 GMT
+Cache-Control: public, max-age=345600
+Server: ocsp_responder
+Content-Length: 463
+X-XSS-Protection: 1; mode=block
+X-Frame-Options: SAMEORIGIN
+
+0‚Ë
+
+
+--------------------------------------------------
+
+HTTP/1.1 200 OK
+Content-Type: application/ocsp-response
+Date: Thu, 02 Mar 2017 17:32:20 GMT
+Expires: Mon, 06 Mar 2017 17:32:20 GMT
+Cache-Control: public, max-age=345600
+Server: ocsp_responder
+Content-Length: 463
+X-XSS-Protection: 1; mode=block
+X-Frame-Options: SAMEORIGIN
+
+0‚Ë
+
+
+--------------------------------------------------
+
+HTTP/1.1 200 OK
+Content-Type: application/ocsp-response
+Date: Thu, 02 Mar 2017 17:32:20 GMT
+Expires: Mon, 06 Mar 2017 17:32:20 GMT
+Cache-Control: public, max-age=345600
+Server: ocsp_responder
+Content-Length: 463
+X-XSS-Protection: 1; mode=block
+X-Frame-Options: SAMEORIGIN
+
+0‚Ë
+
+
+--------------------------------------------------
+
+HTTP/1.1 200 OK
+Content-Type: application/ocsp-response
+Date: Thu, 02 Mar 2017 17:32:20 GMT
+Expires: Mon, 06 Mar 2017 17:32:20 GMT
+Cache-Control: public, max-age=345600
+Server: ocsp_responder
+Content-Length: 463
+X-XSS-Protection: 1; mode=block
+X-Frame-Options: SAMEORIGIN
+
+0‚Ë
+
+
+--------------------------------------------------
+
+
+
+--------------------------------------------------
+
+
+
+--------------------------------------------------
+
+
+
+--------------------------------------------------
+
+HTTP/1.1 200 OK
+Content-Type: application/ocsp-response
+Date: Thu, 02 Mar 2017 17:32:20 GMT
+Expires: Mon, 06 Mar 2017 17:32:20 GMT
+Cache-Control: public, max-age=345600
+Server: ocsp_responder
+Content-Length: 463
+X-XSS-Protection: 1; mode=block
+X-Frame-Options: SAMEORIGIN
+
+0‚Ë
+
+
+--------------------------------------------------
+
+HTTP/1.1 200 OK
+Content-Type: application/ocsp-response
+Date: Thu, 02 Mar 2017 17:32:20 GMT
+Expires: Mon, 06 Mar 2017 17:32:20 GMT
+Cache-Control: public, max-age=345600
+Server: ocsp_responder
+Content-Length: 463
+X-XSS-Protection: 1; mode=block
+X-Frame-Options: SAMEORIGIN
+
+0‚Ë
+
+
+--------------------------------------------------
+
+HTTP/1.1 200 OK
+Content-Type: application/ocsp-response
+Date: Thu, 02 Mar 2017 17:32:20 GMT
+Expires: Mon, 06 Mar 2017 17:32:20 GMT
+Cache-Control: public, max-age=345600
+Server: ocsp_responder
+Content-Length: 463
+X-XSS-Protection: 1; mode=block
+X-Frame-Options: SAMEORIGIN
+
+0‚Ë
+
+
+--------------------------------------------------
+
+
+
+--------------------------------------------------
+
+
+
+--------------------------------------------------
+
+
+
+--------------------------------------------------
+
+HTTP/1.1 200 OK
+Content-Type: application/ocsp-response
+Date: Thu, 02 Mar 2017 17:32:20 GMT
+Expires: Mon, 06 Mar 2017 17:32:20 GMT
+Cache-Control: public, max-age=345600
+Server: ocsp_responder
+Content-Length: 463
+X-XSS-Protection: 1; mode=block
+X-Frame-Options: SAMEORIGIN
+
+0‚Ë
+
+
+--------------------------------------------------
+
+HTTP/1.1 200 OK
+Content-Type: application/ocsp-response
+Date: Thu, 02 Mar 2017 17:32:20 GMT
+Expires: Mon, 06 Mar 2017 17:32:20 GMT
+Cache-Control: public, max-age=345600
+Server: ocsp_responder
+Content-Length: 463
+X-XSS-Protection: 1; mode=block
+X-Frame-Options: SAMEORIGIN
+
+0‚Ë
+
+
+--------------------------------------------------
+
+HTTP/1.1 200 OK
+Content-Type: application/ocsp-response
+Date: Thu, 02 Mar 2017 17:32:20 GMT
+Expires: Mon, 06 Mar 2017 17:32:20 GMT
+Cache-Control: public, max-age=345600
+Server: ocsp_responder
+Content-Length: 463
+X-XSS-Protection: 1; mode=block
+X-Frame-Options: SAMEORIGIN
+
+0‚Ë
+
+
+--------------------------------------------------
+
+
+
+--------------------------------------------------
+
+
+
+--------------------------------------------------
+
+HTTP/1.1 200 OK
+Content-Type: application/ocsp-response
+Date: Thu, 02 Mar 2017 17:32:20 GMT
+Expires: Mon, 06 Mar 2017 17:32:20 GMT
+Cache-Control: public, max-age=345600
+Server: ocsp_responder
+Content-Length: 463
+X-XSS-Protection: 1; mode=block
+X-Frame-Options: SAMEORIGIN
+
+0‚Ë
+
+
+--------------------------------------------------
+
+HTTP/1.1 200 OK
+Content-Type: application/ocsp-response
+Date: Thu, 02 Mar 2017 17:32:20 GMT
+Expires: Mon, 06 Mar 2017 17:32:20 GMT
+Cache-Control: public, max-age=345600
+Server: ocsp_responder
+Content-Length: 463
+X-XSS-Protection: 1; mode=block
+X-Frame-Options: SAMEORIGIN
+
+0‚Ë
+
+
+--------------------------------------------------
+
+
+
+--------------------------------------------------
+
+
+
+--------------------------------------------------
+
+
+
+--------------------------------------------------
+
+
+
+--------------------------------------------------
+
+HTTP/1.1 200 OK
+Content-Type: application/ocsp-response
+Date: Thu, 02 Mar 2017 17:32:21 GMT
+Expires: Mon, 06 Mar 2017 17:32:21 GMT
+Cache-Control: public, max-age=345600
+Server: ocsp_responder
+Content-Length: 463
+X-XSS-Protection: 1; mode=block
+X-Frame-Options: SAMEORIGIN
+
+0‚Ë
+
+
+--------------------------------------------------
+
+HTTP/1.1 200 OK
+Content-Type: application/ocsp-response
+Date: Thu, 02 Mar 2017 17:32:21 GMT
+Expires: Mon, 06 Mar 2017 17:32:21 GMT
+Cache-Control: public, max-age=345600
+Server: ocsp_responder
+Content-Length: 463
+X-XSS-Protection: 1; mode=block
+X-Frame-Options: SAMEORIGIN
+
+0‚Ë
+
+
+--------------------------------------------------
+
+HTTP/1.1 200 OK
+Content-Type: application/ocsp-response
+Date: Thu, 02 Mar 2017 17:32:21 GMT
+Expires: Mon, 06 Mar 2017 17:32:21 GMT
+Cache-Control: public, max-age=345600
+Server: ocsp_responder
+Content-Length: 463
+X-XSS-Protection: 1; mode=block
+X-Frame-Options: SAMEORIGIN
+
+0‚Ë
+
+
+--------------------------------------------------
+
+HTTP/1.1 200 OK
+Content-Type: application/ocsp-response
+Date: Thu, 02 Mar 2017 17:32:21 GMT
+Expires: Mon, 06 Mar 2017 17:32:21 GMT
+Cache-Control: public, max-age=345600
+Server: ocsp_responder
+Content-Length: 463
+X-XSS-Protection: 1; mode=block
+X-Frame-Options: SAMEORIGIN
+
+0‚Ë
+
+
+--------------------------------------------------
+
+
+
+--------------------------------------------------
+
+
+
+--------------------------------------------------
+
+HTTP/1.1 200 OK
+Content-Type: application/ocsp-response
+Date: Thu, 02 Mar 2017 17:32:21 GMT
+Expires: Mon, 06 Mar 2017 17:32:21 GMT
+Cache-Control: public, max-age=345600
+Server: ocsp_responder
+Content-Length: 463
+X-XSS-Protection: 1; mode=block
+X-Frame-Options: SAMEORIGIN
+
+0‚Ë
+
+
+--------------------------------------------------
+
+HTTP/1.1 200 OK
+Content-Type: application/ocsp-response
+Date: Thu, 02 Mar 2017 17:32:21 GMT
+Expires: Mon, 06 Mar 2017 17:32:21 GMT
+Cache-Control: public, max-age=345600
+Server: ocsp_responder
+Content-Length: 463
+X-XSS-Protection: 1; mode=block
+X-Frame-Options: SAMEORIGIN
+
+0‚Ë
+
+
+--------------------------------------------------
+
+
+
+--------------------------------------------------
+
+HTTP/1.1 200 OK
+Content-Type: application/ocsp-response
+Date: Thu, 02 Mar 2017 17:32:29 GMT
+Expires: Mon, 06 Mar 2017 17:32:29 GMT
 Cache-Control: public, max-age=345600
 Server: ocsp_responder
 Content-Length: 463
@@ -25,226 +781,16 @@ HTTP/1.1 200 OK
 Accept-Ranges: bytes
 Cache-Control: public, max-age=172800
 Content-Type: application/ocsp-response
-Date: Thu, 02 Mar 2017 08:03:59 GMT
-Etag: "58b7860d-1d7"
-Expires: Wed, 08 Mar 2017 20:03:59 GMT
-Last-Modified: Thu, 02 Mar 2017 02:40:13 GMT
-Server: ECS (lga/1385)
+Date: Thu, 02 Mar 2017 17:32:38 GMT
+Etag: "58b8221c-1d7"
+Expires: Thu, 09 Mar 2017 05:32:38 GMT
+Last-Modified: Thu, 02 Mar 2017 13:46:04 GMT
+Server: ECS (lga/1378)
 X-Cache: HIT
 Content-Length: 471
 
 0‚Ó
 
-
---------------------------------------------------
-
-
-
---------------------------------------------------
-
-
-
---------------------------------------------------
-
-
-
---------------------------------------------------
-
-HTTP/1.1 200 OK
-Accept-Ranges: bytes
-Cache-Control: public, max-age=172800
-Content-Type: application/ocsp-response
-Date: Thu, 02 Mar 2017 08:03:59 GMT
-Etag: "58b79d83-1d7"
-Expires: Wed, 08 Mar 2017 20:03:59 GMT
-Last-Modified: Thu, 02 Mar 2017 04:20:19 GMT
-Server: ECS (lga/1386)
-X-Cache: HIT
-Content-Length: 471
-
-0‚Ó
-
-
---------------------------------------------------
-
-HTTP/1.1 200 OK
-Accept-Ranges: bytes
-Cache-Control: public, max-age=172800
-Content-Type: application/ocsp-response
-Date: Thu, 02 Mar 2017 08:03:59 GMT
-Etag: "58b79d83-1d7"
-Expires: Wed, 08 Mar 2017 20:03:59 GMT
-Last-Modified: Thu, 02 Mar 2017 04:20:19 GMT
-Server: ECS (lga/13A4)
-X-Cache: HIT
-Content-Length: 471
-
-0‚Ó
-
-
---------------------------------------------------
-
-HTTP/1.1 200 OK
-Accept-Ranges: bytes
-Cache-Control: public, max-age=172800
-Content-Type: application/ocsp-response
-Date: Thu, 02 Mar 2017 08:03:59 GMT
-Etag: "58b79d83-1d7"
-Expires: Wed, 08 Mar 2017 20:03:59 GMT
-Last-Modified: Thu, 02 Mar 2017 04:20:19 GMT
-Server: ECS (lga/13A4)
-X-Cache: HIT
-Content-Length: 471
-
-0‚Ó
-
-
---------------------------------------------------
-
-
-
---------------------------------------------------
-
-HTTP/1.1 200 OK
-Accept-Ranges: bytes
-Cache-Control: public, max-age=172800
-Content-Type: application/ocsp-response
-Date: Thu, 02 Mar 2017 08:04:00 GMT
-Etag: "58b75e2c-1d7"
-Expires: Wed, 08 Mar 2017 20:04:00 GMT
-Last-Modified: Wed, 01 Mar 2017 23:50:04 GMT
-Server: ECS (lga/1386)
-X-Cache: HIT
-Content-Length: 471
-
-0‚Ó
-
-
---------------------------------------------------
-
-
-
---------------------------------------------------
-
-
-
---------------------------------------------------
-
-HTTP/1.1 200 OK
-Server: nginx/1.10.2
-Content-Type: application/ocsp-response
-Content-Length: 1609
-content-transfer-encoding: binary
-Cache-Control: max-age=549745, public, no-transform, must-revalidate
-Last-Modified: Wed, 1 Mar 2017 16:43:43 GMT
-Expires: Wed, 8 Mar 2017 16:43:43 GMT
-Date: Thu, 02 Mar 2017 08:04:01 GMT
-Connection: keep-alive
-
-0‚E
-0U#0€_`ÏaUß„CŠ`*²õzôCï0UE ¨‹ŠeŸuúõé
-xÒğ70Uÿ0
-
---------------------------------------------------
-
-HTTP/1.1 200 OK
-Server: nginx/1.10.2
-Content-Type: application/ocsp-response
-Content-Length: 1609
-content-transfer-encoding: binary
-Cache-Control: max-age=549745, public, no-transform, must-revalidate
-Last-Modified: Wed, 1 Mar 2017 16:43:43 GMT
-Expires: Wed, 8 Mar 2017 16:43:43 GMT
-Date: Thu, 02 Mar 2017 08:04:01 GMT
-Connection: keep-alive
-
-0‚E
-
-
---------------------------------------------------
-
-
-
---------------------------------------------------
-
-HTTP/1.1 200 OK
-Content-Type: application/ocsp-response
-Content-Length: 471
-Connection: keep-alive
-Accept-Ranges: bytes
-Cache-Control: public, max-age=172800
-Date: Thu, 02 Mar 2017 08:04:01 GMT
-Etag: "58b7898f-1d7"
-Expires: Wed, 08 Mar 2017 20:04:01 GMT
-Last-Modified: Thu, 02 Mar 2017 02:55:11 GMT
-Server: ECS (lga/1386)
-X-Cache: Miss from cloudfront
-Via: 1.1 3b992cd8d9e4ace056bc70d5a73491d2.cloudfront.net (CloudFront)
-X-Amz-Cf-Id: RPYH04jLCTns4BKQx9u2pTdN7o_801aMW1Gd3cK0S6E3cWIeun6oRg==
-
-0‚Ó
-
-
---------------------------------------------------
-
-
-
---------------------------------------------------
-
-
-
---------------------------------------------------
-
-
-
---------------------------------------------------
-
-HTTP/1.1 200 OK
-Server: nginx/1.10.2
-Content-Type: application/ocsp-response
-Content-Length: 1609
-content-transfer-encoding: binary
-Cache-Control: max-age=503664, public, no-transform, must-revalidate
-Last-Modified: Wed, 1 Mar 2017 03:56:16 GMT
-Expires: Wed, 8 Mar 2017 03:56:16 GMT
-Date: Thu, 02 Mar 2017 08:04:02 GMT
-Connection: keep-alive
-
-0‚E
-
-
---------------------------------------------------
-
-HTTP/1.1 200 OK
-Server: nginx/1.10.2
-Content-Type: application/ocsp-response
-Content-Length: 1609
-content-transfer-encoding: binary
-Cache-Control: max-age=503664, public, no-transform, must-revalidate
-Last-Modified: Wed, 1 Mar 2017 03:56:16 GMT
-Expires: Wed, 8 Mar 2017 03:56:16 GMT
-Date: Thu, 02 Mar 2017 08:04:02 GMT
-Connection: keep-alive
-
-0‚E
-
-
---------------------------------------------------
-
-HTTP/1.1 200 OK
-Server: nginx/1.10.2
-Content-Type: application/ocsp-response
-Content-Length: 1609
-content-transfer-encoding: binary
-Cache-Control: max-age=503664, public, no-transform, must-revalidate
-Last-Modified: Wed, 1 Mar 2017 03:56:16 GMT
-Expires: Wed, 8 Mar 2017 03:56:16 GMT
-Date: Thu, 02 Mar 2017 08:04:02 GMT
-Connection: keep-alive
-
-0‚E
-0U#0€_`ÏaUß„CŠ`*²õzôCï0UE ¨‹ŠeŸuúõé
-xÒğ70Uÿ0
 
 --------------------------------------------------
 
