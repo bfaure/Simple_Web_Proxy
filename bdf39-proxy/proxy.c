@@ -42,9 +42,8 @@ The following is a simplified trace of a standard use case:
 #include "csapp.h"
 #include "time.h"
 
-#define BUFFER_PAGE_WIDTH 4096  // size of each read/write buffer
-#define BUFFER_PAGE_COUNT 400   // maximum number of buffers held in request_data struct
-#define BUFFER_PAGE_COUNT_DYNAMIC 5000 // maximum number of dynamically size buffers 
+#define BUFFER_PAGE_WIDTH 4096  // maximum size of each read/write buffer
+#define BUFFER_PAGE_COUNT 12000 // maximum number of dynamically size buffers (per response)
 
 // handle separate naming for Windows, Apple, and Unix machines
 #ifdef _WIN32
@@ -104,11 +103,9 @@ typedef struct request_data
     char req_protocol[100]; // HTTP/1.1, etc.
     char req_host_path[512]; // /text/index.html from http://www.cnn.com:80/test/index.html
 
-    char full_response[BUFFER_PAGE_COUNT][BUFFER_PAGE_WIDTH]; // buffered server response to request
+    char *full_response_dynamic[BUFFER_PAGE_COUNT]; // buffered server response
     int resp_length[BUFFER_PAGE_COUNT]; // hold size of each element of response buffer
     int num_lines_response; // to hold the number of response lines
-
-    char *full_response_dynamic[BUFFER_PAGE_COUNT]; // same as full_response but each page is dynamically sized
 
     char response_code[100]; // to hold the return code
     char sent_time[100]; // time when the request was sent to remote server
@@ -243,9 +240,9 @@ int main(int argc, char **argv)
                 close(listening_port); // prevent this thread from reacting to browser requests
 
                 set_current_status_id("Reading socket",req_data.thread_id);
-                char buffer[4096]; // to read the socket data into
+                char buffer[BUFFER_PAGE_WIDTH]; // to read the socket data into
                 
-                int request_size        = Read(client_socket,buffer,4095); // read socket into buffer string
+                int request_size        = Read(client_socket,buffer,BUFFER_PAGE_WIDTH-1); // read socket into buffer string
                 buffer[request_size]    = 0; // zero-terminate string
 
                 memcpy(req_data.request_buffer,buffer,request_size); // copy the buffer into req_data
@@ -304,7 +301,9 @@ int main(int argc, char **argv)
 
                 // tell the handle_time_spinner thread to show the waiting animation
                 if ( *threads_open==-1) {  *ENABLE_TIME_SPINNER = 0;  }
-                
+
+                if ( (req_data.thread_id % 50 == 0) && (req_data.thread_id!=0) ){  refresh_ui_header();  } // refresh the UI header table
+
                 exit(0); // close this thread (opened on Fork())
 
             case -1: // error when creating new thread
@@ -314,7 +313,6 @@ int main(int argc, char **argv)
 
             default: // this is the parent thread
                 close(client_socket); // close the socket we left to the child
-                if ( (req_data.thread_id % 50 == 0) && (req_data.thread_id!=0) ){  refresh_ui_header();  } // refresh the UI header table
         }
         // clear the command line if not loading a request
         if ( *threads_open==-1)
@@ -587,7 +585,8 @@ int receive_response_from_remote(struct request_data *req_data, int remote_socke
         }
 
         // copy the data we just gathered into the req_data struct
-        memcpy(req_data->full_response[req_data->num_lines_response],buffer,n); 
+        req_data->full_response_dynamic[req_data->num_lines_response] = malloc(sizeof(char)*(int)(n+1));
+        memcpy(req_data->full_response_dynamic[req_data->num_lines_response],buffer,n);
         req_data->resp_length[req_data->num_lines_response] = (int)n; // record the length of buffered response
         req_data->num_lines_response++; // increment number of response lines
 
@@ -631,10 +630,11 @@ int forward_response_to_client(struct request_data *req_data, int client_socket)
     for (int i=0; i<req_data->num_lines_response; i++)
     {
         int m=0;
-        if ( (m=send(client_socket,req_data->full_response[i],req_data->resp_length[i],0))<0 )
+        if ( (m=send(client_socket,req_data->full_response_dynamic[i],req_data->resp_length[i],0))<0 )
         {
             printf("\nNot allowed to write to client_socket, m=%d\n",m);
-            return -1;
+            close(client_socket);
+            break;
         }
     }
     set_current_status_id("Finished forwarding response",req_data->thread_id); // update CLI and status.log file
@@ -700,7 +700,7 @@ void log_information(const char *buffer,const struct request_data *req_data, con
     fprintf(DEBUG_LOG,"\n===================RESPONSE [%s]======================\n",req_data->server_responded_time);
     for(int i=0; i<req_data->num_lines_response; i++)
     {   
-        fprintf(DEBUG_LOG,"%s\n",req_data->full_response[i]);
+        fprintf(DEBUG_LOG,"%s\n",req_data->full_response_dynamic[i]);
     }
     fprintf(DEBUG_LOG,"\n=============================================================\n");
     fflush(DEBUG_LOG);
@@ -1168,7 +1168,7 @@ void update_cli(struct request_data *req_data, int thread_index, int threads_ope
     char size_based_spacer[10];
     if ( resp_size<100 )
     {
-        sprintf(size_based_spacer,"     ");
+        sprintf(size_based_spacer,"    ");
     }
     else
     {
@@ -1177,11 +1177,11 @@ void update_cli(struct request_data *req_data, int thread_index, int threads_ope
 
     if ( strstr(req_data->req_command,"POST")!=NULL )
     {
-        printf("%d\t(%d workers) > %s %s %s %dB > [%s,%dB] %s%s %d s\n",thread_index,threads_open,req_data->req_command,req_host_long_shortened,spacer,request_size,req_data->response_code,resp_size,size_based_spacer,spacer_after_response_info,total_time);
+        printf("%d\t(%d workers) > %s %s %s %d B > [%s,%d B] %s%s %d s\n",thread_index,threads_open,req_data->req_command,req_host_long_shortened,spacer,request_size,req_data->response_code,resp_size,size_based_spacer,spacer_after_response_info,total_time);
     }
     else
     {
-        printf("%d\t(%d workers) > %s  %s %s %dB > [%s,%dB] %s%s %d s\n",thread_index,threads_open,req_data->req_command,req_host_long_shortened,spacer,request_size,req_data->response_code,resp_size,size_based_spacer,spacer_after_response_info,total_time);
+        printf("%d\t(%d workers) > %s  %s %s %d B > [%s,%d B] %s%s %d s\n",thread_index,threads_open,req_data->req_command,req_host_long_shortened,spacer,request_size,req_data->response_code,resp_size,size_based_spacer,spacer_after_response_info,total_time);
     }
     fflush(stdout);
 }
