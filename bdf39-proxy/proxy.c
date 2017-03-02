@@ -44,6 +44,8 @@ The following is a simplified trace of a standard use case:
 
 #define BUFFER_PAGE_WIDTH 4096  // maximum size of each read/write buffer
 #define BUFFER_PAGE_COUNT 12000 // maximum number of dynamically size buffers (per response)
+#define STATUS_BUFFER_COUNT 100 // maximum number of prior status updates held in status_buffer struct
+#define MAXIMUM_THREAD_COUNT 100 // does not control thread count, just size of thread id buffer in status_buffer struct
 
 // handle separate naming for Windows, Apple, and Unix machines
 #ifdef _WIN32
@@ -72,7 +74,7 @@ const char *UI_WIPE[1] = {"                                                     
 
 char    *CURRENT_STATUS; // to hold what we are currently processing
 int     PROCESSING_REQUEST = 0; // set to 1 while a request is being processed to prevent concurrency problems
-int     ALREADY_LOGGING = 0; // set to 1 while a request is being written to the proxy.log file
+int     *ALREADY_LOGGING; // set to 1 while a request is being written to the proxy.log file
 int     *ALREADY_LOGGING_DEBUG_INFO; // set to 1 while debuggin data is being written
 int     *ENABLE_TIME_SPINNER; // if 0 then show waiting line, 1 show loading spinner, 2 show nothing
 int     *REFRESHING_UI_HEADER; // 0 if not refreshing table header right now, 1 otherwise
@@ -82,6 +84,22 @@ int     *USER_PAUSE; // set to 1 if the user hits Ctrl+C, pauses all threads but
 
 int     CUR_SERVER_SOCKET; // thread-specific global variable (for handling thread exiting) 
 int     CUR_CLIENT_SOCKET; // thread-specific global variable (for handling thread exiting)
+
+// Used to control what status update is shown on the CLI, needed because sometimes
+// threads that were already done would have sent their updates later on than other
+// worker threads that were still processing a certain aspect and that message isn't
+// being shown even though that is the thread that is still running.
+typedef struct status_buffer
+{
+    char prior_status[STATUS_BUFFER_COUNT][300]; // Holds the last STATUS_BUFFER_COUNT status updates that sent by all threads together
+    int prior_status_thread[STATUS_BUFFER_COUNT]; // single entry for each item in prior_status, associated thread
+
+    int open_threads[MAXIMUM_THREAD_COUNT]; // Has the thread_id of every running worker thread
+
+} status_buffer;
+
+struct status_buffer *stat_buf; // Thread-global variable
+int *stat_buf_lock; // 
 
 // Data structure to hold all essential information pertaining to a request. This is the
 // main vehicle used in the two main processes (parse_request and fulfill_request) to hold
@@ -127,6 +145,7 @@ int     fulfill_request(struct request_data *req_data, int client_socket);
 int     forward_request_to_remote(struct request_data *req_data, int remote_socket);
 int     receive_response_from_remote(struct request_data *req_data, int remote_socket);
 int     forward_response_to_client(struct request_data *req_data, int client_socket);
+void    free_request_data(struct request_data *req_data);
 
 // Logging...
 void    log_request( struct sockaddr_in *sockaddr,  char *uri,  int size);
@@ -146,6 +165,11 @@ void    handle_time_spinner();
 void    update_cli(struct request_data *req_data, int thread_index, int threads_open, int resp_size, int request_size, int total_time);
 void    set_current_status(const char *input_str);
 void    set_current_status_id(const char *input_str, const int thread_id);
+void    init_stat_buf();
+void    add_thread_id_to_stat_buf(int thread_id);
+void    remove_thread_id_from_stat_buf(int thread_id);
+char*   stat_buf_top();
+void    add_status_to_stat_buf(char *status, int thread_id);
 
 // Misc...
 void    init_global_variables();
@@ -234,7 +258,9 @@ int main(int argc, char **argv)
                 req_data.thread_id          = *thread_ct; // save the index of this thread to req_data
                 *thread_ct                  = *thread_ct + 1; // increment the thread_ct integer
                 *threads_open               = *threads_open + 1; // increment the threads_open integer
-                *ENABLE_TIME_SPINNER        = 1;
+                *ENABLE_TIME_SPINNER        = 1; // tell handle_time_spinner to start showing status updates
+
+                add_thread_id_to_stat_buf(req_data.thread_id); // add this thread index to the stat_buf
 
                 close(listening_socket); // prevent this thread from reacting to browser requests
                 close(listening_port); // prevent this thread from reacting to browser requests
@@ -304,6 +330,8 @@ int main(int argc, char **argv)
 
                 if ( (req_data.thread_id % 50 == 0) && (req_data.thread_id!=0) ){  refresh_ui_header();  } // refresh the UI header table
 
+                remove_thread_id_from_stat_buf(req_data.thread_id); // remove this thread_id from the stat_buf
+                free_request_data(&req_data); // free the memory allocated to req_data
                 exit(0); // close this thread (opened on Fork())
 
             case -1: // error when creating new thread
@@ -342,6 +370,7 @@ char* parse_request(struct request_data *req_data, char *buffer)
         char *temp_buffer = malloc(sizeof(char)*50); 
         sprintf(temp_buffer,"Specified request size = %d",req_data->specified_req_size);
         set_current_status_id(temp_buffer,req_data->thread_id); // update CLI and write to status.log
+        free(temp_buffer);
     }
     // if there is no 'Content-Length' specified in request
     else{   set_current_status_id("No request size specified",req_data->thread_id);  }
@@ -390,9 +419,9 @@ char* parse_request(struct request_data *req_data, char *buffer)
             // and save the rest of the data into the first spot in the req_after_host array
             // in the req_data struct
 
-            char *delim = strstr(req_data->request_buffer,"\r\n\r\n"); // separator between header and body of request
-            int delim_index = (int)(delim-req_data->request_buffer); // get index of separator
-            int delim_size = 4; // size of '\r\n\r\n'
+            //char *delim = strstr(req_data->request_buffer,"\r\n\r\n"); // separator between header and body of request
+            //int delim_index = (int)(delim-req_data->request_buffer); // get index of separator
+            //int delim_size = 4; // size of '\r\n\r\n'
 
             //int post_delim_data_size = req_data->request_buffer_size-delim_index-delim_size; // get size of body of request
 
@@ -539,6 +568,7 @@ int receive_response_from_remote(struct request_data *req_data, int remote_socke
                 char *temp_buffer = malloc(sizeof(char)*50);
                 sprintf(temp_buffer,"Found response size (%d)",req_data->specified_resp_size);
                 set_current_status_id(temp_buffer,req_data->thread_id);
+                free(temp_buffer);
             }
             else // mark that we have no specified size
             {
@@ -598,6 +628,7 @@ int receive_response_from_remote(struct request_data *req_data, int remote_socke
                 char *temp_buffer4 = malloc(sizeof(char)*100);
                 sprintf(temp_buffer4,"Reached end of message (size=%d)",actual_total_size);
                 set_current_status_id(temp_buffer4,req_data->thread_id);
+                free(temp_buffer4); // free memory used in buffer
                 break;
             }
         }
@@ -643,6 +674,18 @@ int forward_response_to_client(struct request_data *req_data, int client_socket)
     return 1;
 }
 
+// Called from main after a request_data struct is done finished being used (after the
+// response from the server has already been passed on to the client). Frees all of the
+// memory allocated to the struct via malloc.
+void free_request_data(struct request_data *req_data)
+{
+    // clear the response data (if any)
+    for (int i=0; i<req_data->num_lines_response; i++)
+    {
+        free(req_data->full_response_dynamic[i]);
+    }
+}
+
 // Called from the main function (same time frame as log_information), writes out
 // the request in the format specified in assignment (making use of format_log_entry)
 // to the proxy_log global variable (proxy.log file).
@@ -659,14 +702,14 @@ void log_request( struct sockaddr_in *sockaddr,  char *uri,  int size)
     t.tv_nsec = (long)10000.0; // once per second
 
     // busy wait until we can get a handle on the proxy.log file
-    while (ALREADY_LOGGING==1){  nanosleep(&t,NULL);  }
-    ALREADY_LOGGING = 1; // tell all other threads to wait
+    while (*ALREADY_LOGGING==1){  nanosleep(&t,NULL);  }
+    *ALREADY_LOGGING = 1; // tell all other threads to wait
     char logstring[1024]; // to hold output of format_log_entry
     format_log_entry((char *)&logstring,sockaddr,uri,size); 
     fprintf(PROXY_LOG,"%s",logstring); // print out formatted string
     fprintf(PROXY_LOG,"\n"); // new line
     fflush(PROXY_LOG);
-    ALREADY_LOGGING = 0; // tell all other threads it's okay to write to proxy.log
+    *ALREADY_LOGGING = 0; // tell all other threads it's okay to write to proxy.log
 }
 
 // Called from the main function after a request has been fully processed, writes
@@ -1093,13 +1136,16 @@ void handle_time_spinner()
             char temp_buffer5[300];
             temp_buffer5[1] = 0;
 
+            char *prior_status_update = stat_buf_top(); // get a status update from an open thread
+
             // depending in the current state of time_spin_index we will output a different character
-            if (time_spin_index==0){  sprintf(temp_buffer5,"... |   %s ",CURRENT_STATUS);  }
-            if (time_spin_index==1){  sprintf(temp_buffer5,"... /   %s ",CURRENT_STATUS);  }
-            if (time_spin_index==2){  sprintf(temp_buffer5,"... -   %s ",CURRENT_STATUS);  }
-            if (time_spin_index==3){  sprintf(temp_buffer5,"... \\   %s ",CURRENT_STATUS); }
+            if (time_spin_index==0){  sprintf(temp_buffer5,"... |   %s ",prior_status_update);  }
+            if (time_spin_index==1){  sprintf(temp_buffer5,"... /   %s ",prior_status_update);  }
+            if (time_spin_index==2){  sprintf(temp_buffer5,"... -   %s ",prior_status_update);  }
+            if (time_spin_index==3){  sprintf(temp_buffer5,"... \\   %s ",prior_status_update); }
             printf("%s\r",temp_buffer5);
             fflush(stdout);
+            //free(temp_buffer5);
 
             time_spin_index++; // increment time_spin_index
             if ( time_spin_index>=4 ){  time_spin_index=0;  }
@@ -1129,6 +1175,7 @@ void handle_time_spinner()
             }
             printf("%s%s%s\r",left_wall,temp_buffer5,right_wall);
             fflush(stdout);
+            //free(temp_buffer5);
 
             waiting_spin_index++; // increment waiting spin index
             if ( waiting_spin_index==max_distance ){  waiting_spin_index=-1*bar_distance;  }
@@ -1199,11 +1246,136 @@ void set_current_status(const char *input_str)
 // wakes up but the status update will be written to status.log immediately.
 void set_current_status_id(const char *input_str, const int thread_id)
 {
-    char temp[100];
+    char *temp = malloc(sizeof(char)*100);
     sprintf(temp,"(idx=%d) - %s",thread_id,input_str);
     strcpy(CURRENT_STATUS,temp);
+    add_status_to_stat_buf(temp,thread_id); // add this status update to the stat_buf struct
     fprintf(STATUS_LOG,"%s\t>%s\n",get_time_string(),temp);
     fflush(STATUS_LOG);
+}
+
+// Initializes the stat_buf thread-global struct
+void init_stat_buf()
+{
+    typedef struct timespec // struct used to specify how much time to use in nanosleep
+    {
+        time_t tv_sec;
+        long tv_nsec;   
+    } timespec;
+    timespec t;
+    t.tv_sec = 0;
+    t.tv_nsec = (long)1000.0; // once per second
+    while ( *stat_buf_lock ){  nanosleep(&t,NULL);  }
+
+    *stat_buf_lock = 1;
+    // initialize all thread index values to -1 to denote that they are not yet set
+    for (int i=0; i<STATUS_BUFFER_COUNT; i++)
+    {
+        stat_buf->prior_status_thread[i] = -1;
+    }
+    *stat_buf_lock = 0;
+}
+
+// Add a thread id to the stat_buf struct
+void add_thread_id_to_stat_buf(int thread_id)
+{
+    typedef struct timespec // struct used to specify how much time to use in nanosleep
+    {
+        time_t tv_sec;
+        long tv_nsec;   
+    } timespec;
+    timespec t;
+    t.tv_sec = 0;
+    t.tv_nsec = (long)1000.0; // once per second
+    while ( *stat_buf_lock ){  nanosleep(&t,NULL);  }
+
+    *stat_buf_lock = 1;
+    for (int i=0; i<STATUS_BUFFER_COUNT; i++)
+    {
+        if ( stat_buf->prior_status_thread[i]==-1 )
+        {  
+            stat_buf->prior_status_thread[i] = thread_id;
+            break;
+        }
+    }
+    *stat_buf_lock = 0;
+}
+
+// Remove a thread id from stat_buf struct
+void remove_thread_id_from_stat_buf(int thread_id)
+{    
+    typedef struct timespec // struct used to specify how much time to use in nanosleep
+    {
+        time_t tv_sec;
+        long tv_nsec;   
+    } timespec;
+    timespec t;
+    t.tv_sec = 0;
+    t.tv_nsec = (long)1000.0; // once per second
+    while ( *stat_buf_lock ){  nanosleep(&t,NULL);  }
+
+    *stat_buf_lock = 1;
+    for (int i=0; i<STATUS_BUFFER_COUNT; i++)
+    {
+        if ( stat_buf->prior_status_thread[i]==thread_id ){  stat_buf->prior_status_thread[i]=-1;  }
+    }
+    *stat_buf_lock = 0;
+}
+
+// Gets a status related to an open thread from the stat_buf struct
+char* stat_buf_top()
+{
+    typedef struct timespec // struct used to specify how much time to use in nanosleep
+    {
+        time_t tv_sec;
+        long tv_nsec;   
+    } timespec;
+    timespec t;
+    t.tv_sec = 0;
+    t.tv_nsec = (long)1000.0; // once per second
+    while ( *stat_buf_lock ){  nanosleep(&t,NULL);  }
+
+    *stat_buf_lock = 1;
+    for (int i=0; i<STATUS_BUFFER_COUNT; i++)
+    {
+        if ( stat_buf->prior_status_thread[i]!=-1 )
+        {
+            char *temp_buffer = malloc(sizeof(char)*300);
+            strcpy(temp_buffer,stat_buf->prior_status[i]);
+            *stat_buf_lock = 0;
+            return temp_buffer;
+        }
+    }
+    *stat_buf_lock = 0;
+    return CURRENT_STATUS;
+}
+
+// Adds a status to the stat_buf struct and takes note of the 
+// calling thread there as well to allow for accessing using
+// the stat_buf_top function later on
+void add_status_to_stat_buf(char *status, int thread_id)
+{
+    typedef struct timespec // struct used to specify how much time to use in nanosleep
+    {
+        time_t tv_sec;
+        long tv_nsec;   
+    } timespec;
+    timespec t;
+    t.tv_sec = 0;
+    t.tv_nsec = (long)1000.0; // once per second
+    while ( *stat_buf_lock ){  nanosleep(&t,NULL);  }
+
+    *stat_buf_lock = 1;
+    for (int i=0; i<STATUS_BUFFER_COUNT; i++)
+    {
+        if ( stat_buf->prior_status_thread[i]==-1 || stat_buf->prior_status_thread==thread_id)
+        {
+            strcpy(stat_buf->prior_status[i],status);
+            stat_buf->prior_status_thread[i] = thread_id;
+            break;
+        }
+    }
+    *stat_buf_lock = 0;
 }
 
 // Called from main at the start of the program execution. Initializes global
@@ -1211,11 +1383,20 @@ void set_current_status_id(const char *input_str, const int thread_id)
 // for all of the .log files which can then, also, be accessed from all threads.
 void init_global_variables()
 {
+    stat_buf_lock =  mmap(NULL,sizeof(int), PROT_READ|PROT_WRITE, MAP_SHARED|MAP_A, -1, 0);
+    *stat_buf_lock = 0;
+    
+    stat_buf = mmap(NULL,sizeof(status_buffer),PROT_READ|PROT_WRITE, MAP_SHARED|MAP_A, -1, 0);
+    init_stat_buf();
+
     USER_PAUSE =  mmap(NULL,sizeof(int), PROT_READ|PROT_WRITE, MAP_SHARED|MAP_A, -1, 0);
     *USER_PAUSE = 0;
 
     USER_EXIT =  mmap(NULL,sizeof(int), PROT_READ|PROT_WRITE, MAP_SHARED|MAP_A, -1, 0);
     *USER_EXIT = 0;
+
+    ALREADY_LOGGING = mmap(NULL,sizeof(int), PROT_READ|PROT_WRITE, MAP_SHARED|MAP_A, -1, 0);
+    *ALREADY_LOGGING = 0; // 1 if writing to proxy.log 
 
     ALREADY_LOGGING_DEBUG_INFO = mmap(NULL,sizeof(int), PROT_READ|PROT_WRITE, MAP_SHARED|MAP_A, -1, 0);
     *ALREADY_LOGGING_DEBUG_INFO = 0; // 1 if writing to debug.log 
@@ -1389,8 +1570,8 @@ void on_user_command(int signal)
     char *answer = get_user_input();
     if ( strcmp(answer,"y")==0 || strcmp(answer,"Y")==0 )
     {
-        *USER_PAUSE = 1;
-        printf("Exiting.\n\n");
+        *USER_EXIT = 1;
+        printf("\n");
         exit(0);
     }
     else
@@ -1447,7 +1628,7 @@ void synchronize_thread()
         close(CUR_SERVER_SOCKET);
         exit(0);
     }
-    while (*USER_PAUSE){  Sleep(1);  }
+    while (*USER_PAUSE==1 && *USER_EXIT==0){  Sleep(1);  }
     if (*USER_EXIT)
     {
         close(CUR_CLIENT_SOCKET);

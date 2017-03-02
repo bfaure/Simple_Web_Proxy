@@ -1,962 +1,172 @@
 
 REQUEST (thread_index=0):
-GET http://www.ucsb.edu/ HTTP/1.1
-Host: www.ucsb.edu
+POST http://clients1.google.com/ocsp HTTP/1.1
+Host: clients1.google.com
 User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
 Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
 Accept-Language: en-US,en;q=0.5
 Accept-Encoding: gzip, deflate
-Cookie: _ga=GA1.2.1485190825.1488412337; _gat_UA-45526986-2=1
+Content-Length: 75
+Content-Type: application/ocsp-request
 Connection: keep-alive
-Upgrade-Insecure-Requests: 1
-Cache-Control: max-age=0
 
-
+0I0G0E0C0A0	+
 --------------------
 
 REQUEST (thread_index=1):
-GET http://www.ucsb.edu/_/css/bootstrap.min.css HTTP/1.1
-Host: www.ucsb.edu
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: text/css,*/*;q=0.1
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://www.ucsb.edu/
-Cookie: _ga=GA1.2.1485190825.1488412337; _gat_UA-45526986-2=1
-Connection: keep-alive
-If-Modified-Since: Fri, 28 Aug 2015 22:44:35 GMT
-If-None-Match: "1db11-51e66d3fb20e1-gzip"
-Cache-Control: max-age=0
-
 
 --------------------
 
 REQUEST (thread_index=2):
-GET http://www.ucsb.edu/_/css/main.css HTTP/1.1
-Host: www.ucsb.edu
+POST http://ocsp.digicert.com/ HTTP/1.1
+Host: ocsp.digicert.com
 User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: text/css,*/*;q=0.1
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
 Accept-Language: en-US,en;q=0.5
 Accept-Encoding: gzip, deflate
-Referer: http://www.ucsb.edu/
-Cookie: _ga=GA1.2.1485190825.1488412337; _gat_UA-45526986-2=1
+Content-Length: 83
+Content-Type: application/ocsp-request
 Connection: keep-alive
-If-Modified-Since: Tue, 29 Nov 2016 20:09:32 GMT
-If-None-Match: "1001e-542762aa8d5bb-gzip"
-Cache-Control: max-age=0
 
-
+0Q0O0M0K0I0	+
 --------------------
 
 REQUEST (thread_index=3):
-GET http://www.ucsb.edu/_/css/weather.min.css HTTP/1.1
-Host: www.ucsb.edu
+POST http://ocsp.digicert.com/ HTTP/1.1
+Host: ocsp.digicert.com
 User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: text/css,*/*;q=0.1
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
 Accept-Language: en-US,en;q=0.5
 Accept-Encoding: gzip, deflate
-Referer: http://www.ucsb.edu/
-Cookie: _ga=GA1.2.1485190825.1488412337; _gat_UA-45526986-2=1
+Content-Length: 83
+Content-Type: application/ocsp-request
 Connection: keep-alive
-If-Modified-Since: Tue, 09 Feb 2016 23:01:10 GMT
-If-None-Match: "6b5-52b5e4b19a21c-gzip"
-Cache-Control: max-age=0
 
-
+0Q0O0M0K0I0	+
 --------------------
 
 REQUEST (thread_index=4):
-GET http://www.ucsb.edu/_/css/outdatedbrowser.min.css HTTP/1.1
-Host: www.ucsb.edu
+POST http://ocsp.digicert.com/ HTTP/1.1
+Host: ocsp.digicert.com
 User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: text/css,*/*;q=0.1
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
 Accept-Language: en-US,en;q=0.5
 Accept-Encoding: gzip, deflate
-Referer: http://www.ucsb.edu/
-Cookie: _ga=GA1.2.1485190825.1488412337; _gat_UA-45526986-2=1
+Content-Length: 83
+Content-Type: application/ocsp-request
 Connection: keep-alive
-If-Modified-Since: Fri, 28 Aug 2015 22:44:35 GMT
-If-None-Match: "459-51e66d3fb4021-gzip"
-Cache-Control: max-age=0
 
-
+0Q0O0M0K0I0	+
 --------------------
 
 REQUEST (thread_index=5):
-GET http://www.ucsb.edu/_/js/outdatedbrowser.min.js HTTP/1.1
-Host: www.ucsb.edu
+POST http://ocsp.digicert.com/ HTTP/1.1
+Host: ocsp.digicert.com
 User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: */*
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
 Accept-Language: en-US,en;q=0.5
 Accept-Encoding: gzip, deflate
-Referer: http://www.ucsb.edu/
-Cookie: _ga=GA1.2.1485190825.1488412337; _gat_UA-45526986-2=1
+Content-Length: 83
+Content-Type: application/ocsp-request
 Connection: keep-alive
-If-Modified-Since: Fri, 28 Aug 2015 22:45:49 GMT
-If-None-Match: "c68-51e66d8639b81-gzip"
-Cache-Control: max-age=0
 
-
+0Q0O0M0K0I0	+
 --------------------
 
 REQUEST (thread_index=6):
-GET http://www.ucsb.edu/_/js/jquery.js HTTP/1.1
-Host: www.ucsb.edu
+POST http://ocsp.digicert.com/ HTTP/1.1
+Host: ocsp.digicert.com
 User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: */*
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
 Accept-Language: en-US,en;q=0.5
 Accept-Encoding: gzip, deflate
-Referer: http://www.ucsb.edu/
-Cookie: _ga=GA1.2.1485190825.1488412337; _gat_UA-45526986-2=1
+Content-Length: 83
+Content-Type: application/ocsp-request
 Connection: keep-alive
-If-Modified-Since: Fri, 28 Aug 2015 22:45:49 GMT
-If-None-Match: "176d5-51e66d8635d01-gzip"
-Cache-Control: max-age=0
 
-
+0Q0O0M0K0I0	+
 --------------------
 
 REQUEST (thread_index=7):
-GET http://www.ucsb.edu/_/js/bootstrap.min.js HTTP/1.1
-Host: www.ucsb.edu
+POST http://ss.symcd.com/ HTTP/1.1
+Host: ss.symcd.com
 User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: */*
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
 Accept-Language: en-US,en;q=0.5
 Accept-Encoding: gzip, deflate
-Referer: http://www.ucsb.edu/
-Cookie: _ga=GA1.2.1485190825.1488412337; _gat_UA-45526986-2=1
+Content-Length: 83
+Content-Type: application/ocsp-request
 Connection: keep-alive
-If-Modified-Since: Fri, 28 Aug 2015 22:45:49 GMT
-If-None-Match: "8fd0-51e66d8631e81-gzip"
-Cache-Control: max-age=0
 
-
+0Q0O0M0K0I0	+
 --------------------
 
 REQUEST (thread_index=8):
-GET http://www.ucsb.edu/_/js/jquery.simpleWeather.min.js HTTP/1.1
-Host: www.ucsb.edu
+POST http://ss.symcd.com/ HTTP/1.1
+Host: ss.symcd.com
 User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: */*
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
 Accept-Language: en-US,en;q=0.5
 Accept-Encoding: gzip, deflate
-Referer: http://www.ucsb.edu/
-Cookie: _ga=GA1.2.1485190825.1488412337; _gat_UA-45526986-2=1
+Content-Length: 83
+Content-Type: application/ocsp-request
 Connection: keep-alive
-If-Modified-Since: Thu, 07 Apr 2016 21:51:55 GMT
-If-None-Match: "da4-52fec1639bc61-gzip"
-Cache-Control: max-age=0
 
-
+0Q0O0M0K0I0	+
 --------------------
 
 REQUEST (thread_index=9):
-GET http://www.ucsb.edu/_/js/jquery.colorbox-min.js HTTP/1.1
-Host: www.ucsb.edu
+POST http://ocsp.sca1b.amazontrust.com/ HTTP/1.1
+Host: ocsp.sca1b.amazontrust.com
 User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: */*
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
 Accept-Language: en-US,en;q=0.5
 Accept-Encoding: gzip, deflate
-Referer: http://www.ucsb.edu/
-Cookie: _ga=GA1.2.1485190825.1488412337; _gat_UA-45526986-2=1
+Content-Length: 83
+Content-Type: application/ocsp-request
 Connection: keep-alive
-If-Modified-Since: Tue, 08 Sep 2015 21:25:36 GMT
-If-None-Match: "2e94-51f4301c74a01-gzip"
-Cache-Control: max-age=0
 
-
+0Q0O0M0K0I0	+
 --------------------
 
 REQUEST (thread_index=10):
-GET http://www.ucsb.edu/_/js/main.js HTTP/1.1
-Host: www.ucsb.edu
+POST http://ss.symcd.com/ HTTP/1.1
+Host: ss.symcd.com
 User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: */*
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
 Accept-Language: en-US,en;q=0.5
 Accept-Encoding: gzip, deflate
-Referer: http://www.ucsb.edu/
-Cookie: _ga=GA1.2.1485190825.1488412337; _gat_UA-45526986-2=1
+Content-Length: 83
+Content-Type: application/ocsp-request
 Connection: keep-alive
-If-Modified-Since: Wed, 09 Sep 2015 04:15:58 GMT
-If-None-Match: "cbe-51f48bd5b7c01-gzip"
-Cache-Control: max-age=0
 
-
+0Q0O0M0K0I0	+
 --------------------
 
 REQUEST (thread_index=11):
-GET http://www.ucsb.edu/_/js/ie10-viewport-bug-workaround.js HTTP/1.1
-Host: www.ucsb.edu
+POST http://ss.symcd.com/ HTTP/1.1
+Host: ss.symcd.com
 User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: */*
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
 Accept-Language: en-US,en;q=0.5
 Accept-Encoding: gzip, deflate
-Referer: http://www.ucsb.edu/
-Cookie: _ga=GA1.2.1485190825.1488412337; _gat_UA-45526986-2=1
+Content-Length: 83
+Content-Type: application/ocsp-request
 Connection: keep-alive
-If-Modified-Since: Fri, 28 Aug 2015 22:45:49 GMT
-If-None-Match: "296-51e66d8630ee1-gzip"
-Cache-Control: max-age=0
 
-
+0Q0O0M0K0I0	+
 --------------------
 
 REQUEST (thread_index=12):
-GET http://fonts.googleapis.com/css?family=Hind:400,500,600,700,300 HTTP/1.1
-Host: fonts.googleapis.com
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: text/css,*/*;q=0.1
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://www.ucsb.edu/_/css/main.css
-Connection: keep-alive
-Cache-Control: max-age=0
-
-
---------------------
-
-REQUEST (thread_index=13):
-GET http://www.ucsb.edu/images/slideshow/community-2.jpg HTTP/1.1
-Host: www.ucsb.edu
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: */*
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://www.ucsb.edu/
-Cookie: _ga=GA1.2.1485190825.1488412337; _gat_UA-45526986-2=1
-Connection: keep-alive
-
-
---------------------
-
-REQUEST (thread_index=14):
-GET http://www.googletagmanager.com/gtm.js?id=GTM-MTKJ2J HTTP/1.1
-Host: www.googletagmanager.com
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: */*
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://www.ucsb.edu/
-Connection: keep-alive
-Cache-Control: max-age=0
-
-
---------------------
-
-REQUEST (thread_index=15):
-GET http://analytics.ets.ucsb.edu/piwik.js HTTP/1.1
-Host: analytics.ets.ucsb.edu
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: */*
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://www.ucsb.edu/
-Cookie: _ga=GA1.2.1485190825.1488412337; _gat_UA-45526986-2=1; TRACKID=23da34a7ea61d7f68050556f36fc2a32
-Connection: keep-alive
-Cache-Control: max-age=0
-
-
---------------------
-
-REQUEST (thread_index=16):
-GET http://siteimproveanalytics.com/js/siteanalyze_21950.js HTTP/1.1
-Host: siteimproveanalytics.com
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: */*
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://www.ucsb.edu/
-Cookie: __cfduid=d9039168e1ae10c01831006df77e7a9071488412337
-Connection: keep-alive
-Cache-Control: max-age=0
-
-
---------------------
-
-REQUEST (thread_index=17):
-GET http://www.ucsb.edu/images/icons/search.png HTTP/1.1
-Host: www.ucsb.edu
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: */*
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://www.ucsb.edu/
-Cookie: _ga=GA1.2.1485190825.1488412337; _gat_UA-45526986-2=1
-Connection: keep-alive
-If-Modified-Since: Fri, 28 Aug 2015 22:47:30 GMT
-If-None-Match: "4db-51e66de67b521"
-Cache-Control: max-age=0
-
-
---------------------
-
-REQUEST (thread_index=18):
-GET http://www.ucsb.edu/images/slideshow/location.jpg HTTP/1.1
-Host: www.ucsb.edu
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: */*
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://www.ucsb.edu/
-Cookie: _ga=GA1.2.1485190825.1488412337; _gat_UA-45526986-2=1
-Connection: keep-alive
-If-Modified-Since: Thu, 05 Nov 2015 16:33:56 GMT
-If-None-Match: "21394-523cdb17d44b5"
-Cache-Control: max-age=0
-
-
---------------------
-
-REQUEST (thread_index=19):
-GET http://www.ucsb.edu/images/slideshow/day-in-life.jpg HTTP/1.1
-Host: www.ucsb.edu
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: */*
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://www.ucsb.edu/
-Cookie: _ga=GA1.2.1485190825.1488412337; _gat_UA-45526986-2=1
-Connection: keep-alive
-If-Modified-Since: Tue, 08 Sep 2015 21:16:41 GMT
-If-None-Match: "24b99-51f42e1de67a1"
-Cache-Control: max-age=0
-
-
---------------------
-
-REQUEST (thread_index=20):
-GET http://www.ucsb.edu/images/slideshow/ranking-ucen.jpg HTTP/1.1
-Host: www.ucsb.edu
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: */*
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://www.ucsb.edu/
-Cookie: _ga=GA1.2.1485190825.1488412337; _gat_UA-45526986-2=1
-Connection: keep-alive
-If-Modified-Since: Tue, 08 Sep 2015 21:16:41 GMT
-If-None-Match: "26211-51f42e1de67a1"
-Cache-Control: max-age=0
-
-
---------------------
-
-REQUEST (thread_index=21):
-GET http://www.ucsb.edu/images/slideshow/faculty.jpg HTTP/1.1
-Host: www.ucsb.edu
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: */*
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://www.ucsb.edu/
-Cookie: _ga=GA1.2.1485190825.1488412337; _gat_UA-45526986-2=1
-Connection: keep-alive
-If-Modified-Since: Fri, 28 Aug 2015 22:46:39 GMT
-If-None-Match: "d897-51e66db5e4d81"
-Cache-Control: max-age=0
-
-
---------------------
-
-REQUEST (thread_index=22):
-GET http://www.ucsb.edu/images/news/sedgewick-oak_MPerko.jpg HTTP/1.1
-Host: www.ucsb.edu
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: */*
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://www.ucsb.edu/
-Cookie: _ga=GA1.2.1485190825.1488412337; _gat_UA-45526986-2=1
-Connection: keep-alive
-If-Modified-Since: Thu, 26 Jan 2017 22:14:24 GMT
-If-None-Match: "22223-54706abf6b000"
-Cache-Control: max-age=0
-
-
---------------------
-
-REQUEST (thread_index=23):
-GET http://www.ucsb.edu/images/news/counting-sharks.jpg HTTP/1.1
-Host: www.ucsb.edu
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: */*
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://www.ucsb.edu/
-Cookie: _ga=GA1.2.1485190825.1488412337; _gat_UA-45526986-2=1
-Connection: keep-alive
-If-Modified-Since: Thu, 23 Feb 2017 00:01:37 GMT
-If-None-Match: "b381-5492751266e8c"
-Cache-Control: max-age=0
-
-
---------------------
-
-REQUEST (thread_index=24):
-GET http://www.ucsb.edu/images/news/research-horizons.jpg HTTP/1.1
-Host: www.ucsb.edu
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: */*
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://www.ucsb.edu/
-Cookie: _ga=GA1.2.1485190825.1488412337; _gat_UA-45526986-2=1
-Connection: keep-alive
-If-Modified-Since: Thu, 23 Feb 2017 00:01:45 GMT
-If-None-Match: "a61c-5492751a0420c"
-Cache-Control: max-age=0
-
-
---------------------
-
-REQUEST (thread_index=25):
-GET http://www.ucsb.edu/images/news/finding-muse.jpg HTTP/1.1
-Host: www.ucsb.edu
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: */*
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://www.ucsb.edu/
-Cookie: _ga=GA1.2.1485190825.1488412337; _gat_UA-45526986-2=1
-Connection: keep-alive
-If-Modified-Since: Mon, 27 Feb 2017 23:02:04 GMT
-If-None-Match: "a3a2-5498b115e57ec"
-Cache-Control: max-age=0
-
-
---------------------
-
-REQUEST (thread_index=26):
-GET http://www.ucsb.edu/images/news/great-shape.jpg HTTP/1.1
-Host: www.ucsb.edu
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: */*
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://www.ucsb.edu/
-Cookie: _ga=GA1.2.1485190825.1488412337; _gat_UA-45526986-2=1
-Connection: keep-alive
-If-Modified-Since: Thu, 23 Feb 2017 00:01:41 GMT
-If-None-Match: "8ee3-54927515e37cc"
-Cache-Control: max-age=0
-
-
---------------------
-
-REQUEST (thread_index=27):
-GET http://www.ucsb.edu/images/events/Recuerdos-de-Rosario.jpg HTTP/1.1
-Host: www.ucsb.edu
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: */*
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://www.ucsb.edu/
-Cookie: _ga=GA1.2.1485190825.1488412337; _gat_UA-45526986-2=1
-Connection: keep-alive
-If-Modified-Since: Fri, 24 Feb 2017 18:39:12 GMT
-If-None-Match: "ee6d-5494b0bcb246c"
-Cache-Control: max-age=0
-
-
---------------------
-
-REQUEST (thread_index=28):
-GET http://www.ucsb.edu/images/events/banff-film-festival.jpg HTTP/1.1
-Host: www.ucsb.edu
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: */*
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://www.ucsb.edu/
-Cookie: _ga=GA1.2.1485190825.1488412337; _gat_UA-45526986-2=1
-Connection: keep-alive
-If-Modified-Since: Mon, 27 Feb 2017 22:43:59 GMT
-If-None-Match: "a15b-5498ad0b6d46c"
-Cache-Control: max-age=0
-
-
---------------------
-
-REQUEST (thread_index=29):
-GET http://www.ucsb.edu/images/events/Soledad-Barrio.jpg HTTP/1.1
-Host: www.ucsb.edu
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: */*
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://www.ucsb.edu/
-Cookie: _ga=GA1.2.1485190825.1488412337; _gat_UA-45526986-2=1
-Connection: keep-alive
-If-Modified-Since: Wed, 01 Mar 2017 18:04:24 GMT
-If-None-Match: "6c83-549af2485804c"
-Cache-Control: max-age=0
-
-
---------------------
-
-REQUEST (thread_index=30):
-GET http://www.ucsb.edu/images/ucsb-wave-logo.png HTTP/1.1
-Host: www.ucsb.edu
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: */*
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://www.ucsb.edu/
-Cookie: _ga=GA1.2.1485190825.1488412337; _gat_UA-45526986-2=1
-Connection: keep-alive
-If-Modified-Since: Mon, 02 Nov 2015 19:46:09 GMT
-If-None-Match: "8c0-52394075f6695"
-Cache-Control: max-age=0
-
-
---------------------
-
-REQUEST (thread_index=31):
-GET http://www.ucsb.edu/images/ucsb-wordmark.svg HTTP/1.1
-Host: www.ucsb.edu
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: */*
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://www.ucsb.edu/_/css/main.css
-Cookie: _ga=GA1.2.1485190825.1488412337; _gat_UA-45526986-2=1
-Connection: keep-alive
-If-Modified-Since: Fri, 04 Sep 2015 18:12:23 GMT
-If-None-Match: "bf3-51eefd76ac621"
-Cache-Control: max-age=0
-
-
---------------------
-
-REQUEST (thread_index=32):
-GET http://www.ucsb.edu/images/ucsbseal.png HTTP/1.1
-Host: www.ucsb.edu
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: */*
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://www.ucsb.edu/_/css/main.css
-Cookie: _ga=GA1.2.1485190825.1488412337; _gat_UA-45526986-2=1
-Connection: keep-alive
-If-Modified-Since: Fri, 28 Aug 2015 22:46:38 GMT
-If-None-Match: "8403-51e66db4c6b61"
-Cache-Control: max-age=0
-
-
---------------------
-
-REQUEST (thread_index=33):
-GET http://www.ucsb.edu/images/background/home-page-slider-caption.svg HTTP/1.1
-Host: www.ucsb.edu
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: */*
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://www.ucsb.edu/_/css/main.css
-Cookie: _ga=GA1.2.1485190825.1488412337; _gat_UA-45526986-2=1
-Connection: keep-alive
-If-Modified-Since: Fri, 28 Aug 2015 22:47:05 GMT
-If-None-Match: "1e2-51e66dcec9e41"
-Cache-Control: max-age=0
-
-
---------------------
-
-REQUEST (thread_index=34):
-GET http://www.ucsb.edu/images/background/home-page-campus-news.svg HTTP/1.1
-Host: www.ucsb.edu
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: */*
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://www.ucsb.edu/_/css/main.css
-Cookie: _ga=GA1.2.1485190825.1488412337; _gat_UA-45526986-2=1
-Connection: keep-alive
-If-Modified-Since: Fri, 28 Aug 2015 22:47:05 GMT
-If-None-Match: "1a1-51e66dcec4081"
-Cache-Control: max-age=0
-
-
---------------------
-
-REQUEST (thread_index=35):
-GET http://www.ucsb.edu/images/icons/social-icons.png HTTP/1.1
-Host: www.ucsb.edu
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: */*
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://www.ucsb.edu/_/css/main.css
-Cookie: _ga=GA1.2.1485190825.1488412337; _gat_UA-45526986-2=1
-Connection: keep-alive
-If-Modified-Since: Tue, 05 Apr 2016 22:22:14 GMT
-If-None-Match: "2b7f-52fc446f86ea1"
-Cache-Control: max-age=0
-
-
---------------------
-
-REQUEST (thread_index=36):
-GET http://www.bfaure.us/ HTTP/1.1
-Host: www.bfaure.us
+POST http://ss.symcd.com/ HTTP/1.1
+Host: ss.symcd.com
 User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
 Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
 Accept-Language: en-US,en;q=0.5
 Accept-Encoding: gzip, deflate
-Connection: keep-alive
-Upgrade-Insecure-Requests: 1
-If-Modified-Since: Thu, 02 Feb 2017 19:31:10 GMT
-
-
---------------------
-
-REQUEST (thread_index=37):
-GET http://www.bfaure.us/assets/css/main.css HTTP/1.1
-Host: www.bfaure.us
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: text/css,*/*;q=0.1
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://www.bfaure.us/
-Connection: keep-alive
-If-Modified-Since: Thu, 02 Feb 2017 19:31:10 GMT
-
-
---------------------
-
-REQUEST (thread_index=38):
-GET http://www.bfaure.us/assets/js/jquery.min.js HTTP/1.1
-Host: www.bfaure.us
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: */*
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://www.bfaure.us/
-Connection: keep-alive
-If-Modified-Since: Thu, 02 Feb 2017 19:31:10 GMT
-
-
---------------------
-
-REQUEST (thread_index=39):
-GET http://www.bfaure.us/assets/js/skel.min.js HTTP/1.1
-Host: www.bfaure.us
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: */*
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://www.bfaure.us/
-Connection: keep-alive
-If-Modified-Since: Thu, 02 Feb 2017 19:31:10 GMT
-
-
---------------------
-
-REQUEST (thread_index=40):
-GET http://www.bfaure.us/assets/js/skel-viewport.min.js HTTP/1.1
-Host: www.bfaure.us
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: */*
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://www.bfaure.us/
-Connection: keep-alive
-If-Modified-Since: Thu, 02 Feb 2017 19:31:10 GMT
-
-
---------------------
-
-REQUEST (thread_index=41):
-GET http://www.bfaure.us/assets/js/util.js HTTP/1.1
-Host: www.bfaure.us
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: */*
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://www.bfaure.us/
-Connection: keep-alive
-If-Modified-Since: Thu, 02 Feb 2017 19:31:10 GMT
-
-
---------------------
-
-REQUEST (thread_index=42):
-GET http://www.bfaure.us/assets/js/main.js HTTP/1.1
-Host: www.bfaure.us
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: */*
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://www.bfaure.us/
-Connection: keep-alive
-If-Modified-Since: Thu, 02 Feb 2017 19:31:10 GMT
-
-
---------------------
-
-REQUEST (thread_index=43):
-GET http://www.bfaure.us/images/me2.png HTTP/1.1
-Host: www.bfaure.us
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: */*
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://www.bfaure.us/
-Connection: keep-alive
-
-
---------------------
-
-REQUEST (thread_index=44):
-GET http://www.bfaure.us/images/ai_project.PNG HTTP/1.1
-Host: www.bfaure.us
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: */*
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://www.bfaure.us/
-Connection: keep-alive
-If-Modified-Since: Thu, 02 Feb 2017 19:31:10 GMT
-
-
---------------------
-
-REQUEST (thread_index=45):
-GET http://www.bfaure.us/images/fman_windows.png HTTP/1.1
-Host: www.bfaure.us
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: */*
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://www.bfaure.us/
-Connection: keep-alive
-If-Modified-Since: Thu, 02 Feb 2017 19:31:10 GMT
-
-
---------------------
-
-REQUEST (thread_index=46):
-GET http://www.bfaure.us/images/terrain.png HTTP/1.1
-Host: www.bfaure.us
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: */*
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://www.bfaure.us/
-Connection: keep-alive
-If-Modified-Since: Thu, 02 Feb 2017 19:31:10 GMT
-
-
---------------------
-
-REQUEST (thread_index=47):
-GET http://www.bfaure.us/images/Capture.PNG HTTP/1.1
-Host: www.bfaure.us
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: */*
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://www.bfaure.us/
-Connection: keep-alive
-If-Modified-Since: Thu, 02 Feb 2017 19:31:10 GMT
-
-
---------------------
-
-REQUEST (thread_index=48):
-GET http://www.bfaure.us/images/encryption_better.png HTTP/1.1
-Host: www.bfaure.us
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: */*
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://www.bfaure.us/
-Connection: keep-alive
-If-Modified-Since: Thu, 02 Feb 2017 19:31:10 GMT
-
-
---------------------
-
-REQUEST (thread_index=49):
-GET http://www.bfaure.us/images/shealth.PNG HTTP/1.1
-Host: www.bfaure.us
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: */*
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://www.bfaure.us/
-Connection: keep-alive
-If-Modified-Since: Thu, 02 Feb 2017 19:31:10 GMT
-
-
---------------------
-
-REQUEST (thread_index=50):
-GET http://www.bfaure.us/images/digit.png HTTP/1.1
-Host: www.bfaure.us
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: */*
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://www.bfaure.us/
-Connection: keep-alive
-If-Modified-Since: Thu, 02 Feb 2017 19:31:10 GMT
-
-
---------------------
-
-REQUEST (thread_index=51):
-GET http://www.bfaure.us/images/wikiclassify.png HTTP/1.1
-Host: www.bfaure.us
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: */*
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://www.bfaure.us/
-Connection: keep-alive
-If-Modified-Since: Thu, 02 Feb 2017 19:31:10 GMT
-
-
---------------------
-
-REQUEST (thread_index=52):
-GET http://www.bfaure.us/assets/css/font-awesome.min.css HTTP/1.1
-Host: www.bfaure.us
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: text/css,*/*;q=0.1
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://www.bfaure.us/assets/css/main.css
-Connection: keep-alive
-If-Modified-Since: Thu, 02 Feb 2017 19:31:10 GMT
-
-
---------------------
-
-REQUEST (thread_index=53):
-GET http://www.bfaure.us/assets/css/images/overlay.png HTTP/1.1
-Host: www.bfaure.us
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: */*
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://www.bfaure.us/assets/css/main.css
-Connection: keep-alive
-If-Modified-Since: Thu, 02 Feb 2017 19:31:10 GMT
-
-
---------------------
-
-REQUEST (thread_index=54):
-GET http://www.bfaure.us/assets/fonts/fontawesome-webfont.woff2?v=4.6.3 HTTP/1.1
-Host: www.bfaure.us
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: application/font-woff2;q=1.0,application/font-woff;q=0.9,*/*;q=0.8
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: identity
-Referer: http://www.bfaure.us/assets/css/font-awesome.min.css
-Connection: keep-alive
-If-Modified-Since: Thu, 02 Feb 2017 19:31:10 GMT
-
-
---------------------
-
-REQUEST (thread_index=55):
-POST http://clients1.google.com/ocsp HTTP/1.1
-Host: clients1.google.com
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Content-Length: 75
+Content-Length: 83
 Content-Type: application/ocsp-request
 Connection: keep-alive
 
-0I0G0E0C0A0	+
---------------------
-
-REQUEST (thread_index=56):
-GET http://www.bfaure.us/assets/css/images/tree-in-the-cornfield_8.png HTTP/1.1
-Host: www.bfaure.us
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: */*
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://www.bfaure.us/assets/css/main.css
-Connection: keep-alive
-Range: bytes=933598-
-If-Range: Thu, 02 Feb 2017 19:31:10 GMT
-
-
---------------------
-
-REQUEST (thread_index=57):
-GET http://www.bfaure.us/assets/css/images/tree-in-the-cornfield_8.png HTTP/1.1
-Host: www.bfaure.us
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: */*
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://www.bfaure.us/assets/css/main.css
-Connection: keep-alive
-Range: bytes=933598-
-If-Range: Thu, 02 Feb 2017 19:31:10 GMT
-
-
---------------------
-
-REQUEST (thread_index=58):
-POST http://clients1.google.com/ocsp HTTP/1.1
-Host: clients1.google.com
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Content-Length: 75
-Content-Type: application/ocsp-request
-Connection: keep-alive
-
-0I0G0E0C0A0	+
---------------------
-
-REQUEST (thread_index=59):
-POST http://clients1.google.com/ocsp HTTP/1.1
-Host: clients1.google.com
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Content-Length: 75
-Content-Type: application/ocsp-request
-Connection: keep-alive
-
-0I0G0E0C0A0	+
---------------------
-
-REQUEST (thread_index=60):
-POST http://clients1.google.com/ocsp HTTP/1.1
-Host: clients1.google.com
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Content-Length: 75
-Content-Type: application/ocsp-request
-Connection: keep-alive
-
-0I0G0E0C0A0	+
---------------------
-
-REQUEST (thread_index=61):
-POST http://clients1.google.com/ocsp HTTP/1.1
-Host: clients1.google.com
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Content-Length: 75
-Content-Type: application/ocsp-request
-Connection: keep-alive
-
-0I0G0E0C0A0	+
+0Q0O0M0K0I0	+
 --------------------
